@@ -3,6 +3,8 @@ Medical Management System (MMS) - Integrated system for Medical Professionals to
 
 Project team:
 
+| Role          | Nome          | NMEC  |
+| ------------- | ------------- | ----- |
 | DevOps        | Artur Romão   | 98470 |
 | Product Owner | Diogo Cruz    | 98595 |
 | Team Manager  | Mariana Rosa  | 98390 |
