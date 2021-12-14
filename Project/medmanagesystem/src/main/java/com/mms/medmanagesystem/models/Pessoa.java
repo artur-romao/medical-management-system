@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Pessoa")
 public class Pessoa {
-    
+    @Id
     private int cc;
     private String nome;
     private int telemovel;
