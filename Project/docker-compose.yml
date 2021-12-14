@@ -41,11 +41,10 @@ services:
   mms-master:
     depends_on:
       - medmanagesystem
-    image: nginx
     ports: 
         - "8000:80"
     volumes:
-        - ./mms-master:/usr/nginx/html/
+        - ./mms-master:/var/www/html/
     links:
         - db
     networks:
