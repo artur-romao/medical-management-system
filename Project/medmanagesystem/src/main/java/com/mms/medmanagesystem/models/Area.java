@@ -21,7 +21,7 @@ public class Area {
     private int idArea;
     private String name; 
      
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_medico", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico_cc", orphanRemoval = true)
     private Set<Medico> medicos;
     
 

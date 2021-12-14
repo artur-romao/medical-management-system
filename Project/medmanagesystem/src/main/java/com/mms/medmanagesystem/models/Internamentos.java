@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -15,14 +13,13 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "internamentos")
-public class Internado {
+public class Internamentos {
     @Id
 	@GeneratedValue
 	private int id;
     private double pulso;
     private double pressaoArterial;
     private double temperatura;
-    private double freqRespiratoria;
     private String razaoInternamento;
     private int quarto;
     private int cama;
@@ -30,7 +27,7 @@ public class Internado {
     private String estado;
     private String dataAdmissao;
     private String dataSaida;
-
+	private double oxigenio;
     
     
     @ManyToOne(optional = false)
@@ -39,13 +36,13 @@ public class Internado {
 
 
 
-    public Internado(int id,Paciente paciente, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
+    public Internamentos(int id,Paciente paciente, double oxigenio, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
         this.id = id;
 		this.paciente = paciente;
         this.pulso = pulso;
+		this.oxigenio = oxigenio;
         this.pressaoArterial = pressaoArterial;
         this.temperatura = temperatura;
-        this.freqRespiratoria = freqRespiratoria;
         this.razaoInternamento = razaoInternamento;
         this.quarto = quarto;
         this.cama = cama;
@@ -55,6 +52,7 @@ public class Internado {
         this.dataSaida = dataSaida;
     }
 
+	@Column(name = "id_internado")
 	public int getIdInternamento() {
 		return this.id;
 
@@ -71,16 +69,24 @@ public class Internado {
 		this.paciente = paciente;
 	}
 
-    @Column(name = "Pulso")
+    @Column(name = "pulso")
 	public double getPulso() {
 		return this.pulso;
+	}
+
+	@Column(name = "oxigenio")
+	public double getOxigenio() {
+		return this.oxigenio;
+	}
+	public void setOxigenio(double oxigenio) {
+		this.oxigenio = oxigenio;
 	}
 
 	public void setPulso(double pulso) {
 		this.pulso = pulso;
 	}
 
-    @Column(name = "PressaoArterial")
+    @Column(name = "pressaoArterial")
 	public double getPressaoArterial() {
 		return this.pressaoArterial;
 	}
@@ -89,7 +95,7 @@ public class Internado {
 		this.pressaoArterial = pressaoArterial;
 	}
 
-    @Column(name = "Temperatura")
+    @Column(name = "temperatura")
 	public double getTemperatura() {
 		return this.temperatura;
 	}
@@ -98,17 +104,8 @@ public class Internado {
 		this.temperatura = temperatura;
 	}
     
-    @Column(name = "FreqRespiratoria")
-	public double getFreqRespiratoria() {
-		return this.freqRespiratoria;
-	}
-
-	public void setFreqRespiratoria(double freqRespiratoria) {
-		this.freqRespiratoria = freqRespiratoria;
-	}
     
-    
-    @Column(name = "RazaoInternamento")
+    @Column(name = "razaoInternamento")
 	public String getRazaoInternamento() {
 		return this.razaoInternamento;
 	}
@@ -117,7 +114,7 @@ public class Internado {
 		this.razaoInternamento = razaoInternamento;
 	}
 
-    @Column(name = "Quarto")
+    @Column(name = "quarto")
 	public int getQuarto() {
 		return this.quarto;
 	}
@@ -126,7 +123,7 @@ public class Internado {
 		this.quarto = quarto;
 	}
 
-    @Column(name = "Cama")
+    @Column(name = "cama")
 	public int getCama() {
 		return this.cama;
 	}
@@ -135,7 +132,7 @@ public class Internado {
 		this.cama = cama;
 	}
 
-    @Column(name = "Doenca")
+    @Column(name = "doenca")
 	public String getDoenca() {
 		return this.doenca;
 	}
@@ -144,7 +141,7 @@ public class Internado {
 		this.doenca = doenca;
 	}
 
-    @Column(name = "Estado")
+    @Column(name = "estado")
 	public String getEstado() {
 		return this.estado;
 	}

@@ -1,12 +1,13 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Set;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,36 +15,34 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "Vacina")
+@Table(name = "vacina")
 public class Vacina {
 
     @Id
     @GeneratedValue
-    private int idVacina;
+    private int id;
 
     private String nome;
     private String patologia;
 
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "vacina", orphanRemoval = true)
+    private Set<Pac_vac> vacinas;
 
-	//public Vacina () {}
+	public Vacina () {}
 
-	@ManyToOne(optional = false)
-    @JoinColumn(name = "idvac")
-    private Pac_vac paciente_vacinas;
-
-    public Vacina(Pac_vac paciente_vacinas, String nome, String patologia) {
-        this.paciente_vacinas = paciente_vacinas;
+    public Vacina(int id, String nome, String patologia) {
+        this.id = id;
         this.nome = nome;
         this.patologia = patologia;
     }
     
-
-    public Pac_vac getIdVacina() {
-		return this.paciente_vacinas;
+    @Column(name = "id_vacina")
+    public int getIdVacina() {
+		return this.id;
 	}
 
-	public void setIdVacina(Pac_vac paciente_vacinas) {
-		this.paciente_vacinas = paciente_vacinas;
+	public void setIdVacina(int id) {
+		this.id = id;
 	}
 
     @Column(name = "nome")
@@ -63,4 +62,13 @@ public class Vacina {
 	public void setPatologia(String patologia) {
 		this.patologia = patologia;
 	}
+
+	public Set<Pac_vac> getVacinas() {
+		return this.vacinas;
+	}
+
+	public void setVacinas(Set<Pac_vac> vacinas) {
+		this.vacinas = vacinas;
+	}
+
 }
