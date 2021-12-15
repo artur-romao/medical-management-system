@@ -29,7 +29,6 @@ public class Pessoa {
         this.datanascimento = datanascimento;
     }
 
-    //public Pessoa() {}
 
     @OneToOne (mappedBy = "person")
     private Medico medico;
