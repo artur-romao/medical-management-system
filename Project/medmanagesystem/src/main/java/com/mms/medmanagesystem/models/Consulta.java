@@ -23,7 +23,7 @@ public class Consulta {
     @GeneratedValue
     private int id;             
     private int idPaciente;
-    private int idMedico;
+    private Medico idMedico;
     private String motivo;
     private String data;
     private String anotacoes;
@@ -38,7 +38,7 @@ public class Consulta {
 
     
 
-    public Consulta(int id, int idPaciente, int idMedico, String motivo, String data, String anotacoes) {
+    public Consulta(int id, int idPaciente, Medico idMedico, String motivo, String data, String anotacoes) {
         this.id = id;
         this.idPaciente = idPaciente;
         this.idMedico = idMedico;
@@ -65,12 +65,9 @@ public class Consulta {
 		this.idPaciente = idPaciente;
 	}
 
-    @Column(name = "idmed")
-	public int getIdMedico() {
-		return this.idMedico;
-	}
 
-	public void setIdMedico(int idMedico) {
+
+	public void setIdMedico(Medico idMedico) {
 		this.idMedico = idMedico;
 	}
 
