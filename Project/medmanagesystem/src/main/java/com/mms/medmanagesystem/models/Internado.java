@@ -12,13 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Internado")
 public class Internado {
     @Id
-    private int idPaciente;
     private double pulso;
     private double pressaoArterial;
     private double temperatura;
@@ -39,8 +36,8 @@ public class Internado {
 
 
 
-    public Internado(int idPaciente, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
-        this.idPaciente = idPaciente;
+    public Internado(Paciente paciente, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
+        this.paciente = paciente;
         this.pulso = pulso;
         this.pressaoArterial = pressaoArterial;
         this.temperatura = temperatura;
@@ -54,14 +51,12 @@ public class Internado {
         this.dataSaida = dataSaida;
     }
 
-    @Column(name = "id_internamento")
-	public int getIdPaciente() {
-		return this.idPaciente;
+	public Paciente getIdPaciente() {
+		return this.paciente;
 	}
 
-
-	public void setIdPaciente(int idPaciente) {
-		this.idPaciente = idPaciente;
+	public void setIdPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
     @Column(name = "Pulso")
