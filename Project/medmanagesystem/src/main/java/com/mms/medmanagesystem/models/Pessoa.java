@@ -13,14 +13,14 @@ import javax.persistence.OneToOne;
 public class Pessoa {
     @Id
     @Column(name = "pessoa_cc")
-    private Pessoa pessoa_cc;
+    private int pessoa_cc;
     private String nome;
     private String email;
     private int telemovel;
     private String morada;
     private String datanascimento;
 
-    public Pessoa(Pessoa pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
+    public Pessoa(int pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
         this.nome = nome;
         this.email = email;
         this.pessoa_cc = pessoa_cc;
@@ -37,7 +37,7 @@ public class Pessoa {
     private Paciente paciente;
 
 
-    public Pessoa getCC() {
+    public int getCC() {
         return this.pessoa_cc;
     }
 
@@ -66,7 +66,7 @@ public class Pessoa {
     }
 
 
-    public void setCC(Pessoa pessoa_cc) {
+    public void setCC(int pessoa_cc) {
         this.pessoa_cc = pessoa_cc;
     }
     

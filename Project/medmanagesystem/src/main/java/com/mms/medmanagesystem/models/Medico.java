@@ -25,8 +25,8 @@ public class Medico {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "id_medico", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
-    private Pessoa pessoa_cc;
+    @JoinColumn(name = "medico_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
+    private Pessoa medico_cc;
     
     private String password;
 
@@ -44,7 +44,7 @@ public class Medico {
 
     public Medico(int id, Pessoa pessoa_cc, Area area, String password) {
         this.id = id;
-        this.pessoa_cc = pessoa_cc;
+        this.medico_cc = pessoa_cc;
         this.area = area;
         this.password = password;
     }
@@ -59,11 +59,11 @@ public class Medico {
     }
 
     public Pessoa getCc() {
-        return this.pessoa_cc;
+        return this.medico_cc;
     }
 
     public void setCc(Pessoa pessoa_cc) {
-        this.pessoa_cc = pessoa_cc;
+        this.medico_cc = pessoa_cc;
     }
 
     public Area getArea() {

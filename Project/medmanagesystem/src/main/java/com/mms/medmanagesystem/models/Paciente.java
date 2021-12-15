@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
@@ -25,7 +23,6 @@ public class Paciente {
     @Id
     @GeneratedValue
     private int id;
-    private int cc;
     private int internado;
 
     //public Paciente() {} não consigo por isto, da me erros
@@ -46,7 +43,7 @@ public class Paciente {
     private Set<Vacina> vacinas;
     
     @OneToOne
-    @JoinColumn(name = "cc_pessoa")
+    @JoinColumn(name = "pessoa_cc")
     private Pessoa pessoa_cc;
 
 
