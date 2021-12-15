@@ -13,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Vacina")
 public class Vacina {
@@ -29,25 +27,23 @@ public class Vacina {
 
 	//public Vacina () {}
 
-    public Vacina(int idVacina, String nome, String patologia) {
-        this.idVacina = idVacina;
-        this.nome = nome;
-        this.patologia = patologia;
-    }
-
 	@ManyToOne(optional = false)
     @JoinColumn(name = "idvac")
     private Pac_vac paciente_vacinas;
 
+    public Vacina(Pac_vac paciente_vacinas, String nome, String patologia) {
+        this.paciente_vacinas = paciente_vacinas;
+        this.nome = nome;
+        this.patologia = patologia;
+    }
     
 
-    @Column(name = "id_vacina")
-    public int getIdVacina() {
-		return this.idVacina;
+    public Pac_vac getIdVacina() {
+		return this.paciente_vacinas;
 	}
 
-	public void setIdVacina(int idVacina) {
-		this.idVacina = idVacina;
+	public void setIdVacina(Pac_vac paciente_vacinas) {
+		this.paciente_vacinas = paciente_vacinas;
 	}
 
     @Column(name = "nome")

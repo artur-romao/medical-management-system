@@ -18,8 +18,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "paciente")
 public class Paciente {
@@ -28,16 +26,7 @@ public class Paciente {
     @GeneratedValue
     private int id;
     private int cc;
-    private int assMedico;
     private int internado;
-
-
-    public Paciente(int id, int cc, int assMedico, int internado) {
-        this.id = id;
-        this.cc = cc;
-        this.assMedico = assMedico;
-        this.internado = internado;
-    }
 
     //public Paciente() {} não consigo por isto, da me erros
     
@@ -58,10 +47,17 @@ public class Paciente {
     
     @OneToOne
     @JoinColumn(name = "cc_pessoa")
-    private Pessoa pessoa;
+    private Pessoa pessoa_cc;
 
 
-    
+    public Paciente(int id, Pessoa pessoa_cc, Medico medico, int internado) {
+        this.id = id;
+        this.pessoa_cc = pessoa_cc;
+        this.medico = medico;
+        this.internado = internado;
+    }
+
+
 
     @Column(name = "id_paciente")
     public int getId() {
@@ -72,22 +68,20 @@ public class Paciente {
         this.id = id;
     }
 
-    @Column(name = "cc_paciente")
-    public int getCc() {
-        return this.cc;
+    public Pessoa getCc() {
+        return this.pessoa_cc;
     }
 
-    public void setCc(int cc) {
-        this.cc = cc;
+    public void setCc(Pessoa pessoa_cc) {
+        this.pessoa_cc = pessoa_cc;
     }
 
-    @Column(name = "assMedico")
-    public int getAssMedico() {
-        return this.assMedico;
+    public Medico getAssMedico() {
+        return this.medico;
     }
 
-    public void setAssMedico(int assMedico) {
-        this.assMedico = assMedico;
+    public void setAssMedico(Medico medico) {
+        this.medico = medico;
     }
 
     @Column(name = "Internado")

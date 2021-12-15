@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
@@ -18,8 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "medico")
 public class Medico {
@@ -29,16 +25,14 @@ public class Medico {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "cc_medico", referencedColumnName = "cc_pessoa") //referenccedColumName é o que vem de pessoa
-    private Pessoa pessoa;
+    @JoinColumn(name = "id_medico", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
+    private Pessoa pessoa_cc;
     
-    private int cc;
-    private int area;
     private String password;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_area")
-    private Area area_bd;
+    private Area area;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_paciente", orphanRemoval = true)
     private Set<Paciente> pacientes;
@@ -48,9 +42,9 @@ public class Medico {
     
     
 
-    public Medico(int id, int cc, int area, String password) {
+    public Medico(int id, Pessoa pessoa_cc, Area area, String password) {
         this.id = id;
-        this.cc = cc;
+        this.pessoa_cc = pessoa_cc;
         this.area = area;
         this.password = password;
     }
@@ -64,21 +58,19 @@ public class Medico {
         this.id = id;
     }
 
-    @Column(name = "cc")
-    public int getCc() {
-        return this.cc;
+    public Pessoa getCc() {
+        return this.pessoa_cc;
     }
 
-    public void setCc(int cc) {
-        this.cc = cc;
+    public void setCc(Pessoa pessoa_cc) {
+        this.pessoa_cc = pessoa_cc;
     }
 
-    @Column(name = "area")
-    public int getArea() {
+    public Area getArea() {
         return this.area;
     }
 
-    public void setArea(int area) {
+    public void setArea(Area area) {
         this.area = area;
     }
 

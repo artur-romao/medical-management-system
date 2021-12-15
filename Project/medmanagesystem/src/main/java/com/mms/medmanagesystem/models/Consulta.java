@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "consulta")
 public class Consulta {
@@ -22,8 +18,6 @@ public class Consulta {
     @Id
     @GeneratedValue
     private int id;             
-    private int idPaciente;
-    private Medico idMedico;
     private String motivo;
     private String data;
     private String anotacoes;
@@ -38,10 +32,10 @@ public class Consulta {
 
     
 
-    public Consulta(int id, int idPaciente, Medico idMedico, String motivo, String data, String anotacoes) {
+    public Consulta(int id, Paciente paciente, Medico medico, String motivo, String data, String anotacoes) {
         this.id = id;
-        this.idPaciente = idPaciente;
-        this.idMedico = idMedico;
+        this.paciente = paciente;
+        this.medico = medico;
         this.motivo = motivo;
         this.data = data;
         this.anotacoes = anotacoes;
@@ -56,19 +50,20 @@ public class Consulta {
 		this.id = id;
 	}
 
-    @Column(name = "idpac")
-	public int getIdPaciente() {
-		return this.idPaciente;
+	public Paciente getIdPaciente() {
+		return this.paciente;
 	}
 
-	public void setIdPaciente(int idPaciente) {
-		this.idPaciente = idPaciente;
+	public void setIdPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
+	public Medico getIdMedico() {
+		return this.medico;
+	}
 
-
-	public void setIdMedico(Medico idMedico) {
-		this.idMedico = idMedico;
+	public void setIdMedico(Medico medico) {
+		this.medico = medico;
 	}
 
     @Column(name = "motivo")

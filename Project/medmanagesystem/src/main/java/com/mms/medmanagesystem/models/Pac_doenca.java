@@ -12,44 +12,41 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "pac_doenca")
 public class Pac_doenca {
-    @Id
-    private int idPaciente;         
-    private int idDoenca;
 
     //public Pac_doenca() {}
 
-    public Pac_doenca (int idPaciente, int idDoenca){
-        this.idPaciente = idPaciente;
-        this.idDoenca = idDoenca;
-
-    }
-
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_paciente")
+    @Id
+    private Paciente paciente;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
-    private Paciente paciente;
+    private Doenca paciente_doenca;
     
-    
-    @Column(name = "idp")
-    public int getIdPaciente() {
-        return this.idPaciente;
+    public Pac_doenca (Paciente paciente, Doenca paciente_doenca){
+        this.paciente = paciente;
+        this.paciente_doenca = paciente_doenca;
+
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-    @Column(name = "idd")
-    public int getIdDoenca() {
-        return this.idDoenca;
+    public Paciente getPaciente() {
+        return this.paciente;
     }
 
-    public void setIdDoenca(int idDoenca) {
-        this.idDoenca = idDoenca;
+    public void setpaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Doenca getdoenca() {
+        return this.paciente_doenca;
+    }
+
+    public void setdoenca(Doenca paciente_doenca) {
+        this.paciente_doenca = paciente_doenca;
     }
     
 }

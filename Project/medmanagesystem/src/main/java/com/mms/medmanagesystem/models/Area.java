@@ -1,9 +1,6 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Area")
 public class Area {
@@ -28,7 +23,6 @@ public class Area {
      
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_medico", orphanRemoval = true)
     private Set<Medico> medicos;
-    
     
 
     public Area(int idArea, String name) {

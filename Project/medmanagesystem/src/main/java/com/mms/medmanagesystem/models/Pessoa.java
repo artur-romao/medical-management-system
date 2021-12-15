@@ -1,35 +1,29 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Data
-
 @Entity
 @Table(name = "person")
 public class Pessoa {
     @Id
-    private int cc;
+    @Column(name = "pessoa_cc")
+    private Pessoa pessoa_cc;
     private String nome;
     private String email;
     private int telemovel;
     private String morada;
     private String datanascimento;
 
-    public Pessoa() {}
-
-    public Pessoa(int cc, String nome, String email, int telemovel, String morada, String datanascimento) {
+    public Pessoa(Pessoa pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
         this.nome = nome;
         this.email = email;
-        this.cc = cc;
+        this.pessoa_cc = pessoa_cc;
         this.telemovel = telemovel;
         this.morada = morada;
         this.datanascimento = datanascimento;
@@ -42,13 +36,9 @@ public class Pessoa {
     @OneToOne (mappedBy = "person")
     private Paciente paciente;
 
-    
-    
 
-
-    @Column(name = "cc_pessoa")
-    public int getCC() {
-        return this.cc;
+    public Pessoa getCC() {
+        return this.pessoa_cc;
     }
 
     @Column(name = "Nome")
@@ -76,8 +66,8 @@ public class Pessoa {
     }
 
 
-    public void setCC(int cc) {
-        this.cc = cc;
+    public void setCC(Pessoa pessoa_cc) {
+        this.pessoa_cc = pessoa_cc;
     }
     
 
