@@ -12,8 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name = "person")
 public class Pessoa {
@@ -25,6 +24,8 @@ public class Pessoa {
     private String morada;
     private String datanascimento;
 
+    public Pessoa() {}
+
     public Pessoa(int cc, String nome, String email, int telemovel, String morada, String datanascimento) {
         this.nome = nome;
         this.email = email;
@@ -34,7 +35,6 @@ public class Pessoa {
         this.datanascimento = datanascimento;
     }
 
-    //public Pessoa() {}
 
     @OneToOne (mappedBy = "person")
     private Medico medico;
