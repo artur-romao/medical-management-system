@@ -7,13 +7,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "Internado")
+@Table(name = "internamentos")
 public class Internado {
     @Id
+	@GeneratedValue
+	private int id;
     private double pulso;
     private double pressaoArterial;
     private double temperatura;
@@ -34,8 +37,9 @@ public class Internado {
 
 
 
-    public Internado(Paciente paciente, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
-        this.paciente = paciente;
+    public Internado(int id,Paciente paciente, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
+        this.id = id;
+		this.paciente = paciente;
         this.pulso = pulso;
         this.pressaoArterial = pressaoArterial;
         this.temperatura = temperatura;
@@ -49,6 +53,14 @@ public class Internado {
         this.dataSaida = dataSaida;
     }
 
+	public int getIdInternamento() {
+		return this.id;
+
+	}
+
+	public void setidInternamento(int idInternamento) {
+		this.id = idInternamento;
+	}
 	public Paciente getIdPaciente() {
 		return this.paciente;
 	}
