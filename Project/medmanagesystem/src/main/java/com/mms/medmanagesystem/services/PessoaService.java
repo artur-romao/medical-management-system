@@ -1,5 +1,5 @@
 package com.mms.medmanagesystem.services;
-/*
+
 import com.mms.medmanagesystem.models.Pessoa;
 import com.mms.medmanagesystem.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +30,17 @@ public class PessoaService {
         return repository.findByName(name);
     }
 
-    public String deletePessoa(int id) {
-        repository.deleteById(id);
-        return "Pessoa removed !! " + id;
+    public String deletePessoa(int cc) {
+        repository.deleteById(cc);
+        return "Pessoa removed !! " + cc;
     }
 
     public Pessoa updatePessoa(Pessoa Pessoa) {
         Pessoa existingPessoa = repository.findById(Pessoa.getCC()).orElse(null);
-        existingPessoa.setName(Pessoa.getName());
-        existingPessoa.setQuantity(Pessoa.getQuantity());
-        existingPessoa.setPrice(Pessoa.getPrice());
+        existingPessoa.setNome(Pessoa.getName());
+        existingPessoa.setEmail(Pessoa.getEmail());
+        existingPessoa.setTelemovel(Pessoa.getTelemovel());
+        existingPessoa.setMorada(Pessoa.getMorada());
         return repository.save(existingPessoa);
     }
 }
-*/
