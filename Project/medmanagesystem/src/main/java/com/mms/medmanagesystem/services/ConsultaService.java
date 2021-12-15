@@ -33,8 +33,13 @@ public class ConsultaService {
 
     public Consulta updateConsulta(Consulta Consulta) {
         Consulta existingConsulta = repository.findById(Consulta.getId()).orElse(null);
-        existingConsulta.setIdMedico(Consulta.getName());
-        existingConsulta.setIdConsulta(Consulta.getIdConsulta());
+        existingConsulta.setIdMedico(Consulta.getIdMedico());
+        existingConsulta.setId(Consulta.getId());
+        existingConsulta.setIdPaciente(Consulta.getIdPaciente());
+        existingConsulta.setMotivo(Consulta.getMotivo());
+        existingConsulta.setData(Consulta.getData());
+        existingConsulta.setAnotacoes(Consulta.getAnotacoes());
+
         return repository.save(existingConsulta);
     }
 }
