@@ -1,7 +1,13 @@
+body{
+  background-color: #F4F6F9;
+}
+
 .chatWindow {
     padding: 16px;
     box-shadow: 0px 0px 5px #00000044;
     border-radius: 8px;
+    width: 95%;
+    background-color: #FFFFFF
 }
 
 .scroll {
