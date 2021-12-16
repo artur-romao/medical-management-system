@@ -33,12 +33,13 @@ public class Medico {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_area")
     private Area area;
-
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_paciente", orphanRemoval = true)
+    
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id", orphanRemoval = true)
+    private Set<Consulta> consultas;
+    
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id", orphanRemoval = true)
     private Set<Paciente> pacientes;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_consulta", orphanRemoval = true)
-    private Set<Consulta> consultas;
     
     
 

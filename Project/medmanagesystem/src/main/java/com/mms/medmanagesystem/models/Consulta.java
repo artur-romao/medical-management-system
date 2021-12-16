@@ -27,7 +27,7 @@ public class Consulta {
     private Paciente paciente;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_medico")
+    @JoinColumn(name = "medico_id")
     private Medico medico;
 
     

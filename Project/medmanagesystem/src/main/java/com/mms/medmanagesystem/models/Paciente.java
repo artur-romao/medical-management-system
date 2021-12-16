@@ -43,13 +43,13 @@ public class Paciente {
     private Set<Vacina> vacinas;
     
     @OneToOne
-    @JoinColumn(name = "pessoa_cc")
-    private Pessoa pessoa_cc;
+    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
+    private Pessoa paciente_cc;
 
 
     public Paciente(int id, Pessoa pessoa_cc, Medico medico, int internado) {
         this.id = id;
-        this.pessoa_cc = pessoa_cc;
+        this.paciente_cc = pessoa_cc;
         this.medico = medico;
         this.internado = internado;
     }
@@ -66,11 +66,11 @@ public class Paciente {
     }
 
     public Pessoa getCc() {
-        return this.pessoa_cc;
+        return this.paciente_cc;
     }
 
     public void setCc(Pessoa pessoa_cc) {
-        this.pessoa_cc = pessoa_cc;
+        this.paciente_cc = pessoa_cc;
     }
 
     public Medico getAssMedico() {

@@ -28,6 +28,12 @@ public class Internado {
     private String estado;
     private String dataAdmissao;
     private String dataSaida;
+	private double oxigenio;
+
+	
+
+
+	
 
     
     
@@ -37,13 +43,13 @@ public class Internado {
 
 
 
-    public Internado(int id,Paciente paciente, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
+    public Internado(int id,Paciente paciente, double oxigenio, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
         this.id = id;
 		this.paciente = paciente;
         this.pulso = pulso;
+		this.oxigenio = oxigenio;
         this.pressaoArterial = pressaoArterial;
         this.temperatura = temperatura;
-        this.freqRespiratoria = freqRespiratoria;
         this.razaoInternamento = razaoInternamento;
         this.quarto = quarto;
         this.cama = cama;
@@ -74,6 +80,14 @@ public class Internado {
 		return this.pulso;
 	}
 
+	@Column(name = "Oxigenio")
+	public double getOxigenio() {
+		return this.oxigenio;
+	}
+	public void setOxigenio(double oxigenio) {
+		this.oxigenio = oxigenio;
+	}
+
 	public void setPulso(double pulso) {
 		this.pulso = pulso;
 	}
@@ -94,15 +108,6 @@ public class Internado {
 
 	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
-	}
-    
-    @Column(name = "FreqRespiratoria")
-	public double getFreqRespiratoria() {
-		return this.freqRespiratoria;
-	}
-
-	public void setFreqRespiratoria(double freqRespiratoria) {
-		this.freqRespiratoria = freqRespiratoria;
 	}
     
     
