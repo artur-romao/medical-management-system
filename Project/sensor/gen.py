@@ -20,7 +20,7 @@ import numpy as np
 class Generators:
      """ This class houses all the functions that will generate data"""
      def __init__(self):
-          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.xx', port=5672))
+          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.160.209', port=5672))
           self.marychanel = self.connection.channel()
           
 
