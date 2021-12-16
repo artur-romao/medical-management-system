@@ -14,12 +14,12 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "Vacina")
+@Table(name = "vacina")
 public class Vacina {
 
     @Id
     @GeneratedValue
-    private int idVacina;
+    private int id;
 
     private String nome;
     private String patologia;
@@ -28,22 +28,22 @@ public class Vacina {
 	//public Vacina () {}
 
 	@ManyToOne(optional = false)
-    @JoinColumn(name = "idvac")
+    //@JoinColumn(name = "vacinas")
     private Pac_vac paciente_vacinas;
 
-    public Vacina(Pac_vac paciente_vacinas, String nome, String patologia) {
-        this.paciente_vacinas = paciente_vacinas;
+    public Vacina(int id, String nome, String patologia) {
+        this.id = id;
         this.nome = nome;
         this.patologia = patologia;
     }
     
-
-    public Pac_vac getIdVacina() {
-		return this.paciente_vacinas;
+    @Column(name = "id_vacina")
+    public int getIdVacina() {
+		return this.id;
 	}
 
-	public void setIdVacina(Pac_vac paciente_vacinas) {
-		this.paciente_vacinas = paciente_vacinas;
+	public void setIdVacina(int id) {
+		this.id = id;
 	}
 
     @Column(name = "nome")

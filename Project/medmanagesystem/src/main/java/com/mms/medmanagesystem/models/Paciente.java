@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
@@ -25,7 +23,6 @@ public class Paciente {
     @Id
     @GeneratedValue
     private int id;
-    private int cc;
     private int internado;
 
     //public Paciente() {} não consigo por isto, da me erros
@@ -36,23 +33,27 @@ public class Paciente {
     @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_consulta", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
     private Set<Consulta> consultas;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_internamento", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
     private Set<Internado> internados;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_vac", orphanRemoval = true)
-    private Set<Vacina> vacinas;
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
+    private Set<Pac_vac> vacinas;
     
-    @OneToOne
-    @JoinColumn(name = "cc_pessoa")
-    private Pessoa pessoa_cc;
+    // @OneToOne
+    // @JoinColumn(name = "pessoa_cc")
+    // private Pessoa paciente_cc;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
+    private Pessoa paciente_cc;
 
 
     public Paciente(int id, Pessoa pessoa_cc, Medico medico, int internado) {
         this.id = id;
-        this.pessoa_cc = pessoa_cc;
+        this.paciente_cc = pessoa_cc;
         this.medico = medico;
         this.internado = internado;
     }
@@ -69,11 +70,11 @@ public class Paciente {
     }
 
     public Pessoa getCc() {
-        return this.pessoa_cc;
+        return this.paciente_cc;
     }
 
     public void setCc(Pessoa pessoa_cc) {
-        this.pessoa_cc = pessoa_cc;
+        this.paciente_cc = pessoa_cc;
     }
 
     public Medico getAssMedico() {
