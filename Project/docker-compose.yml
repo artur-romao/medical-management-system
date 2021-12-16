@@ -33,8 +33,7 @@ services:
         "spring.rabbitmq.port" : 5672,
         "spring.rabbitmq.username" : user,
         "spring.rabbitmq.password": user,
-        "server.port": 8000
-      }'
+        "server.port": 8000}'
   mms-master:
     image: nginx # talvez não funcione, se não funcionar, criar Dockerfile e fazer build .
     ports: 
