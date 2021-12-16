@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -24,10 +25,11 @@ public class Pac_vac {
     private Paciente paciente;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "pac_vac", orphanRemoval = true)
-    //@JoinColumn(name = "id_vacina")
+    @JoinColumn(name = "id_vacina")
     private Set<Vacina> vacinas;
 
-    // public Pac_vac (){ }
+    public Pac_vac (){ }
+
     public Pac_vac(Paciente paciente, Set<Vacina> vacinas) {
         this.paciente = paciente;
         this.vacinas = vacinas;

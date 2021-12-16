@@ -1,10 +1,9 @@
-/* package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.services;
 
 import com.mms.medmanagesystem.models.Internado;
 import com.mms.medmanagesystem.models.Paciente;
 import com.mms.medmanagesystem.repository.InternadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class InternadoService {
@@ -42,7 +41,6 @@ public class InternadoService {
         existingInternamento.setPulso(Internado.getPulso());
         existingInternamento.setTemperatura(Internado.getTemperatura());
         existingInternamento.setPressaoArterial(Internado.getPressaoArterial());
-        existingInternamento.setFreqRespiratoria(Internado.getFreqRespiratoria());
         existingInternamento.setRazaoInternamento(Internado.getRazaoInternamento());
         existingInternamento.setOxigenio(Internado.getOxigenio());
         existingInternamento.setCama(Internado.getCama());
@@ -53,4 +51,4 @@ public class InternadoService {
         return repository.save(existingInternamento);
     }
 }
- */
+ 

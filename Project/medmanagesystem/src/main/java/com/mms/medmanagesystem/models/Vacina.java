@@ -23,7 +23,7 @@ public class Vacina {
     private String patologia;
 
 
-	//public Vacina () {}
+	public Vacina () {}
 
 	@ManyToOne(optional = false)
     //@JoinColumn(name = "vacinas")

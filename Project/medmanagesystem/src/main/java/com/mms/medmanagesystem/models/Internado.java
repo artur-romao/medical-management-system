@@ -20,7 +20,6 @@ public class Internado {
     private double pulso;
     private double pressaoArterial;
     private double temperatura;
-    private double freqRespiratoria;
     private String razaoInternamento;
     private int quarto;
     private int cama;
