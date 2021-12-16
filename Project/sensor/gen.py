@@ -26,17 +26,18 @@ class Generators:
 
           # frequency is 360
           frequency = 360
-          listadavelhice=[]
+          hblist=[]
           # calculating time data with ecg size along with frequency
           while True:
 
                for n in range(len(ecg)):
-                    coracaodemelao = np.real((ecg[n]*(random.randrange(-10,10)**0.05)))
-                    listadavelhice.append(coracaodemelao)
+                    t = np.real((ecg[n]*(random.randrange(-10,10)**0.05)))
+                    hblist.append(t)
 
-               time_data = np.arange(len(listadavelhice)) / frequency
+               time_data = np.arange(len(hblist)) / frequency
+               tojson={'name':'hb', 'times_data': time_data, "heart_values": hblist}
                """
-               plt.plot(time_data, listadavelhice)
+               plt.plot(time_data, hblist)
                plt.xlabel("time in seconds")
                plt.ylabel("ECG in milli Volts")
                plt.xlim(9, 2500.2)
@@ -49,12 +50,15 @@ class Generators:
                avgtemp=37
 
                currtemp = avgtemp+random.randrange(-10,10)*0.15
+               tojson={'name':'temp', 'values':currtemp}
      def pressaoarterial():
           sis=120
           dia=80
           while True:
-               sisnew = sis+random.randrange(-20,20)*0.15
-               dianew=dia +random.randrange(-20,20)
+               sisnew = round(sis+random.randrange(-20,20)+random.random(),2)
+               dianew=round(dia +random.randrange(-20,20)+random.random(),2)
+
+               tojson={'name':'press', "sis_values":sisnew, "dia_values": dianew}
           
      def oxigeniosaturarion():
           #varia entre 96% e 99% com minimo em 94%
@@ -64,4 +68,7 @@ class Generators:
           values= [89,90,91,92,93,94,95,96,97,98,99]
           while True:
                getrandomoxi= np.random.choice(values,1,True,dist)
-          
+               oxi= round(getrandomoxi[0] + random.random(),2)
+               tojson={'name':'oxi', 'value':oxi}
+
+     temp()
