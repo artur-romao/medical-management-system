@@ -33,16 +33,20 @@ public class Paciente {
     @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_consulta", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
     private Set<Consulta> consultas;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_internamento", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
     private Set<Internado> internados;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id_vac", orphanRemoval = true)
-    private Set<Vacina> vacinas;
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
+    private Set<Pac_vac> vacinas;
     
-    @OneToOne
+    // @OneToOne
+    // @JoinColumn(name = "pessoa_cc")
+    // private Pessoa paciente_cc;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
     private Pessoa paciente_cc;
 

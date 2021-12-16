@@ -30,18 +30,19 @@ public class Pessoa {
     }
 
 
-    @OneToOne (mappedBy = "person")
+    @OneToOne (mappedBy = "medico_cc")
     private Medico medico;
 
-    @OneToOne (mappedBy = "person")
+    @OneToOne (mappedBy = "paciente_cc")
     private Paciente paciente;
 
 
+    @Column(name = "pessoa_cc")
     public int getCC() {
         return this.pessoa_cc;
     }
 
-    @Column(name = "Nome")
+    @Column(name = "nome")
     public String getName() {
         return this.nome;
     }
@@ -51,16 +52,16 @@ public class Pessoa {
         return this.email;
     }
 
-    @Column(name = "Telemovel")
+    @Column(name = "telemovel")
     public int getTelemovel() {
         return this.telemovel;
     }
 
-    @Column(name = "DataNascimento")
+    @Column(name = "dataNascimento")
     public String getDataNascimento() {
         return this.datanascimento;
     }
-    @Column(name = "Morada")
+    @Column(name = "morada")
     public String getMorada() {
         return this.morada;
     }

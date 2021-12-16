@@ -24,24 +24,27 @@ public class Medico {
     @GeneratedValue
     private int id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "medico_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
     private Pessoa medico_cc;
+
+    // @OneToOne
+    // @JoinColumn(name = "pessoa_cc")
+    // private Pessoa medico_cc;
     
     private String password;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_area")
     private Area area;
-    
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id", orphanRemoval = true)
-    private Set<Consulta> consultas;
-    
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "id", orphanRemoval = true)
+
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
     private Set<Paciente> pacientes;
 
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
+    private Set<Consulta> consultas;
     
-    
+    public Medico(){}
 
     public Medico(int id, Pessoa pessoa_cc, Area area, String password) {
         this.id = id;
