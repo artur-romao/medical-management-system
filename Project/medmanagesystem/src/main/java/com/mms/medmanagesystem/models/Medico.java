@@ -28,10 +28,6 @@ public class Medico {
     @JoinColumn(name = "medico_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
     private Pessoa medico_cc;
 
-    // @OneToOne
-    // @JoinColumn(name = "pessoa_cc")
-    // private Pessoa medico_cc;
-    
     private String password;
 
     @ManyToOne(optional = false)

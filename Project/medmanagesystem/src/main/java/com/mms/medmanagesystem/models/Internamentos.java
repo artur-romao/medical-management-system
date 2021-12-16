@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "internamentos")
-public class Internado {
+public class Internamentos {
     @Id
 	@GeneratedValue
 	private int id;
@@ -28,12 +28,6 @@ public class Internado {
     private String dataAdmissao;
     private String dataSaida;
 	private double oxigenio;
-
-	
-
-
-	
-
     
     
     @ManyToOne(optional = false)
@@ -42,7 +36,7 @@ public class Internado {
 
 
 
-    public Internado(int id,Paciente paciente, double oxigenio, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
+    public Internamentos(int id,Paciente paciente, double oxigenio, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
         this.id = id;
 		this.paciente = paciente;
         this.pulso = pulso;
@@ -58,6 +52,7 @@ public class Internado {
         this.dataSaida = dataSaida;
     }
 
+	@Column(name = "id_internado")
 	public int getIdInternamento() {
 		return this.id;
 
@@ -74,12 +69,12 @@ public class Internado {
 		this.paciente = paciente;
 	}
 
-    @Column(name = "Pulso")
+    @Column(name = "pulso")
 	public double getPulso() {
 		return this.pulso;
 	}
 
-	@Column(name = "Oxigenio")
+	@Column(name = "oxigenio")
 	public double getOxigenio() {
 		return this.oxigenio;
 	}
@@ -91,7 +86,7 @@ public class Internado {
 		this.pulso = pulso;
 	}
 
-    @Column(name = "PressaoArterial")
+    @Column(name = "pressaoArterial")
 	public double getPressaoArterial() {
 		return this.pressaoArterial;
 	}
@@ -100,7 +95,7 @@ public class Internado {
 		this.pressaoArterial = pressaoArterial;
 	}
 
-    @Column(name = "Temperatura")
+    @Column(name = "temperatura")
 	public double getTemperatura() {
 		return this.temperatura;
 	}
@@ -110,7 +105,7 @@ public class Internado {
 	}
     
     
-    @Column(name = "RazaoInternamento")
+    @Column(name = "razaoInternamento")
 	public String getRazaoInternamento() {
 		return this.razaoInternamento;
 	}
@@ -119,7 +114,7 @@ public class Internado {
 		this.razaoInternamento = razaoInternamento;
 	}
 
-    @Column(name = "Quarto")
+    @Column(name = "quarto")
 	public int getQuarto() {
 		return this.quarto;
 	}
@@ -128,7 +123,7 @@ public class Internado {
 		this.quarto = quarto;
 	}
 
-    @Column(name = "Cama")
+    @Column(name = "cama")
 	public int getCama() {
 		return this.cama;
 	}
@@ -137,7 +132,7 @@ public class Internado {
 		this.cama = cama;
 	}
 
-    @Column(name = "Doenca")
+    @Column(name = "doenca")
 	public String getDoenca() {
 		return this.doenca;
 	}
@@ -146,7 +141,7 @@ public class Internado {
 		this.doenca = doenca;
 	}
 
-    @Column(name = "Estado")
+    @Column(name = "estado")
 	public String getEstado() {
 		return this.estado;
 	}

@@ -2,9 +2,13 @@ package com.mms.medmanagesystem.models;
 
 import lombok.Data;
 
+import java.util.Set;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +29,8 @@ public class Vacina {
 
 	public Vacina () {}
 
-	@ManyToOne(optional = false)
-    //@JoinColumn(name = "vacinas")
-    private Pac_vac paciente_vacinas;
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "vacina", orphanRemoval = true)
+    private Set<Pac_vac> vacinas;
 
     public Vacina(int id, String nome, String patologia) {
         this.id = id;

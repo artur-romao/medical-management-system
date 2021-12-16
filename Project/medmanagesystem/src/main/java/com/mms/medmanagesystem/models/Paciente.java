@@ -23,10 +23,8 @@ public class Paciente {
     @Id
     @GeneratedValue
     private int id;
-    private int internado;
 
-    //public Paciente() {} não consigo por isto, da me erros
-    
+    public Paciente() {}
 
     
     @ManyToOne(optional = false)
@@ -37,25 +35,21 @@ public class Paciente {
     private Set<Consulta> consultas;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
-    private Set<Internado> internados;
+    private Set<Internamentos> internamentos;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
     private Set<Pac_vac> vacinas;
-    
-    // @OneToOne
-    // @JoinColumn(name = "pessoa_cc")
-    // private Pessoa paciente_cc;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
     private Pessoa paciente_cc;
 
 
-    public Paciente(int id, Pessoa pessoa_cc, Medico medico, int internado) {
+    public Paciente(int id, Pessoa pessoa_cc, Medico medico, Set<Internamentos> internamentos) {
         this.id = id;
         this.paciente_cc = pessoa_cc;
         this.medico = medico;
-        this.internado = internado;
+        this.internamentos = internamentos;
     }
 
 
@@ -85,13 +79,12 @@ public class Paciente {
         this.medico = medico;
     }
 
-    @Column(name = "Internado")
-    public int getInternado() {
-        return this.internado;
+    public Set<Internamentos> getInternado() {
+        return this.internamentos;
     }
 
-    public void setInternado(int internado) {
-        this.internado = internado;
+    public void setInternado(Set<Internamentos> internamentos) {
+        this.internamentos = internamentos;
     }
     
 }

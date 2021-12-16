@@ -2,14 +2,11 @@ package com.mms.medmanagesystem.models;
 
 import lombok.Data;
 
+import java.util.HashMap;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,19 +17,24 @@ import javax.persistence.Table;
 public class Pac_vac {
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_paciente")
-    @Id
+    //@JoinColumn(name = "id_paciente")
+    //@Id
     private Paciente paciente;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "pac_vac", orphanRemoval = true)
-    @JoinColumn(name = "id_vacina")
-    private Set<Vacina> vacinas;
+    @ManyToOne(optional = false)
+    //@JoinColumn(name = "id_vacina")
+    //@Id
+    private Vacina vacina;
+
+    @Id
+    HashMap<Paciente, Vacina> paciente_vacina = new HashMap<>();
 
     public Pac_vac (){ }
 
-    public Pac_vac(Paciente paciente, Set<Vacina> vacinas) {
+    public Pac_vac(Paciente paciente, Vacina vacina) {
         this.paciente = paciente;
-        this.vacinas = vacinas;
+        this.vacina = vacina;
+        paciente_vacina.put(this.paciente, this.vacina);
     }
 
     public Paciente getpaciente() {
@@ -43,12 +45,23 @@ public class Pac_vac {
         this.paciente = paciente;
     }
 
-    public Set<Vacina> getvacinas() {
-        return this.vacinas;
+    
+    public Vacina getvacina() {
+        return this.vacina;
     }
 
-    public void setvacinas(Set<Vacina> vacinas) {
-        this.vacinas = vacinas;
+    public void setvacina(Vacina vacina) {
+        this.vacina = vacina;
     }
+
+    @Column(name = "paciente_vacina")
+    public HashMap<Paciente,Vacina> getPaciente_vacina() {
+        return this.paciente_vacina;
+    }
+
+    public void setPaciente_vacina(HashMap<Paciente,Vacina> paciente_vacina) {
+        this.paciente_vacina = paciente_vacina;
+    }
+
 
 }
