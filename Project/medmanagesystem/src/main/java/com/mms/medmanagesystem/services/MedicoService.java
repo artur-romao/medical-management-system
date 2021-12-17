@@ -3,7 +3,6 @@ package com.mms.medmanagesystem.services;
 import com.mms.medmanagesystem.models.Medico;
 import com.mms.medmanagesystem.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class MedicoService {

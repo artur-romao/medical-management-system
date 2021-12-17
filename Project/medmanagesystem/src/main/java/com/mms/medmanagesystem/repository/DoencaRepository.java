@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DoencaRepository extends JpaRepository<Doenca,Integer> {
 
-	Doenca findByName(String name);
+	Doenca findByNome(String name);
 
 }

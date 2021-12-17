@@ -3,7 +3,6 @@ package com.mms.medmanagesystem.services;
 import com.mms.medmanagesystem.models.Consulta;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class ConsultaService {

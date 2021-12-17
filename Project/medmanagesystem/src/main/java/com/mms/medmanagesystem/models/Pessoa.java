@@ -42,8 +42,8 @@ public class Pessoa {
         return this.pessoa_cc;
     }
 
-    @Column(name = "nome")
-    public String getName() {
+    @Column(name = "name")
+    public String getNome() {
         return this.nome;
     }
 

@@ -3,7 +3,6 @@ package com.mms.medmanagesystem.services;
 import com.mms.medmanagesystem.models.Area;
 import com.mms.medmanagesystem.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class AreaService {

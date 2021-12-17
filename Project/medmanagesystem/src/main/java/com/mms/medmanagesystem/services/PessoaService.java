@@ -3,7 +3,6 @@ package com.mms.medmanagesystem.services;
 import com.mms.medmanagesystem.models.Pessoa;
 import com.mms.medmanagesystem.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class PessoaService {
@@ -27,7 +26,7 @@ public class PessoaService {
     }
 
     public Pessoa getPessoaByName(String name) {
-        return repository.findByName(name);
+        return repository.findByNome(name);
     }
 
     public String deletePessoa(int cc) {
@@ -37,7 +36,7 @@ public class PessoaService {
 
     public Pessoa updatePessoa(Pessoa Pessoa) {
         Pessoa existingPessoa = repository.findById(Pessoa.getCC()).orElse(null);
-        existingPessoa.setNome(Pessoa.getName());
+        existingPessoa.setNome(Pessoa.getNome());
         existingPessoa.setEmail(Pessoa.getEmail());
         existingPessoa.setTelemovel(Pessoa.getTelemovel());
         existingPessoa.setMorada(Pessoa.getMorada());

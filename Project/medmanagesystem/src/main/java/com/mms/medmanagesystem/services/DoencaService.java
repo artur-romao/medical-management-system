@@ -26,7 +26,7 @@ public class DoencaService {
     }
 
     public Doenca getDoencaByName(String name) {
-        return repository.findByName(name);
+        return repository.findByNome(name);
     }
 
     public String deleteDoenca(int cc) {

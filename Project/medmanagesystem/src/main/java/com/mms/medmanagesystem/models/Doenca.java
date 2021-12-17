@@ -48,7 +48,7 @@ public class Doenca {
 		this.id = id;
 	}
 
-    @Column(name = "nome")
+    @Column(name = "name")
 	public String getNome() {
 		return this.nome;
 	}
