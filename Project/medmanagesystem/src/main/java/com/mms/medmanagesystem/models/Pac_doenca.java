@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.models;
+/* package com.mms.medmanagesystem.models;
 
 import lombok.Data;
 
@@ -64,3 +64,4 @@ public class Pac_doenca {
     }
     
 }
+ */

@@ -1,13 +1,12 @@
 package com.mms.medmanagesystem.models;
 
 import lombok.Data;
+
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +24,12 @@ public class Vacina {
     private String nome;
     private String patologia;
 
-	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "vacina", orphanRemoval = true)
-    private Set<Pac_vac> vacinas;
+	// @OneToMany(cascade = CascadeType.ALL ,mappedBy = "vacina", orphanRemoval = true)
+    // private Set<Pac_vac> vacinas;
+
+	@ManyToMany(mappedBy = "vacinas")
+    private Set<Paciente> pacientes = new HashSet<>();
+
 
 	public Vacina () {}
 
@@ -63,12 +66,13 @@ public class Vacina {
 		this.patologia = patologia;
 	}
 
-	public Set<Pac_vac> getVacinas() {
-		return this.vacinas;
+	public Set<Paciente> getPacientes() {
+		return this.pacientes;
 	}
 
-	public void setVacinas(Set<Pac_vac> vacinas) {
-		this.vacinas = vacinas;
+	public void setPacientes(Set<Paciente> pacientes) {
+		this.pacientes = pacientes;
 	}
+
 
 }

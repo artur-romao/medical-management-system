@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.services;
+/* package com.mms.medmanagesystem.services;
 
 import com.mms.medmanagesystem.models.Pac_doenca;
 import com.mms.medmanagesystem.repository.Pac_doencaRepository;
@@ -40,4 +40,4 @@ public class Pac_doencaService {
         
     }
 }
- 
+  */

@@ -3,16 +3,14 @@ package com.mms.medmanagesystem.services;
 import com.mms.medmanagesystem.models.Vacina;
 import com.mms.medmanagesystem.repository.VacinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 public class VacinaService {
     @Autowired
     private VacinaRepository repository;
 
-    public Vacina savevacina(Vacina paciente_vacina) {
-        return repository.save(paciente_vacina);
+    public Vacina savevacina(Vacina vacina) {
+        return repository.save(vacina);
     }
 
     public List<Vacina> savevacinas(List<Vacina> vacinas_disponiveis) {

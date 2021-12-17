@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.repository;
+/* package com.mms.medmanagesystem.repository;
 
 import com.mms.medmanagesystem.models.Pac_vac;
 import com.mms.medmanagesystem.models.Paciente;
@@ -11,3 +11,4 @@ public interface Pac_vacRepository extends JpaRepository<Pac_vac,Integer> {
     public Pac_vac findPatient(Paciente p, Vacina v);
 
 }
+ */

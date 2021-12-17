@@ -1,16 +1,16 @@
 package com.mms.medmanagesystem.models;
 
 import lombok.Data;
+
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Data
 @Entity
@@ -24,8 +24,11 @@ public class Doenca {
     private String nome;
     private String descricao;
 
-	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "doenca", orphanRemoval = true)
-    private Set<Pac_doenca> doencas;
+	// @OneToMany(cascade = CascadeType.ALL ,mappedBy = "doenca", orphanRemoval = true)
+    // private Set<Pac_doenca> doencas;
+
+	@ManyToMany(mappedBy = "doencas")
+    private Set<Paciente> pacientes = new HashSet<>();
 
 	public Doenca() {}
 
@@ -62,14 +65,13 @@ public class Doenca {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Set<Pac_doenca> getDoencas() {
-		return this.doencas;
+	
+	public Set<Paciente> getPacientes() {
+		return this.pacientes;
 	}
 
-	public void setDoencas(Set<Pac_doenca> doencas) {
-		this.doencas = doencas;
+	public void setPacientes(Set<Paciente> pacientes) {
+		this.pacientes = pacientes;
 	}
-
     
 }

@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.services;
+/* package com.mms.medmanagesystem.services;
 
 import com.mms.medmanagesystem.models.Pac_vac;
 import com.mms.medmanagesystem.repository.Pac_vacRepository;
@@ -40,4 +40,4 @@ public class Pac_vacinaService {
         
     }
 }
- 
+  */

@@ -3,7 +3,6 @@ package com.mms.medmanagesystem.services;
 import com.mms.medmanagesystem.models.Doenca;
 import com.mms.medmanagesystem.repository.DoencaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class DoencaService {

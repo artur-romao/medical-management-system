@@ -9,5 +9,4 @@ public interface DoencaRepository extends JpaRepository<Doenca,Integer> {
 
 	Doenca findByName(String name);
 
-
 }

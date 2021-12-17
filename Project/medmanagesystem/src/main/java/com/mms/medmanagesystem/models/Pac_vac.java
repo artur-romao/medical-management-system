@@ -1,11 +1,10 @@
-package com.mms.medmanagesystem.models;
+/* package com.mms.medmanagesystem.models;
 
 import lombok.Data;
 
 import java.util.HashMap;
 
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,3 +64,4 @@ public class Pac_vac {
 
 
 }
+ */
