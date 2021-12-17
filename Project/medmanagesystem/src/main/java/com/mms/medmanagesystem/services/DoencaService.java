@@ -36,10 +36,10 @@ public class DoencaService {
     }
 
     public Doenca updateDoenca(Doenca Doenca) {
-        Doenca existingDoenca = repository.findById(Doenca.getIdDoenca()).orElse(null);
+        Doenca existingDoenca = repository.findById(Doenca.getid()).orElse(null);
         existingDoenca.setNome(Doenca.getNome());
         existingDoenca.setDescricao(Doenca.getDescricao());
-        existingDoenca.setIdDoenca(Doenca.getIdDoenca());
+        existingDoenca.setid(Doenca.getid());
         return repository.save(existingDoenca);
     }
 }

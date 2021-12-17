@@ -1,4 +1,4 @@
-/* package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.services;
 
 import com.mms.medmanagesystem.models.Pac_vac;
 import com.mms.medmanagesystem.repository.Pac_vacRepository;
@@ -33,11 +33,11 @@ public class Pac_vacinaService {
 
     public Pac_vac updatePac_vac(Pac_vac Pac_vac) {
         //Duvida aqui, como vamos fazer isto sem id?
-        Pac_vac existingPac_vac = repository.findPatient(Pac_vac.getpaciente(), Pac_vac.getvacinas());
+        Pac_vac existingPac_vac = repository.findPatient(Pac_vac.getpaciente(), Pac_vac.getvacina());
         existingPac_vac.setpaciente(Pac_vac.getpaciente());
-        existingPac_vac.setvacinas(Pac_vac.getvacinas());
+        existingPac_vac.setvacina(Pac_vac.getvacina());
         return repository.save(existingPac_vac);
         
     }
 }
-  */
+ 

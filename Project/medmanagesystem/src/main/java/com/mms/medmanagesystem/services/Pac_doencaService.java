@@ -33,9 +33,9 @@ public class Pac_doencaService {
 
     public Pac_doenca updatePac_doenca(Pac_doenca Pac_doenca) {
         //Duvida aqui, como vamos fazer isto sem id?
-        Pac_doenca existingPac_doenca = repository.findPatient(Pac_doenca.getPaciente(), Pac_doenca.getdoenca());
-        existingPac_doenca.setpaciente(Pac_doenca.getPaciente());
-        existingPac_doenca.setdoenca(Pac_doenca.getdoenca());
+        Pac_doenca existingPac_doenca = repository.findPatient(Pac_doenca.getPaciente(), Pac_doenca.getDoenca());
+        existingPac_doenca.setPaciente(Pac_doenca.getPaciente());
+        existingPac_doenca.setDoenca(Pac_doenca.getDoenca());
         return repository.save(existingPac_doenca);
         
     }

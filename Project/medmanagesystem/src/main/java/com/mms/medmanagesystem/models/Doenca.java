@@ -1,12 +1,16 @@
 package com.mms.medmanagesystem.models;
 
 import lombok.Data;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Data
 @Entity
@@ -15,25 +19,30 @@ public class Doenca {
 
     @Id
     @GeneratedValue
-    private int idDoenca;
+    private int id;
+
     private String nome;
     private String descricao;
 
-	
-    public Doenca(int idDoenca, String nome, String descricao) {
-        this.idDoenca = idDoenca;
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "doenca", orphanRemoval = true)
+    private Set<Pac_doenca> doencas;
+
+	public Doenca() {}
+
+    public Doenca(int id, String nome, String descricao) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;     
     }
 
 
-    @Column(name = "id")
-	public int getIdDoenca() {
-		return this.idDoenca;
+    @Column(name = "id_doenca")
+	public int getid() {
+		return this.id;
 	}
 
-	public void setIdDoenca(int idDoenca) {
-		this.idDoenca = idDoenca;
+	public void setid(int id) {
+		this.id = id;
 	}
 
     @Column(name = "nome")
@@ -54,6 +63,13 @@ public class Doenca {
 		this.descricao = descricao;
 	}
 
+	public Set<Pac_doenca> getDoencas() {
+		return this.doencas;
+	}
+
+	public void setDoencas(Set<Pac_doenca> doencas) {
+		this.doencas = doencas;
+	}
 
     
 }

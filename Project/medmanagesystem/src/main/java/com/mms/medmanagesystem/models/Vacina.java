@@ -1,7 +1,6 @@
 package com.mms.medmanagesystem.models;
 
 import lombok.Data;
-
 import java.util.Set;
 
 import javax.persistence.Id;
@@ -26,11 +25,10 @@ public class Vacina {
     private String nome;
     private String patologia;
 
-
-	public Vacina () {}
-
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "vacina", orphanRemoval = true)
     private Set<Pac_vac> vacinas;
+
+	public Vacina () {}
 
     public Vacina(int id, String nome, String patologia) {
         this.id = id;
@@ -64,4 +62,13 @@ public class Vacina {
 	public void setPatologia(String patologia) {
 		this.patologia = patologia;
 	}
+
+	public Set<Pac_vac> getVacinas() {
+		return this.vacinas;
+	}
+
+	public void setVacinas(Set<Pac_vac> vacinas) {
+		this.vacinas = vacinas;
+	}
+
 }
