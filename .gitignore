@@ -1,5 +1,6 @@
 *#
 *.iml
+*.idb
 *.ipr
 *.iws
 *.jar
