@@ -21,7 +21,7 @@ import com.mms.medmanagesystem.model.Consulta;
 import com.mms.medmanagesystem.service.ConsultaService;
 
 @RestController
-@RequestMapping("/api/v4")
+@RequestMapping("/api/v2")
 
 public class ConsultaController {
 

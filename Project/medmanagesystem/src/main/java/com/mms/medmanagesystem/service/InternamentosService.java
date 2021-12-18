@@ -30,13 +30,13 @@ public class InternamentosService {
         return repository.findByPaciente(paciente);
     }
 
-    public String deleteInternamentos(int cc) {
-        repository.deleteById(cc);
-        return "Internamentos removed !! " + cc;
+    public String deleteInternamentos(int id) {
+        repository.deleteById(id);
+        return "Internamentos removed !! " + id;
     }
 
-    public Internamentos updateInternamentos(Internamentos Internamentos) {
-        Internamentos existingInternamento = repository.findById(Internamentos.getIdInternamento()).orElse(null);
+    public Internamentos updateInternamentos(int id, Internamentos Internamentos) {
+        Internamentos existingInternamento = repository.findById(id).orElse(null);
         existingInternamento.setIdPaciente(Internamentos.getIdPaciente());
         existingInternamento.setPulso(Internamentos.getPulso());
         existingInternamento.setTemperatura(Internamentos.getTemperatura());

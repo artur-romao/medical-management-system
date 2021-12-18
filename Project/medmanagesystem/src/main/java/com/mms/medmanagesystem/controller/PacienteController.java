@@ -20,7 +20,7 @@ import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.service.PacienteService;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v5")
 public class PacienteController {
 
     @Autowired

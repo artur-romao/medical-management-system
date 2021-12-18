@@ -31,8 +31,8 @@ public class MedicoService {
         return "Medico removed !! " + id;
     }
 
-    public Medico updateMedico(Medico Medico) {
-        Medico existingMedico = repository.findById(Medico.getId()).orElse(null);
+    public Medico updateMedico(int id, Medico Medico) {
+        Medico existingMedico = repository.findById(id).orElse(null);
         existingMedico.setCc(Medico.getCc());
         existingMedico.setArea(Medico.getArea());
         existingMedico.setPassword(Medico.getPassword());

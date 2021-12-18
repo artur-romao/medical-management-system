@@ -9,30 +9,29 @@ public class VacinaService {
     @Autowired
     private VacinaRepository repository;
 
-    public Vacina savevacina(Vacina vacina) {
+    public Vacina saveVacina(Vacina vacina) {
         return repository.save(vacina);
     }
 
-    public List<Vacina> savevacinas(List<Vacina> vacinas_disponiveis) {
+    public List<Vacina> saveVacinas(List<Vacina> vacinas_disponiveis) {
         return repository.saveAll(vacinas_disponiveis);
     }
 
-    public List<Vacina> getvacinas() {
+    public List<Vacina> getVacinas() {
         return repository.findAll();
     }
 
-    public Vacina getvacinaByIDvacina(int id) {
+    public Vacina getVacinaByIDvacina(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public String deletevacina(int id) {
+    public String deleteVacina(int id) {
         repository.deleteById(id);
         return "Vacina removed !! " + id;
     }
     
-    public Vacina updatevacina(Vacina vacina) {
-        //Duvida aqui, como vamos fazer isto sem id?
-        Vacina existingvacinas = repository.findById(vacina.getIdVacina()).orElse(null);
+    public Vacina updateVacina(int id, Vacina vacina) {
+        Vacina existingvacinas = repository.findById(id).orElse(null);
         existingvacinas.setNome(vacina.getNome());
         existingvacinas.setPatologia(vacina.getPatologia());
         return repository.save(existingvacinas);

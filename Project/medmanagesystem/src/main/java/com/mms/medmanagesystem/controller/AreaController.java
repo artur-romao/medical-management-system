@@ -21,7 +21,7 @@ import com.mms.medmanagesystem.model.Area;
 import com.mms.medmanagesystem.service.AreaService;
 
 @RestController
-@RequestMapping("/api/v3")
+@RequestMapping("/api/v1")
 
 public class AreaController {
 
