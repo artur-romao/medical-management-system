@@ -1,6 +1,6 @@
-package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.service;
 
-import com.mms.medmanagesystem.models.Pessoa;
+import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -34,12 +34,12 @@ public class PessoaService {
         return "Pessoa removed !! " + cc;
     }
 
-    public Pessoa updatePessoa(Pessoa Pessoa) {
-        Pessoa existingPessoa = repository.findById(Pessoa.getCC()).orElse(null);
-        existingPessoa.setNome(Pessoa.getNome());
-        existingPessoa.setEmail(Pessoa.getEmail());
-        existingPessoa.setTelemovel(Pessoa.getTelemovel());
-        existingPessoa.setMorada(Pessoa.getMorada());
+    public Pessoa updatePessoa(Pessoa pessoa) {
+        Pessoa existingPessoa = repository.findById(pessoa.getCC()).orElse(null);
+        existingPessoa.setNome(pessoa.getNome());
+        existingPessoa.setEmail(pessoa.getEmail());
+        existingPessoa.setTelemovel(pessoa.getTelemovel());
+        existingPessoa.setMorada(pessoa.getMorada());
         return repository.save(existingPessoa);
     }
 }

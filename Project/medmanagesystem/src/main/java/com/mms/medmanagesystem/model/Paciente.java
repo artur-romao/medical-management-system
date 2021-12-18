@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.models;
+package com.mms.medmanagesystem.model;
 
 import lombok.Data;
 
@@ -121,6 +121,10 @@ public class Paciente {
 
     public void setDoencas(Set<Doenca> doencas) {
         this.doencas = doencas;
+    }
+
+    public Paciente orElseThrow(Object object) {
+        return null;
     }
     
 }

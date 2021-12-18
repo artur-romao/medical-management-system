@@ -1,6 +1,6 @@
 package com.mms.medmanagesystem.repository;
 
-import com.mms.medmanagesystem.models.Doenca;
+import com.mms.medmanagesystem.model.Doenca;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

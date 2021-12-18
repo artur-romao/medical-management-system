@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.models;
+package com.mms.medmanagesystem.model;
 
 import lombok.Data;
 import java.util.Set;

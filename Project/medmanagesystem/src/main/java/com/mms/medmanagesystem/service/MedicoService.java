@@ -1,6 +1,6 @@
-package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.service;
 
-import com.mms.medmanagesystem.models.Medico;
+import com.mms.medmanagesystem.model.Medico;
 import com.mms.medmanagesystem.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;

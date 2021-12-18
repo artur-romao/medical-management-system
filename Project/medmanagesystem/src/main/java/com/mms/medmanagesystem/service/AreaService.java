@@ -1,6 +1,6 @@
-package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.service;
 
-import com.mms.medmanagesystem.models.Area;
+import com.mms.medmanagesystem.model.Area;
 import com.mms.medmanagesystem.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -34,8 +34,8 @@ public class AreaService {
         return "Area removed !! " + id;
     }
 
-    public Area updateArea(Area Area) {
-        Area existingArea = repository.findById(Area.getIdArea()).orElse(null);
+    public Area updateArea(int id, Area Area) {
+        Area existingArea = repository.findById(id).orElse(null);
         existingArea.setName(Area.getName());
         existingArea.setIdArea(Area.getIdArea());
         return repository.save(existingArea);

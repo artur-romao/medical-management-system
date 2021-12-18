@@ -1,6 +1,6 @@
-package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.service;
 
-import com.mms.medmanagesystem.models.Consulta;
+import com.mms.medmanagesystem.model.Consulta;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -30,14 +30,14 @@ public class ConsultaService {
         return "Consulta removed !! " + id;
     }
 
-    public Consulta updateConsulta(Consulta Consulta) {
-        Consulta existingConsulta = repository.findById(Consulta.getId()).orElse(null);
-        existingConsulta.setIdMedico(Consulta.getIdMedico());
-        existingConsulta.setId(Consulta.getId());
-        existingConsulta.setIdPaciente(Consulta.getIdPaciente());
-        existingConsulta.setMotivo(Consulta.getMotivo());
-        existingConsulta.setData(Consulta.getData());
-        existingConsulta.setAnotacoes(Consulta.getAnotacoes());
+    public Consulta updateConsulta(int id_consulta, Consulta consulta) {
+        Consulta existingConsulta = repository.findById(id_consulta).orElse(null);
+        existingConsulta.setIdMedico(consulta.getIdMedico());
+        existingConsulta.setId(consulta.getId());
+        existingConsulta.setIdPaciente(consulta.getIdPaciente());
+        existingConsulta.setMotivo(consulta.getMotivo());
+        existingConsulta.setData(consulta.getData());
+        existingConsulta.setAnotacoes(consulta.getAnotacoes());
 
         return repository.save(existingConsulta);
     }

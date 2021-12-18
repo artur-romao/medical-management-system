@@ -1,3 +1,4 @@
+package com.mms.medmanagesystem.model;
 /* package com.mms.medmanagesystem.models;
 
 import lombok.Data;

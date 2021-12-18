@@ -1,6 +1,6 @@
-package com.mms.medmanagesystem.services;
+package com.mms.medmanagesystem.service;
 
-import com.mms.medmanagesystem.models.Doenca;
+import com.mms.medmanagesystem.model.Doenca;
 import com.mms.medmanagesystem.repository.DoencaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
