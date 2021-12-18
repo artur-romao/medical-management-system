@@ -1,10 +1,15 @@
 package com.mms.medmanagesystem.service;
 
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamentos;
 import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.repository.InternamentosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InternamentosService {
     @Autowired
@@ -22,21 +27,31 @@ public class InternamentosService {
         return repository.findAll();
     }
 
-    public Internamentos getInternamentosById(int id) {
-        return repository.findById(id).orElse(null);
+    public Internamentos getInternamentosById(int id) throws ResourceNotFoundException {
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this id:" + id));
+        //return ResponseEntity.ok().body(internamentos);
     }
 
-    public Internamentos getInternamentosByPaciente(Paciente paciente) {
-        return repository.findByPaciente(paciente);
-    }
+    // public ResponseEntity<Internamentos> getInternamentosByPaciente(Paciente paciente) throws ResourceNotFoundException {
+    //     Internamentos internamentos = repository.findByPaciente(paciente)
+    //     .orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this paciente:" + paciente));
+    //     return ResponseEntity.ok().body(internamentos);
+    // }
 
-    public String deleteInternamentos(int id) {
+    public Map<String, Boolean> deleteInternamentos(int id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this id: " + id));
+    
         repository.deleteById(id);
-        return "Internamentos removed !! " + id;
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;    
     }
 
-    public Internamentos updateInternamentos(int id, Internamentos Internamentos) {
-        Internamentos existingInternamento = repository.findById(id).orElse(null);
+    public Internamentos updateInternamentos(int id, Internamentos Internamentos) throws ResourceNotFoundException {
+        Internamentos existingInternamento = repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this id: " + id));
+
         existingInternamento.setIdPaciente(Internamentos.getIdPaciente());
         existingInternamento.setPulso(Internamentos.getPulso());
         existingInternamento.setTemperatura(Internamentos.getTemperatura());
@@ -48,6 +63,7 @@ public class InternamentosService {
         existingInternamento.setEstado(Internamentos.getEstado());
         existingInternamento.setDataAdmissao(Internamentos.getDataAdmissao());
         existingInternamento.setDataSaida(Internamentos.getDataSaida());
+        
         return repository.save(existingInternamento);
     }
 }

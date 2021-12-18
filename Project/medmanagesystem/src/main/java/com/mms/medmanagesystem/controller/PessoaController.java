@@ -33,16 +33,8 @@ public class PessoaController {
 
    
     @GetMapping("/pessoas/{id}")
-    public Pessoa getPessoaByCC(@PathVariable(value="id") int pessoa_cc) {
-        Pessoa pessoa = service.getPessoaByCc(pessoa_cc);
-            /*
-            throws ResourceNotFoundException {
-                Pessoa pessoa = service.findById(employeeId)
-                .orElseThrow(() -> new ResourceNotFoundException("Nenhuma pessoa encontrada com este nº de CC : " + pessoa_cc));
-                return ResponseEntity.ok().body(employee);
-            } this is not working :(
-        */
-        return pessoa; 
+    public Pessoa getPessoaByCC(@PathVariable(value="id") int pessoa_cc) throws ResourceNotFoundException {
+        return service.getPessoaByCc(pessoa_cc);
     }
         
     
@@ -53,18 +45,12 @@ public class PessoaController {
 
   
     @PutMapping("/pessoas/{id}")
-    public Pessoa updatePessoa(@PathVariable("id") @RequestBody Pessoa pessoa) {
-        //tentar trabalhar com exceptions
-       return service.updatePessoa(pessoa);
+    public Pessoa updatePessoa(@PathVariable("id") int id, @Valid @RequestBody Pessoa pessoa) throws ResourceNotFoundException {
+       return service.updatePessoa(id, pessoa);
     }
-        /*
-         @Valid @RequestBody Pessoa pessoaDetails)  {
-        Pessoa pessoa = service.getPessoaByCc(pessoa_cc);
-        //.orElseThrow(() -> new ResourceNotFoundException("Nenhuma pessoa encontrada com este CC " + pessoa_cc)); not working 
-        service.updatePessoa(pessoa);*/
 
     @DeleteMapping("/pessoas/{id}")
-    public String deletePeople(@PathVariable int cc) {
+    public Map<String, Boolean> deletePeople(@PathVariable int cc) throws ResourceNotFoundException {
         return service.deletePessoa(cc);
     }
 

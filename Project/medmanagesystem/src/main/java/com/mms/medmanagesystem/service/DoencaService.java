@@ -1,9 +1,13 @@
 package com.mms.medmanagesystem.service;
-
+import com.mms.medmanagesystem.exception.*;
 import com.mms.medmanagesystem.model.Doenca;
 import com.mms.medmanagesystem.repository.DoencaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoencaService {
     @Autowired
@@ -21,21 +25,31 @@ public class DoencaService {
         return repository.findAll();
     }
 
-    public Doenca getDoencaByCc(int cc) {
-        return repository.findById(cc).orElse(null);
-    }
+    public Doenca getDoencaByCc(int cc) throws ResourceNotFoundException {
+            return repository.findById(cc)
+            .orElseThrow(() -> new ResourceNotFoundException("Doenca not found for this cc:" + cc));
+            //return ResponseEntity.ok().body(doenca);
+    } 
+
 
     public Doenca getDoencaByName(String name) {
         return repository.findByNome(name);
     }
 
-    public String deleteDoenca(int cc) {
+    public Map<String, Boolean> deleteDoenca(int cc) throws ResourceNotFoundException {
+        
+        repository.findById(cc).orElseThrow(() -> new ResourceNotFoundException("Doenca not found for this cc: " + cc));
+
         repository.deleteById(cc);
-        return "Doenca removed !! " + cc;
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;    
     }
 
-    public Doenca updateDoenca(Doenca Doenca) {
-        Doenca existingDoenca = repository.findById(Doenca.getid()).orElse(null);
+    public Doenca updateDoenca(int id, Doenca Doenca) throws ResourceNotFoundException {
+        Doenca existingDoenca = repository.findById(Doenca.getid())
+        .orElseThrow(() -> new ResourceNotFoundException("Doenca not found for this id : " + id));
+        
         existingDoenca.setNome(Doenca.getNome());
         existingDoenca.setDescricao(Doenca.getDescricao());
         existingDoenca.setid(Doenca.getid());

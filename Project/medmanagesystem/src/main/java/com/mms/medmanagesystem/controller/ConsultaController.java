@@ -36,8 +36,7 @@ public class ConsultaController {
    
     @GetMapping("/consultas/{id}")
     public Consulta getConsultaByID(@PathVariable(value="id") int consulta_id) throws ResourceNotFoundException {
-        Consulta consulta = service.getConsultaByIDConsulta(consulta_id);
-        return consulta;
+        return service.getConsultaByIDConsulta(consulta_id);
 
     }
   
@@ -49,18 +48,13 @@ public class ConsultaController {
 
   
     @PutMapping("/consultas/{id}")
-    public Consulta updateConsulta(@PathVariable("id") int id, @RequestBody Consulta consulta) {
+    public Consulta updateConsulta(@PathVariable("id") int id, @Valid @RequestBody Consulta consulta) throws ResourceNotFoundException {
         //tentar trabalhar com exceptions
        return service.updateConsulta(id, consulta);
     }
-        /*
-         @Valid @RequestBody Consulta ConsultaDetails)  {
-        Consulta Consulta = service.getConsultaByCc(Consulta_cc);
-        //.orElseThrow(() -> new ResourceNotFoundException("Nenhuma Consulta encontrada com este CC " + Consulta_cc)); not working 
-        service.updateConsulta(Consulta);*/
 
     @DeleteMapping("/consultas/{id}")
-    public String deleteConsultaByid(@PathVariable int id) {
+    public Map<String, Boolean> deleteConsultaByid(@PathVariable int id) throws ResourceNotFoundException {
         return service.deleteConsulta(id);
     }
 

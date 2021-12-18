@@ -169,7 +169,5 @@ public class Internamentos {
 	public void setDataSaida(String dataSaida) {
 		this.dataSaida = dataSaida;
 	}
-
-
     
 }

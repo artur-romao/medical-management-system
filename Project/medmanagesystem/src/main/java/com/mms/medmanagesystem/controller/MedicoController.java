@@ -54,18 +54,12 @@ public class MedicoController {
 
   
     @PutMapping("/medico/{id}")
-    public Medico updateMedico(@PathVariable("id") int id, @RequestBody Medico medico) {
-        //tentar trabalhar com exceptions
+    public Medico updateMedico(@PathVariable("id") int id, @RequestBody Medico medico) throws ResourceNotFoundException {
        return service.updateMedico(id, medico);
     }
-        /*
-         @Valid @RequestBody Medico MedicoDetails)  {
-        Medico Medico = service.getMedicoByCc(Medico_cc);
-        //.orElseThrow(() -> new ResourceNotFoundException("Nenhuma Medico encontrada com este CC " + Medico_cc)); not working 
-        service.updateMedico(Medico);*/
 
     @DeleteMapping("/medico/{id}")
-    public String deletePatients(@PathVariable int id) {
+    public Map<String, Boolean> deletePatients(@PathVariable int id) throws ResourceNotFoundException {
         return service.deleteMedico(id);
     }
 

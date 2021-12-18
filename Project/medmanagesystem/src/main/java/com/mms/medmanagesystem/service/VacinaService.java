@@ -1,9 +1,13 @@
 package com.mms.medmanagesystem.service;
 
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Vacina;
 import com.mms.medmanagesystem.repository.VacinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VacinaService {
     @Autowired
@@ -21,17 +25,24 @@ public class VacinaService {
         return repository.findAll();
     }
 
-    public Vacina getVacinaByIDvacina(int id) {
-        return repository.findById(id).orElse(null);
+    public Vacina getVacinaByIDvacina(int id) throws ResourceNotFoundException {
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Vacina not found for this id:" + id));
     }
 
-    public String deleteVacina(int id) {
+    public Map<String, Boolean> deleteVacina(int id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Vacina not found for this id:" + id));
+        
         repository.deleteById(id);
-        return "Vacina removed !! " + id;
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;    
     }
     
-    public Vacina updateVacina(int id, Vacina vacina) {
-        Vacina existingvacinas = repository.findById(id).orElse(null);
+    public Vacina updateVacina(int id, Vacina vacina) throws ResourceNotFoundException {
+        Vacina existingvacinas = repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Vacina not found for this id:" + id));
+        
         existingvacinas.setNome(vacina.getNome());
         existingvacinas.setPatologia(vacina.getPatologia());
         return repository.save(existingvacinas);

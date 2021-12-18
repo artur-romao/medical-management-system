@@ -1,9 +1,14 @@
 package com.mms.medmanagesystem.service;
 
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Area;
 import com.mms.medmanagesystem.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AreaService {
     @Autowired
@@ -21,21 +26,29 @@ public class AreaService {
         return repository.findAll();
     }
 
-    public Area getAreaByIDArea(int id) {
-        return repository.findById(id).orElse(null);
+    public Area getAreaByIDArea(int id) throws ResourceNotFoundException {
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Area not found for this id:" + id));
+        // return ResponseEntity.ok().body(area);
     }
 
     public Area getAreaByName(String name) {
         return repository.findByName(name);
     }
 
-    public String deleteArea(int id) {
+    public Map<String, Boolean> deleteArea(int id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Area not found for this id:" + id));
+        
         repository.deleteById(id);
-        return "Area removed !! " + id;
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;    
     }
 
-    public Area updateArea(int id, Area Area) {
-        Area existingArea = repository.findById(id).orElse(null);
+    public Area updateArea(int id, Area Area) throws ResourceNotFoundException {
+        Area existingArea = repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Area not found for this id:" + id));
+        
         existingArea.setName(Area.getName());
         existingArea.setIdArea(Area.getIdArea());
         return repository.save(existingArea);

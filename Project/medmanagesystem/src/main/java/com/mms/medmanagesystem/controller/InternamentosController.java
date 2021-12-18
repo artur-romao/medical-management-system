@@ -37,14 +37,6 @@ public class InternamentosController {
         return Internamentos;
 
     }
-  /*
-        throws ResourceNotFoundException {
-            Internamentos Internamentos = service.findById(employeeId)
-              .orElseThrow(() -> new ResourceNotFoundException("Nenhuma Internamentos encontrada com este nº de CC : " + Internamentos_cc));
-            return ResponseEntity.ok().body(employee);
-        } this is not working :(
-     */
-
 
     @PostMapping("/internamentos")
     public Internamentos createInternamentos(@Valid @RequestBody Internamentos internamento){
@@ -53,18 +45,13 @@ public class InternamentosController {
 
   
     @PutMapping("/internamentos/{id}")
-    public Internamentos updateInternamentos(@PathVariable("id") int id, @RequestBody Internamentos internamentos) {
-        //tentar trabalhar com exceptions
+    public Internamentos updateInternamentos(@PathVariable("id") int id, @Valid @RequestBody Internamentos internamentos) throws ResourceNotFoundException {
        return service.updateInternamentos(id, internamentos);
     }
-        /*
-         @Valid @RequestBody Internamentos InternamentosDetails)  {
-        Internamentos Internamentos = service.getInternamentosByCc(Internamentos_cc);
-        //.orElseThrow(() -> new ResourceNotFoundException("Nenhuma Internamentos encontrada com este CC " + Internamentos_cc)); not working 
-        service.updateInternamentos(Internamentos);*/
+
 
     @DeleteMapping("/internamentos/{id}")
-    public String deletePatients(@PathVariable int id) {
+    public Map<String, Boolean> deletePatients(@PathVariable int id) throws ResourceNotFoundException {
         return service.deleteInternamentos(id);
     }
 

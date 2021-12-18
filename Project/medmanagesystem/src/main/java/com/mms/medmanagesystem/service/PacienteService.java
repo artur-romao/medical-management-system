@@ -1,9 +1,13 @@
 package com.mms.medmanagesystem.service;
 
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PacienteService {
     @Autowired
@@ -21,17 +25,25 @@ public class PacienteService {
         return repository.findAll();
     }
 
-    public Paciente getPacienteById(int id) {
-        return repository.findById(id).orElse(null);
+    public Paciente getPacienteById(int id) throws ResourceNotFoundException {
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
     }
 
-    public String deletePaciente(int id) {
+    public Map<String, Boolean> deletePaciente(int id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
+
         repository.deleteById(id);
-        return "Paciente removed !! " + id;
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;    
+
     }
 
-    public Paciente updatePaciente(int id, Paciente paciente) {
-        Paciente existingPaciente = repository.findById(paciente.getId()).orElse(null);
+    public Paciente updatePaciente(int id, Paciente paciente) throws ResourceNotFoundException {
+        Paciente existingPaciente = repository.findById(paciente.getId())
+        .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
+        
         existingPaciente.setAssMedico(paciente.getAssMedico());
         existingPaciente.setInternamentos(paciente.getInternamentos());
         return repository.save(existingPaciente);

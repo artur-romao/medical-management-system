@@ -16,44 +16,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mms.medmanagesystem.exception.*;
-import com.mms.medmanagesystem.model.Vacina;
-import com.mms.medmanagesystem.service.VacinaService;
+import com.mms.medmanagesystem.model.Doenca;
+import com.mms.medmanagesystem.service.DoencaService;
 
 @RestController
-@RequestMapping("/api/v7")
-public class VacinaController {
+@RequestMapping("/api/v8")
+public class DoencaController {
 
     @Autowired
-    private VacinaService service;
+    private DoencaService service;
     
-     @GetMapping("/vacinas")
-    public List<Vacina> getAllVacinas() {
-        return service.getVacinas();
+     @GetMapping("/doencas")
+    public List<Doenca> getAllDoencas() {
+        return service.getDoencas();
     }
 
    
-    @GetMapping("/vacinas/{id}")
-    public Vacina getVacinaByid(@PathVariable(value="id") int id_vacina) throws ResourceNotFoundException {
-        return service.getVacinaByIDvacina(id_vacina);
+    @GetMapping("/doencas/{id}")
+    public Doenca getDoencasBycc(@PathVariable(value="id") int id_doenca) throws ResourceNotFoundException {
+        return service.getDoencaByCc(id_doenca); 
     }
         
     
-    @PostMapping("/vacinas")
-    public Vacina createVacina(@Valid @RequestBody Vacina vacina){
-        return service.saveVacina(vacina);
+    @PostMapping("/doencas")
+    public Doenca createDoenca(@Valid @RequestBody Doenca doenca){
+        return service.saveDoenca(doenca);
     }
 
   
-    @PutMapping("/vacinas/{id}")
-    public Vacina updateVacina(@PathVariable("id") int id,  @RequestBody Vacina vacina) throws ResourceNotFoundException {
-       return service.updateVacina(id, vacina);
+    @PutMapping("/doencas/{id}")
+    public Doenca updateDoenca(@PathVariable("id") int id, @Valid @RequestBody Doenca doenca) throws ResourceNotFoundException {
+       return service.updateDoenca(id, doenca);
     }
 
-    @DeleteMapping("/vacinas/{id}")
+
+    @DeleteMapping("/doencas/{id}")
     public Map<String, Boolean> deletePeople(@PathVariable int id) throws ResourceNotFoundException {
-        return service.deleteVacina(id);
+        return service.deleteDoenca(id);
     }
-
-
 
 }

@@ -38,13 +38,6 @@ public class PacienteController {
         return paciente;
 
     }
-  /*
-        throws ResourceNotFoundException {
-            Paciente Paciente = service.findById(employeeId)
-              .orElseThrow(() -> new ResourceNotFoundException("Nenhuma Paciente encontrada com este nº de CC : " + Paciente_cc));
-            return ResponseEntity.ok().body(employee);
-        } this is not working :(
-     */
 
 
     @PostMapping("/pacientes")
@@ -54,18 +47,12 @@ public class PacienteController {
 
   
     @PutMapping("/pacientes/{id}")
-    public Paciente updatePaciente(@PathVariable("id") int id, @RequestBody Paciente Paciente) {
-        //tentar trabalhar com exceptions
+    public Paciente updatePaciente(@PathVariable("id") int id, @Valid @RequestBody Paciente Paciente) throws ResourceNotFoundException {
        return service.updatePaciente(id, Paciente);
     }
-        /*
-         @Valid @RequestBody Paciente PacienteDetails)  {
-        Paciente Paciente = service.getPacienteByCc(Paciente_cc);
-        //.orElseThrow(() -> new ResourceNotFoundException("Nenhuma Paciente encontrada com este CC " + Paciente_cc)); not working 
-        service.updatePaciente(Paciente);*/
 
     @DeleteMapping("/pacientes/{id}")
-    public String deletePatients(@PathVariable int cc) {
+    public Map<String, Boolean> deletePatients(@PathVariable int cc) throws ResourceNotFoundException {
         return service.deletePaciente(cc);
     }
 

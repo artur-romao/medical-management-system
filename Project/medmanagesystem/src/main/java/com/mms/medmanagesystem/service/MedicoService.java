@@ -1,9 +1,13 @@
 package com.mms.medmanagesystem.service;
 
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Medico;
 import com.mms.medmanagesystem.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MedicoService {
     @Autowired
@@ -21,21 +25,29 @@ public class MedicoService {
         return repository.findAll();
     }
 
-    public Medico getMedicoByIDMedico(int id) {
-        return repository.findById(id).orElse(null);
+    public Medico getMedicoByIDMedico(int id) throws ResourceNotFoundException {
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Medico not found for this id:" + id));
     }
 
 
-    public String deleteMedico(int id) {
+    public Map<String, Boolean> deleteMedico(int id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Medico not found for this id:" + id));
+        
         repository.deleteById(id);
-        return "Medico removed !! " + id;
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 
-    public Medico updateMedico(int id, Medico Medico) {
-        Medico existingMedico = repository.findById(id).orElse(null);
+    public Medico updateMedico(int id, Medico Medico) throws ResourceNotFoundException {
+        Medico existingMedico = repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Medico not found for this id:" + id));
+        
         existingMedico.setCc(Medico.getCc());
         existingMedico.setArea(Medico.getArea());
         existingMedico.setPassword(Medico.getPassword());
+        
         return repository.save(existingMedico);
     }
 }

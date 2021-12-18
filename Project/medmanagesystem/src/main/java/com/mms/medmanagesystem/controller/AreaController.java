@@ -36,9 +36,7 @@ public class AreaController {
    
     @GetMapping("/areas/{id}")
     public Area getAreaById(@PathVariable(value="id") int area_id) throws ResourceNotFoundException {
-        Area area = service.getAreaByIDArea(area_id);
-        return area;
-
+        return service.getAreaByIDArea(area_id);
     }
   
 
@@ -49,18 +47,12 @@ public class AreaController {
 
   
     @PutMapping("/areas/{id}")
-    public Area updateArea(@PathVariable("id") int id, @RequestBody Area area) {
-        //tentar trabalhar com exceptions
+    public Area updateArea(@PathVariable("id") int id, @Valid @RequestBody Area area) throws ResourceNotFoundException {
        return service.updateArea(id, area);
     }
-        /*
-         @Valid @RequestBody Area AreaDetails)  {
-        Area Area = service.getAreaByCc(Area_cc);
-        //.orElseThrow(() -> new ResourceNotFoundException("Nenhuma Area encontrada com este CC " + Area_cc)); not working 
-        service.updateArea(Area);*/
 
     @DeleteMapping("/areas/{id}")
-    public String deleteArea(@PathVariable int id) {
+    public Map<String, Boolean> deleteArea(@PathVariable int id) throws ResourceNotFoundException {
         return service.deleteArea(id);
     }
 
