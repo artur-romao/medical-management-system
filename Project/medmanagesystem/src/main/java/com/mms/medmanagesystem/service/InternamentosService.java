@@ -2,15 +2,15 @@ package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamentos;
-import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.repository.InternamentosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class InternamentosService {
     @Autowired
     private InternamentosRepository repository;
@@ -32,12 +32,6 @@ public class InternamentosService {
         .orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this id:" + id));
         //return ResponseEntity.ok().body(internamentos);
     }
-
-    // public ResponseEntity<Internamentos> getInternamentosByPaciente(Paciente paciente) throws ResourceNotFoundException {
-    //     Internamentos internamentos = repository.findByPaciente(paciente)
-    //     .orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this paciente:" + paciente));
-    //     return ResponseEntity.ok().body(internamentos);
-    // }
 
     public Map<String, Boolean> deleteInternamentos(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this id: " + id));

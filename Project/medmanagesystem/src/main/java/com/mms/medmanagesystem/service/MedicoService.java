@@ -4,11 +4,13 @@ import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Medico;
 import com.mms.medmanagesystem.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class MedicoService {
     @Autowired
     private MedicoRepository repository;

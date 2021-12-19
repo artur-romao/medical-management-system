@@ -33,7 +33,8 @@ services:
         "spring.rabbitmq.port" : 5672,
         "spring.rabbitmq.username" : "user",
         "spring.rabbitmq.password": "user",
-        "server.port": 8000 configs:
+
+        "server.port": 8000
         }'
     ports: 
       - 6666:8000

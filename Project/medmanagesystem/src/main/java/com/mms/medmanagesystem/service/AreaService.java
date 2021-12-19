@@ -4,12 +4,12 @@ import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Area;
 import com.mms.medmanagesystem.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Service
 public class AreaService {
     @Autowired
     private AreaRepository repository;

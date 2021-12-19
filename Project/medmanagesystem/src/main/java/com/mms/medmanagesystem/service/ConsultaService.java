@@ -4,12 +4,13 @@ import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Consulta;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class ConsultaService {
     @Autowired
     private ConsultaRepository repository;
