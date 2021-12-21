@@ -12,6 +12,7 @@
 *.cnf
 *.index
 *.pem
+*.sdi
 ~
 .#
 ..md.html
