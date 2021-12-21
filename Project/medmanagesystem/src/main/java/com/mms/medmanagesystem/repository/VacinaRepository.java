@@ -1,6 +1,6 @@
 package com.mms.medmanagesystem.repository;
 
-import  com.mms.medmanagesystem.models.Vacina;
+import com.mms.medmanagesystem.model.Vacina;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
