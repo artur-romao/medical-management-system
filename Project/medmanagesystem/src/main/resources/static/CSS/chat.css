@@ -1,0 +1,45 @@
+body{
+  background-color: #F4F6F9;
+}
+
+.chatWindow {
+    padding: 16px;
+    box-shadow: 0px 0px 5px #00000044;
+    border-radius: 8px;
+    width: 95%;
+    background-color: #FFFFFF
+}
+
+.scroll {
+    height: 100%;
+}
+
+.divPlaylist {
+    text-align: Center;
+    border:solid 1px black; 
+    margin-top: 10px;
+    height: 62px; 
+    font-style: oblique; 
+    font-weight: bolder; 
+}
+
+
+#showline {
+    position: absolute;
+    width: 324px;
+    height: 0px;
+    left: 20px;
+    top: 420px;
+    color:black;
+  
+    border: 0.5px solid #BDB9B9;
+  }
+  
+  #header {
+    text-align:center; 
+    top:250px;
+  }
+  
+  #searchedSongs:hover {
+    background-color: lightblue;
+  }
