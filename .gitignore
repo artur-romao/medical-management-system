@@ -43,6 +43,8 @@ lib/
 manifest.yml
 out
 overridedb.
+MMS
+db
 target
 .flattened-pom.xml
 secrets.yml
