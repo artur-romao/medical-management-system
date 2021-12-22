@@ -1,3 +1,6 @@
+*
+!*/
+!*.*
 *#
 *.iml
 *.ibd
@@ -5,6 +8,10 @@
 *.iws
 *.jar
 *.sw?
+*.dblwr
+*.cnf
+*.index
+*.pem
 ~
 .#
 ..md.html
@@ -36,6 +43,8 @@ lib/
 manifest.yml
 out
 overridedb.
+MMS
+db
 target
 .flattened-pom.xml
 secrets.yml
