@@ -5,7 +5,6 @@ import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,7 @@ import com.mms.medmanagesystem.model.Vacina;
 import com.mms.medmanagesystem.service.VacinaService;
 
 @RestController
-@RequestMapping("/api/v7")
+@RequestMapping("/api/vac")
 public class VacinaController {
 
     @Autowired

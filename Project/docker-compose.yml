@@ -2,6 +2,7 @@
 version: '3.1'
 
 services: 
+
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password 
@@ -17,6 +18,9 @@ services:
     networks:
       - default
     restart: always
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+
   medmanagesystem:
     depends_on:
       - db
@@ -39,6 +43,7 @@ services:
     ports: 
       - 6666:8000
     restart: on-failure
+
   mms-master:
     depends_on:
       - medmanagesystem
@@ -52,6 +57,7 @@ services:
     networks:
         - default
     restart: always  
+    
   mq:
     image: rabbitmq:management
     ports:

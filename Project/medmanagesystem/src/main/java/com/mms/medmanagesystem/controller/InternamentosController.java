@@ -19,7 +19,7 @@ import com.mms.medmanagesystem.model.Internamentos;
 import com.mms.medmanagesystem.service.InternamentosService;
 
 @RestController
-@RequestMapping("/api/v3")
+@RequestMapping("/api/int")
 public class InternamentosController {
 
     @Autowired
