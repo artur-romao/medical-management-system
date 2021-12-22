@@ -7,7 +7,7 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration //needed
 public class Config {
     public static final String EXCHANGE_NAME = "EN";
     public static final String QUEUE = "QUEUE";
