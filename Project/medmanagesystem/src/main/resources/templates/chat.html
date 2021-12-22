@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat</title>
+
+
+  <link rel="stylesheet" href="../dist/css/chat.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini" style="background-color:#F4F6F9">
+<div class="wrapper">
+
+    <div style="display: flex; align-items: center; margin-top: 19px; margin-left: 15px">
+        <h3 id="conversaArtur-heading7" style="color:#000000;">Chat Clínico</h3>
+    </div>
+      <div id="messageFeed" style="margin-top:10px; margin-left:50px"></div>
+  
+    <div style="position:absolute; margin-bottom:20px; display:flex; width: 92%; margin-left:50px">
+        
+        <input onkeydown="keydownEvent(event)" type="text" id="texto" name="Nome" size="35" placeholder="Mensagem" style="border: 1px solid black ;display:flex; flex-grow: 1; padding-left: 10px; color: black">
+        <img src="../dist/img/sendMessage.svg" style="margin-left: 20px; display:flex" onclick="enviar()"/>
+    </div>
+    <!-- /.content -->
+
+  <!-- /.content-wrapper -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<script src="../dist/js/chat.js"></script>
+</body>
+</html>
