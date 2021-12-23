@@ -34,7 +34,7 @@ public class Internamentos {
     @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
-
+	public Internamentos() {}
 
     public Internamentos(int id,Paciente paciente, double oxigenio, double pulso, double pressaoArterial, double temperatura, double freqRespiratoria, String razaoInternamento, int quarto, int cama, String doenca, String estado, String dataAdmissao, String dataSaida) {
         this.id = id;

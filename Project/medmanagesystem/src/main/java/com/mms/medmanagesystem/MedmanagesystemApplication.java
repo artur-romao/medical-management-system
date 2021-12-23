@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @EnableRabbit
-@SpringBootApplication
+@SpringBootApplication 
 public class MedmanagesystemApplication {
 
 	public static void main(String[] args) {

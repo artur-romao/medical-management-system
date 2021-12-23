@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration //needed
 public class Config {
-    public static final String EXCHANGE_NAME = "EN";
+    public static final String EXCHANGE_NAME = "logs";
     public static final String QUEUE = "QUEUE";
-    public static final String ROUTING_KEY = "";
+    public static final String ROUTING_KEY = "hb";
 
     @Bean
     Queue queue() {
@@ -28,22 +28,19 @@ public class Config {
         return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
 
-    /*
-    @Bean
+/*     @Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
-    /
-
-    /
+    
     @Bean
     public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
     }
-    */
 
+ */
     @Bean
     public MQConsumer receiver() {
         return new MQConsumer();

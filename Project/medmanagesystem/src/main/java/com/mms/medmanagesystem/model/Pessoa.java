@@ -20,6 +20,9 @@ public class Pessoa {
     private String morada;
     private String datanascimento;
 
+
+    public Pessoa () {}
+    
     public Pessoa(int pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
         this.nome = nome;
         this.email = email;
