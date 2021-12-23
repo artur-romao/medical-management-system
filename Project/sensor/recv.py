@@ -1,5 +1,6 @@
 import pika
 import json
+
 from pika.exceptions import ChannelError
 
 from pika.spec import TRANSIENT_DELIVERY_MODE
