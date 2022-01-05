@@ -1,6 +1,6 @@
 package com.mms.medmanagesystem.repository;
 
-import com.mms.medmanagesystem.models.Paciente;
+import com.mms.medmanagesystem.model.Paciente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
