@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.messageBroker;
+/*     package com.mms.medmanagesystem.messageBroker;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -28,7 +28,7 @@ public class Config {
         return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
 
-/*     @Bean
+@Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
@@ -40,9 +40,9 @@ public class Config {
         return rabbitTemplate;
     }
 
- */
+
     @Bean
     public MQConsumer receiver() {
         return new MQConsumer();
     }
-}
+} */
