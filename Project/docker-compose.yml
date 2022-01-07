@@ -16,9 +16,8 @@ services:
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: user
     volumes:
-      - ./db:/var/lib/mysql            
-    networks:
-      - default
+      # - ./db:/database
+      - datafiles:/var/lib/mysql
     restart: always
     cap_add:
       - SYS_NICE  # CAP_SYS_NICE
@@ -65,3 +64,5 @@ services:
     ports:
       - 5672:5672 
       - 15672:15672
+volumes:
+  datafiles:
