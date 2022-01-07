@@ -25,6 +25,8 @@ public class Area {
     private Set<Medico> medicos;
     
 
+    public Area () {}
+    
     public Area(int idArea, String name) {
         this.idArea = idArea;
         this.name = name;   

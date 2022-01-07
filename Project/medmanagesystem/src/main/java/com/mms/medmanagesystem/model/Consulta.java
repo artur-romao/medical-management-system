@@ -31,6 +31,7 @@ public class Consulta {
     private Medico medico;
 
     
+	public Consulta() {}
 
     public Consulta(int id, Paciente paciente, Medico medico, String motivo, String data, String anotacoes) {
         this.id = id;

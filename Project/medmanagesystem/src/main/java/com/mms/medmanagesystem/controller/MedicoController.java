@@ -5,7 +5,6 @@ import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,7 @@ import com.mms.medmanagesystem.model.Medico;
 import com.mms.medmanagesystem.service.MedicoService;
 
 @RestController
-@RequestMapping("/api/v4")
+@RequestMapping("/api/med")
 public class MedicoController {
 
     @Autowired
@@ -38,14 +37,6 @@ public class MedicoController {
         return Medico;
 
     }
-  /*
-        throws ResourceNotFoundException {
-            Medico Medico = service.findById(employeeId)
-              .orElseThrow(() -> new ResourceNotFoundException("Nenhuma Medico encontrada com este nº de CC : " + Medico_cc));
-            return ResponseEntity.ok().body(employee);
-        } this is not working :(
-     */
-
 
     @PostMapping("/medico")
     public Medico createMedico(@Valid @RequestBody Medico med){
