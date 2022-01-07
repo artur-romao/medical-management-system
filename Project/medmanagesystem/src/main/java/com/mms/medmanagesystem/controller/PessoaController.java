@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.controller;
+/* package com.mms.medmanagesystem.controller;
 import java.util.*;
 
 import javax.validation.Valid;
@@ -19,7 +19,6 @@ import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.service.PessoaService;
 
 @RestController
-@RequestMapping("/api/pes")
 public class PessoaController {
 
     @Autowired
@@ -56,3 +55,4 @@ public class PessoaController {
 
 
 }
+ */

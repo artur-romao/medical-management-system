@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.controller;
+/* package com.mms.medmanagesystem.controller;
 import java.util.*;
 
 import javax.validation.Valid;
@@ -19,7 +19,6 @@ import com.mms.medmanagesystem.model.Doenca;
 import com.mms.medmanagesystem.service.DoencaService;
 
 @RestController
-@RequestMapping("/api/doenca")
 public class DoencaController {
 
     @Autowired
@@ -55,3 +54,4 @@ public class DoencaController {
     }
 
 }
+ */

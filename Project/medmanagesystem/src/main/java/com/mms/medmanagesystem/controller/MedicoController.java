@@ -19,7 +19,6 @@ import com.mms.medmanagesystem.model.Medico;
 import com.mms.medmanagesystem.service.MedicoService;
 
 @RestController
-@RequestMapping("/api/med")
 public class MedicoController {
 
     @Autowired
@@ -31,12 +30,11 @@ public class MedicoController {
     }
 
    
-    @GetMapping("/medico/{id}")
+/*     @GetMapping("/medico/{id}")
     public Medico getMedicoId(@PathVariable(value="id") int medico_id) throws ResourceNotFoundException {
         Medico Medico = service.getMedicoByIDMedico(medico_id);
         return Medico;
-
-    }
+    } */
 
     @PostMapping("/medico")
     public Medico createMedico(@Valid @RequestBody Medico med){
@@ -49,11 +47,11 @@ public class MedicoController {
        return service.updateMedico(id, medico);
     }
 
+    
     @DeleteMapping("/medico/{id}")
-    public Map<String, Boolean> deletePatients(@PathVariable int id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteMedico(@PathVariable int id) throws ResourceNotFoundException {
         return service.deleteMedico(id);
     }
-
 
 
 }

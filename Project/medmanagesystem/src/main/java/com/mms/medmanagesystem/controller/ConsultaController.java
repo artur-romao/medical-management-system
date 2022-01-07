@@ -20,8 +20,6 @@ import com.mms.medmanagesystem.model.Consulta;
 import com.mms.medmanagesystem.service.ConsultaService;
 
 @RestController
-@RequestMapping("/api/cons")
-
 public class ConsultaController {
 
     @Autowired

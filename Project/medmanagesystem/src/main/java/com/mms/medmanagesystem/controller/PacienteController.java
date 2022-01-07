@@ -19,13 +19,12 @@ import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.service.PacienteService;
 
 @RestController
-@RequestMapping("/api/pac")
 public class PacienteController {
 
     @Autowired
     private PacienteService service;
     
-     @GetMapping("/pacientes")
+    @GetMapping("/pacientes")
     public List<Paciente> getAllPeople() {
         return service.getPacientes();
     }
@@ -50,10 +49,10 @@ public class PacienteController {
        return service.updatePaciente(id, Paciente);
     }
 
-    @DeleteMapping("/pacientes/{id}")
+/*     @DeleteMapping("/pacientes/{id}")
     public Map<String, Boolean> deletePatients(@PathVariable int cc) throws ResourceNotFoundException {
         return service.deletePaciente(cc);
-    }
+    } */
 
 
 
