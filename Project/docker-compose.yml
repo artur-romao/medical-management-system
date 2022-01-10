@@ -31,13 +31,16 @@ services:
         "spring.datasource.username" : "user",
         "spring.datasource.password" : "user",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL8Dialect",
+        "spring.second-datasource.url" : "jdbc:h2:mem:mmsDB;DB_CLOSE_DELAY=-1",
+        "spring.second-datasource.username" : "user",
+        "spring.second-datasource.password" : "user",
         "spring.jpa.hibernate.ddl-auto" : "update",
         "spring.rabbitmq.host" : "localhost",
         "spring.rabbitmq.port" : 5672,
         "spring.rabbitmq.username" : "guest",
         "spring.rabbitmq.password": "guest",
-
         "server.port": 8000
+
         }'
     ports: 
       - 6666:8000
