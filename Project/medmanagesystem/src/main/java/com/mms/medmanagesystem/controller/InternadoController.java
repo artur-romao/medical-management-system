@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ConsultaController {
+public class InternadoController {
 
-  @GetMapping("/consultas")
-  public String consulta(Model model) {
-    return "consultas";
+  @GetMapping("/internados")
+  public String internado(Model model) {
+    return "tables/internados";
   }
 
 }
