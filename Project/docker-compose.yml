@@ -16,7 +16,6 @@ services:
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: user
     volumes:
-      # - ./db:/database
       - datafiles:/var/lib/mysql
     restart: always
 
@@ -42,20 +41,6 @@ services:
     ports: 
       - 6666:8000
     restart: on-failure
-
-  mms-master:
-    depends_on:
-      - medmanagesystem
-    image: nginx
-    ports: 
-        - "8000:80"
-    volumes:
-        - ./mms-master:/usr/nginx/html/
-    links:
-        - db
-    networks:
-        - default
-    restart: always  
     
   mq:
     image: rabbitmq:management
