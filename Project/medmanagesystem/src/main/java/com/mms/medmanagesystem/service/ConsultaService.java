@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,8 +35,17 @@ public class ConsultaService {
         // return ResponseEntity.ok().body(consulta);
     }
 
-	public Set<Consulta> getAllConsultasById() {
-		return null;
+	public Set<Consulta> getAllConsultasById(int... id_consulta) throws ResourceNotFoundException {
+        // Creating an empty Set
+
+        Set<Consulta> s = new HashSet<>();
+		for (int id : id_consulta){
+            Consulta cons = repository.findById(id)
+                            .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
+            s.add(cons);
+        }
+
+		return s;
 	}
 
     public Map<String, Boolean> deleteConsulta(int id) throws ResourceNotFoundException {

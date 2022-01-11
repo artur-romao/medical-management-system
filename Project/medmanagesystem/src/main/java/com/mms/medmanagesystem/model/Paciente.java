@@ -38,10 +38,10 @@ public class Paciente {
     private Pessoa paciente;
 
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
     private Set<Consulta> consulta;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
     private Set<Internamento> internamento;
 
 

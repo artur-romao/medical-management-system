@@ -23,7 +23,7 @@ public class Getter {
 
             return "";
         }
-        message = "<" + paciente.getPacienteCc() + "> "+message;
+        message = "<" + paciente.getPaciente() + "> "+message;
         
         
         return message;
