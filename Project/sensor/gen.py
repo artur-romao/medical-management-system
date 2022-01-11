@@ -20,29 +20,43 @@ import numpy as np
 class Generators:
      """ This class houses all the functions that will generate data"""
      def __init__(self):
-          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.160.209', port=15672))
+          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', port=5672))
           self.marychanel = self.connection.channel()
           
-
+          self.marychanel.queue_declare(queue='oxi')
+          self.marychanel.queue_declare(queue='hb')
+          self.marychanel.queue_declare(queue='temp')
+          self.marychanel.queue_declare(queue='pressao_arterial')
+          
      async def electrocardiogramf(self):
 
 
           # define electrocardiogram as ecg model
           ecg = electrocardiogram()
-
           # frequency is 360
           frequency = 360
-          hblist=[]
           # calculating time data with ecg size along with frequency
+          hblist=[]
+          i=0
           while True:
+               
+               if i>4:   
+                    hblist=hblist[108000:]
+               
+               print("soy el i " ,i)
 
                for n in range(len(ecg)):
                     t = np.real((ecg[n]*(random.randrange(-10,10)**0.05)))
                     hblist.append(t)
 
+               print(len(hblist))
+               i+=1
                time_data = np.arange(len(hblist)) / frequency
-               tojson={'name':'hb', 'times_data': time_data, "heart_values": hblist}
-               self.marychanel.basic_publish(exchange='logs', routing_key='hb', body=json.dumps(tojson))
+               vallist=[{'times_data': time_data[:10].tolist()}, {"heart_values": hblist[:10]}]
+               tojson={'name':'hb', 'values':vallist}
+               self.marychanel.basic_publish(exchange='', routing_key='hb', body=json.dumps(tojson))
+               print("hi")
+               
                await asyncio.sleep(2)
                """
                plt.plot(time_data, hblist)
@@ -53,41 +67,49 @@ class Generators:
                plt.show(block=True)
                """
 
+          print("out")
      async def temp(self):
+          i=3
           while True:
                avgtemp=37
 
                currtemp = avgtemp+random.randrange(-10,10)*0.15
                tojson={'name':'temp', 'values':currtemp}
-               self.marychanel.basic_publish(exchange='logs', routing_key='temp', body=json.dumps(tojson))
+               self.marychanel.basic_publish(exchange='', routing_key='temp', body=json.dumps(tojson))
 
-               await asyncio.sleep(20)
-
+               await asyncio.sleep(2)
+               i-=1
+               print("tem")
      async def pressaoarterial(self):
           sis=120
           dia=80
+          i=3
           while True:
                sisnew = round(sis+random.randrange(-20,20)+random.random(),2)
                dianew=round(dia +random.randrange(-20,20)+random.random(),2)
-
-               tojson={'name':'press', "sis_values":sisnew, "dia_values": dianew}
-               self.marychanel.basic_publish(exchange='logs', routing_key='pressao_arterial', body=json.dumps(tojson))
-               await asyncio.sleep(20)
-
+               vallist = [{"sis_values":sisnew}, {"dia_values": dianew}]
+               tojson={'name':'press', "value": vallist}
+               self.marychanel.basic_publish(exchange='', routing_key='pressao_arterial', body=json.dumps(tojson))
+               await asyncio.sleep(2)
+               i-=1
+               print("pre")
      async def oxigeniosaturarion(self):
           #varia entre 96% e 99% com minimo em 94%
           #pode ir abaixo de 90% hypoxia
           #usar uma distruibuição 
+          i=3
           dist=   [0.11,0.10,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.08,0.08]
           values= [89,90,91,92,93,94,95,96,97,98,99]
           while True:
                getrandomoxi= np.random.choice(values,1,True,dist)
                oxi= round(getrandomoxi[0] + random.random(),2)
                tojson={'name':'oxi', 'value':oxi}
-               self.marychanel.basic_publish(exchange='logs', routing_key='oxi', body=json.dumps(tojson))
+               self.marychanel.basic_publish(exchange='', routing_key='oxi', body=json.dumps(tojson))
                
 
-               await asyncio.sleep(20)
+               await asyncio.sleep(2)
+               i-=1
+               print("ox")
 if __name__ == "__main__":
      g=Generators()
 
@@ -104,6 +126,14 @@ if __name__ == "__main__":
      pressaoarterial = loop.create_task(g.pressaoarterial())
      temperatura = loop.create_task(g.temp())
 
-
+     
+     print(oxi)
+     print(pressaoarterial)
+     print(heartbeats)
+     print(temperatura)
      loop.run_until_complete(asyncio.gather(heartbeats,oxi,pressaoarterial,temperatura))
+     print(oxi)
+     print(pressaoarterial)
+     print(heartbeats)
+     print(temperatura)
      loop.close()
