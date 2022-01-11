@@ -16,6 +16,8 @@ services:
     volumes:
       - datafiles:/var/lib/mysql
     restart: always
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
 
   medmanagesystem:
     depends_on:

@@ -39,10 +39,10 @@ public class Paciente {
 
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
-    private Set<Consulta> consultas;
+    private Set<Consulta> consulta;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
-    private Set<Internamentos> internamentos;
+    private Set<Internamento> internamento;
 
 
     // @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente", orphanRemoval = true)
@@ -72,9 +72,10 @@ public class Paciente {
 
     public Paciente() {}
     
-    public Paciente(int id,  Set<Internamentos> internamentos) {
+    public Paciente(int id, Set<Consulta> consulta,  Set<Internamento> internamento) {
         this.id = id;
-        this.internamentos = internamentos;
+        this.internamento = internamento;
+        this.consulta = consulta;
     }
 
     @Column(name = "id_paciente")
@@ -94,12 +95,20 @@ public class Paciente {
         this.paciente = paciente;
     }
     
-    public Set<Internamentos> getInternamentos() {
-        return this.internamentos;
+    public Set<Internamento> getInternamento() {
+        return this.internamento;
     }
 
-    public void setInternamentos(Set<Internamentos> internamentos) {
-        this.internamentos = internamentos;
+    public void setInternamento(Set<Internamento> internamento) {
+        this.internamento = internamento;
+    } 
+
+    public Set<Consulta> getConsulta() {
+        return this.consulta;
+    }
+
+    public void setConsulta(Set<Consulta> consulta) {
+        this.consulta = consulta;
     } 
 
     /*
