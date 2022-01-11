@@ -1,4 +1,5 @@
 package com.mms.medmanagesystem;
+import com.mms.medmanagesystem.messageBroker.MQConsumer;
 import java.sql.Date;
 import java.util.HashSet;
 
@@ -19,8 +20,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication 
 public class MedmanagesystemApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(MedmanagesystemApplication.class, args);
+		MQConsumer.main(args);
 	}
 
 	
