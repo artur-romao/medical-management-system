@@ -72,8 +72,9 @@ public class Paciente {
 
     public Paciente() {}
     
-    public Paciente(int id,  Set<Internamentos> internamentos) {
+    public Paciente(int id, Pessoa paciente , Set<Internamentos> internamentos) {
         this.id = id;
+        this.paciente = paciente;
         this.internamentos = internamentos;
     }
 
