@@ -20,7 +20,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int pessoa_cc;
 
     @Column(name = "name")

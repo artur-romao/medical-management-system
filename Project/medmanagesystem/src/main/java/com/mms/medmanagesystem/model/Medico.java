@@ -51,9 +51,10 @@ public class Medico {
     
     public Medico(){}
 
-    public Medico( int id, String password, Area area) { 
+    public Medico( int id, String password, Pessoa medico, Area area) { 
         this.id = id;
         this.area = area;
+        this.medico = medico;
         this.password = password;
     }
 
