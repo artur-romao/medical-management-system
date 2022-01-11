@@ -51,12 +51,12 @@ public class Pessoa {
 
     @OneToOne (mappedBy = "medico")
     @JsonIgnore
-    @PrimaryKeyJoinColumn
+    //@PrimaryKeyJoinColumn
     private Medico medico;
 
     @OneToOne (mappedBy = "paciente")
     @JsonIgnore
-    @PrimaryKeyJoinColumn
+    //@PrimaryKeyJoinColumn
     private Paciente paciente;
 
 

@@ -12,8 +12,8 @@ import javax.persistence.Table;
 
 // @Data
 @Entity
-@Table(name = "internamentos")
-public class Internamentos {
+@Table(name = "internamento")
+public class Internamento {
     @Id
 	@Column(name = "id_internamento")
 	@GeneratedValue
@@ -39,9 +39,9 @@ public class Internamentos {
 	private Medico medico;
 
 
-	public Internamentos() {}
+	public Internamento() {}
 
-    public Internamentos(int id, Paciente paciente, Medico medico, double oxigenio, double pulso, double pressaoArterial, double temperatura, String razaoInternamento, String quarto_cama, String estado, String dataAdmissao, String dataSaida) { 
+    public Internamento(int id, Paciente paciente, Medico medico, double oxigenio, double pulso, double pressaoArterial, double temperatura, String razaoInternamento, String quarto_cama, String estado, String dataAdmissao, String dataSaida) { 
         this.id = id;
 		this.medico = medico;
 		this.paciente = paciente;

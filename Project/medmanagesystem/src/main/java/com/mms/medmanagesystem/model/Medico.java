@@ -67,11 +67,11 @@ public class Medico {
         this.id = id;
     }
 
-    public Pessoa getMedicoCc() {
+    public Pessoa getMedico() {
         return this.medico;
     }
 
-    public void setMedicoCc(Pessoa medico) {
+    public void setMedico(Pessoa medico) {
         this.medico = medico;
     }
 
@@ -90,10 +90,6 @@ public class Medico {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Pessoa getMedico(){
-        return this.medico;
     }
     
     
