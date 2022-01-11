@@ -94,3 +94,9 @@ INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (5,5,5,'Co
 INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (6,6,6,'Controlo rinite crónica','20211111',NULL);
 INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (7,7,7,'Doente infetado com COVID-19','20211212',NULL);
 INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (8,8,8,'Transplante de rim','20211212',NULL);
+
+
+INSERT INTO Medico(id_medico,medico_cc, id_area, pswd) VALUES (1,70180323,1,7018032370180323);
+
+
+INSERT INTO paciente(id_paciente, paciente_cc, )

@@ -16,6 +16,8 @@ services:
     volumes:
       - datafiles:/var/lib/mysql
     restart: always
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
 
   medmanagesystem:
     depends_on:
@@ -28,9 +30,6 @@ services:
         "spring.datasource.username" : "user",
         "spring.datasource.password" : "user",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL8Dialect",
-        "spring.second-datasource.url" : "jdbc:h2:mem:mmsDB;DB_CLOSE_DELAY=-1",
-        "spring.second-datasource.username" : "user",
-        "spring.second-datasource.password" : "user",
         "spring.jpa.hibernate.ddl-auto" : "update",
         "spring.rabbitmq.host" : "localhost",
         "spring.rabbitmq.port" : 5672,

@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.service;
+/* package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Vacina;
@@ -52,3 +52,4 @@ public class VacinaService {
     }
     
 }
+ */

@@ -1,4 +1,4 @@
-/* package com.mms.medmanagesystem.controller;
+package com.mms.medmanagesystem.controller;
 
 import java.util.*;
 
@@ -55,4 +55,3 @@ public class AreaController {
 
 
 }
- */

@@ -50,7 +50,7 @@ public class AreaService {
         .orElseThrow(() -> new ResourceNotFoundException("Area not found for this id:" + id));
         
         existingArea.setName(Area.getName());
-        existingArea.setIdArea(Area.getIdArea());
+        existingArea.setId(Area.getId());
         return repository.save(existingArea);
     }
 }

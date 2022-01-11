@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.model;
+/*package com.mms.medmanagesystem.model;
 
 import lombok.Data;
 
@@ -76,3 +76,5 @@ public class Vacina {
 
 
 }
+
+*/

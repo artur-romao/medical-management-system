@@ -1,42 +1,62 @@
 package com.mms.medmanagesystem.model;
 
-import lombok.Data;
+//import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
+
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-@Data
-@Entity
-@Table(name = "person")
+// @Data 
+@Entity 
+@Table(name = "pessoa") 
 public class Pessoa {
+
     @Id
-    @Column(name = "pessoa_cc")
-    private int pessoa_cc;
+    protected int pessoa_cc;
+
+    @Column(name = "name")
     private String nome;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "telemovel")
     private int telemovel;
+
+    @Column(name = "morada")
     private String morada;
+
+    @Column(name = "dataNascimento")
     private String datanascimento;
-
-
-    public Pessoa () {}
     
+    public Pessoa () {}
+
     public Pessoa(int pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
+        this.pessoa_cc = pessoa_cc;
         this.nome = nome;
         this.email = email;
-        this.pessoa_cc = pessoa_cc;
         this.telemovel = telemovel;
         this.morada = morada;
         this.datanascimento = datanascimento;
     }
 
 
-    @OneToOne (mappedBy = "medico_cc")
+    @OneToOne (mappedBy = "medico")
+    @JsonIgnore
+    //@PrimaryKeyJoinColumn
     private Medico medico;
 
-    @OneToOne (mappedBy = "paciente_cc")
+    @OneToOne (mappedBy = "paciente")
+    @JsonIgnore
+    //@PrimaryKeyJoinColumn
     private Paciente paciente;
 
 
@@ -45,36 +65,30 @@ public class Pessoa {
         return this.pessoa_cc;
     }
 
-    @Column(name = "name")
+    public void setCC(int pessoa_cc) {
+        this.pessoa_cc = pessoa_cc;
+    }
+
     public String getNome() {
         return this.nome;
     }
 
-    @Column(name = "email")
     public String getEmail() {
         return this.email;
     }
 
-    @Column(name = "telemovel")
     public int getTelemovel() {
         return this.telemovel;
     }
 
-    @Column(name = "dataNascimento")
     public String getDataNascimento() {
         return this.datanascimento;
     }
-    @Column(name = "morada")
     public String getMorada() {
         return this.morada;
     }
 
-
-    public void setCC(int pessoa_cc) {
-        this.pessoa_cc = pessoa_cc;
-    }
     
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -82,7 +96,6 @@ public class Pessoa {
         this.email = email;
     }
 
-   
     public void setTelemovel(int telemovel) {
         this.telemovel = telemovel;
     }
@@ -93,7 +106,13 @@ public class Pessoa {
 
     public void setDatanascimento(String datanascimento) {
         this.datanascimento = datanascimento;
-    }
-    
+    } 
 
+    public Medico getMedico(){
+        return this.medico;
+    }
+
+    public Paciente getPaciente(){
+        return this.paciente;
+    }
 }

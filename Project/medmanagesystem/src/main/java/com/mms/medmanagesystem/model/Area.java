@@ -1,47 +1,48 @@
 package com.mms.medmanagesystem.model;
 
-import lombok.Data;
+//import lombok.Data;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Data
+//@Data
 @Entity
-@Table(name = "Area")
+@Table(name = "area")
 public class Area {
 
     @Id
-    @GeneratedValue
-    private int idArea;
+    @Column (name = "id_area")
+    private int id;
+
+    @Column (name = "name")
     private String name; 
-     
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico_cc", orphanRemoval = true)
+                                                //o maped by é com as cenas do java
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area", orphanRemoval = true)
     private Set<Medico> medicos;
     
 
     public Area () {}
     
-    public Area(int idArea, String name) {
-        this.idArea = idArea;
+    public Area(int id, String name) {
+        this.id = id;
         this.name = name;   
     }
 
-    @Column (name = "id_area")
-    public int getIdArea() {
-		return this.idArea;
+    public int getId() {
+		return this.id;
 	}
 
-	public void setIdArea(int idArea) {
-		this.idArea = idArea;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-    @Column (name = "Name")
 	public String getName() {
 		return this.name;
 	}

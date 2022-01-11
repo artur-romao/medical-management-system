@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker-compose down -v && docker-compose build && docker-compose up
+docker-compose down -v --remove-orphans && docker-compose build && docker-compose up
 

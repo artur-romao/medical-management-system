@@ -1,6 +1,6 @@
 package com.mms.medmanagesystem.model;
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,31 +9,41 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.sql.DataSource;
 
-@Data
+import java.sql.Date;
+
+
 @Entity
 @Table(name = "consulta")
 public class Consulta {
 
     @Id
     @GeneratedValue
-    private int id;             
+    @Column(name = "id_consulta")
+    private int id;   
+	
+	@Column(name = "motivo")
     private String motivo;
-    private String data;
+
+    @Column(name = "dataconsulta")
+    private Date data;
+
+    @Column(name = "anotacoes")
     private String anotacoes;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_paciente")
+    @ManyToOne
+    @JoinColumn(name = "id_paciente", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_medico")
+    @ManyToOne
+    @JoinColumn(name = "id_medico", nullable = false)
     private Medico medico;
 
     
 	public Consulta() {}
 
-    public Consulta(int id, Paciente paciente, Medico medico, String motivo, String data, String anotacoes) {
+    public Consulta(int id, Paciente paciente, Medico medico, String motivo, Date data, String anotacoes) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;
@@ -42,7 +52,6 @@ public class Consulta {
         this.anotacoes = anotacoes;
     }
 
-    @Column(name = "id_consulta")
 	public int getId() {
 		return this.id;
 	}
@@ -51,23 +60,22 @@ public class Consulta {
 		this.id = id;
 	}
 
-	public Paciente getIdPaciente() {
+	public Paciente getPaciente() {
 		return this.paciente;
 	}
 
-	public void setIdPaciente(Paciente paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 
-	public Medico getIdMedico() {
+	public Medico getMedico() {
 		return this.medico;
 	}
 
-	public void setIdMedico(Medico medico) {
+	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
 
-    @Column(name = "motivo")
 	public String getMotivo() {
 		return this.motivo;
 	}
@@ -76,16 +84,14 @@ public class Consulta {
 		this.motivo = motivo;
 	}
 
-    @Column(name = "dataconsulta")
-	public String getData() {
+	public Date getData() {
 		return this.data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
-    @Column(name = "anotacoes")
 	public String getAnotacoes() {
 		return this.anotacoes;
 	}
@@ -96,3 +102,4 @@ public class Consulta {
 
     
 }
+

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class ConsultaService {
@@ -27,11 +28,15 @@ public class ConsultaService {
         return repository.findAll();
     }
 
-    public Consulta getConsultaByIDConsulta(int id) throws ResourceNotFoundException {
+    public Consulta getConsultaByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
         // return ResponseEntity.ok().body(consulta);
     }
+
+	public Set<Consulta> getAllConsultasById() {
+		return null;
+	}
 
     public Map<String, Boolean> deleteConsulta(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
@@ -46,14 +51,15 @@ public class ConsultaService {
         Consulta existingConsulta = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
         
-        existingConsulta.setIdMedico(consulta.getIdMedico());
+        existingConsulta.setMedico(consulta.getMedico());
         existingConsulta.setId(consulta.getId());
-        existingConsulta.setIdPaciente(consulta.getIdPaciente());
+        existingConsulta.setPaciente(consulta.getPaciente());
         existingConsulta.setMotivo(consulta.getMotivo());
         existingConsulta.setData(consulta.getData());
         existingConsulta.setAnotacoes(consulta.getAnotacoes());
 
         return repository.save(existingConsulta);
     }
+
 }
 
