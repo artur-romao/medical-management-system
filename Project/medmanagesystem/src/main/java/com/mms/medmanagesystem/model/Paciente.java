@@ -72,17 +72,11 @@ public class Paciente {
 
     public Paciente() {}
     
-<<<<<<< HEAD
-    public Paciente(int id, Pessoa paciente , Set<Internamentos> internamentos) {
+    public Paciente(int id, Pessoa paciente, Set<Consulta> consulta,  Set<Internamento> internamento) {
         this.id = id;
         this.paciente = paciente;
-        this.internamentos = internamentos;
-=======
-    public Paciente(int id, Set<Consulta> consulta,  Set<Internamento> internamento) {
-        this.id = id;
-        this.internamento = internamento;
         this.consulta = consulta;
->>>>>>> e7c6bd00a8367270f8a06cee41ce8674145ca6fc
+        this.internamento = internamento;
     }
 
     @Column(name = "id_paciente")
@@ -94,11 +88,11 @@ public class Paciente {
         this.id = id;
     }
 
-    public Pessoa getPacienteCc() {
+    public Pessoa getPaciente() {
         return this.paciente;
     }
 
-    public void setPacienteCc(Pessoa paciente) {
+    public void setPaciente(Pessoa paciente) {
         this.paciente = paciente;
     }
     

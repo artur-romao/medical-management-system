@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class ConsultaService {
@@ -27,11 +28,15 @@ public class ConsultaService {
         return repository.findAll();
     }
 
-    public Consulta getConsultaByIDConsulta(int id) throws ResourceNotFoundException {
+    public Consulta getConsultaByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
         // return ResponseEntity.ok().body(consulta);
     }
+
+	public Set<Consulta> getAllConsultasById(Set<Consulta>) {
+		return null;
+	}
 
     public Map<String, Boolean> deleteConsulta(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
@@ -55,5 +60,6 @@ public class ConsultaService {
 
         return repository.save(existingConsulta);
     }
+
 }
 

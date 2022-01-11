@@ -9,8 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.sql.DataSource;
 
-//@Data
+import java.sql.Date;
+
+
 @Entity
 @Table(name = "consulta")
 public class Consulta {
@@ -24,7 +27,7 @@ public class Consulta {
     private String motivo;
 
     @Column(name = "dataconsulta")
-    private String data;
+    private Date data;
 
     @Column(name = "anotacoes")
     private String anotacoes;
@@ -40,7 +43,7 @@ public class Consulta {
     
 	public Consulta() {}
 
-    public Consulta(int id, Paciente paciente, Medico medico, String motivo, String data, String anotacoes) {
+    public Consulta(int id, Paciente paciente, Medico medico, String motivo, Date data, String anotacoes) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;
@@ -81,11 +84,11 @@ public class Consulta {
 		this.motivo = motivo;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return this.data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
