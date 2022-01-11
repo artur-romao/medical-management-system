@@ -34,7 +34,7 @@ public class ConsultaService {
         // return ResponseEntity.ok().body(consulta);
     }
 
-	public Set<Consulta> getAllConsultasById(Set<Consulta>) {
+	public Set<Consulta> getAllConsultasById() {
 		return null;
 	}
 

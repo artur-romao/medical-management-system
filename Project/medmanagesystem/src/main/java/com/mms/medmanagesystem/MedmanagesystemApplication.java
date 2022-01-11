@@ -56,7 +56,7 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			areaRepository.save(new Area(14, "Pneumologia"));
 			areaRepository.save(new Area(15, "Psicologia"));
 			areaRepository.save(new Area(16, "Psiquiatria"));
-			
+			 
 		}
 
 		if (pessoaService.getPessoas().isEmpty()) {
