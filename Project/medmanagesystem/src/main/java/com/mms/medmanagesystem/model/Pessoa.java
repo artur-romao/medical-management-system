@@ -60,7 +60,6 @@ public class Pessoa {
     private Paciente paciente;
 
 
-    @Column(name = "pessoa_cc")
     public int getCC() {
         return this.pessoa_cc;
     }

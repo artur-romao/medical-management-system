@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class InternamentoService {
@@ -24,15 +26,22 @@ public class InternamentoService {
         return repository.saveAll(internamento);
     }
 
-    public List<Internamento> getInternamento() {
+    public List<Internamento> getInternamentos() {
         return repository.findAll();
     }
 
-    public Internamento getInternamentoById(int id) throws ResourceNotFoundException {
-        return repository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
-        //return ResponseEntity.ok().body(internamento);
-    }
+    public Set<Internamento> getAllInternamentosById(int... id_internamento) throws ResourceNotFoundException {
+    // Creating an empty Set
+
+        Set<Internamento> s = new HashSet<>();
+        for (int id : id_internamento){
+            Internamento intern = repository.findById(id)
+                            .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
+            s.add(intern);
+        }
+
+        return s;
+	}
 
     public Map<String, Boolean> deleteInternamento(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));

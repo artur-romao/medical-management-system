@@ -5,6 +5,10 @@ package com.mms.medmanagesystem.model;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+
+import java.sql.Date;
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +23,15 @@ public class Internamento {
 	@GeneratedValue
 	private int id;
 	
-    private double pulso;
-    private double pressaoArterial;
-    private double temperatura;
-	private double oxigenio;
+    private ArrayList<ArrayList<Float>> pulso;
+    private  ArrayList<Float> pressaoArterial;
+    private float temperatura;
+	private float oxigenio;
     private String razaoInternamento;
     private String quarto_cama;
     private String estado;
-    private String dataAdmissao;
-    private String dataSaida;
+    private Date dataAdmissao;
+    private Date dataSaida;
     
     
     @ManyToOne(optional = false)
@@ -41,7 +45,9 @@ public class Internamento {
 
 	public Internamento() {}
 
-    public Internamento(int id, Paciente paciente, Medico medico, double oxigenio, double pulso, double pressaoArterial, double temperatura, String razaoInternamento, String quarto_cama, String estado, String dataAdmissao, String dataSaida) { 
+	// pressao arterial (13,2) 
+	// pulso ((2,3),(1,2))
+    public Internamento(int id, Paciente paciente, Medico medico, float oxigenio, ArrayList<ArrayList<Float>> pulso, ArrayList<Float> pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
         this.id = id;
 		this.medico = medico;
 		this.paciente = paciente;
@@ -92,38 +98,38 @@ public class Internamento {
 	}
 
     @Column(name = "pulso")
-	public double getPulso() {
+	public ArrayList<ArrayList<Float>> getPulso() {
 		return this.pulso;
 	}
 
 	@Column(name = "oxigenio")
-	public double getOxigenio() {
+	public float getOxigenio() {
 		return this.oxigenio;
 	}
 
-	public void setOxigenio(double oxigenio) {
+	public void setOxigenio(float oxigenio) {
 		this.oxigenio = oxigenio;
 	}
 
-	public void setPulso(double pulso) {
+	public void setPulso(ArrayList<ArrayList<Float>> pulso) {
 		this.pulso = pulso;
 	}
 
     @Column(name = "pressaoArterial")
-	public double getPressaoArterial() {
+	public ArrayList<Float> getPressaoArterial() {
 		return this.pressaoArterial;
 	}
 
-	public void setPressaoArterial(double pressaoArterial) {
+	public void setPressaoArterial(ArrayList<Float> pressaoArterial) {
 		this.pressaoArterial = pressaoArterial;
 	}
 
     @Column(name = "temperatura")
-	public double getTemperatura() {
+	public float getTemperatura() {
 		return this.temperatura;
 	}
 
-	public void setTemperatura(double temperatura) {
+	public void setTemperatura(float temperatura) {
 		this.temperatura = temperatura;
 	}
     
@@ -157,21 +163,21 @@ public class Internamento {
 
 
     @Column(name = "dataAdmissao")
-    public String getDataAdmissao() {
+    public Date getDataAdmissao() {
 		return this.dataAdmissao;
 	}
 
-	public void setDataAdmissao(String dataAdmissao) {
+	public void setDataAdmissao(Date dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
 
     
     @Column(name = "dataSaida")
-	public String getDataSaida() {
+	public Date getDataSaida() {
 		return this.dataSaida;
 	}
 
-	public void setDataSaida(String dataSaida) {
+	public void setDataSaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
     

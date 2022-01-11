@@ -24,7 +24,7 @@ public class Area {
     @Column (name = "name")
     private String name; 
                                                 //o maped by é com as cenas do java
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
     private Set<Medico> medicos;
     
 
