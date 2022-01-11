@@ -10,3 +10,4 @@ public interface InternamentosRepository extends JpaRepository<Internamentos,Int
 
     Internamentos findByPaciente(Paciente paciente);
 }
+ 

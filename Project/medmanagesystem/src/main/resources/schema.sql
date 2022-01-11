@@ -20,3 +20,22 @@ CREATE TABLE IF NOT EXISTS Consulta(
   ,data      DATE  NOT NULL
   ,anotacoes VARCHAR(30)
 );
+
+CREATE TABLE IF NOT EXISTS Medico(
+    id_medico      INTEGER  NOT NULL PRIMARY KEY 
+  ,medico_cc  INTEGER  NOT NULL
+  , id_area INTEGER 
+  ,pswd VARCHAR(50) NOT NULL
+
+) 
+
+CREATE TABLE IF NOT EXISTS Paciente(
+    id      INTEGER  NOT NULL PRIMARY KEY 
+  ,paciente_cc  INTEGER  NOT NULL
+) 
+
+
+
+   {    "id":1,
+        "paciente_cc":84563294,
+   },

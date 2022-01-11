@@ -1,13 +1,16 @@
 package com.mms.medmanagesystem.model;
 
-import lombok.Data;
+//import lombok.Data;
+//import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,18 +18,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+// @Data
 @Entity
 @Table(name = "medico")
 public class Medico {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_medico")
+    @JsonIgnore
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "medico_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
-    private Pessoa medico_cc;
+    private Pessoa medico;
 
     private String password;
 
@@ -34,17 +41,18 @@ public class Medico {
     @JoinColumn(name = "id_area")
     private Area area;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
-    private Set<Paciente> pacientes;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
-    private Set<Consulta> consultas;
+/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
+    private Set<Internamentos> internamentos;  */
+
+
+/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
+    private Set<Consulta> consultas; */
     
     public Medico(){}
 
-    public Medico(int id, Pessoa pessoa_cc, Area area, String password) {
+    public Medico( int id, String password, Area area) { 
         this.id = id;
-        this.medico_cc = pessoa_cc;
         this.area = area;
         this.password = password;
     }
@@ -58,12 +66,12 @@ public class Medico {
         this.id = id;
     }
 
-    public Pessoa getCc() {
-        return this.medico_cc;
+    public Pessoa getMedicoCc() {
+        return this.medico;
     }
 
-    public void setCc(Pessoa pessoa_cc) {
-        this.medico_cc = pessoa_cc;
+    public void setMedicoCc(Pessoa medico) {
+        this.medico = medico;
     }
 
     public Area getArea() {
@@ -74,13 +82,17 @@ public class Medico {
         this.area = area;
     }
 
-    @Column(name = "password")
+    @Column(name = "pswd")
     public String getPassword() {
         return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Pessoa getMedico(){
+        return this.medico;
     }
     
     

@@ -1,6 +1,6 @@
 package com.mms.medmanagesystem.model;
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,24 +10,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Data
+//@Data
 @Entity
-@Table(name = "consulta")
+@Table(name = "consultas")
 public class Consulta {
 
     @Id
     @GeneratedValue
-    private int id;             
+    @Column(name = "id_consulta")
+    private int id;   
+	
+	@Column(name = "motivo")
     private String motivo;
+
+    @Column(name = "dataconsulta")
     private String data;
+
+    @Column(name = "anotacoes")
     private String anotacoes;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_paciente")
+    @ManyToOne
+    @JoinColumn(name = "id_paciente", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_medico")
+    @ManyToOne
+    @JoinColumn(name = "id_medico", nullable = false)
     private Medico medico;
 
     
@@ -42,7 +49,6 @@ public class Consulta {
         this.anotacoes = anotacoes;
     }
 
-    @Column(name = "id_consulta")
 	public int getId() {
 		return this.id;
 	}
@@ -51,23 +57,22 @@ public class Consulta {
 		this.id = id;
 	}
 
-	public Paciente getIdPaciente() {
+	public Paciente getPaciente() {
 		return this.paciente;
 	}
 
-	public void setIdPaciente(Paciente paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 
-	public Medico getIdMedico() {
+	public Medico getMedico() {
 		return this.medico;
 	}
 
-	public void setIdMedico(Medico medico) {
+	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
 
-    @Column(name = "motivo")
 	public String getMotivo() {
 		return this.motivo;
 	}
@@ -76,7 +81,6 @@ public class Consulta {
 		this.motivo = motivo;
 	}
 
-    @Column(name = "dataconsulta")
 	public String getData() {
 		return this.data;
 	}
@@ -85,7 +89,6 @@ public class Consulta {
 		this.data = data;
 	}
 
-    @Column(name = "anotacoes")
 	public String getAnotacoes() {
 		return this.anotacoes;
 	}
@@ -96,3 +99,4 @@ public class Consulta {
 
     
 }
+

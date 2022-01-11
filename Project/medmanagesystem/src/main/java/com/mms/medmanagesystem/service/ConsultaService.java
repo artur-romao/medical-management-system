@@ -46,9 +46,9 @@ public class ConsultaService {
         Consulta existingConsulta = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
         
-        existingConsulta.setIdMedico(consulta.getIdMedico());
+        existingConsulta.setMedico(consulta.getMedico());
         existingConsulta.setId(consulta.getId());
-        existingConsulta.setIdPaciente(consulta.getIdPaciente());
+        existingConsulta.setPaciente(consulta.getPaciente());
         existingConsulta.setMotivo(consulta.getMotivo());
         existingConsulta.setData(consulta.getData());
         existingConsulta.setAnotacoes(consulta.getAnotacoes());

@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.repository;
+/* package com.mms.medmanagesystem.repository;
 
 import com.mms.medmanagesystem.model.Vacina;
 
@@ -9,3 +9,4 @@ public interface VacinaRepository extends JpaRepository<Vacina,Integer> {
 }
 
 
+ */

@@ -4,6 +4,7 @@ import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamentos;
 import com.mms.medmanagesystem.repository.InternamentosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -46,14 +47,13 @@ public class InternamentosService {
         Internamentos existingInternamento = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Internamentos not found for this id: " + id));
 
-        existingInternamento.setIdPaciente(Internamentos.getIdPaciente());
+        existingInternamento.setPaciente(Internamentos.getPaciente());
         existingInternamento.setPulso(Internamentos.getPulso());
         existingInternamento.setTemperatura(Internamentos.getTemperatura());
         existingInternamento.setPressaoArterial(Internamentos.getPressaoArterial());
         existingInternamento.setRazaoInternamento(Internamentos.getRazaoInternamento());
         existingInternamento.setOxigenio(Internamentos.getOxigenio());
-        existingInternamento.setCama(Internamentos.getCama());
-        existingInternamento.setQuarto(Internamentos.getQuarto());
+        existingInternamento.setQuarto_cama(Internamentos.getQuarto_cama());
         existingInternamento.setEstado(Internamentos.getEstado());
         existingInternamento.setDataAdmissao(Internamentos.getDataAdmissao());
         existingInternamento.setDataSaida(Internamentos.getDataSaida());
@@ -61,4 +61,3 @@ public class InternamentosService {
         return repository.save(existingInternamento);
     }
 }
- 
