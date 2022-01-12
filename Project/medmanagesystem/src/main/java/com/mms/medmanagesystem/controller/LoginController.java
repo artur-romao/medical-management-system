@@ -27,7 +27,7 @@ public class LoginController {
     return new LoginCredentials();
   }
 
-  @GetMapping("/") 
+  @GetMapping("/login") 
   @ResponseBody
   public ModelAndView login(Model model) {
     ModelAndView modelAndView = new ModelAndView();
@@ -35,7 +35,7 @@ public class LoginController {
     return modelAndView;
   }
 
-  @PostMapping("/")
+  @PostMapping("/login")
   public ModelAndView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model) throws NumberFormatException, ResourceNotFoundException {
     String cc = loginCredentials.getCC();
     String password = loginCredentials.getPassword();
