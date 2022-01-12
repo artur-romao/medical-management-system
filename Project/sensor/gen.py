@@ -52,11 +52,21 @@ class Generators:
                print(len(hblist))
                i+=1
                time_data = np.arange(len(hblist)) / frequency
-               vallist=[{'times_data': time_data[:10].tolist()}, {"heart_values": hblist[:10]}]
-               tojson={'name':'hb', 'values':vallist}
+               vallist=time_data[:10].tolist()+hblist[:10]
+               tojson={'name':'hb', 'values':vallist, 'id':1}
                self.marychanel.basic_publish(exchange='', routing_key='hb', body=json.dumps(tojson))
                print("hi")
-               
+               if i==1:
+                    print("filei")
+                    f = open("myfile.txt", "w") 
+                    y=open ("teim.txt","w")
+                    for item in hblist:
+                         f.write(str(item)+",\n")
+                    td=time_data.tolist()
+                    for item in range(len(td)):
+                         y.write(str(td[item])+",\n")    
+                    f.close()
+                    y.close()
                await asyncio.sleep(2)
                """
                plt.plot(time_data, hblist)
@@ -66,7 +76,7 @@ class Generators:
                plt.ylim(-1, 1.5)
                plt.show(block=True)
                """
-
+     
           print("out")
      async def temp(self):
           i=3
@@ -74,7 +84,7 @@ class Generators:
                avgtemp=37
 
                currtemp = avgtemp+random.randrange(-10,10)*0.15
-               tojson={'name':'temp', 'values':currtemp}
+               tojson={'name':'temp', 'values':currtemp, 'id':1}
                self.marychanel.basic_publish(exchange='', routing_key='temp', body=json.dumps(tojson))
 
                await asyncio.sleep(2)
@@ -87,8 +97,8 @@ class Generators:
           while True:
                sisnew = round(sis+random.randrange(-20,20)+random.random(),2)
                dianew=round(dia +random.randrange(-20,20)+random.random(),2)
-               vallist = [{"sis_values":sisnew}, {"dia_values": dianew}]
-               tojson={'name':'press', "value": vallist}
+               vallist = [sisnew, dianew]
+               tojson={'name':'press', 'values': vallist ,'id':1}
                self.marychanel.basic_publish(exchange='', routing_key='pressao_arterial', body=json.dumps(tojson))
                await asyncio.sleep(2)
                i-=1
@@ -103,7 +113,7 @@ class Generators:
           while True:
                getrandomoxi= np.random.choice(values,1,True,dist)
                oxi= round(getrandomoxi[0] + random.random(),2)
-               tojson={'name':'oxi', 'value':oxi}
+               tojson={'name':'oxi', 'values':oxi , 'id':1}
                self.marychanel.basic_publish(exchange='', routing_key='oxi', body=json.dumps(tojson))
                
 

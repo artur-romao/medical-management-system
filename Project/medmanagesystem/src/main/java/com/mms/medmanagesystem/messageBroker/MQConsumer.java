@@ -6,8 +6,25 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
+import com.mms.medmanagesystem.model.Internamento;
+import com.mms.medmanagesystem.service.InternamentoService;
+
+
+
+
 public class MQConsumer {
 
+    
+    private static InternamentoService service;
+	@Autowired
+	private MQConsumer(InternamentoService sv) {
+		MQConsumer.service = sv;
+	}
     private final static String hbq = "hb";
     private final static String oxiq = "oxi";
     private final static String paq = "pressao_arterial";
@@ -29,37 +46,59 @@ public class MQConsumer {
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            JSONObject msg =new JSONObject(message);
             System.out.println(message);
-            message=message.replaceAll("[\\[\\](){}]","");
-            message=message.replaceFirst(",",":");
-            String [] newmessage=message.split(":",4);
-            /*for (int i = 0; i < newmessage.length; i++) {
+            System.out.println(msg);
+            int id=Integer.parseInt(msg.get("id").toString());
             
-                System.out.println(" [x] Received '" + newmessage[i] + "'"); //posição 2 e 4 do array têm os valores que queremos o 2 tem o nome da queue e o 4 os valores associados
-                 
-            }*/
-            System.out.println("new message is here");
-            String opt= newmessage[1].replace("\"","").trim();
-            switch (opt) {
+            switch (msg.get("name").toString()) {
                 case "hb":
-                    eatHB(newmessage[3]);
-                    break;
+                Double[] sendhb= eatHB(msg.get("values"));
+                try {
+                    Internamento inter= service.getInternamentoById(id);
+                inter.setPulso(sendhb);
+                service.updateInternamento(id, inter);
+                } catch (ResourceNotFoundException e) {
+                    System.err.println("erro");
+                }
+                break;
                 case "temp":
-                    eattemp(newmessage[3]);
-                    
-                    break;
+                float sendtemp=eattemp(msg.get("values"));
+                try {
+                    Internamento inter= service.getInternamentoById(id);
+                inter.setTemperatura(sendtemp);
+                service.updateInternamento(id, inter);
+                } catch (ResourceNotFoundException e) {
+                    System.err.println("erro");
+                }
+                break;
                 case "press":
-                    eatpress(newmessage[3]);
-                    
-                    break;
+                Float[] sendp= eatpress(msg.get("values"));
+                    try {
+                        Internamento inter= service.getInternamentoById(id);
+                    inter.setPressaoArterial(sendp);
+                    service.updateInternamento(id, inter);
+                    } catch (ResourceNotFoundException e) {
+                        System.err.println("erro");
+                    }
                 case "oxi":
-                    eatoxi(newmessage[3]);
-                    
-                    break;
+                float sendoxi =eatoxi(msg.get("values"));
+                try {
+                    Internamento inter= service.getInternamentoById(id);
+                inter.setOxigenio(sendoxi);
+                service.updateInternamento(id, inter);
+                } catch (ResourceNotFoundException e) {
+                    System.err.println("erro");
+                }
+                
+                break;
                 default:
-                    break;
+                break;
             }
+            
         };
+
+        //service.getInternamentoById(id_internamento)
         channel.basicConsume(hbq, true, deliverCallback, consumerTag -> { });
         channel.basicConsume(tempq, true, deliverCallback, consumerTag -> { });
         channel.basicConsume(oxiq, true, deliverCallback, consumerTag -> { });
@@ -67,53 +106,53 @@ public class MQConsumer {
 
     }
     //todos estes metodos vao dar return aos valores a ser colocados na db/mandados pro frontend
-    public static double[] eatHB(String values){
+    public static Double[] eatHB(Object object){
         //this one is special so we need to create a pair
+        
         double[] hv = new double[540000]; //heart values array
         double[] td = new double[540000]; //time data array
         int hvl= hv.length;
         int tdl= hv.length;
-        double [] res =new double[hvl+tdl]; 
-        String [] actualvals=values.split("[:,]"); 
-        int mid=actualvals.length/2;
+        Double[] res =new Double[hvl+tdl]; 
+        String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
+        
+        int mid=actualvals.length/2-1;
         int counter=0;
         for (int i = 0; i < actualvals.length; i++) {
-            if (!(actualvals[i].trim().contains("times_data") || actualvals[i].trim().contains("heart_values"))){
 
                 if (i>=mid){
                     hv[counter]=Double.parseDouble(actualvals[i].trim());
                     counter++;
                 }else{
-                    td[i-1]=Double.parseDouble(actualvals[i].trim());
+                    td[i]=Double.parseDouble(actualvals[i].trim());
 
                 }
-            } 
-        
+                
         }
+            
+            System.arraycopy(hv, 0, res,0,hvl);
+            System.arraycopy(td, 0, res,hvl,tdl);
+            
+            
+            return res;
+            
+        } 
+    
+    public static float eatoxi(Object object){
 
-        System.arraycopy(hv, 0, res,0,hvl);
-        System.arraycopy(td, 0, res,hvl,tdl);
 
-
-
-        return res;
+        return Float.parseFloat(object.toString());
 
     }
-    public static float eatoxi(String values){
+    public static Float[] eatpress(Object object){
+        //o obejto vem like [sis,dia]
+        String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
 
+        return new Float[] {Float.parseFloat(actualvals[0].trim()),Float.parseFloat(actualvals[1].trim())};    }
 
-        return Float.parseFloat(values.trim());
+    public static Float eattemp(Object object){
 
-    }
-    public static float[] eatpress(String values){
-        
-        String [] actualvals=values.split("[:,]"); 
-        
-        return new float[] {Float.parseFloat(actualvals[1].trim()),Float.parseFloat(actualvals[3].trim())};    }
-
-    public static float eattemp(String values){
-
-        return Float.parseFloat(values.trim());
+        return Float.parseFloat(object.toString());
 
     }
 

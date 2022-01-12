@@ -44,6 +44,12 @@ public class InternamentoService {
         return s;
 	}
 
+    public Internamento getInternamentoById(int id_internamento) throws ResourceNotFoundException{
+        
+        return repository.findById(id_internamento).orElse(null);
+
+    }
+
     public Map<String, Boolean> deleteInternamento(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
     
@@ -70,4 +76,6 @@ public class InternamentoService {
         
         return repository.save(existingInternamento);
     }
+
+
 }
