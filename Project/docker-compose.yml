@@ -8,17 +8,16 @@ services:
     command: --default-authentication-plugin=mysql_native_password 
     ports: 
        - "8081:3306"
-    cap_add:
-      - SYS_NICE
     environment:
       MYSQL_DATABASE: MMS
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: user
     volumes:
-      # - ./db:/database
       - datafiles:/var/lib/mysql
     restart: always
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
 
   medmanagesystem:
     depends_on:
@@ -36,26 +35,12 @@ services:
         "spring.rabbitmq.port" : 5672,
         "spring.rabbitmq.username" : "guest",
         "spring.rabbitmq.password": "guest",
-
         "server.port": 8000
+
         }'
     ports: 
       - 6666:8000
     restart: on-failure
-
-  mms-master:
-    depends_on:
-      - medmanagesystem
-    image: nginx
-    ports: 
-        - "8000:80"
-    volumes:
-        - ./mms-master:/usr/nginx/html/
-    links:
-        - db
-    networks:
-        - default
-    restart: always  
     
   mq:
     image: rabbitmq:management

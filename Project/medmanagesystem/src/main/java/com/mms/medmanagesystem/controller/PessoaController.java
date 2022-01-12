@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,6 @@ import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.service.PessoaService;
 
 @RestController
-@RequestMapping("/api/pes")
 public class PessoaController {
 
     @Autowired
@@ -55,4 +55,6 @@ public class PessoaController {
 
 
 
+
 }
+ 

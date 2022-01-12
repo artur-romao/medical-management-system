@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.controller;
+/* package com.mms.medmanagesystem.controller;
 import java.util.*;
 
 import javax.validation.Valid;
@@ -19,7 +19,6 @@ import com.mms.medmanagesystem.model.Internamentos;
 import com.mms.medmanagesystem.service.InternamentosService;
 
 @RestController
-@RequestMapping("/api/int")
 public class InternamentosController {
 
     @Autowired
@@ -58,3 +57,4 @@ public class InternamentosController {
 
 
 }
+ */

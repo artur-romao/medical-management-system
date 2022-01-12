@@ -3,7 +3,6 @@ package com.mms.medmanagesystem.controller;
 import java.util.*;
 
 import javax.validation.Valid;
-//va
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,8 +19,6 @@ import com.mms.medmanagesystem.model.Area;
 import com.mms.medmanagesystem.service.AreaService;
 
 @RestController
-@RequestMapping("/api/area")
-
 public class AreaController {
 
     @Autowired

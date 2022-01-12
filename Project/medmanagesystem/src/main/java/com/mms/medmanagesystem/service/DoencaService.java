@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.service;
+/* package com.mms.medmanagesystem.service;
 import com.mms.medmanagesystem.exception.*;
 import com.mms.medmanagesystem.model.Doenca;
 import com.mms.medmanagesystem.repository.DoencaRepository;
@@ -56,3 +56,4 @@ public class DoencaService {
         return repository.save(existingDoenca);
     }
 }
+ */
