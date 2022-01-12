@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
+import com.mms.medmanagesystem.messageBroker.Pair;
+
 // @Data
 @Entity
 @Table(name = "internamento")
@@ -23,8 +25,8 @@ public class Internamento {
 	@GeneratedValue
 	private int id;
 	
-    private ArrayList<ArrayList<Float>> pulso;
-    private  ArrayList<Float> pressaoArterial;
+    private Pair pulso;
+    private  Float[] pressaoArterial;
     private float temperatura;
 	private float oxigenio;
     private String razaoInternamento;
@@ -47,7 +49,7 @@ public class Internamento {
 
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
-    public Internamento(int id, Paciente paciente, Medico medico, float oxigenio, ArrayList<ArrayList<Float>> pulso, ArrayList<Float> pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
+    public Internamento(int id, Paciente paciente, Medico medico, float oxigenio, Pair pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
         this.id = id;
 		this.medico = medico;
 		this.paciente = paciente;
@@ -98,7 +100,7 @@ public class Internamento {
 	}
 
     @Column(name = "pulso")
-	public ArrayList<ArrayList<Float>> getPulso() {
+	public Pair getPulso() {
 		return this.pulso;
 	}
 
@@ -111,16 +113,16 @@ public class Internamento {
 		this.oxigenio = oxigenio;
 	}
 
-	public void setPulso(ArrayList<ArrayList<Float>> pulso) {
+	public void setPulso(Pair pulso) {
 		this.pulso = pulso;
 	}
 
     @Column(name = "pressaoArterial")
-	public ArrayList<Float> getPressaoArterial() {
+	public Float[] getPressaoArterial() {
 		return this.pressaoArterial;
 	}
 
-	public void setPressaoArterial(ArrayList<Float> pressaoArterial) {
+	public void setPressaoArterial(Float[] pressaoArterial) {
 		this.pressaoArterial = pressaoArterial;
 	}
 
