@@ -34,7 +34,7 @@ public class PessoaService {
     }
     
     public Pessoa getPessoaByName(String name) {
-        return repository.findByNome(name);
+        return repository.findByName(name);
     }
 
     public Map<String, Boolean> deletePessoa(int cc) throws ResourceNotFoundException {
