@@ -1,8 +1,11 @@
-/* package com.mms.medmanagesystem.controller;
+package com.mms.medmanagesystem.controller;
 
+import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.LoginCredentials;
+import com.mms.medmanagesystem.model.Pessoa;
+import com.mms.medmanagesystem.service.PessoaService;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,32 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/api/")
 public class LoginController {
-/* 
+
+  @Autowired
+  private PessoaService pessoaService;
+
   @ModelAttribute("loginCredentials")
   public LoginCredentials loginCredentialsAttribute() {
     return new LoginCredentials();
   }
 
-  @GetMapping(value="/login") 
+  @GetMapping("/") 
   @ResponseBody
-  public String login(Model model) {
-    return "login";
+  public ModelAndView login(Model model) {
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("login");
+    return modelAndView;
   }
 
-  @PostMapping("/{user}")
-  public String loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model) {
-    String medicoId = loginCredentials.getMedicoid();
+  @PostMapping("/")
+  public ModelAndView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model) throws NumberFormatException, ResourceNotFoundException {
+    String cc = loginCredentials.getCC();
     String password = loginCredentials.getPassword();
+    ModelAndView modelAndView = new ModelAndView();
+    
+    Pessoa pessoa = pessoaService.getPessoaByCc(Integer.parseInt(cc));
     if (password.equals("password")) {
-      return "index";
+      modelAndView.setViewName("index");
+      return modelAndView;
     }
     else {
-      model.addAttribute("error", "Dados de sessão inválidos!");
-      return "login";
+      model.addAttribute("error", "Dados de sessão inválidos!"); // Isto é suposto ser uma MsgBox
+      modelAndView.setViewName("index");
+      return modelAndView;    
     }
   }
-} */
+}
