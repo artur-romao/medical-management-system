@@ -30,7 +30,6 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_paciente")
-    @JsonIgnore
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -72,8 +71,7 @@ public class Paciente {
 
     public Paciente() {}
     
-    public Paciente(int id, Pessoa paciente, Set<Consulta> consulta,  Set<Internamento> internamento) {
-        this.id = id;
+    public Paciente(Pessoa paciente, Set<Consulta> consulta,  Set<Internamento> internamento) {
         this.paciente = paciente;
         this.consulta = consulta;
         this.internamento = internamento;

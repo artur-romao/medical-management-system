@@ -27,8 +27,6 @@ public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_medico")
-    @JsonIgnore
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -51,8 +49,7 @@ public class Medico {
     
     public Medico(){}
 
-    public Medico( int id, String password, Pessoa medico, Area area) { 
-        this.id = id;
+    public Medico( String password, Pessoa medico, Area area) { 
         this.area = area;
         this.medico = medico;
         this.password = password;
