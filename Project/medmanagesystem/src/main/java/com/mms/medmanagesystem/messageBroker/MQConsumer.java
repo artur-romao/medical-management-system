@@ -67,10 +67,13 @@ public class MQConsumer {
 
     }
     //todos estes metodos vao dar return aos valores a ser colocados na db/mandados pro frontend
-    public static Pair eatHB(String values){
+    public static double[] eatHB(String values){
         //this one is special so we need to create a pair
         double[] hv = new double[540000]; //heart values array
         double[] td = new double[540000]; //time data array
+        int hvl= hv.length;
+        int tdl= hv.length;
+        double [] res =new double[hvl+tdl]; 
         String [] actualvals=values.split("[:,]"); 
         int mid=actualvals.length/2;
         int counter=0;
@@ -87,7 +90,13 @@ public class MQConsumer {
             } 
         
         }
-        return new Pair(td, hv);
+
+        System.arraycopy(hv, 0, res,0,hvl);
+        System.arraycopy(td, 0, res,hvl,tdl);
+
+
+
+        return res;
 
     }
     public static float eatoxi(String values){
@@ -101,6 +110,7 @@ public class MQConsumer {
         String [] actualvals=values.split("[:,]"); 
         
         return new float[] {Float.parseFloat(actualvals[1].trim()),Float.parseFloat(actualvals[3].trim())};    }
+
     public static float eattemp(String values){
 
         return Float.parseFloat(values.trim());
