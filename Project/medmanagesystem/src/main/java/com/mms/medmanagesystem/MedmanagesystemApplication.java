@@ -1,5 +1,5 @@
 package com.mms.medmanagesystem;
-import com.mms.medmanagesystem.messageBroker.Pair;
+import com.mms.medmanagesystem.model.PairModel;
 import com.mms.medmanagesystem.messageBroker.MQConsumer;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -78,7 +78,8 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 		consultaRepository.save(new Consulta(2, pacienteRepository.getById(1), medicoRepository.getById(2), "Inapto na cama", Date.valueOf("2021-01-02"), "De facto é verdade, grande navo"));
 	
 
-		internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Pair(new double[540000],new double[540000])),(new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+		//internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new PairModel(new double[540000],new double[540000])),(new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+		internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
 
 		
 
