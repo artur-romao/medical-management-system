@@ -79,7 +79,7 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 	
 
 		//internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new PairModel(new double[540000],new double[540000])),(new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
-		internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+		internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0,(new Double[10]), (new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
 
 		
 
