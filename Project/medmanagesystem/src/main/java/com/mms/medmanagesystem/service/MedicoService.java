@@ -27,7 +27,7 @@ public class MedicoService {
         return repository.findAll();
     }
 
-    public Medico getMedicoByIDMedico(int id) throws ResourceNotFoundException {
+    public Medico getMedicoByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Medico not found for this id:" + id));
     }

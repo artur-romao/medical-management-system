@@ -2,15 +2,15 @@ package com.mms.medmanagesystem.model;
 
 public class LoginCredentials {
 
-    private String medicoid;
+    private String cc;
     private String password;
   
-    public String getMedicoid() {
-      return medicoid;
+    public String getCC() {
+      return cc;
     }
   
-    public void setMedicoid(String id) {
-      this.medicoid = id;
+    public void setMedicoid(String cc) {
+      this.cc = cc;
     }
   
     public String getPassword() {

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 
@@ -20,9 +21,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "internamento")
 public class Internamento {
-    @Id
+    
+	@Id
 	@Column(name = "id_internamento")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
     private Double[] pulso;
@@ -34,11 +36,6 @@ public class Internamento {
     private String estado;
     private Date dataAdmissao;
     private Date dataSaida;
-
-
-
-
-    
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
@@ -49,12 +46,11 @@ public class Internamento {
 	private Medico medico;
 
 
-	public Internamento() {}
+	public Internamento(Paciente paciente2, Medico medico2, float f, double[] ds, Float[] floats, float g, String string, String string2, String string3, Date date, Date date2) {}
 
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
-    public Internamento(int id, Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
-        this.id = id;
+    public Internamento(Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
 		this.medico = medico;
 		this.paciente = paciente;
         this.pulso = pulso;

@@ -20,10 +20,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Pessoa {
 
     @Id
-    protected int pessoa_cc;
+    @Column(name = "pessoa_cc")
+    private int pessoa_cc;
 
     @Column(name = "name")
-    private String nome;
+    private String name;
 
     @Column(name = "email")
     private String email;
@@ -39,9 +40,9 @@ public class Pessoa {
     
     public Pessoa () {}
 
-    public Pessoa(int pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
+     public Pessoa(int pessoa_cc, String name, String email, int telemovel, String morada, String datanascimento) {
         this.pessoa_cc = pessoa_cc;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
         this.telemovel = telemovel;
         this.morada = morada;
@@ -51,12 +52,10 @@ public class Pessoa {
 
     @OneToOne (mappedBy = "medico")
     @JsonIgnore
-    //@PrimaryKeyJoinColumn
     private Medico medico;
 
     @OneToOne (mappedBy = "paciente")
     @JsonIgnore
-    //@PrimaryKeyJoinColumn
     private Paciente paciente;
 
 
@@ -69,7 +68,7 @@ public class Pessoa {
     }
 
     public String getNome() {
-        return this.nome;
+        return this.name;
     }
 
     public String getEmail() {
@@ -88,8 +87,8 @@ public class Pessoa {
     }
 
     
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String name) {
+        this.name = name;
     }
     public void setEmail(String email) {
         this.email = email;
