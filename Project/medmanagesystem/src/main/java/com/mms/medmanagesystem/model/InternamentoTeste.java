@@ -1,4 +1,4 @@
-package com.mms.medmanagesystem.model;
+/* package com.mms.medmanagesystem.model;
 
 // import lombok.Data;
 
@@ -19,14 +19,14 @@ import javax.persistence.Table;
 // @Data
 @Entity
 @Table(name = "internamento")
-public class Internamento {
+public class InternamentoTeste {
     @Id
 	@Column(name = "id_internamento")
 	@GeneratedValue
 	private int id;
 
-	//@Column(name = "pulso")
-    //private PairModel pulso;
+	@Column(name = "pulso")
+    private PairModel pulso;
 
     private  Float[] pressaoArterial;
     private float temperatura;
@@ -38,6 +38,9 @@ public class Internamento {
     private Date dataSaida;
 
 
+	private double[] timedata;
+	private double[] heartratedata;
+	private double[]double[] pulsso;
 
 
     
@@ -51,15 +54,15 @@ public class Internamento {
 	private Medico medico;
 
 
-	public Internamento() {}
+	public InternamentoTeste() {}
 
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
-    public Internamento(int id, Paciente paciente, Medico medico, float oxigenio,  Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
+    public InternamentoTeste(int id, Paciente paciente, Medico medico, float oxigenio, PairModel pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
         this.id = id;
 		this.medico = medico;
 		this.paciente = paciente;
-       // this.pulso = pulso;
+        this.pulso = pulso;
 		this.oxigenio = oxigenio;
         this.pressaoArterial = pressaoArterial;
         this.temperatura = temperatura;
@@ -105,10 +108,10 @@ public class Internamento {
 		this.paciente = paciente;
 	}
 
-	/* public PairModel getPulso() {
+	public PairModel getPulso() {
 		return this.pulso;
 	}
- */
+
 	@Column(name = "oxigenio")
 	public float getOxigenio() {
 		return this.oxigenio;
@@ -118,9 +121,9 @@ public class Internamento {
 		this.oxigenio = oxigenio;
 	}
 
-	/* public void setPulso(PairModel pulso) {
+	public void setPulso(PairModel pulso) {
 		this.pulso = pulso;
-	} */
+	}
 
     @Column(name = "pressaoArterial")
 	public Float[] getPressaoArterial() {
@@ -189,3 +192,5 @@ public class Internamento {
 	}
     
 }
+
+ */

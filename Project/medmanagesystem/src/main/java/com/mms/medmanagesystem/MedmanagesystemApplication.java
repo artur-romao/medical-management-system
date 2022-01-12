@@ -1,6 +1,8 @@
 package com.mms.medmanagesystem;
+import com.mms.medmanagesystem.model.PairModel;
 import com.mms.medmanagesystem.messageBroker.MQConsumer;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.transaction.Transactional;
@@ -75,11 +77,11 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 		consultaRepository.save(new Consulta(1, pacienteRepository.getById(1), medicoRepository.getById(1), "Queixas a fazer exercício físico", Date.valueOf("2020-05-20"), ""));
 		consultaRepository.save(new Consulta(2, pacienteRepository.getById(1), medicoRepository.getById(2), "Inapto na cama", Date.valueOf("2021-01-02"), "De facto é verdade, grande navo"));
 	
-	
-		/* if (internamentoService.getInternamentos().isEmpty()){
-			internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),0,0,0,0,"Apendicite","2A","estável",Date.valueOf("2001-5-20"));
-			
-		} */
+
+		//internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new PairModel(new double[540000],new double[540000])),(new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+		internamentoRepository.save(new Internamento(1,pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Float[10]),(float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+
+		
 
 	}
 

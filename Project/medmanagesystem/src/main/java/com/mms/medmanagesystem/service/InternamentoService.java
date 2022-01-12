@@ -6,6 +6,7 @@ import com.mms.medmanagesystem.repository.InternamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.mms.medmanagesystem.messageBroker.Pair;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -57,7 +58,7 @@ public class InternamentoService {
         .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
 
         existingInternamento.setPaciente(Internamento.getPaciente());
-        existingInternamento.setPulso(Internamento.getPulso());
+        //existingInternamento.setPulso(Internamento.getPulso());
         existingInternamento.setTemperatura(Internamento.getTemperatura());
         existingInternamento.setPressaoArterial(Internamento.getPressaoArterial());
         existingInternamento.setRazaoInternamento(Internamento.getRazaoInternamento());
