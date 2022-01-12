@@ -20,8 +20,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Pessoa {
 
     @Id
-    @Column(name = "pessoa_cc")
-    private int pessoa_cc;
+    @Column(name = "pessoacc")
+    private int pessoacc;
 
     @Column(name = "name")
     private String name;
@@ -35,13 +35,13 @@ public class Pessoa {
     @Column(name = "morada")
     private String morada;
 
-    @Column(name = "dataNascimento")
+    @Column(name = "datanascimento")
     private String datanascimento;
     
     public Pessoa () {}
 
-     public Pessoa(int pessoa_cc, String name, String email, int telemovel, String morada, String datanascimento) {
-        this.pessoa_cc = pessoa_cc;
+     public Pessoa(int pessoacc, String name, String email, int telemovel, String morada, String datanascimento) {
+        this.pessoacc = pessoacc;
         this.name = name;
         this.email = email;
         this.telemovel = telemovel;
@@ -60,11 +60,11 @@ public class Pessoa {
 
 
     public int getCC() {
-        return this.pessoa_cc;
+        return this.pessoacc;
     }
 
-    public void setCC(int pessoa_cc) {
-        this.pessoa_cc = pessoa_cc;
+    public void setCC(int pessoacc) {
+        this.pessoacc = pessoacc;
     }
 
     public String getNome() {

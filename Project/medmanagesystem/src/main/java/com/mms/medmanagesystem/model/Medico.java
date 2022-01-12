@@ -30,7 +30,7 @@ public class Medico {
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "medico_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
+    @JoinColumn(name = "medico_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
     private Pessoa medico;
 
     private String password;
