@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +52,7 @@ public class PessoaController {
     public Map<String, Boolean> deletePeople(@PathVariable int cc) throws ResourceNotFoundException {
         return service.deletePessoa(cc);
     }
+
 
 
 
