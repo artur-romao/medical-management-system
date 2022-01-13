@@ -77,6 +77,10 @@ public class Paciente {
         this.internamento = internamento;
     }
 
+    public Paciente(Pessoa paciente) {
+        this.paciente=paciente;
+    }
+
     @Column(name = "id_paciente")
     public int getId() {
         return this.id;

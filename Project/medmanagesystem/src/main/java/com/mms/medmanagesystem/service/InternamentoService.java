@@ -79,6 +79,7 @@ public class InternamentoService {
     }
 
     public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+    
     }
 
 

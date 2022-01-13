@@ -47,7 +47,7 @@ public class MedicoService {
         .orElseThrow(() -> new ResourceNotFoundException("Medico not found for this id:" + id));
         
         existingMedico.setMedico(Medico.getMedico());
-        //existingMedico.setArea(Medico.getArea());
+        existingMedico.setArea(Medico.getArea());
         existingMedico.setPassword(Medico.getPassword());
         
         return repository.save(existingMedico);

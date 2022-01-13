@@ -56,17 +56,7 @@ class Generators:
                tojson={'name':'hb', 'values':vallist, 'id':1}
                self.marychanel.basic_publish(exchange='', routing_key='hb', body=json.dumps(tojson))
                print("hi")
-               if i==1:
-                    print("filei")
-                    f = open("myfile.txt", "w") 
-                    y=open ("teim.txt","w")
-                    for item in hblist:
-                         f.write(str(item)+",\n")
-                    td=time_data.tolist()
-                    for item in range(len(td)):
-                         y.write(str(td[item])+",\n")    
-                    f.close()
-                    y.close()
+            
                await asyncio.sleep(2)
                """
                plt.plot(time_data, hblist)
