@@ -36,6 +36,7 @@ public class MQConsumer {
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
+     
 
         channel.queueDeclare(hbq, false, false, false, null);
         channel.queueDeclare(oxiq, false, false, false, null);
