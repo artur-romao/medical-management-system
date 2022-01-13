@@ -59,11 +59,11 @@ public class Pessoa {
     private Paciente paciente;
 
 
-    public int getCC() {
+    public int getPessoacc() {
         return this.pessoacc;
     }
 
-    public void setCC(int pessoacc) {
+    public void setCc(int pessoacc) {
         this.pessoacc = pessoacc;
     }
 
@@ -79,7 +79,7 @@ public class Pessoa {
         return this.telemovel;
     }
 
-    public String getDataNascimento() {
+    public String getDatanascimento() {
         return this.datanascimento;
     }
     public String getMorada() {

@@ -61,17 +61,18 @@ $(document).ready(function(){
 						<th>Telemóvel</th>
 						<th>Morada</th>
 						<th>Data de Nascimento</th>
-            <th>Nº de Internamentos</th>
 					</tr>
 				</thead>
 				<tbody>
         <th:block th:each="patient : ${listaPacientes}"> 
 					<tr>
 						<td> [[${patient.paciente.nome}]]</td>
+            <td> [[${patient.paciente.pessoacc}]]</td>
 						<td> [[${patient.paciente.email}]]</td>
 						<td> [[${patient.paciente.telemovel}]]</td>
             <td> [[${patient.paciente.morada}]]</td>
             <td> [[${patient.paciente.datanascimento}]]</td>
+
 
 
 						

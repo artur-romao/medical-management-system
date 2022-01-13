@@ -67,13 +67,13 @@ public class InternamentoService {
         existingInternamento.setPaciente(Internamento.getPaciente());
         //existingInternamento.setPulso(Internamento.getPulso());
         existingInternamento.setTemperatura(Internamento.getTemperatura());
-        existingInternamento.setPressaoArterial(Internamento.getPressaoArterial());
-        existingInternamento.setRazaoInternamento(Internamento.getRazaoInternamento());
+        existingInternamento.setPressaoarterial(Internamento.getPressaoarterial());
+        existingInternamento.setRazaointernamento(Internamento.getRazaointernamento());
         existingInternamento.setOxigenio(Internamento.getOxigenio());
-        existingInternamento.setQuarto_cama(Internamento.getQuarto_cama());
+        existingInternamento.setQuartocama(Internamento.getQuartocama());
         existingInternamento.setEstado(Internamento.getEstado());
-        existingInternamento.setDataAdmissao(Internamento.getDataAdmissao());
-        existingInternamento.setDataSaida(Internamento.getDataSaida());
+        existingInternamento.setDataadmissao(Internamento.getDataadmissao());
+        existingInternamento.setDatasaida(Internamento.getDatasaida());
         
         return repository.save(existingInternamento);
     }

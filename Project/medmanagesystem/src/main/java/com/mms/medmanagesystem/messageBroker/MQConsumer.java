@@ -76,7 +76,7 @@ public class MQConsumer {
                 Float[] sendp= eatpress(msg.get("values"));
                     try {
                         Internamento inter= service.getInternamentoById(id);
-                    inter.setPressaoArterial(sendp);
+                    inter.setPressaoarterial(sendp);
                     service.updateInternamento(id, inter);
                     } catch (ResourceNotFoundException e) {
                         System.err.println("erro");
