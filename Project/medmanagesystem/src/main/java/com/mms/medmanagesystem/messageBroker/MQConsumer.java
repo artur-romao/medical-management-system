@@ -5,11 +5,12 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+import  java.lang.Object ;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.service.InternamentoService;
@@ -36,6 +37,7 @@ public class MQConsumer {
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
+     
 
         channel.queueDeclare(hbq, false, false, false, null);
         channel.queueDeclare(oxiq, false, false, false, null);
@@ -113,7 +115,7 @@ public class MQConsumer {
         double[] td = new double[540000]; //time data array
         int hvl= hv.length;
         int tdl= hv.length;
-        Double[] res =new Double[hvl+tdl]; 
+        double[] res =new double[hvl+tdl]; 
         String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
         
         int mid=actualvals.length/2-1;
@@ -134,7 +136,7 @@ public class MQConsumer {
             System.arraycopy(td, 0, res,hvl,tdl);
             
             
-            return res;
+            return ArrayUtils.toObject(res);
             
         } 
     
@@ -160,5 +162,4 @@ public class MQConsumer {
 
 
 }
-
 

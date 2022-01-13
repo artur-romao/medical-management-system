@@ -80,9 +80,9 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			
 			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1)));
 			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(1)));
-			
+
 			// internamentoService.updateInternamentoInfo(internamentoRepository.getById(1),(float)0, (new double[540000]), (new Float[10]), (float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
-			// ,(float)0, (new Double[540000]), (new Float[10]), (float)0,"Apendicite","2B","estável",Date.valueOf("2021-5-21"),Date.valueOf("2022-5-21")));
+			// internamentoService.updateInternamentoInfo(internamentoRepository.getById(1),(float)0, (new Double[540000]), (new Float[10]), (float)0,"Apendicite","2B","estável",Date.valueOf("2021-5-21"),Date.valueOf("2022-5-21")));
 			
 			
 			// pacienteService.updatePacienteCI(pacienteRepository.getById(1), consultaService.getAllConsultasById(1,2), internamentoService.getAllInternamentosById(1));
