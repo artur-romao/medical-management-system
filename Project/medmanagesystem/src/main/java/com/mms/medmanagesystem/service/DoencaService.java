@@ -25,7 +25,7 @@ public class DoencaService {
         return repository.findAll();
     }
 
-    public Doenca getDoencaByCc(int cc) throws ResourceNotFoundException {
+    public Doenca getDoencaBycc(int cc) throws ResourceNotFoundException {
             return repository.findById(cc)
             .orElseThrow(() -> new ResourceNotFoundException("Doenca not found for this cc:" + cc));
             //return ResponseEntity.ok().body(doenca);

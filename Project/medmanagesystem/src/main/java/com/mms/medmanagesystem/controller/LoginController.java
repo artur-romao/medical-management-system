@@ -41,7 +41,7 @@ public class LoginController {
     String password = loginCredentials.getPassword();
     ModelAndView modelAndView = new ModelAndView();
     
-    Pessoa pessoa = pessoaService.getPessoaByCc(Integer.parseInt(cc));
+    Pessoa pessoa = pessoaService.getPessoaBycc(Integer.parseInt(cc));
     if (password.equals("password")) {
       modelAndView.setViewName("index");
       return modelAndView;

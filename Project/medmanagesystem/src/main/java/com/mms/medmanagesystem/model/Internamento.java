@@ -86,7 +86,7 @@ public class Internamento {
 
 	}
 
-	public void setidInternamento(int idInternamento) {
+	public void setIdinternamento(int idInternamento) {
 		this.id = idInternamento;
 	}
 
@@ -118,11 +118,11 @@ public class Internamento {
 	} 
 
     @Column(name = "pressaoArterial")
-	public Float[] getPressaoArterial() {
+	public Float[] getPressaoarterial() {
 		return this.pressaoArterial;
 	}
 
-	public void setPressaoArterial(Float[] pressaoArterial) {
+	public void setPressaoarterial(Float[] pressaoArterial) {
 		this.pressaoArterial = pressaoArterial;
 	}
 
@@ -137,20 +137,20 @@ public class Internamento {
     
     
     @Column(name = "razaoInternamento")
-	public String getRazaoInternamento() {
+	public String getRazaointernamento() {
 		return this.razaoInternamento;
 	}
 
-	public void setRazaoInternamento(String razaoInternamento) {
+	public void setRazaointernamento(String razaoInternamento) {
 		this.razaoInternamento = razaoInternamento;
 	}
 
     @Column(name = "quarto_cama")
-	public String getQuarto_cama() {
+	public String getQuartocama() {
 		return this.quarto_cama;
 	}
 
-	public void setQuarto_cama(String quarto_cama) {
+	public void setQuartocama(String quarto_cama) {
 		this.quarto_cama = quarto_cama;
 	}
 
@@ -165,21 +165,21 @@ public class Internamento {
 
 
     @Column(name = "dataAdmissao")
-    public Date getDataAdmissao() {
+    public Date getDataadmissao() {
 		return this.dataAdmissao;
 	}
 
-	public void setDataAdmissao(Date dataAdmissao) {
+	public void setDataadmissao(Date dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
 
     
     @Column(name = "dataSaida")
-	public Date getDataSaida() {
+	public Date getDatasaida() {
 		return this.dataSaida;
 	}
 
-	public void setDataSaida(Date dataSaida) {
+	public void setDatasaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
     

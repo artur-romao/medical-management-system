@@ -64,7 +64,7 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 
 		}
 		
-		if (areaService.getAreas().isEmpty()) {
+		if (pessoaService.getPessoas().isEmpty()) {
 			
 			medicoService.saveMedico(new Medico("7576664675766646", (new Pessoa(75766646, "Maia Mitchell", "maiamitchell@hotmail.com", 966265836, "153-5716 Odio, Rd", "21/10/1984")), areaRepository.getById(14)));
 			medicoService.saveMedico(new Medico("7385680573856805", (new Pessoa(73856805, "Leslie Landry", "leslielandry801@hotmail.com", 933236833, "Ap #744-1568 Luctus Street","10/12/1959" )), areaRepository.getById(2)));

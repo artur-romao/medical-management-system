@@ -28,7 +28,7 @@ public class PessoaService {
         return repository.findAll();
     }
 
-    public Pessoa getPessoaByCc(int cc) throws ResourceNotFoundException {
+    public Pessoa getPessoaBycc(int cc) throws ResourceNotFoundException {
         return repository.findById(cc)
         .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + cc));
     }
@@ -48,7 +48,7 @@ public class PessoaService {
     }
 
     public Pessoa updatePessoa(int cc, Pessoa pessoa) throws ResourceNotFoundException {
-        Pessoa existingPessoa = repository.findById(pessoa.getCC())
+        Pessoa existingPessoa = repository.findById(pessoa.getPessoacc())
         .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + cc));
 
         existingPessoa.setNome(pessoa.getNome());
