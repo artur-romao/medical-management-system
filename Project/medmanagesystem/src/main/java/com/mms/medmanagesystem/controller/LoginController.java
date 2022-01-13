@@ -1,10 +1,13 @@
 package com.mms.medmanagesystem.controller;
 
+import javax.servlet.http.HttpSession;
+
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.LoginCredentials;
-import com.mms.medmanagesystem.model.Pessoa;
-import com.mms.medmanagesystem.service.PessoaService;
+import com.mms.medmanagesystem.model.Medico;
+import com.mms.medmanagesystem.service.MedicoService;
 
+import org.springframework.beans.factory.ObjectFactory; // is this it?
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
   @Autowired
-  private PessoaService pessoaService;
+  private MedicoService medicoService;
+
+  @Autowired
+  ObjectFactory<HttpSession> httpSessionFactory;
 
   @ModelAttribute("loginCredentials")
   public LoginCredentials loginCredentialsAttribute() {
@@ -37,18 +43,28 @@ public class LoginController {
 
   @PostMapping("/")
   public ModelAndView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model) throws NumberFormatException, ResourceNotFoundException {
-    String cc = loginCredentials.getCC();
+    HttpSession session = httpSessionFactory.getObject();
+    String medicoid = loginCredentials.getMedicoid();
     String password = loginCredentials.getPassword();
     ModelAndView modelAndView = new ModelAndView();
     
-    Pessoa pessoa = pessoaService.getPessoaByCc(Integer.parseInt(cc));
-    if (password.equals("password")) {
+    Medico medico = medicoService.getMedicoByIDMedico(Integer.parseInt(medicoid));
+    
+    if (medico.getPassword().equals(password)) {
+      session.setAttribute("id_medico", medicoid);
+      session.setAttribute("pessoa_cc", medico.getMedico().getCC());
+      model.addAttribute("id", medico.getId());
+      model.addAttribute("area", medico.getArea().getName());
+      model.addAttribute("nome", medico.getMedico().getNome());
+      model.addAttribute("telemovel", medico.getMedico().getTelemovel());
+      model.addAttribute("morada", medico.getMedico().getMorada());
+      model.addAttribute("datanascimento", medico.getMedico().getDataNascimento());
       modelAndView.setViewName("index");
       return modelAndView;
     }
     else {
       model.addAttribute("error", "Dados de sessão inválidos!"); // Isto é suposto ser uma MsgBox
-      modelAndView.setViewName("index");
+      modelAndView.setViewName("login");
       return modelAndView;    
     }
   }
