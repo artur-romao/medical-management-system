@@ -46,8 +46,7 @@ public class Internamento {
 	private Medico medico;
 
 
-	public Internamento(Paciente paciente2, Medico medico2, float f, double[] ds, Float[] floats, float g, String string, String string2, String string3, Date date, Date date2) {}
-
+	public Internamento () {}
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
     public Internamento(Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
@@ -65,7 +64,12 @@ public class Internamento {
     }
 
 
-	public int getId() {
+	public Internamento(Paciente paciente, Medico medico) {
+		this.medico = medico;
+		this.paciente = paciente;
+	}
+
+    public int getId() {
 		return this.id;
 	}
 

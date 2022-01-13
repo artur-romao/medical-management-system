@@ -72,16 +72,22 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			medicoService.saveMedico(new Medico("4426569644265696", (new Pessoa(44265696, "Inês Carvalho Almeida", "inesalmeida@hotmail.com", 933236833, "963-7884 Ipsum St","10/12/1980" )), areaRepository.getById(13)));
 			medicoService.saveMedico(new Medico("6758685967586859", (new Pessoa(73856705, "Brandon Foster", "brandon_foster@google.com", 962222898, "2040 Penatibus Av.","07/05/1995" )), areaRepository.getById(2)));
 
-		
-			pacienteService.savePaciente(new Paciente((new Pessoa(83664712, "Miguel dos Santos", "miguelds@outlook.com", 914415566, "331-3048 Sodales. Rd", "20/03/1982")), consultaService.getAllConsultasById(), internamentoService.getAllInternamentosById()));
-			pacienteService.savePaciente(new Paciente((new Pessoa(14151414, "Ana Maria", "anamaria@outlook.com", 965147826, "Alameda 29 Aveiro,12", "10/03/2000")), consultaService.getAllConsultasById(), internamentoService.getAllInternamentosById()));
-
+			pacienteService.savePaciente(new Paciente((new Pessoa(83664712, "Miguel dos Santos", "miguelds@outlook.com", 914415566, "331-3048 Sodales. Rd", "20/03/1982"))));
+			pacienteService.savePaciente(new Paciente((new Pessoa(14151414, "Ana Maria", "anamaria@outlook.com", 965147826, "Alameda 29 Aveiro,12", "10/03/2000"))));
+			
 			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(1), medicoRepository.getById(1), "Queixas a fazer exercício físico", Date.valueOf("2020-05-20"), ""));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(1), medicoRepository.getById(2), "Inapto na cama", Date.valueOf("2021-01-02"), "De facto é verdade, grande navo"));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(1), medicoRepository.getById(3), "Inapto na cama", Date.valueOf("2021-01-02"), "De facto é verdade, grande nabo"));
+			
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1)));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(1)));
+			// ,(float)0, (new double[540000]), (new Float[10]), (float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+			// ,(float)0, (new Double[540000]), (new Float[10]), (float)0,"Apendicite","2B","estável",Date.valueOf("2021-5-21"),Date.valueOf("2022-5-21")));
+			
+			
+			// pacienteService.updatePacienteCI(pacienteRepository.getById(1), consultaService.getAllConsultasById(1,2), internamentoService.getAllInternamentosById(1));
+			// pacienteService.updatePacienteCI(pacienteRepository.getById(2), consultaService.getAllConsultasById(2), internamentoService.getAllInternamentosById(2));
 		
 
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new double[540000]), (new Float[10]), (float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Double[540000]), (new Float[10]), (float)0,"Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
 		}
 		
 

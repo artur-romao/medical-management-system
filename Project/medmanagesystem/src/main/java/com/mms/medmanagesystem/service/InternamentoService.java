@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.mms.medmanagesystem.messageBroker.Pair;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -75,6 +76,9 @@ public class InternamentoService {
         existingInternamento.setDataSaida(Internamento.getDataSaida());
         
         return repository.save(existingInternamento);
+    }
+
+    public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
     }
 
 
