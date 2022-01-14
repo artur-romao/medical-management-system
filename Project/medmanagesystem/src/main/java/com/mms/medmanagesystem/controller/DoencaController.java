@@ -32,7 +32,7 @@ public class DoencaController {
    
     @GetMapping("/doencas/{id}")
     public Doenca getDoencasBycc(@PathVariable(value="id") int id_doenca) throws ResourceNotFoundException {
-        return service.getDoencaByCc(id_doenca); 
+        return service.getDoencaBycc(id_doenca); 
     }
         
     

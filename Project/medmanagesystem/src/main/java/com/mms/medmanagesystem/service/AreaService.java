@@ -26,7 +26,7 @@ public class AreaService {
         return repository.findAll();
     }
 
-    public Area getAreaByIDArea(int id) throws ResourceNotFoundException {
+    public Area getAreaByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Area not found for this id:" + id));
         // return ResponseEntity.ok().body(area);

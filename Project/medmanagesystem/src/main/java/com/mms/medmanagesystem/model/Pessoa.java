@@ -20,10 +20,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Pessoa {
 
     @Id
-    protected int pessoa_cc;
+    @Column(name = "pessoacc")
+    private int pessoacc;
 
     @Column(name = "name")
-    private String nome;
+    private String name;
 
     @Column(name = "email")
     private String email;
@@ -34,14 +35,14 @@ public class Pessoa {
     @Column(name = "morada")
     private String morada;
 
-    @Column(name = "dataNascimento")
+    @Column(name = "datanascimento")
     private String datanascimento;
     
     public Pessoa () {}
 
-    public Pessoa(int pessoa_cc, String nome, String email, int telemovel, String morada, String datanascimento) {
-        this.pessoa_cc = pessoa_cc;
-        this.nome = nome;
+     public Pessoa(int pessoacc, String name, String email, int telemovel, String morada, String datanascimento) {
+        this.pessoacc = pessoacc;
+        this.name = name;
         this.email = email;
         this.telemovel = telemovel;
         this.morada = morada;
@@ -51,25 +52,23 @@ public class Pessoa {
 
     @OneToOne (mappedBy = "medico")
     @JsonIgnore
-    //@PrimaryKeyJoinColumn
     private Medico medico;
 
     @OneToOne (mappedBy = "paciente")
     @JsonIgnore
-    //@PrimaryKeyJoinColumn
     private Paciente paciente;
 
 
-    public int getCC() {
-        return this.pessoa_cc;
+    public int getPessoacc() {
+        return this.pessoacc;
     }
 
-    public void setCC(int pessoa_cc) {
-        this.pessoa_cc = pessoa_cc;
+    public void setCc(int pessoacc) {
+        this.pessoacc = pessoacc;
     }
 
     public String getNome() {
-        return this.nome;
+        return this.name;
     }
 
     public String getEmail() {
@@ -80,7 +79,7 @@ public class Pessoa {
         return this.telemovel;
     }
 
-    public String getDataNascimento() {
+    public String getDatanascimento() {
         return this.datanascimento;
     }
     public String getMorada() {
@@ -88,8 +87,8 @@ public class Pessoa {
     }
 
     
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String name) {
+        this.name = name;
     }
     public void setEmail(String email) {
         this.email = email;

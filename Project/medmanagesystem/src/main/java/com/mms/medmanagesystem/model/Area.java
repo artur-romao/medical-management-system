@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class Area {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id_area")
     private int id;
 
@@ -30,8 +31,7 @@ public class Area {
 
     public Area () {}
     
-    public Area(int id, String name) {
-        this.id = id;
+    public Area(String name) {
         this.name = name;   
     }
 

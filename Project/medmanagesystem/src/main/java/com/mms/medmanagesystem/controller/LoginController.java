@@ -59,11 +59,11 @@ public class LoginController {
     String medicoid = loginCredentials.getMedicoid();
     String password = loginCredentials.getPassword();
     
-    Medico medico = medicoService.getMedicoByIDMedico(Integer.parseInt(medicoid));
+    Medico medico = medicoService.getMedicoByID(Integer.parseInt(medicoid));
     
     if (medico.getPassword().equals(password)) {
       session.setAttribute("id_medico", medicoid);
-      session.setAttribute("pessoa_cc", medico.getMedico().getCC());
+      session.setAttribute("pessoa_cc", medico.getMedico().getPessoacc());
       return new RedirectView("index");
     }
     else {

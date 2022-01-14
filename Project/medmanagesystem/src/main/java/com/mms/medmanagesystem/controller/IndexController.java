@@ -27,13 +27,13 @@ public class IndexController {
   public ModelAndView index(Model model) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
     String medicoid = (String.valueOf(session.getAttribute("id_medico")));
-    Medico medico = medicoService.getMedicoByIDMedico(Integer.parseInt(medicoid));
+    Medico medico = medicoService.getMedicoByID(Integer.parseInt(medicoid));
     model.addAttribute("id", medico.getId());
     model.addAttribute("area", medico.getArea().getName());
     model.addAttribute("nome", medico.getMedico().getNome());
     model.addAttribute("telemovel", medico.getMedico().getTelemovel());
     model.addAttribute("morada", medico.getMedico().getMorada());
-    model.addAttribute("datanascimento", medico.getMedico().getDataNascimento());
+    model.addAttribute("datanascimento", medico.getMedico().getDatanascimento());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("index");
     return modelAndView;

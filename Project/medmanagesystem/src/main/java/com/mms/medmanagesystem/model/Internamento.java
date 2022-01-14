@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 
@@ -20,9 +21,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "internamento")
 public class Internamento {
-    @Id
+    
+	@Id
 	@Column(name = "id_internamento")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
     private Double[] pulso;
@@ -34,11 +36,6 @@ public class Internamento {
     private String estado;
     private Date dataAdmissao;
     private Date dataSaida;
-
-
-
-
-    
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
@@ -49,12 +46,10 @@ public class Internamento {
 	private Medico medico;
 
 
-	public Internamento() {}
-
+	public Internamento () {}
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
-    public Internamento(int id, Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
-        this.id = id;
+    public Internamento(Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
 		this.medico = medico;
 		this.paciente = paciente;
         this.pulso = pulso;
@@ -69,7 +64,23 @@ public class Internamento {
     }
 
 
-	public int getId() {
+	public Internamento(Paciente paciente, Medico medico, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+		this.medico = medico;
+		this.paciente = paciente;
+		this.razaoInternamento = razaoInternamento;
+        this.quarto_cama = quarto_cama;
+        this.estado = estado;
+        this.dataAdmissao = dataAdmissao;
+        this.dataSaida = dataSaida;
+	}
+
+    public Internamento(Paciente paciente, Medico medico) {
+		this.medico = medico;
+		this.paciente = paciente;
+    }
+	
+
+    public int getId() {
 		return this.id;
 	}
 
@@ -90,7 +101,7 @@ public class Internamento {
 
 	}
 
-	public void setidInternamento(int idInternamento) {
+	public void setIdinternamento(int idInternamento) {
 		this.id = idInternamento;
 	}
 
@@ -122,11 +133,11 @@ public class Internamento {
 	} 
 
     @Column(name = "pressaoArterial")
-	public Float[] getPressaoArterial() {
+	public Float[] getPressaoarterial() {
 		return this.pressaoArterial;
 	}
 
-	public void setPressaoArterial(Float[] pressaoArterial) {
+	public void setPressaoarterial(Float[] pressaoArterial) {
 		this.pressaoArterial = pressaoArterial;
 	}
 
@@ -141,20 +152,20 @@ public class Internamento {
     
     
     @Column(name = "razaoInternamento")
-	public String getRazaoInternamento() {
+	public String getRazaointernamento() {
 		return this.razaoInternamento;
 	}
 
-	public void setRazaoInternamento(String razaoInternamento) {
+	public void setRazaointernamento(String razaoInternamento) {
 		this.razaoInternamento = razaoInternamento;
 	}
 
     @Column(name = "quarto_cama")
-	public String getQuarto_cama() {
+	public String getQuartocama() {
 		return this.quarto_cama;
 	}
 
-	public void setQuarto_cama(String quarto_cama) {
+	public void setQuartocama(String quarto_cama) {
 		this.quarto_cama = quarto_cama;
 	}
 
@@ -169,21 +180,21 @@ public class Internamento {
 
 
     @Column(name = "dataAdmissao")
-    public Date getDataAdmissao() {
+    public Date getDataadmissao() {
 		return this.dataAdmissao;
 	}
 
-	public void setDataAdmissao(Date dataAdmissao) {
+	public void setDataadmissao(Date dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
 
     
     @Column(name = "dataSaida")
-	public Date getDataSaida() {
+	public Date getDatasaida() {
 		return this.dataSaida;
 	}
 
-	public void setDataSaida(Date dataSaida) {
+	public void setDatasaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
     
