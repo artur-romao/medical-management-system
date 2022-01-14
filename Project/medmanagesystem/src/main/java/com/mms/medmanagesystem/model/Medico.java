@@ -50,7 +50,7 @@ public class Medico {
     
     public Medico(){}
 
-    public Medico( String password, Pessoa medico, Area area) { 
+    public Medico(String password, Pessoa medico, Area area) { 
         this.area = area;
         this.medico = medico;
         this.password = password;

@@ -64,10 +64,21 @@ public class Internamento {
     }
 
 
-	public Internamento(Paciente paciente, Medico medico) {
+	public Internamento(Paciente paciente, Medico medico, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
 		this.medico = medico;
 		this.paciente = paciente;
+		this.razaoInternamento = razaoInternamento;
+        this.quarto_cama = quarto_cama;
+        this.estado = estado;
+        this.dataAdmissao = dataAdmissao;
+        this.dataSaida = dataSaida;
 	}
+
+    public Internamento(Paciente paciente, Medico medico) {
+		this.medico = medico;
+		this.paciente = paciente;
+    }
+	
 
     public int getId() {
 		return this.id;

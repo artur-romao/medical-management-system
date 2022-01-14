@@ -36,7 +36,7 @@ public class LoginController {
     return new LoginCredentials();
   }
 
-  @GetMapping("/login") 
+  @GetMapping("/") 
   @ResponseBody
   public RedirectView login(HttpServletRequest request, Model model) {
     System.out.println(request.getSession().getAttribute("id_medico")); 

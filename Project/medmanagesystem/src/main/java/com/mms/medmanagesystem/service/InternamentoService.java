@@ -45,9 +45,10 @@ public class InternamentoService {
         return s;
 	}
 
-    public Internamento getInternamentoById(int id_internamento) throws ResourceNotFoundException{
+    public Internamento getInternamentoById(int id) throws ResourceNotFoundException{
         
-        return repository.findById(id_internamento).orElse(null);
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
 
     }
 
@@ -78,9 +79,9 @@ public class InternamentoService {
         return repository.save(existingInternamento);
     }
 
-    public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
     
-    }
+    // }
 
 
 }
