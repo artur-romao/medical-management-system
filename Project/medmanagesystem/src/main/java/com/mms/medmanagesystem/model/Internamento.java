@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.mms.medmanagesystem.enumFolder.EstadoEnum;
+
 
 // @Data
 @Entity
@@ -45,11 +47,8 @@ public class Internamento {
 	@JoinColumn(name="id_medico")
 	private Medico medico;
 
+	public Internamento(){}
 
-	public Internamento(Paciente paciente2, Medico medico2, float f, double[] ds, Float[] floats, float g, String string, String string2, String string3, Date date, Date date2) {}
-
-	// pressao arterial (13,2) 
-	// pulso ((2,3),(1,2))
     public Internamento(Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
 		this.medico = medico;
 		this.paciente = paciente;
@@ -58,14 +57,30 @@ public class Internamento {
         this.pressaoArterial = pressaoArterial;
         this.temperatura = temperatura;
         this.razaoInternamento = razaoInternamento;
+		this.estado = estado;
         this.quarto_cama = quarto_cama;
-        this.estado = estado;
         this.dataAdmissao = dataAdmissao;
         this.dataSaida = dataSaida;
     }
 
 
-	public int getId() {
+	public Internamento(Paciente paciente, Medico medico, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+		this.medico = medico;
+		this.paciente = paciente;
+		this.razaoInternamento = razaoInternamento;
+        this.quarto_cama = quarto_cama;
+        this.estado = estado;
+        this.dataAdmissao = dataAdmissao;
+        this.dataSaida = dataSaida;
+	}
+
+    public Internamento(Paciente paciente, Medico medico) {
+		this.medico = medico;
+		this.paciente = paciente;
+    }
+	
+
+    public int getId() {
 		return this.id;
 	}
 

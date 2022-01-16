@@ -55,7 +55,8 @@ class Generators:
                vallist=time_data[:10].tolist()+hblist[:10]
                tojson={'name':'hb', 'values':vallist, 'id':1}
                self.marychanel.basic_publish(exchange='', routing_key='hb', body=json.dumps(tojson))
-              
+               print("hi")
+            
                await asyncio.sleep(2)
                """
                plt.plot(time_data, hblist)

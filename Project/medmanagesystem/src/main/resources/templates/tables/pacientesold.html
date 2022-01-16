@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chat</title>
+  <title>Pacientes</title>
 
-
-  <link rel="stylesheet" href="../css/chat.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- jsGrid -->
+  <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid.min.css">
+  <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid-theme.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../css/adminlte.min.css">
+  <link rel="stylesheet" href="../../css/adminlte.min.css">
 </head>
-<body class="hold-transition sidebar-mini" style="background-color:#F4F6F9">
+<body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
 <div class="wrapper">
 	<!-- Navbar -->
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -132,37 +133,91 @@
 		</div>
 		<!-- /.sidebar -->
 	  </aside>
-    <div class="content-wrapper">
-    <div style="display: flex; align-items: center; margin-top: 19px; margin-left: 15px">
-        <h3 id="conversaArtur-heading7" style="color:#000000;">Chat Clínico</h3>
-    </div>
-      <div id="messageFeed" style="margin-top:10px; margin-left:50px"></div>
-  
-    <div style="position:absolute; margin-bottom:20px; display:flex; width: 92%; margin-left:50px">
-        
-        <input onkeydown="keydownEvent(event)" type="text" id="texto" name="Nome" size="35" placeholder="Mensagem" style="border: 1px solid black ;display:flex; flex-grow: 1; padding-left: 10px; color: black">
-        <img src="../img/sendMessage.svg" style="margin-left: 20px; display:flex" onclick="enviar()"/>
-    </div>
-    <!-- /.content -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Os seus pacientes</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
+    <div class="input-group" style="width:50%; margin-left: 300px; margin-bottom: 10px;">
+      <input type="search" class="form-control form-control-lg" placeholder="Pesquisar">
+      <div class="input-group-append">
+          <button type="submit" class="btn btn-lg btn-default">
+              <i class="fa fa-search"></i>
+          </button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="card">
+        <div class="card-body">
+          <div id="jsGrid1"></div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-  </div>
 </div>
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jsGrid -->
+<script src="../../plugins/jsgrid/demos/db.js"></script>
+<script src="../../plugins/jsgrid/jsgrid.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../js/adminlte.min.js"></script>
+<script src="../../js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../js/demo.js"></script>
-<script src="../js/chat.js"></script>
+<script src="../../js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#jsGrid1").jsGrid({
+        height: "100%",
+        width: "100%",
+
+        sorting: true,
+        paging: true,
+        
+
+       
+        data: db.clients,
+        
+        fields: [
+            { name: "Id", type: "number", width: 30},
+            { name: "Name", type: "text", width: 80, title: "Nome"},
+            { name: "Age", type: "number", width: 30, title: "Idade" },
+            { name: "Address", type: "text", width: 200, title: "Endereço"},
+            { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name", title: "País"},
+            { name: "Married", type: "checkbox", title: "Internado"}
+        ]
+
+        
+    });
+  });
+    
+  
+
+  
+</script>
 </body>
 </html>

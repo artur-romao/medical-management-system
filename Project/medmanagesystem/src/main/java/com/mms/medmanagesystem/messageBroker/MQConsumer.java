@@ -5,11 +5,12 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+import  java.lang.Object ;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.service.InternamentoService;
@@ -48,46 +49,48 @@ public class MQConsumer {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             JSONObject msg =new JSONObject(message);
-            System.out.println(message);
-            System.out.println(msg);
+            // System.out.println(message);
             int id=Integer.parseInt(msg.get("id").toString());
             
             switch (msg.get("name").toString()) {
                 case "hb":
-                Double[] sendhb= eatHB(msg.get("values"));
-                try {
-                    Internamento inter= service.getInternamentoById(id);
-                inter.setPulso(sendhb);
-                service.updateInternamento(id, inter);
-                } catch (ResourceNotFoundException e) {
-                    System.err.println("erro");
-                }
-                break;
-                case "temp":
-                float sendtemp=eattemp(msg.get("values"));
-                try {
-                    Internamento inter= service.getInternamentoById(id);
-                inter.setTemperatura(sendtemp);
-                service.updateInternamento(id, inter);
-                } catch (ResourceNotFoundException e) {
-                    System.err.println("erro");
-                }
-                break;
-                case "press":
-                Float[] sendp= eatpress(msg.get("values"));
+                    Double[] sendhb= eatHB(msg.get("values"));
                     try {
                         Internamento inter= service.getInternamentoById(id);
-                    inter.setPressaoarterial(sendp);
-                    service.updateInternamento(id, inter);
+                        inter.setPulso(sendhb);
+                        service.updateInternamento(id, inter);
+                    } catch (ResourceNotFoundException e) {
+                        System.err.println("erro");
+                    }
+                break;
+                
+                case "temp":
+                    float sendtemp=eattemp(msg.get("values"));
+                    try {
+                        System.out.println(msg);
+                        Internamento inter= service.getInternamentoById(id);    //ERRO AQUI NULL POINTER
+                        inter.setTemperatura(sendtemp);
+                        service.updateInternamento(id, inter);
+                    } catch (ResourceNotFoundException e) {
+                        System.err.println("erro");
+                    }
+                    break;
+
+                case "press":
+                    Float[] sendp= eatpress(msg.get("values"));
+                    try {
+                        Internamento inter= service.getInternamentoById(id);
+                        inter.setPressaoarterial(sendp);
+                        service.updateInternamento(id, inter);
                     } catch (ResourceNotFoundException e) {
                         System.err.println("erro");
                     }
                 case "oxi":
-                float sendoxi =eatoxi(msg.get("values"));
-                try {
-                    Internamento inter= service.getInternamentoById(id);
-                inter.setOxigenio(sendoxi);
-                service.updateInternamento(id, inter);
+                    float sendoxi =eatoxi(msg.get("values"));
+                    try {
+                        Internamento inter= service.getInternamentoById(id);
+                        inter.setOxigenio(sendoxi);
+                        service.updateInternamento(id, inter);
                 } catch (ResourceNotFoundException e) {
                     System.err.println("erro");
                 }
@@ -98,7 +101,7 @@ public class MQConsumer {
             }
             
         };
-
+        
         //service.getInternamentoById(id_internamento)
         channel.basicConsume(hbq, true, deliverCallback, consumerTag -> { });
         channel.basicConsume(tempq, true, deliverCallback, consumerTag -> { });
@@ -114,7 +117,7 @@ public class MQConsumer {
         double[] td = new double[540000]; //time data array
         int hvl= hv.length;
         int tdl= hv.length;
-        Double[] res =new Double[hvl+tdl]; 
+        double[] res =new double[hvl+tdl]; 
         String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
         
         int mid=actualvals.length/2-1;
@@ -135,7 +138,7 @@ public class MQConsumer {
             System.arraycopy(td, 0, res,hvl,tdl);
             
             
-            return res;
+            return ArrayUtils.toObject(res);
             
         } 
     
@@ -161,5 +164,4 @@ public class MQConsumer {
 
 
 }
-
 
