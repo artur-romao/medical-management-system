@@ -1,4 +1,5 @@
 package com.mms.medmanagesystem;
+import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 import com.mms.medmanagesystem.messageBroker.MQConsumer;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 	@Autowired private ConsultaService consultaService;
 	@Autowired private InternamentoService internamentoService;
 	@Autowired private PacienteService pacienteService;
+
 	
 	
 	@Override
@@ -79,12 +81,12 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(1), medicoRepository.getById(3), "Apendicite", Date.valueOf("2021-01-02"), "Pois é"));
 			
 			// ASSIM DÁ TUDO NO MESMO
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(3),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B","instável",Date.valueOf("2021-5-22"),Date.valueOf("2022-5-22")));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2A", EstadoEnum.ESTAVEL.toString(), Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(3),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B", EstadoEnum.GRAVE.toString(), Date.valueOf("2021-5-22"),Date.valueOf("2022-5-22")));
 			
 			// OU ASSIM
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1)));
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(3)));
+			// internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1)));
+			// internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(3)));
 			
 
 			// Internamento i1 = internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1), "Apendicite","2A","estável",Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
