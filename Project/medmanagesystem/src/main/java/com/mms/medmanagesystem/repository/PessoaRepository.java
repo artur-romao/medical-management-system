@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PessoaRepository extends JpaRepository<Pessoa,Integer> {
 
-    Pessoa findByNome(String name);
+    Pessoa findByName(String name);
 
 }

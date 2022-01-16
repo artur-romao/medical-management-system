@@ -5,6 +5,7 @@ package com.mms.medmanagesystem.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ import java.sql.Date;
 public class Consulta {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_consulta")
     private int id;   
 	
@@ -43,8 +44,7 @@ public class Consulta {
     
 	public Consulta() {}
 
-    public Consulta(int id, Paciente paciente, Medico medico, String motivo, Date data, String anotacoes) {
-        this.id = id;
+    public Consulta(Paciente paciente, Medico medico, String motivo, Date data, String anotacoes) {
         this.paciente = paciente;
         this.medico = medico;
         this.motivo = motivo;

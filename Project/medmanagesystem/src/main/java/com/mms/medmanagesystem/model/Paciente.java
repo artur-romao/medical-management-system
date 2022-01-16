@@ -30,11 +30,10 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_paciente")
-    @JsonIgnore
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoa_cc") //referenccedColumName é o que vem de pessoa
+    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
     private Pessoa paciente;
 
 
@@ -72,11 +71,14 @@ public class Paciente {
 
     public Paciente() {}
     
-    public Paciente(int id, Pessoa paciente, Set<Consulta> consulta,  Set<Internamento> internamento) {
-        this.id = id;
+    public Paciente(Pessoa paciente, Set<Consulta> consulta,  Set<Internamento> internamento) {
         this.paciente = paciente;
         this.consulta = consulta;
         this.internamento = internamento;
+    }
+
+    public Paciente(Pessoa paciente) {
+        this.paciente=paciente;
     }
 
     @Column(name = "id_paciente")

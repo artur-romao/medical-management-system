@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Pessoa(
-   pessoa_cc      INTEGER  NOT NULL PRIMARY KEY 
+   pessoacc      INTEGER  NOT NULL PRIMARY KEY 
   ,nome           VARCHAR(19) NOT NULL
   ,email          VARCHAR(33) NOT NULL
   ,telemovel      INTEGER  NOT NULL

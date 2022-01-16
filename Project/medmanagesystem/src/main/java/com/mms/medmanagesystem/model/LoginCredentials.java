@@ -9,8 +9,8 @@ public class LoginCredentials {
       return medicoid;
     }
   
-    public void setMedicoid(String id) {
-      this.medicoid = id;
+    public void setMedicoid(String medicoid) {
+      this.medicoid = medicoid;
     }
   
     public String getPassword() {

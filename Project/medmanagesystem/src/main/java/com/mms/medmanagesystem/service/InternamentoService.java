@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.mms.medmanagesystem.messageBroker.Pair;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -44,6 +45,13 @@ public class InternamentoService {
         return s;
 	}
 
+    public Internamento getInternamentoById(int id) throws ResourceNotFoundException{
+        
+        return repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
+
+    }
+
     public Map<String, Boolean> deleteInternamento(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
     
@@ -60,14 +68,20 @@ public class InternamentoService {
         existingInternamento.setPaciente(Internamento.getPaciente());
         //existingInternamento.setPulso(Internamento.getPulso());
         existingInternamento.setTemperatura(Internamento.getTemperatura());
-        existingInternamento.setPressaoArterial(Internamento.getPressaoArterial());
-        existingInternamento.setRazaoInternamento(Internamento.getRazaoInternamento());
+        existingInternamento.setPressaoarterial(Internamento.getPressaoarterial());
+        existingInternamento.setRazaointernamento(Internamento.getRazaointernamento());
         existingInternamento.setOxigenio(Internamento.getOxigenio());
-        existingInternamento.setQuarto_cama(Internamento.getQuarto_cama());
+        existingInternamento.setQuartocama(Internamento.getQuartocama());
         existingInternamento.setEstado(Internamento.getEstado());
-        existingInternamento.setDataAdmissao(Internamento.getDataAdmissao());
-        existingInternamento.setDataSaida(Internamento.getDataSaida());
+        existingInternamento.setDataadmissao(Internamento.getDataadmissao());
+        existingInternamento.setDatasaida(Internamento.getDatasaida());
         
         return repository.save(existingInternamento);
     }
+
+    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+    
+    // }
+
+
 }

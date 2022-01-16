@@ -32,7 +32,7 @@ public class AreaController {
    
     @GetMapping("/areas/{id}")
     public Area getAreaById(@PathVariable(value="id") int area_id) throws ResourceNotFoundException {
-        return service.getAreaByIDArea(area_id);
+        return service.getAreaByID(area_id);
     }
   
 
