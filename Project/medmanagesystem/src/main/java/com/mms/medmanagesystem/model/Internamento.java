@@ -33,6 +33,7 @@ public class Internamento {
     private String estado;
     private Date dataAdmissao;
     private Date dataSaida;
+	private int[] statefilter;
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
@@ -44,7 +45,7 @@ public class Internamento {
 
 	public Internamento(){}
 
-    public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
+    public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida, int[] statefilter) { 
 		this.profissional = profissional;
 		this.paciente = paciente;
         this.pulso = pulso;
@@ -56,6 +57,7 @@ public class Internamento {
         this.quarto_cama = quarto_cama;
         this.dataAdmissao = dataAdmissao;
         this.dataSaida = dataSaida;
+		this.statefilter=statefilter;
     }
 
 
@@ -192,5 +194,14 @@ public class Internamento {
 	public void setDatasaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
-    
+	@Column(name= "statefilter")
+	public int [] statefilter(){
+		return this.statefilter;
+	}
+    public int[] getStatefilter() {
+		return statefilter;
+	}
+	public void setStatefilter(int[] statefilter) {
+		this.statefilter = statefilter;
+	}
 }

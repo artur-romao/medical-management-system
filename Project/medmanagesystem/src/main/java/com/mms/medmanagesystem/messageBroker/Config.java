@@ -1,48 +1,65 @@
-/*     package com.mms.medmanagesystem.messageBroker;
+package com.mms.medmanagesystem.messageBroker;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration //needed
 public class Config {
-    public static final String EXCHANGE_NAME = "logs";
-    public static final String QUEUE = "QUEUE";
-    public static final String ROUTING_KEY = "hb";
+    public static final String hbq = "hb";
+    public static final String oxiq = "oxi";
+    public static final String tempq = "temp";
+    public static final String pressq = "press";
+    public static final String[] QUEUE = {hbq, oxiq, tempq, pressq};
+
+    public static final String EXCHANGE_NAME = "";
+    @Bean
+	Queue queue1() {
+		return new Queue(pressq, true);
+	}
+    @Bean
+	Queue queue2() {
+		return new Queue(tempq, true);
+	}
+    @Bean
+	Queue queue3() {
+		return new Queue(oxiq, true);
+	}   
+    @Bean
+	Queue queue4() {
+		return new Queue(hbq, true);
+	}
 
     @Bean
-    Queue queue() {
-        return new Queue(QUEUE, true);
-    }
-
+	DirectExchange exchange() {
+		return new DirectExchange(EXCHANGE_NAME);
+	}
     @Bean
-    DirectExchange exchange() {
-        return new DirectExchange(EXCHANGE_NAME);
+    Binding binding1(@Qualifier("queue1") Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(pressq);
     }
-
     @Bean
-    Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
+    Binding binding4(@Qualifier("queue4") Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(hbq);
     }
-
-@Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
-    
     @Bean
-    public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(jsonMessageConverter());
-        return rabbitTemplate;
+    Binding binding3(@Qualifier("queue3") Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(oxiq);
+    }
+    @Bean
+    Binding binding2(@Qualifier("queue2") Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(tempq);
     }
 
 
     @Bean
-    public MQConsumer receiver() {
-        return new MQConsumer();
+    public newConsumer receiver() {
+        return new newConsumer();
     }
-} */
+} 
