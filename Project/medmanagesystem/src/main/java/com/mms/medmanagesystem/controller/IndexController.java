@@ -3,8 +3,8 @@ package com.mms.medmanagesystem.controller;
 import javax.servlet.http.HttpSession;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
-import com.mms.medmanagesystem.model.Medico;
-import com.mms.medmanagesystem.service.MedicoService;
+import com.mms.medmanagesystem.model.Profissional;
+import com.mms.medmanagesystem.service.ProfissionalService;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
   
   @Autowired
-  MedicoService medicoService;
+  ProfissionalService profissionalService;
 
   @Autowired
   ObjectFactory<HttpSession> httpSessionFactory;
@@ -26,14 +26,14 @@ public class IndexController {
   @GetMapping("/index")
   public ModelAndView index(Model model) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
-    String medicoid = (String.valueOf(session.getAttribute("id_medico")));
-    Medico medico = medicoService.getMedicoByID(Integer.parseInt(medicoid));
-    model.addAttribute("id", medico.getId());
-    model.addAttribute("area", medico.getArea().getName());
-    model.addAttribute("nome", medico.getMedico().getNome());
-    model.addAttribute("telemovel", medico.getMedico().getTelemovel());
-    model.addAttribute("morada", medico.getMedico().getMorada());
-    model.addAttribute("datanascimento", medico.getMedico().getDatanascimento());
+    String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+    model.addAttribute("id", profissional.getId());
+    model.addAttribute("area", profissional.getArea().getName());
+    model.addAttribute("nome", profissional.getProfissional().getNome());
+    model.addAttribute("telemovel", profissional.getProfissional().getTelemovel());
+    model.addAttribute("morada", profissional.getProfissional().getMorada());
+    model.addAttribute("datanascimento", profissional.getProfissional().getDatanascimento());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("index");
     return modelAndView;

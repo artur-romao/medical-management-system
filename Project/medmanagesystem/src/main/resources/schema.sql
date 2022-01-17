@@ -15,18 +15,18 @@ CREATE TABLE IF NOT EXISTS Area(
 CREATE TABLE IF NOT EXISTS Consulta(
    id        INTEGER  NOT NULL PRIMARY KEY 
   ,paciente  INTEGER  NOT NULL
-  ,medico    INTEGER  NOT NULL
+  ,profissional    INTEGER  NOT NULL
   ,motivo    VARCHAR(32) NOT NULL
   ,data      DATE  NOT NULL
   ,anotacoes VARCHAR(30)
 );
 
-CREATE TABLE IF NOT EXISTS Medico(
-    id_medico      INTEGER  NOT NULL PRIMARY KEY 
-  ,medico_cc  INTEGER  NOT NULL
+CREATE TABLE IF NOT EXISTS Profissional(
+    id_profissional      INTEGER  NOT NULL PRIMARY KEY 
+  ,profissional_cc  INTEGER  NOT NULL
   , id_area INTEGER 
   ,pswd VARCHAR(50) NOT NULL
-
+  ,ismedic BOOLEAN NOT NULL
 ) 
 
 CREATE TABLE IF NOT EXISTS Paciente(

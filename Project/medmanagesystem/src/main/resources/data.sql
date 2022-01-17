@@ -86,17 +86,17 @@ INSERT INTO Area(idArea,name) VALUES (16,'Psiquiatria');
 
 
 
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (1,1,1,'Queixas a fazer exercício físico','20211210',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (2,2,2,'Cirugia à rótula','20211210',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (3,3,3,'Pele com muita tendência acneíca','20211210',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (4,4,4,'Queixas de dores de estômago','20211211',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (5,5,5,'Controlo de doença autoimune','20211211',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (6,6,6,'Controlo rinite crónica','20211111',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (7,7,7,'Doente infetado com COVID-19','20211212',NULL);
-INSERT INTO Consulta(id,paciente,medico,motivo,data,anotacoes) VALUES (8,8,8,'Transplante de rim','20211212',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (1,1,1,'Queixas a fazer exercício físico','20211210',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (2,2,2,'Cirugia à rótula','20211210',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (3,3,3,'Pele com muita tendência acneíca','20211210',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (4,4,4,'Queixas de dores de estômago','20211211',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (5,5,5,'Controlo de doença autoimune','20211211',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (6,6,6,'Controlo rinite crónica','20211111',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (7,7,7,'Doente infetado com COVID-19','20211212',NULL);
+INSERT INTO Consulta(id,paciente,profissional,motivo,data,anotacoes) VALUES (8,8,8,'Transplante de rim','20211212',NULL);
 
 
-INSERT INTO Medico(id_medico,medico_cc, id_area, pswd) VALUES (1,70180323,1,7018032370180323);
+INSERT INTO Profissional(id_profissional,profissional_cc, id_area, pswd) VALUES (1,70180323,1,7018032370180323);
 
 
 INSERT INTO paciente(id_paciente, paciente_cc, )

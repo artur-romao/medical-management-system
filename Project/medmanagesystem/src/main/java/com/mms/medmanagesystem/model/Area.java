@@ -26,7 +26,7 @@ public class Area {
     private String name; 
                                                 //o maped by é com as cenas do java
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
-    private Set<Medico> medicos;
+    private Set<Profissional> profissionais;
     
 
     public Area () {}
