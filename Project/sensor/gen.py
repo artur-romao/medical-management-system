@@ -23,10 +23,10 @@ class Generators:
           self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', port=5672))
           self.marychanel = self.connection.channel()
           
-          self.marychanel.queue_declare(queue='oxi')
-          self.marychanel.queue_declare(queue='hb')
-          self.marychanel.queue_declare(queue='temp')
-          self.marychanel.queue_declare(queue='pressao_arterial')
+          self.marychanel.queue_declare(queue='oxi',durable=True)
+          self.marychanel.queue_declare(queue='hb',durable=True)
+          self.marychanel.queue_declare(queue='temp',durable=True)
+          self.marychanel.queue_declare(queue='press',durable=True)
           
      async def electrocardiogramf(self):
 
@@ -52,8 +52,10 @@ class Generators:
                print(len(hblist))
                i+=1
                time_data = np.arange(len(hblist)) / frequency
-               vallist=time_data[:10].tolist()+hblist[:10]
+               vallist=time_data[:250].tolist()+hblist[:250]
+          
                tojson={'name':'hb', 'values':vallist, 'id':1}
+
                self.marychanel.basic_publish(exchange='', routing_key='hb', body=json.dumps(tojson))
                print("hi")
             
@@ -66,6 +68,7 @@ class Generators:
                plt.ylim(-1, 1.5)
                plt.show(block=True)
                """
+                
      
           print("out")
      async def temp(self):
@@ -80,6 +83,7 @@ class Generators:
                await asyncio.sleep(2)
                i-=1
                print("tem")
+                
      async def pressaoarterial(self):
           sis=120
           dia=80
@@ -89,10 +93,11 @@ class Generators:
                dianew=round(dia +random.randrange(-20,20)+random.random(),2)
                vallist = [sisnew, dianew]
                tojson={'name':'press', 'values': vallist ,'id':1}
-               self.marychanel.basic_publish(exchange='', routing_key='pressao_arterial', body=json.dumps(tojson))
+               self.marychanel.basic_publish(exchange='', routing_key='press', body=json.dumps(tojson))
                await asyncio.sleep(2)
                i-=1
                print("pre")
+                
      async def oxigeniosaturarion(self):
           #varia entre 96% e 99% com minimo em 94%
           #pode ir abaixo de 90% hypoxia
@@ -110,6 +115,7 @@ class Generators:
                await asyncio.sleep(2)
                i-=1
                print("ox")
+                
 if __name__ == "__main__":
      g=Generators()
 
