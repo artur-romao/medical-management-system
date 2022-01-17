@@ -16,7 +16,7 @@ public class newConsumer {
     @Autowired
     private InternamentoService service;
 
-    @RabbitListener(queues = {Config.hbq, Config.tempq, Config.tempq, Config.oxiq})
+    @RabbitListener(queues = {Config.hbq, Config.tempq, Config.pressq, Config.oxiq})
     public void listen(String input) {
         System.out.println("   Receive input: " + input);
 
@@ -24,50 +24,133 @@ public class newConsumer {
         JSONObject msg =new JSONObject(input);
         // System.out.println(message);
         int id=Integer.parseInt(msg.get("id").toString());
-        
         switch (msg.get("name").toString()) {
             case "hb":
-                Double[] sendhb= eatHB(msg.get("values"));
-                try {
-                    Internamento inter= service.getInternamentoById(id);
-                    inter.setPulso(sendhb);
-                    service.updateInternamento(id, inter);
+            //first half of the array is the hb values  peaks usually around 2
+            Double[] sendhb= eatHB(msg.get("values"));
+            try {
+                Internamento inter= service.getInternamentoById(id);
+                
+                inter.setPulso(sendhb);
+                service.updateInternamento(id, inter);
+                
+                    //not sure how to update this one
+                    //maybe localizar o intervalo q mostra um e apenas um maximo de forma garantida 
+                    // trabalhar com o maximo detro desse intervalo, saber um maximo normal e usalo como benchmark?
+                    //we can do this because sendhb is an array composed by two arrays of the same lenght so its always an even number
+                    int halfway = sendhb.length/2;
+                    //convert into a half sized array
+                    Double[] checker= new Double[halfway];
+                    for (int i = 0; i < checker.length; i++) {
+                        checker[i]= sendhb[i]; 
+                    }
+                    //make it a non primitive for easier handle
+                    double[] d = ArrayUtils.toPrimitive(checker);
+                    for ( int i = 0 ; i < halfway; i++) {
+                        d[i]=checker[i];
+
+                    }
+                    //get max of the hearbeat values
+                    double maximum= -100;
+                    for (int i = 0; i < d.length; i++) {
+                        if (d[i]> maximum){
+                            maximum=d[i];
+                        }
+                    }
+                    //create conditions
+                    if(maximum >1.7){
+                        inter.setEstado("estável");
+                        service.updateInternamento(id,inter);
+                    }else if(maximum<0.5){
+                        inter.setEstado("coma");
+                        service.updateInternamento(id,inter);
+                    }else{
+                        inter.setEstado("grave");
+                        service.updateInternamento(id,inter);
+                    
+                    }
+
+
                 } catch (ResourceNotFoundException e) {
                     System.err.println("erro");
                 }
             break;
             
             case "temp":
-                float sendtemp=eattemp(msg.get("values"));
+                Float sendtemp=eattemp(msg.get("values"));
                 try {
-                    System.out.println(msg);
                     Internamento inter= service.getInternamentoById(id);    //ERRO AQUI NULL POINTER
                     inter.setTemperatura(sendtemp);
                     service.updateInternamento(id, inter);
+                    //update paciente statues due to critical conditions:D
+                    if(sendtemp<=37.5 || sendtemp>= 36.5){
+                        inter.setEstado("estavel");
+                        service.updateInternamento(id,inter);
+                    }else if(sendtemp<=38.3 || sendtemp>= 35.5){
+                        
+                        inter.setEstado("grave");
+                        service.updateInternamento(id,inter);
+                    }else{
+                        inter.setEstado("coma");
+                        service.updateInternamento(id,inter);
+                    }
+
+
                 } catch (ResourceNotFoundException e) {
                     System.err.println("erro");
                 }
+                
+
                 break;
 
             case "press":
                 Float[] sendp= eatpress(msg.get("values"));
                 try {
+                    
                     Internamento inter= service.getInternamentoById(id);
                     inter.setPressaoarterial(sendp);
                     service.updateInternamento(id, inter);
+                    //update paciente statues due to critical conditions:D
+                    // distolica is pos 1 sistolica pos 0
+                    if(sendp[1]>105 || sendp[0]>160   ){
+
+                        inter.setEstado("coma");
+                        service.updateInternamento(id,inter);
+                    }else if((sendp[0]<=140 && sendp[0]>=105) || (sendp[0]<=100 && sendp[1]>60)){
+                        inter.setEstado("estavel");
+                        service.updateInternamento(id,inter);
+                    }else{
+                        inter.setEstado("grave");
+                        service.updateInternamento(id,inter);
+                    }
+
+
                 } catch (ResourceNotFoundException e) {
                     System.err.println("erro");
                 }
+                break;
             case "oxi":
-                float sendoxi =eatoxi(msg.get("values"));
+                Float sendoxi =eatoxi(msg.get("values"));
                 try {
                     Internamento inter= service.getInternamentoById(id);
                     inter.setOxigenio(sendoxi);
                     service.updateInternamento(id, inter);
+                    //update paciente statues due to critical conditions:D
+
+                    if (sendoxi>94){
+                        inter.setEstado("estavel");
+                        service.updateInternamento(id,inter);
+                    }else if(sendoxi<90 ){
+
+                        inter.setEstado("coma");
+                        service.updateInternamento(id,inter);
+                    }else{
+                        inter.setEstado("grave");
+                        service.updateInternamento(id,inter);
+                    }
             } catch (ResourceNotFoundException e) {
                 System.err.println("erro");
             }
-            
             break;
             default:
             break;
@@ -110,16 +193,11 @@ public class newConsumer {
         
     } 
     
-    public static Float eatoxi(Object object){
-        
-        
-        return Float.parseFloat(object.toString());
-        
-    }
+
     public static Float[] eatpress(Object object){
         //o obejto vem like [sis,dia]
         String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
-        System.out.println(actualvals[0] +"as"+ actualvals[1]);
+        System.out.println(Float.parseFloat(actualvals[0].trim()) +"as"+ actualvals[1]);
         return new Float[] {Float.parseFloat(actualvals[0].trim()),Float.parseFloat(actualvals[1].trim())};    
     }
         
@@ -128,6 +206,12 @@ public class newConsumer {
             return Float.parseFloat(object.toString());
             
         }
+    public static Float eatoxi(Object object){
+            
+            return Float.parseFloat(object.toString());
+            
+        }
+        
         
     }
     
