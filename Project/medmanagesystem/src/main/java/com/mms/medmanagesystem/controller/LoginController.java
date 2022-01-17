@@ -59,7 +59,7 @@ public class LoginController {
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
     
     if (profissional.getPassword().equals(password)) {
-      session.setAttribute("id_Profissional", profissionalid);
+      session.setAttribute("id_profissional", profissionalid);
       session.setAttribute("pessoa_cc", profissional.getProfissional().getPessoacc());
       return new RedirectView("index");
     }

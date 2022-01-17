@@ -47,7 +47,7 @@ public class PessoaController {
     }
 
     @DeleteMapping("/pessoas/{id}")
-    public Map<String, Boolean> deletePeople(@PathVariable int cc) throws ResourceNotFoundException {
+    public Map<String, Boolean> deletePeople(@PathVariable(value="id") int cc) throws ResourceNotFoundException {
         return service.deletePessoa(cc);
     }
 

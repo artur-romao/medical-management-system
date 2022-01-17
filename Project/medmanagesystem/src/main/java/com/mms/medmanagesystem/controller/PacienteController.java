@@ -49,8 +49,11 @@ public class PacienteController {
     return modelAndView;
   }
   
-
-/* 
+ /*  @GetMapping("/pessoas/{id}")
+  public Paciente getPessoaBycc(@PathVariable(value="id") int id) throws ResourceNotFoundException {
+      return pacienteService.getPacienteById(id);
+  } */
+  /* 
   @RequestMapping(value="name", method= {RequestMethod.GET})
   public String name(@RequestParam String name, Model model){
       String name =   
