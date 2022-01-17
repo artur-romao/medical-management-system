@@ -44,13 +44,13 @@ public class Internamento {
     private Paciente paciente;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name="id_medico")
-	private Medico medico;
+	@JoinColumn(name="id_profissional")
+	private Profissional profissional;
 
 	public Internamento(){}
 
-    public Internamento(Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
-		this.medico = medico;
+    public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
+		this.profissional = profissional;
 		this.paciente = paciente;
         this.pulso = pulso;
 		this.oxigenio = oxigenio;
@@ -64,8 +64,8 @@ public class Internamento {
     }
 
 
-	public Internamento(Paciente paciente, Medico medico, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
-		this.medico = medico;
+	public Internamento(Paciente paciente, Profissional profissional, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+		this.profissional = profissional;
 		this.paciente = paciente;
 		this.razaoInternamento = razaoInternamento;
         this.quarto_cama = quarto_cama;
@@ -74,8 +74,8 @@ public class Internamento {
         this.dataSaida = dataSaida;
 	}
 
-    public Internamento(Paciente paciente, Medico medico) {
-		this.medico = medico;
+    public Internamento(Paciente paciente, Profissional profissional) {
+		this.profissional = profissional;
 		this.paciente = paciente;
     }
 	
@@ -88,12 +88,12 @@ public class Internamento {
 		this.id = id;
 	}
 
-	public Medico getMedico(){
-		return this.medico;
+	public Profissional getProfissional(){
+		return this.profissional;
 	}
 
-	public void setMedico(Medico medico){
-		this.medico = medico;
+	public void setProfissional(Profissional profissional){
+		this.profissional = profissional;
 	}
 
 	public int getIdInternamento() {

@@ -50,17 +50,17 @@ public class InternamentoTeste {
     private Paciente paciente;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name="id_medico")
-	private Medico medico;
+	@JoinColumn(name="id_profissional")
+	private Profissional profissional;
 
 
 	public InternamentoTeste() {}
 
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
-    public InternamentoTeste(int id, Paciente paciente, Medico medico, float oxigenio, PairModel pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
+    public InternamentoTeste(int id, Paciente paciente, Profissional profissional, float oxigenio, PairModel pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
         this.id = id;
-		this.medico = medico;
+		this.profissional = profissional;
 		this.paciente = paciente;
         this.pulso = pulso;
 		this.oxigenio = oxigenio;
@@ -82,12 +82,12 @@ public class InternamentoTeste {
 		this.id = id;
 	}
 
-	public Medico getMedico(){
-		return this.medico;
+	public Profissional getProfissional(){
+		return this.profissional;
 	}
 
-	public void setMedico(Medico medico){
-		this.medico = medico;
+	public void setProfissional(Profissional profissional){
+		this.profissional = profissional;
 	}
 
 	public int getIdInternamento() {
