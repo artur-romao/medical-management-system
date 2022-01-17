@@ -50,6 +50,7 @@ public class newConsumer {
                         d[i]=checker[i];
 
                     }
+                    //updateStates(int idinternamento, String sensorname, int value )
                     //get max of the hearbeat values
                     double maximum= -100;
                     for (int i = 0; i < d.length; i++) {
@@ -58,15 +59,12 @@ public class newConsumer {
                         }
                     }
                     //create conditions
-                    if(maximum >1.7){
-                        inter.setEstado("estável");
-                        service.updateInternamento(id,inter);
-                    }else if(maximum<0.5){
-                        inter.setEstado("coma");
-                        service.updateInternamento(id,inter);
-                    }else{
-                        inter.setEstado("grave");
-                        service.updateInternamento(id,inter);
+                    if(maximum >1.7){ //stable
+                        service.updateStates(id,"hb", 0);
+                    }else if(maximum<0.5){//coma
+                        service.updateStates(id,"hb", 1);
+                    }else{ //grave
+                        service.updateStates(id,"hb", 2);
                     
                     }
 
@@ -83,16 +81,13 @@ public class newConsumer {
                     inter.setTemperatura(sendtemp);
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
-                    if(sendtemp<=37.5 || sendtemp>= 36.5){
-                        inter.setEstado("estavel");
-                        service.updateInternamento(id,inter);
-                    }else if(sendtemp<=38.3 || sendtemp>= 35.5){
+                    if(sendtemp<=37.5 || sendtemp>= 36.5){ //stable
+                        service.updateStates(id,"temp", 0);
+                    }else if(sendtemp<=38.3 || sendtemp>= 35.5){ //grave
                         
-                        inter.setEstado("grave");
-                        service.updateInternamento(id,inter);
-                    }else{
-                        inter.setEstado("coma");
-                        service.updateInternamento(id,inter);
+                        service.updateStates(id,"temp", 1);
+                    }else{ //coma
+                        service.updateStates(id,"temp", 2);
                     }
 
 
@@ -112,16 +107,14 @@ public class newConsumer {
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
                     // distolica is pos 1 sistolica pos 0
-                    if(sendp[1]>105 || sendp[0]>160   ){
+                    if(sendp[1]>105 || sendp[0]>160   ){ //coma
 
-                        inter.setEstado("coma");
-                        service.updateInternamento(id,inter);
-                    }else if((sendp[0]<=140 && sendp[0]>=105) || (sendp[0]<=100 && sendp[1]>60)){
-                        inter.setEstado("estavel");
-                        service.updateInternamento(id,inter);
-                    }else{
-                        inter.setEstado("grave");
-                        service.updateInternamento(id,inter);
+                        service.updateStates(id,"press", 2);
+                    }else if((sendp[0]<=140 && sendp[0]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
+                        service.updateStates(id,"press", 0);
+
+                    }else{ //grave
+                        service.updateStates(id,"press", 1);
                     }
 
 
@@ -137,16 +130,13 @@ public class newConsumer {
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
 
-                    if (sendoxi>94){
-                        inter.setEstado("estavel");
-                        service.updateInternamento(id,inter);
-                    }else if(sendoxi<90 ){
+                    if (sendoxi>94){ //stable
+                        service.updateStates(id,"oxi", 0);
+                    }else if(sendoxi<90 ){ //coma
 
-                        inter.setEstado("coma");
-                        service.updateInternamento(id,inter);
-                    }else{
-                        inter.setEstado("grave");
-                        service.updateInternamento(id,inter);
+                        service.updateStates(id,"oxi", 2);
+                    }else{ //grave
+                        service.updateStates(id,"oxi", 1);
                     }
             } catch (ResourceNotFoundException e) {
                 System.err.println("erro");
