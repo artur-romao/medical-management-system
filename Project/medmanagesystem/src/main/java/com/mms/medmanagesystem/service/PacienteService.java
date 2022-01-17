@@ -54,7 +54,7 @@ public class PacienteService {
         Paciente existingPaciente = repository.findById(paciente.getId())
         .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
         
-        // existingPaciente.setAssMedico(paciente.getAssMedico());
+        // existingPaciente.setAssProfissional(paciente.getAssProfissional());
         //existingPaciente.setInternamentos(paciente.getInternamentos());
         return repository.save(existingPaciente);
     }

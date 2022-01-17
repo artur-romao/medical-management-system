@@ -2,9 +2,9 @@ package com.mms.medmanagesystem.enumFolder;
 
 public enum EstadoEnum {
 
-    ESTAVEL("estavel"),
-    GRAVE("grave"),
-    COMA("coma");
+    ESTAVEL("Estavel"),
+    GRAVE("Grave"),
+    COMA("Coma");
 
     private final String estado;  
 

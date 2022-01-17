@@ -22,17 +22,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // @Data
 @Entity
-@Table(name = "medico")
-public class Medico {
+@Table(name = "profissional")
+public class Profissional {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_medico")
+    @Column(name = "id_profissional")
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "medico_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
-    private Pessoa medico;
+    @JoinColumn(name = "profissional_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
+    private Pessoa profissional;
 
     private String password;
 
@@ -40,23 +40,26 @@ public class Medico {
     @JoinColumn(name = "id_area")
     private Area area;
 
+    private String pro;
 
-/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
+
+/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "profissional", orphanRemoval = true)
     private Set<Internamentos> internamentos;  */
 
 
-/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "medico", orphanRemoval = true)
+/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "profissional", orphanRemoval = true)
     private Set<Consulta> consultas; */
     
-    public Medico(){}
+    public Profissional(){}
 
-    public Medico(String password, Pessoa medico, Area area) { 
+    public Profissional(String password, Pessoa profissional, Area area, String pro) { 
         this.area = area;
-        this.medico = medico;
+        this.profissional = profissional;
         this.password = password;
+        this.pro = pro;
     }
 
-    @Column(name = "id_medico")
+    @Column(name = "id_profissional")
     public int getId() {
         return this.id;
     }
@@ -65,12 +68,12 @@ public class Medico {
         this.id = id;
     }
 
-    public Pessoa getMedico() {
-        return this.medico;
+    public Pessoa getProfissional() {
+        return this.profissional;
     }
 
-    public void setMedico(Pessoa medico) {
-        this.medico = medico;
+    public void setProfissional(Pessoa profissional) {
+        this.profissional = profissional;
     }
 
     public Area getArea() {
@@ -89,6 +92,13 @@ public class Medico {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    public String getPro() {
+        return this.pro;
+    }
+
+    public void setPro(String pro) {
+        this.pro = pro;
+    }
     
 }
