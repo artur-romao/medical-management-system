@@ -50,9 +50,9 @@ public class Pessoa {
     }
 
 
-    @OneToOne (mappedBy = "medico")
+    @OneToOne (mappedBy = "profissional")
     @JsonIgnore
-    private Medico medico;
+    private Profissional profissional;
 
     @OneToOne (mappedBy = "paciente")
     @JsonIgnore
@@ -106,8 +106,8 @@ public class Pessoa {
         this.datanascimento = datanascimento;
     } 
 
-    public Medico getMedico(){
-        return this.medico;
+    public Profissional getProfissional(){
+        return this.profissional;
     }
 
     public Paciente getPaciente(){

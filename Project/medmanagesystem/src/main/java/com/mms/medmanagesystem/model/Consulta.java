@@ -38,15 +38,15 @@ public class Consulta {
     private Paciente paciente;
 
     @ManyToOne
-    @JoinColumn(name = "id_medico", nullable = false)
-    private Medico medico;
+    @JoinColumn(name = "id_profissional", nullable = false)
+    private Profissional profissional;
 
     
 	public Consulta() {}
 
-    public Consulta(Paciente paciente, Medico medico, String motivo, Date data, String anotacoes) {
+    public Consulta(Paciente paciente, Profissional profissional, String motivo, Date data, String anotacoes) {
         this.paciente = paciente;
-        this.medico = medico;
+        this.profissional = profissional;
         this.motivo = motivo;
         this.data = data;
         this.anotacoes = anotacoes;
@@ -68,12 +68,12 @@ public class Consulta {
 		this.paciente = paciente;
 	}
 
-	public Medico getMedico() {
-		return this.medico;
+	public Profissional getProfissional() {
+		return this.profissional;
 	}
 
-	public void setMedico(Medico medico) {
-		this.medico = medico;
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
 	}
 
 	public String getMotivo() {
