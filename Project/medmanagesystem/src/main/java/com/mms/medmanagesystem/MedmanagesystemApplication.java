@@ -1,9 +1,5 @@
 package com.mms.medmanagesystem;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import javax.transaction.Transactional;
 
 import com.mms.medmanagesystem.service.*;
 import com.mms.medmanagesystem.model.*;
@@ -16,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @EnableRabbit
 @SpringBootApplication 
@@ -29,11 +24,8 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 
 	
 	@Autowired private AreaRepository areaRepository;
-	@Autowired private ConsultaRepository consultaRepository;
-	@Autowired private InternamentoRepository internamentoRepository;
 	@Autowired private ProfissionalRepository profissionalRepository;
 	@Autowired private PacienteRepository pacienteRepository;
-	@Autowired private PessoaRepository pessoaRepository;
 	@Autowired private AreaService areaService;
 	@Autowired private PessoaService pessoaService;
 	@Autowired private ProfissionalService profissionalService;

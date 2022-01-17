@@ -8,14 +8,11 @@ import com.rabbitmq.client.DeliverCallback;
 import  java.lang.Object ;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.service.InternamentoService;
-
-
 
 
 public class MQConsumer {
