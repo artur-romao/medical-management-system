@@ -2,18 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Internados</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../static/css/style_crud.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- jsGrid -->
-  <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid.min.css">
-  <link rel="stylesheet" href="../../plugins/jsgrid/jsgrid-theme.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../css/adminlte.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../js/demo.js"></script>
+  
+  <script>
+    $(document).ready(function(){
+      // Activate tooltip
+      $('[data-toggle="tooltip"]').tooltip();
+      
+      // Select/Deselect checkboxes
+      var checkbox = $('table tbody input[type="checkbox"]');
+      $("#selectAll").click(function(){
+        if(this.checked){
+          checkbox.each(function(){
+            this.checked = true;                        
+          });
+        } else{
+          checkbox.each(function(){
+            this.checked = false;                        
+          });
+        } 
+      });
+      checkbox.click(function(){
+        if(!this.checked){
+          $("#selectAll").prop("checked", false);
+        }
+      });
+    });
+    </script>
 </head>
 <body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
 <div class="wrapper">
@@ -163,26 +202,59 @@
           </button>
       </div>
     </div>
-
-    <!-- Main content -->
-    <section class="content">
+    <section class="content" style="width:95%; margin-left: 30px;">
       <div class="card">
         <div class="card-body">
-          <div id="jsGrid1"></div>
-        </div>
-        <!-- /.card-body -->
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+  
+  <th>Nome</th>
+  <th>Nº Quarto</th>
+  <th>Data de Admissão</th>
+  <th>Razão do Internamento</th>
+  <th>Sinais Vitais</th>
+</tr>
+</thead>
+<tbody>
+<th:block th:each="patient : ${listaPacientes}"> 
+<tr>
+  <td> [[${patient.paciente.nome}]]</td>
+  <td> [[${patient.paciente.pessoacc}]]</td>
+  <td> [[${patient.paciente.email}]]</td>
+  <td> [[${patient.paciente.telemovel}]]</td>
+  <td> [[${patient.paciente.morada}]]</td>
+
+
+
+  
+  <td>
+    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+  </td>
+</tr>
+
+</tbody>
+</table>
+<div class="clearfix">
+<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+<ul class="pagination">
+<li class="page-item disabled"><a href="#">Previous</a></li>
+<li class="page-item"><a href="#" class="page-link">1</a></li>
+<li class="page-item"><a href="#" class="page-link">2</a></li>
+<li class="page-item active"><a href="#" class="page-link">3</a></li>
+<li class="page-item"><a href="#" class="page-link">4</a></li>
+<li class="page-item"><a href="#" class="page-link">5</a></li>
+<li class="page-item"><a href="#" class="page-link">Next</a></li>
+</ul>
+</div>
+</div>
       </div>
-      <!-- /.card -->
-    </section>
+  </div>    
+  </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
