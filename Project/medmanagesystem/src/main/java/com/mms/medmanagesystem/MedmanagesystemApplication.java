@@ -1,6 +1,5 @@
 package com.mms.medmanagesystem;
 import com.mms.medmanagesystem.enumFolder.EstadoEnum;
-import com.mms.medmanagesystem.messageBroker.MQConsumer;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +16,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 @EnableRabbit
 @SpringBootApplication 
@@ -24,7 +24,6 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(MedmanagesystemApplication.class, args);
-		MQConsumer.main(args);
 	}
 
 	
