@@ -1,4 +1,5 @@
 package com.mms.medmanagesystem;
+import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +10,6 @@ import com.mms.medmanagesystem.service.*;
 import com.mms.medmanagesystem.model.*;
 import com.mms.medmanagesystem.repository.*;
 import com.mms.medmanagesystem.enumFolder.*;
-import com.mms.medmanagesystem.messageBroker.MQConsumer;
 
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 @EnableRabbit
 @SpringBootApplication 
@@ -24,7 +25,6 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(MedmanagesystemApplication.class, args);
-		MQConsumer.main(args);
 	}
 
 	
@@ -104,8 +104,8 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(8), profissionalRepository.getById(1), "Dificuldades a respirar - COVID19", Date.valueOf("2022-01-10"), "Complicações nos pulmoões"));
 
 			// Internamentos
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Queimaduras no corpo 3º grau","2A", EstadoEnum.GRAVE.toString(), Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20")));
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), profissionalRepository.getById(3),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B", EstadoEnum.ESTAVEL.toString(), Date.valueOf("2021-5-22"),Date.valueOf("2022-5-22")));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Queimaduras no corpo 3º grau","2A", EstadoEnum.GRAVE.toString(), Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20"), new int[4]));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), profissionalRepository.getById(3),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B", EstadoEnum.ESTAVEL.toString(), Date.valueOf("2021-5-22"),Date.valueOf("2022-5-22"), new int[4]));
 			
 			// OU ASSIM
 			// internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), medicoRepository.getById(1)));
@@ -116,11 +116,11 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			// Internamento i2 = internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), medicoRepository.getById(1), "Apendicite","2B","instável",Date.valueOf("2021-5-22"),Date.valueOf("2022-5-22")));
 
 			// i1.setOxigenio((float)0);
-			// i1.setPressaoarterial(new Float[10]);
+			// i1.setpressaoarterial(new Float[10]);
 			// i1.setPulso(new Double[10]);
 
 			// i2.setOxigenio((float)0);
-			// i2.setPressaoarterial(new Float[10]);
+			// i2.setpressaoarterial(new Float[10]);
 			// i2.setPulso(new Double[10]);
 		
 			
