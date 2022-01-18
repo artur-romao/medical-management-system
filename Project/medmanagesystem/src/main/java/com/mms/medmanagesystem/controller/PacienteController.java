@@ -33,20 +33,10 @@ public class PacienteController {
 
   @GetMapping("/pacientes")
   public ModelAndView paciente(Model model) throws NumberFormatException, ResourceNotFoundException {
-    HttpSession session = httpSessionFactory.getObject();
-    String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
-    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
-    model.addAttribute("id", profissional.getId());
-    model.addAttribute("area", profissional.getArea().getName());
-    model.addAttribute("nome", profissional.getProfissional().getNome());
-    model.addAttribute("telemovel", profissional.getProfissional().getTelemovel());
-    model.addAttribute("morada", profissional.getProfissional().getMorada());
-    model.addAttribute("datanascimento", profissional.getProfissional().getDatanascimento());
     List<Paciente> listaPacientes = pacienteService.getPacientes();
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("listaPacientes", listaPacientes);
     modelAndView.setViewName("tables/pacientes");
-
     return modelAndView;
   }
   

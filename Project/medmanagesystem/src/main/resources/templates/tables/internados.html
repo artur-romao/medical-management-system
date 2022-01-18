@@ -217,13 +217,13 @@
 </tr>
 </thead>
 <tbody>
-<th:block th:each="patient : ${listaPacientes}"> 
+<th:block th:each="intern : ${listaInternamentos}"> 
 <tr>
-  <td> [[${patient.paciente.nome}]]</td>
-  <td> [[${patient.paciente.pessoacc}]]</td>
-  <td> [[${patient.paciente.email}]]</td>
-  <td> [[${patient.paciente.telemovel}]]</td>
-  <td> [[${patient.paciente.morada}]]</td>
+  <td> [[${intern.paciente.paciente.nome}]]</td>
+  <td> [[${intern.quartocama}]]</td>
+  <td> [[${intern.dataadmissao}]]</td>
+  <td> [[${intern.razaointernamento}]]</td>
+  <td> <i class="fas fa-eye"></i></td>
 
 
 

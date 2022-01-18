@@ -28,14 +28,14 @@ public class InternamentoTeste {
 	@Column(name = "pulso")
     private PairModel pulso;
 
-    private  Float[] pressaoArterial;
+    private  Float[] pressaoarterial;
     private float temperatura;
 	private float oxigenio;
-    private String razaoInternamento;
-    private String quarto_cama;
+    private String razaointernamento;
+    private String quartocama;
     private String estado;
-    private Date dataAdmissao;
-    private Date dataSaida;
+    private Date dataadmissao;
+    private Date datasaida;
 
 
 	private double[] timedata;
@@ -58,19 +58,19 @@ public class InternamentoTeste {
 
 	// pressao arterial (13,2) 
 	// pulso ((2,3),(1,2))
-    public InternamentoTeste(int id, Paciente paciente, Profissional profissional, float oxigenio, PairModel pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) { 
+    public InternamentoTeste(int id, Paciente paciente, Profissional profissional, float oxigenio, PairModel pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida) { 
         this.id = id;
 		this.profissional = profissional;
 		this.paciente = paciente;
         this.pulso = pulso;
 		this.oxigenio = oxigenio;
-        this.pressaoArterial = pressaoArterial;
+        this.pressaoarterial = pressaoarterial;
         this.temperatura = temperatura;
-        this.razaoInternamento = razaoInternamento;
-        this.quarto_cama = quarto_cama;
+        this.razaointernamento = razaointernamento;
+        this.quartocama = quartocama;
         this.estado = estado;
-        this.dataAdmissao = dataAdmissao;
-        this.dataSaida = dataSaida;
+        this.dataadmissao = dataadmissao;
+        this.datasaida = datasaida;
     }
 
 
@@ -125,13 +125,13 @@ public class InternamentoTeste {
 		this.pulso = pulso;
 	}
 
-    @Column(name = "pressaoArterial")
-	public Float[] getPressaoArterial() {
-		return this.pressaoArterial;
+    @Column(name = "pressaoarterial")
+	public Float[] getpressaoarterial() {
+		return this.pressaoarterial;
 	}
 
-	public void setPressaoArterial(Float[] pressaoArterial) {
-		this.pressaoArterial = pressaoArterial;
+	public void setpressaoarterial(Float[] pressaoarterial) {
+		this.pressaoarterial = pressaoarterial;
 	}
 
     @Column(name = "temperatura")
@@ -144,22 +144,22 @@ public class InternamentoTeste {
 	}
     
     
-    @Column(name = "razaoInternamento")
-	public String getRazaoInternamento() {
-		return this.razaoInternamento;
+    @Column(name = "razaointernamento")
+	public String getrazaointernamento() {
+		return this.razaointernamento;
 	}
 
-	public void setRazaoInternamento(String razaoInternamento) {
-		this.razaoInternamento = razaoInternamento;
+	public void setrazaointernamento(String razaointernamento) {
+		this.razaointernamento = razaointernamento;
 	}
 
-    @Column(name = "quarto_cama")
-	public String getQuarto_cama() {
-		return this.quarto_cama;
+    @Column(name = "quartocama")
+	public String getquartocama() {
+		return this.quartocama;
 	}
 
-	public void setQuarto_cama(String quarto_cama) {
-		this.quarto_cama = quarto_cama;
+	public void setquartocama(String quartocama) {
+		this.quartocama = quartocama;
 	}
 
     @Column(name = "estado")
@@ -172,23 +172,23 @@ public class InternamentoTeste {
 	}
 
 
-    @Column(name = "dataAdmissao")
-    public Date getDataAdmissao() {
-		return this.dataAdmissao;
+    @Column(name = "dataadmissao")
+    public Date getdataadmissao() {
+		return this.dataadmissao;
 	}
 
-	public void setDataAdmissao(Date dataAdmissao) {
-		this.dataAdmissao = dataAdmissao;
+	public void setdataadmissao(Date dataadmissao) {
+		this.dataadmissao = dataadmissao;
 	}
 
     
-    @Column(name = "dataSaida")
-	public Date getDataSaida() {
-		return this.dataSaida;
+    @Column(name = "datasaida")
+	public Date getdatasaida() {
+		return this.datasaida;
 	}
 
-	public void setDataSaida(Date dataSaida) {
-		this.dataSaida = dataSaida;
+	public void setdatasaida(Date datasaida) {
+		this.datasaida = datasaida;
 	}
     
 }

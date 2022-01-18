@@ -2,3 +2,4 @@ numpy
 pika
 scipy
 matplotlib
+mysql-connector-python
