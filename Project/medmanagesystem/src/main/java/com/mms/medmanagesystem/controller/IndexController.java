@@ -28,21 +28,10 @@ public class IndexController {
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
-    model.addAttribute("id", profissional.getId());
-    model.addAttribute("area", profissional.getArea().getName());
     model.addAttribute("nome", profissional.getProfissional().getNome());
-    model.addAttribute("telemovel", profissional.getProfissional().getTelemovel());
-    model.addAttribute("morada", profissional.getProfissional().getMorada());
-    model.addAttribute("datanascimento", profissional.getProfissional().getDatanascimento());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("index");
     return modelAndView;
   }
 
-  @PostMapping("/index")
-  public ModelAndView indexDistribution(Model model) throws NumberFormatException, ResourceNotFoundException {
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("index");
-    return modelAndView;
-  }
 }
