@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | uPlot</title>
@@ -152,11 +153,60 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
-<!-- AREA CHART -->
 
-  <!-- /.card-body -->
+
+<!-- /.card-body -->
 </div>
 <!-- /.card -->
+
+<div class="row">
+  <div  class="col-lg-4 col-6">
+    <!-- small card -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3 class="sensor" id="1">150</h3>
+
+        <p>Oxigénio</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-lungs"></i>
+      </div>
+      
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-4 col-6">
+    <!-- small card -->
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3 class="sensor" id="2" >53</h3>
+
+        <p>Temperatura</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-temperature-low"></i>
+      </div>
+      
+    </div>
+  </div>
+  <!-- ./col -->
+  <div  class="col-lg-4 col-6">
+    <!-- small card -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3 id="3" class="sensor" >44/44</h3>
+
+        <p>Pressão Arterial</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-stethoscope"></i>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
 </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
@@ -178,6 +228,7 @@
 <script src="../static/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+  
   $(function () {
     /* uPlot
      * -------
@@ -190,6 +241,7 @@
         height: document.getElementById(elementId).offsetHeight,
       }
     }
+//data can be gotten from a js fuction
     let data = [
 
 
@@ -231,6 +283,72 @@
       lineChart.setSize(getSize('lineChart'));
     });
   })
+</script>
+<script>
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+//const id = urlParams.get('id')
+const id=2
+
+$( document ).ready(function() {
+async function getData(url){
+    const response = await fetch(url);
+    var data = await response.json();
+    console.log(data)
+    
+    show_data(data);
+}
+//upon document load
+  //should add data-id to the class with the class sensor
+  //get elements that use class 
+  //change by class sense and #id
+  // recebo o id no url
+  // vou à tag html com a classe sensor
+  //adicionar a classe data-id='id'
+  //TODO change later the 1 to id
+ /*  $( ".sensor" ).data( "data-id",1 );
+  $('div').attr('data-id', 1);
+
+
+  var igot = $(this).data('id');
+  $(".sensor #deid").val( igot ); 
+
+
+  */
+ 
+ var c = 0;
+ 
+ function show_data(data){
+  var result = Object.keys(data).map((key) => [Number(key), data[key]]);
+  
+  console.log(result);
+  var list;
+  
+  var tab = ``;
+  
+  tab+= result[7][1][0];
+  tab+='|';
+  tab+= result[7][1][1];
+  document.getElementById("3").innerHTML = tab; //pressa
+  
+  
+  tab = ``;
+  tab+= result[3][1];
+  document.getElementById("1").innerHTML = tab; //oxi
+  tab = ``;
+  
+  tab+= result[2][1];
+  document.getElementById("2").innerHTML = tab; //temp
+}
+
+
+
+
+console.log("control");
+
+getData("http://localhost:8080/internados/2");
+}); 
 </script>
 </body>
 </html>

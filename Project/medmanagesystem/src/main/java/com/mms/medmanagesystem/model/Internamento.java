@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 
 
@@ -42,6 +43,7 @@ public class Internamento {
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
+	@JsonBackReference
     private Paciente paciente;
 
 	@ManyToOne(optional = false)
