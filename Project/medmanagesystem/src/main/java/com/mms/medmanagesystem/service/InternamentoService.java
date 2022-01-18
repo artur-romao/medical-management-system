@@ -79,7 +79,7 @@ public class InternamentoService {
         return repository.save(existingInternamento);
     }
 
-    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida) {
     
     // }
 

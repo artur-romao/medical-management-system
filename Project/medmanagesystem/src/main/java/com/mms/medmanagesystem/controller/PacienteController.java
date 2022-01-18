@@ -33,7 +33,7 @@ public class PacienteController {
 
 
   @GetMapping("/pacientes")
-  public ModelAndView paciente(Model model) throws NumberFormatException, ResourceNotFoundException {
+  public ModelAndView paciente(Model model, String keyword) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
@@ -43,18 +43,38 @@ public class PacienteController {
     model.addAttribute("telemovel", profissional.getProfissional().getTelemovel());
     model.addAttribute("morada", profissional.getProfissional().getMorada());
     model.addAttribute("datanascimento", profissional.getProfissional().getDatanascimento());
-    List<Paciente> listaPacientes = pacienteService.getPacientes();
     ModelAndView modelAndView = new ModelAndView();
-    modelAndView.addObject("listaPacientes", listaPacientes);
+
+    List<Paciente> listaPacientes = pacienteService.getPacientes(); //todos os pacientes
+    List<Paciente> listaFiltrada = pacienteService.findKeyword(keyword);
+    
+    if (keyword != null) {
+      modelAndView.addObject("listaPacientes", listaFiltrada);
+    }
+    
+    else{
+
+      modelAndView.addObject("listaPacientes", listaPacientes);
+
+    }
+
     modelAndView.setViewName("tables/pacientes");
+    //modelAndView.addObject("nameJs",  profissional.getProfissional().getNome());
+
 
     return modelAndView;
   }
-  
- /*  @GetMapping("/pessoas/{id}")
-  public Paciente getPessoaBycc(@PathVariable(value="id") int id) throws ResourceNotFoundException {
+ /*    */
+ /* @GetMapping("/pacientes/{id}") */
+ /*  public Paciente getPessoaBycc(@PathVariable(value="id") int id) throws ResourceNotFoundException { */
+ /*      return pacienteService.getPacienteById(id); */
+ /*  } */
+
+  /* @GetMapping("/pacientesFiltered")
+  public Paciente getPacienteFiltered(@PathVariable(value="id") int id) throws ResourceNotFoundException {
       return pacienteService.getPacienteById(id);
   } */
+
   /* 
   @RequestMapping(value="name", method= {RequestMethod.GET})
   public String name(@RequestParam String name, Model model){

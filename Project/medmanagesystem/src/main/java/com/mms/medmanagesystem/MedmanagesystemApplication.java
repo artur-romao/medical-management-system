@@ -29,11 +29,8 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 
 	
 	@Autowired private AreaRepository areaRepository;
-	@Autowired private ConsultaRepository consultaRepository;
-	@Autowired private InternamentoRepository internamentoRepository;
 	@Autowired private ProfissionalRepository profissionalRepository;
 	@Autowired private PacienteRepository pacienteRepository;
-	@Autowired private PessoaRepository pessoaRepository;
 	@Autowired private AreaService areaService;
 	@Autowired private PessoaService pessoaService;
 	@Autowired private ProfissionalService profissionalService;
@@ -77,7 +74,7 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			profissionalService.saveProfissional(new Profissional("7381230573812305", (new Pessoa(73812305, "Alexandra Dominguez", "alexandradominguez7380@google.com", 921622641, "5626 Magna. Street","22/11/1978" )), areaRepository.getById(4), ProfissionalEnum.MEDICO.toString()));
 			
 			// Enfermeiros
-			profissionalService.saveProfissional(new Profissional("6041147860411478", (new Pessoa(60411478, "Max Waldo", "waldowino@google.com", 914721284, "963-7884 Ipsum St.","07/08/1996" )), areaRepository.getById(17), ProfissionalEnum.ENFERMEIRO.toString()));
+			profissionalService.saveProfissional(new Profissional("6041147860411478", (new Pessoa(60411478, "Max Waldo", "waldowino@google.com", 914721284, "Rua Professor Egas Moniz nº 12","07/08/1996" )), areaRepository.getById(17), ProfissionalEnum.ENFERMEIRO.toString()));
 			
 			// Pacientes
 			pacienteService.savePaciente(new Paciente((new Pessoa(83664712, "Miguel dos Santos", "miguelds@outlook.com", 914415566, "331-3048 Sodales. Rd", "20/03/1982"))));
