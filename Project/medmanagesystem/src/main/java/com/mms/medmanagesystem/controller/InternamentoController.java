@@ -14,11 +14,13 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-public class InternadoController {
+public class InternamentoController {
   
   @Autowired
   ProfissionalService profissionalService;
@@ -33,13 +35,19 @@ public class InternadoController {
   public ModelAndView internado(Model model) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
-    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
-    model.addAttribute("id", profissional.getId());
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("listaInternamentos", listaInternamentos);
     modelAndView.setViewName("tables/internados");
     return modelAndView;
+  }
+
+  @GetMapping("/internado") 
+    public ModelAndView getInternamentosId(@PathVariable(value="id") int internamento_id) throws ResourceNotFoundException {
+      ModelAndView modelAndView = new ModelAndView();
+      //modelAndView.setViewName("internado/" + internamento_id);
+      modelAndView.setViewName("internado");
+      return modelAndView;
   }
 
 }

@@ -103,7 +103,7 @@ public class newConsumer {
                 try {
                     
                     Internamento inter= service.getInternamentoById(id);
-                    inter.setpressaoarterial(sendp);
+                    inter.setPressaoarterial(sendp);
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
                     // distolica is pos 1 sistolica pos 0
