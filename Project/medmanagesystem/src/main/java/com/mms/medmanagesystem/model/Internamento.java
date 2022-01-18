@@ -31,14 +31,14 @@ public class Internamento {
 	private int id;
 
     private Double[] pulso;
-    private  Float[] pressaoArterial;
+    private  Float[] pressaoarterial;
     private float temperatura;
 	private float oxigenio;
-    private String razaoInternamento;
-    private String quarto_cama;
+    private String razaointernamento;
+    private String quartocama;
     private String estado;
-    private Date dataAdmissao;
-    private Date dataSaida;
+    private Date dataadmissao;
+    private Date datasaida;
 	private int[] statefilter;
     
     @ManyToOne(optional = false)
@@ -47,39 +47,39 @@ public class Internamento {
     private Paciente paciente;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name="id_medico")
-	private Medico medico;
+	@JoinColumn(name="id_profissional")
+	private Profissional profissional;
 
 	public Internamento(){}
 
-    public Internamento(Paciente paciente, Medico medico, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida, int[] statefilter) { 
-		this.medico = medico;
+    public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida, int[] statefilter) { 
+		this.profissional = profissional;
 		this.paciente = paciente;
         this.pulso = pulso;
 		this.oxigenio = oxigenio;
-        this.pressaoArterial = pressaoArterial;
+        this.pressaoarterial = pressaoarterial;
         this.temperatura = temperatura;
-        this.razaoInternamento = razaoInternamento;
+        this.razaointernamento = razaointernamento;
 		this.estado = estado;
-        this.quarto_cama = quarto_cama;
-        this.dataAdmissao = dataAdmissao;
-        this.dataSaida = dataSaida;
+        this.quartocama = quartocama;
+        this.dataadmissao = dataadmissao;
+        this.datasaida = datasaida;
 		this.statefilter=statefilter;
     }
 
 
-	public Internamento(Paciente paciente, Medico medico, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
-		this.medico = medico;
+	public Internamento(Paciente paciente, Profissional profissional, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida) {
+		this.profissional = profissional;
 		this.paciente = paciente;
-		this.razaoInternamento = razaoInternamento;
-        this.quarto_cama = quarto_cama;
+		this.razaointernamento = razaointernamento;
+        this.quartocama = quartocama;
         this.estado = estado;
-        this.dataAdmissao = dataAdmissao;
-        this.dataSaida = dataSaida;
+        this.dataadmissao = dataadmissao;
+        this.datasaida = datasaida;
 	}
 
-    public Internamento(Paciente paciente, Medico medico) {
-		this.medico = medico;
+    public Internamento(Paciente paciente, Profissional profissional) {
+		this.profissional = profissional;
 		this.paciente = paciente;
     }
 	
@@ -92,12 +92,12 @@ public class Internamento {
 		this.id = id;
 	}
 
-	public Medico getMedico(){
-		return this.medico;
+	public Profissional getProfissional(){
+		return this.profissional;
 	}
 
-	public void setMedico(Medico medico){
-		this.medico = medico;
+	public void setProfissional(Profissional profissional){
+		this.profissional = profissional;
 	}
 
 	public int getIdInternamento() {
@@ -136,13 +136,13 @@ public class Internamento {
 		this.pulso = pulso;
 	} 
 
-    @Column(name = "pressaoArterial")
+    @Column(name = "pressaoarterial")
 	public Float[] getPressaoarterial() {
-		return this.pressaoArterial;
+		return this.pressaoarterial;
 	}
 
-	public void setPressaoarterial(Float[] pressaoArterial) {
-		this.pressaoArterial = pressaoArterial;
+	public void setPressaoarterial(Float[] pressaoarterial) {
+		this.pressaoarterial = pressaoarterial;
 	}
 
     @Column(name = "temperatura")
@@ -155,22 +155,22 @@ public class Internamento {
 	}
     
     
-    @Column(name = "razaoInternamento")
+    @Column(name = "razaointernamento")
 	public String getRazaointernamento() {
-		return this.razaoInternamento;
+		return this.razaointernamento;
 	}
 
-	public void setRazaointernamento(String razaoInternamento) {
-		this.razaoInternamento = razaoInternamento;
+	public void setRazaointernamento(String razaointernamento) {
+		this.razaointernamento = razaointernamento;
 	}
 
-    @Column(name = "quarto_cama")
+    @Column(name = "quartocama")
 	public String getQuartocama() {
-		return this.quarto_cama;
+		return this.quartocama;
 	}
 
-	public void setQuartocama(String quarto_cama) {
-		this.quarto_cama = quarto_cama;
+	public void setQuartocama(String quartocama) {
+		this.quartocama = quartocama;
 	}
 
     @Column(name = "estado")
@@ -183,23 +183,23 @@ public class Internamento {
 	}
 
 
-    @Column(name = "dataAdmissao")
+    @Column(name = "dataadmissao")
     public Date getDataadmissao() {
-		return this.dataAdmissao;
+		return this.dataadmissao;
 	}
 
-	public void setDataadmissao(Date dataAdmissao) {
-		this.dataAdmissao = dataAdmissao;
+	public void setDataadmissao(Date dataadmissao) {
+		this.dataadmissao = dataadmissao;
 	}
 
     
-    @Column(name = "dataSaida")
+    @Column(name = "datasaida")
 	public Date getDatasaida() {
-		return this.dataSaida;
+		return this.datasaida;
 	}
 
-	public void setDatasaida(Date dataSaida) {
-		this.dataSaida = dataSaida;
+	public void setDatasaida(Date datasaida) {
+		this.datasaida = datasaida;
 	}
 	@Column(name= "statefilter")
 	public int [] statefilter(){

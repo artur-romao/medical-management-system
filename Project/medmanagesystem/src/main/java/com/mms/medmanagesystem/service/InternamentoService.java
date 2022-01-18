@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.ArrayList;
 
 @Service
 public class InternamentoService {
@@ -30,6 +31,17 @@ public class InternamentoService {
 
     public List<Internamento> getInternamentos() {
         return repository.findAll();
+    }
+
+    public List<Internamento> getInternamentosByProfissionalId(int profissional_id) {
+        List<Internamento> all_internamentos = getInternamentos();
+        List<Internamento> internamentos = new ArrayList<Internamento>();
+        for (Internamento i : all_internamentos) {
+            if (i.getProfissional().getId() == profissional_id) {
+                internamentos.add(i);
+            }
+        }
+        return internamentos;
     }
 
     public Set<Internamento> getAllInternamentosById(int... id_internamento) throws ResourceNotFoundException {
@@ -80,7 +92,7 @@ public class InternamentoService {
         return repository.save(existingInternamento);
     }
 
-    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoArterial, float temperatura, String razaoInternamento, String quarto_cama, String estado, Date dataAdmissao, Date dataSaida) {
+    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida) {
     
     // }
     public void updateStates(int idinternamento, String sensorname, int value ) throws ResourceNotFoundException{

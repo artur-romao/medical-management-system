@@ -6,8 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.LoginCredentials;
-import com.mms.medmanagesystem.model.Medico;
-import com.mms.medmanagesystem.service.MedicoService;
+import com.mms.medmanagesystem.model.Profissional;
+import com.mms.medmanagesystem.service.ProfissionalService;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class LoginController {
 
   @Autowired
-  private MedicoService medicoService;
+  private ProfissionalService profissionalService;
 
   @Autowired
   ObjectFactory<HttpSession> httpSessionFactory;
@@ -39,8 +39,8 @@ public class LoginController {
   @GetMapping("/") 
   @ResponseBody
   public RedirectView login(HttpServletRequest request, Model model) {
-    System.out.println(request.getSession().getAttribute("id_medico")); 
-    if (request.getSession().getAttribute("id_medico") == null) {
+    System.out.println(request.getSession().getAttribute("id_profissional")); 
+    if (request.getSession().getAttribute("id_profissional") == null) {
       return new RedirectView("login");  
     } 
     return new RedirectView("index");
@@ -56,14 +56,14 @@ public class LoginController {
   @PostMapping("/")
   public RedirectView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
-    String medicoid = loginCredentials.getMedicoid();
+    String profissionalid = loginCredentials.getProfissionalid();
     String password = loginCredentials.getPassword();
     
-    Medico medico = medicoService.getMedicoByID(Integer.parseInt(medicoid));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
     
-    if (medico.getPassword().equals(password)) {
-      session.setAttribute("id_medico", medicoid);
-      session.setAttribute("pessoa_cc", medico.getMedico().getPessoacc());
+    if (profissional.getPassword().equals(password)) {
+      session.setAttribute("id_profissional", profissionalid);
+      session.setAttribute("pessoa_cc", profissional.getProfissional().getPessoacc());
       return new RedirectView("index");
     }
     else {

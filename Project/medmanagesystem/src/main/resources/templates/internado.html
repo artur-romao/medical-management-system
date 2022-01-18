@@ -46,38 +46,38 @@
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
-                            <h5>
-                                Joaquim Fagundes
+                            <h3 id="pacname">
+                                
+                            </h3>
+                            <h5 id="razao">
+                                
                             </h5>
-                            <h6>
-                                Médico Obstetra
-                            </h6>
                             <div class="row" style="margin-top: 25px">
                                 <div class="col-md-8">
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Id</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>12345678</p>
-                                                </div>
+                                          <div class="row state-row"  >
+                                            <div class="col-md-6">
+                                                <label>Estado</label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Nome</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>Joaquim Fagundes</p>
-                                                </div>
+                                            <div class="col-md-6">
+                                                <p id="estado"></p>
                                             </div>
+                                        </div>
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Cartão de Cidadão</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p id="cc"></p>
+                                            </div>
+                                        </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Especialidade</label>
+                                                    <label>Email</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Obstetrícia</p>
+                                                    <p id="mail"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -85,7 +85,7 @@
                                                     <label>Número de telemóvel</label>
                                                 </div>  
                                                 <div class="col-md-6">
-                                                    <p>914140140</p>
+                                                    <p id="numtel"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -93,7 +93,7 @@
                                                     <label>Morada</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Rua Coberto das Flores nº6 - Águeda</p>
+                                                    <p id="address"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -101,9 +101,26 @@
                                                     <label>Data de Nascimento</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>19-11-1983</p>
+                                                    <p id="datanasc"></p>
                                                 </div>
-                                            </div>
+                                            </div>                                           
+                                             <div class="row">
+                                              <div class="col-md-6">
+                                                  <label>Data de internamento</label>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <p id="datainter"></p>
+                                              </div>
+                                          </div>
+                                          
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Quarto</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p id="quarto"></p>
+                                        </div>
+                                  </div>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +312,6 @@ $( document ).ready(function() {
 async function getData(url){
     const response = await fetch(url);
     var data = await response.json();
-    console.log(data)
     
     show_data(data);
 }
@@ -320,17 +336,75 @@ async function getData(url){
  var c = 0;
  
  function show_data(data){
-  var result = Object.keys(data).map((key) => [Number(key), data[key]]);
+  var result = JSON.stringify(data);
   
-  console.log(result);
-  var list;
-  
+  var mydata = JSON.parse(result);
+  //get first key
+  var fk =Object.keys(mydata)[0];
+  var pacinfo= JSON.stringify(mydata[fk]["paciente"]);
+  var jsonedpacinfo =JSON.parse(pacinfo);
+  console.log(mydata[fk]["internamento"][0]);
   var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["temperatura"];
+  document.getElementById("2").innerHTML = tab; //temp
+  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["oxigenio"];
+  document.getElementById("1").innerHTML = tab; //oxi
+  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["pressaoarterial"][0];
+  tab+="|";
+  tab+= mydata[fk]["internamento"][0]["pressaoarterial"][1];
+
+  document.getElementById("3").innerHTML = tab; //pressa
+  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["quartocama"];
+  document.getElementById("quarto").innerHTML = tab; 
+  var tab = ``;
+  tab+="Razão de Internamento - "
+  tab+= mydata[fk]["internamento"][0]["razaointernamento"];
+  document.getElementById("razao").innerHTML = tab; //temp
+  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["estado"];
+  document.getElementById("estado").innerHTML = tab; //temp
+  var state= mydata[fk]["internamento"][0]["estado"];
+
+  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["dataadmissao"];
+  document.getElementById("datainter").innerHTML = tab;
+ /*  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["datasaida"];
+  document.getElementById("datas").innerHTML = tab; */
+ // camaquarto razao estado
+
+ //pacdata
+ 
+
+  var tab = ``;
+  tab+= jsonedpacinfo["nome"];
+  document.getElementById("pacname").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["nome"];
+  document.getElementById("pacname").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["pessoacc"];
+  document.getElementById("cc").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["telemovel"];
+  document.getElementById("numtel").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["morada"];
+  document.getElementById("address").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["datanascimento"];
+  document.getElementById("datanasc").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["email"];
+  document.getElementById("mail").innerHTML = tab;
+/*   var list;
   
-  tab+= result[7][1][0];
+  
   tab+='|';
   tab+= result[7][1][1];
-  document.getElementById("3").innerHTML = tab; //pressa
   
   
   tab = ``;
@@ -339,15 +413,27 @@ async function getData(url){
   tab = ``;
   
   tab+= result[2][1];
-  document.getElementById("2").innerHTML = tab; //temp
-}
+  document.getElementById("2").innerHTML = tab; //temp */
 
+  //change color of state according to state
+  if(state=="estável"){
+    $('.state-row').addClass("bg-success");
+    
+  }else if(state=="coma"){
+    $('.state-row').addClass("bg-danger");
+    
+  }else{
+    $('.state-row').addClass("bg-warning");
+    
+  }
+  
+}
 
 
 
 console.log("control");
 
-getData("http://localhost:8080/internados/2");
+getData("http://localhost:8080/internado/2");
 }); 
 </script>
 </body>
