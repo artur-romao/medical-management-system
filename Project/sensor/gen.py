@@ -8,7 +8,6 @@ import asyncio
 import numpy
 import json
 import os
-import requests
 import random
 import matplotlib.pyplot as plt
 from scipy.misc import electrocardiogram
