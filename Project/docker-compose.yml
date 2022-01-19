@@ -48,13 +48,13 @@ services:
       - 5672:5672 
       - 15672:15672
 
-  datagen:
-    build: ./sensor
-    container_name: data_gen
-    restart: on-failure
-    depends_on:
-      - mq
-      - db
-      - medmanagesystem
+  #datagen:
+    #build: ./sensor
+    #container_name: data_gen
+    #restart: on-failure
+    #depends_on:
+      #- mq
+      #- db
+      #- medmanagesystem
 volumes:
   datafiles:
