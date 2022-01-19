@@ -42,6 +42,8 @@ public class InternamentoController {
   public ModelAndView internado(Model model) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+    model.addAttribute("nome", profissional.getProfissional().getNome());
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("listaInternamentos", listaInternamentos);
@@ -49,15 +51,17 @@ public class InternamentoController {
     return modelAndView;
   }
 
-/*   @GetMapping("/internado") 
-    public ModelAndView getInternamentosId(@PathVariable(value="id") int internamento_id) throws ResourceNotFoundException {
+  @GetMapping("/internado/{id}") 
+    public ModelAndView getInternamentosId(@PathVariable(value="id") int internamento_id, Model model) throws ResourceNotFoundException {
       ModelAndView modelAndView = new ModelAndView();
-      //modelAndView.setViewName("internado/" + internamento_id);
+      // por aqui as variáveis do internado que são mostradas
+      Paciente paciente = internamentoService.getInternamentoById(internamento_id).getPaciente();
+      //model.addAttribute("internadoid", id);
       modelAndView.setViewName("internado");
       return modelAndView;
       
-    } */
-  @GetMapping("/internado/{id}")
+    } 
+  @GetMapping("/api/internado/{id}")
     public @ResponseBody Map<Internamento,Paciente> getInternamentosId(@PathVariable String id) throws ResourceNotFoundException {
       Internamento inter = internamentoService.getInternamentoById(Integer.parseInt(id));
       Paciente pac = inter.getPaciente();

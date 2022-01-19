@@ -11,11 +11,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- uPlot -->
-  <link rel="stylesheet" href="../static/plugins/uplot/uPlot.min.css">
+  <link rel="stylesheet" href="../../plugins/uplot/uPlot.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../static/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -33,16 +33,12 @@
 
 
   <div class="wrapper">
-    <h3 style="margin-top: 19px; margin-left: 15px;">Perfil</h3>
   <!-- Content Wrapper. Contains page content -->
   <div class="container emp-profile" style="margin-top: 50px;">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="../img/medico1.jpg" alt="" style="width: 150px; height: 150px;"/>
-                    
-                </div>
+               
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
@@ -207,7 +203,7 @@
     </div>
   </div>
   <!-- ./col -->
-  <div  class="col-lg-4 col-6">
+  <div id="yourDiv" class="col-lg-4 col-6">
     <!-- small card -->
     <div class="small-box bg-warning">
       <div class="inner">
@@ -234,15 +230,15 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../static/plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- uPlot -->
-<script src="../static/plugins/uplot/uPlot.iife.min.js"></script>
+<script src="../../plugins/uplot/uPlot.iife.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../static/js/adminlte.min.js"></script>
+<script src="../../js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../static/js/demo.js"></script>
+<script src="../../js/demo.js"></script>
 <!-- Page specific script -->
 <script>
   
@@ -302,19 +298,29 @@
   })
 </script>
 <script>
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-//const id = urlParams.get('id')
-const id=2
-
 $( document ).ready(function() {
 async function getData(url){
+  console.log(url)
     const response = await fetch(url);
     var data = await response.json();
     
     show_data(data);
+  function reload(){
+    var container = document.getElementById("yourDiv");
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    
+   //this line is to watch the result in console , you can remove it later	
+    console.log("Refreshed"); 
 }
+}
+  const queryString = window.location.href;
+  console.log(queryString.split("/")[queryString.split("/").length-1]);
+  //const id = urlParams.get('id')
+  const id=queryString.split("/")[queryString.split("/").length-1];
+  
+  getData("http://localhost:8080/api/internado/"+id);
+
 //upon document load
   //should add data-id to the class with the class sensor
   //get elements that use class 
@@ -337,7 +343,7 @@ async function getData(url){
  
  function show_data(data){
   var result = JSON.stringify(data);
-  
+  console.log(data);
   var mydata = JSON.parse(result);
   //get first key
   var fk =Object.keys(mydata)[0];
@@ -433,7 +439,6 @@ async function getData(url){
 
 console.log("control");
 
-getData("http://localhost:8080/internado/2");
 }); 
 </script>
 </body>

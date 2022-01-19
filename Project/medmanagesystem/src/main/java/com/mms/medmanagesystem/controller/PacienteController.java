@@ -14,6 +14,7 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,20 +33,28 @@ public class PacienteController {
 
 
   @GetMapping("/pacientes")
-  public ModelAndView paciente(Model model) throws NumberFormatException, ResourceNotFoundException {
-    List<Paciente> listaPacientes = pacienteService.getPacientes();
+  public ModelAndView paciente(Model model, String keyword) throws NumberFormatException, ResourceNotFoundException {
+    HttpSession session = httpSessionFactory.getObject();
+    String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+    model.addAttribute("nome", profissional.getProfissional().getNome());
     ModelAndView modelAndView = new ModelAndView();
-    modelAndView.addObject("listaPacientes", listaPacientes);
+
+    List<Paciente> listaPacientes = pacienteService.getPacientes(); //todos os pacientes
+    List<Paciente> listaFiltrada = pacienteService.findKeyword(keyword);
+    
+    if (keyword != null) {
+      modelAndView.addObject("listaPacientes", listaFiltrada);
+    }
+    
+    else{
+
+      modelAndView.addObject("listaPacientes", listaPacientes);
+
+    }
+
     modelAndView.setViewName("tables/pacientes");
     return modelAndView;
   }
   
-
-/* 
-  @RequestMapping(value="name", method= {RequestMethod.GET})
-  public String name(@RequestParam String name, Model model){
-      String name =   
-  } */
-  
-
 }

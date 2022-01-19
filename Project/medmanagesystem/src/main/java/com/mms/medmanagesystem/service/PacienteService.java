@@ -40,6 +40,11 @@ public class PacienteService {
         .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
     }
 
+    public List<Paciente> findKeyword(String keyword)  {
+
+        return repository.findKeyword(keyword);
+    }
+
     public Map<String, Boolean> deletePaciente(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
 

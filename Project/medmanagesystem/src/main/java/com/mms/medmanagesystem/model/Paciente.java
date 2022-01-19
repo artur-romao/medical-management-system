@@ -39,6 +39,8 @@ public class Paciente {
 
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
+    @JsonManagedReference
+
     private Set<Consulta> consulta;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")

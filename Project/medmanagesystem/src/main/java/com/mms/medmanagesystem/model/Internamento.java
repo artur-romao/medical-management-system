@@ -48,6 +48,8 @@ public class Internamento {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name="id_profissional")
+	@JsonBackReference
+
 	private Profissional profissional;
 
 	public Internamento(){}
