@@ -47,5 +47,14 @@ services:
     ports:
       - 5672:5672 
       - 15672:15672
+
+#  datagen:
+#    build: ./sensor/
+#    restart: on-failure
+#    container_name: data_gen
+#    depends_on:
+#      - mq
+#      - db
+#      - medmanagesystem
 volumes:
   datafiles:
