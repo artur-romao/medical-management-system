@@ -49,11 +49,11 @@ public class Doenca {
 	}
 
     @Column(name = "name")
-	public String getNome() {
+	public String getName() {
 		return this.nome;
 	}
 
-	public void setNome(String nome) {
+	public void setName(String nome) {
 		this.nome = nome;
 	}
 

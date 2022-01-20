@@ -51,7 +51,7 @@ public class PessoaService {
         Pessoa existingPessoa = repository.findById(pessoa.getPessoacc())
         .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + cc));
 
-        existingPessoa.setNome(pessoa.getNome());
+        existingPessoa.setName(pessoa.getName());
         existingPessoa.setEmail(pessoa.getEmail());
         existingPessoa.setTelemovel(pessoa.getTelemovel());
         existingPessoa.setMorada(pessoa.getMorada());

@@ -27,7 +27,7 @@ public class ConsultaController {
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
-    model.addAttribute("nome", profissional.getProfissional().getNome());
+    model.addAttribute("nome", profissional.getProfissional().getName());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("consultas");
     return modelAndView;

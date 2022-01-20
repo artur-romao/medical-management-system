@@ -31,7 +31,7 @@ public class PerfilController {
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
     model.addAttribute("id", profissional.getId());
     model.addAttribute("area", profissional.getArea().getName());
-    model.addAttribute("nome", profissional.getProfissional().getNome());
+    model.addAttribute("nome", profissional.getProfissional().getName());
     model.addAttribute("telemovel", profissional.getProfissional().getTelemovel());
     model.addAttribute("morada", profissional.getProfissional().getMorada());
     model.addAttribute("datanascimento", profissional.getProfissional().getDatanascimento());

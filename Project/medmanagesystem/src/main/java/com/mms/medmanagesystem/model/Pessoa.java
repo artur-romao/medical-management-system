@@ -67,7 +67,7 @@ public class Pessoa {
         this.pessoacc = pessoacc;
     }
 
-    public String getNome() {
+    public String getName() {
         return this.name;
     }
 
@@ -87,7 +87,7 @@ public class Pessoa {
     }
 
     
-    public void setNome(String name) {
+    public void setName(String name) {
         this.name = name;
     }
     public void setEmail(String email) {
@@ -113,4 +113,20 @@ public class Pessoa {
     public Paciente getPaciente(){
         return this.paciente;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " pessoacc='" + getPessoacc() + "'" +
+            ", name='" + getName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", telemovel='" + getTelemovel() + "'" +
+            ", morada='" + getMorada() + "'" +
+            ", datanascimento='" + getDatanascimento() + "'" +
+            ", profissional='" + getProfissional() + "'" +
+            ", paciente='" + getPaciente() + "'" +
+            "}";
+    }
+
 }
