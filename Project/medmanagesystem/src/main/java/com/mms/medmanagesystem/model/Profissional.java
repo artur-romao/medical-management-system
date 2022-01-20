@@ -3,22 +3,17 @@ package com.mms.medmanagesystem.model;
 //import lombok.Data;
 //import lombok.EqualsAndHashCode;
 
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotNull;
 
 // @Data
 @Entity
@@ -30,6 +25,7 @@ public class Profissional {
     @Column(name = "id_profissional")
     private int id;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profissional_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
     private Pessoa profissional;
@@ -68,11 +64,11 @@ public class Profissional {
         this.id = id;
     }
 
-    public Pessoa getProfissional() {
+    public Pessoa getPessoa() {
         return this.profissional;
     }
 
-    public void setProfissional(Pessoa profissional) {
+    public void setPessoa(Pessoa profissional) {
         this.profissional = profissional;
     }
 
@@ -100,5 +96,17 @@ public class Profissional {
     public void setPro(String pro) {
         this.pro = pro;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", profissional='" + getPessoa() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", area='" + getArea() + "'" +
+            ", pro='" + getPro() + "'" +
+            "}";
+    }
     
+
 }

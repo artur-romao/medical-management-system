@@ -4,19 +4,14 @@ package com.mms.medmanagesystem.model;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
-
-import java.sql.Date;
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import com.mms.medmanagesystem.enumFolder.EstadoEnum;
+import java.sql.Date;
 
 
 // @Data
@@ -36,8 +31,10 @@ public class Internamento {
     private String razaointernamento;
     private String quartocama;
     private String estado;
+  
     private Date dataadmissao;
     private Date datasaida;
+
 	private int[] statefilter;
     
     @ManyToOne(optional = false)
@@ -49,21 +46,21 @@ public class Internamento {
 	private Profissional profissional;
 
 	public Internamento(){}
-
-    public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida, int[] statefilter) { 
-		this.profissional = profissional;
+  
+  public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida, int[] statefilter) { 
+	  this.profissional = profissional;
 		this.paciente = paciente;
-        this.pulso = pulso;
+    this.pulso = pulso;
 		this.oxigenio = oxigenio;
-        this.pressaoarterial = pressaoarterial;
-        this.temperatura = temperatura;
-        this.razaointernamento = razaointernamento;
+    this.pressaoarterial = pressaoarterial;
+    this.temperatura = temperatura;
+    this.razaointernamento = razaointernamento;
 		this.estado = estado;
-        this.quartocama = quartocama;
-        this.dataadmissao = dataadmissao;
-        this.datasaida = datasaida;
+    this.quartocama = quartocama;
+    this.dataadmissao = dataadmissao;
+    this.datasaida = datasaida;
 		this.statefilter=statefilter;
-    }
+  }
 
 
 	public Internamento(Paciente paciente, Profissional profissional, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida) {
@@ -209,4 +206,5 @@ public class Internamento {
 	public void setStatefilter(int[] statefilter) {
 		this.statefilter = statefilter;
 	}
+
 }

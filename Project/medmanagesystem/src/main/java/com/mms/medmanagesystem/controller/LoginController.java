@@ -1,7 +1,6 @@
 package com.mms.medmanagesystem.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
@@ -15,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +36,7 @@ public class LoginController {
   @GetMapping("/") 
   @ResponseBody
   public RedirectView login(HttpServletRequest request, Model model) {
-    System.out.println(request.getSession().getAttribute("id_profissional")); 
+
     if (request.getSession().getAttribute("id_profissional") == null) {
       return new RedirectView("login");  
     } 
@@ -63,7 +60,7 @@ public class LoginController {
     
     if (profissional.getPassword().equals(password)) {
       session.setAttribute("id_profissional", profissionalid);
-      session.setAttribute("pessoa_cc", profissional.getProfissional().getPessoacc());
+      session.setAttribute("pessoa_cc", profissional.getPessoa().getPessoacc());
       return new RedirectView("index");
     }
     else {
