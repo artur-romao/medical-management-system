@@ -70,7 +70,7 @@ public class Vacina {
 		return this.pacientes;
 	}
 
-	public void setPacientes(Set<Paciente> pacientes) {
+	public void setPessoas(Set<Paciente> pacientes) {
 		this.pacientes = pacientes;
 	}
 

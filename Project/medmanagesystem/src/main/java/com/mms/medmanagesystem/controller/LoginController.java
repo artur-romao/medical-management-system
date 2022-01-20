@@ -36,7 +36,7 @@ public class LoginController {
   @GetMapping("/") 
   @ResponseBody
   public RedirectView login(HttpServletRequest request, Model model) {
-    System.out.println(request.getSession().getAttribute("id_profissional")); 
+
     if (request.getSession().getAttribute("id_profissional") == null) {
       return new RedirectView("login");  
     } 
@@ -60,7 +60,7 @@ public class LoginController {
     
     if (profissional.getPassword().equals(password)) {
       session.setAttribute("id_profissional", profissionalid);
-      session.setAttribute("pessoa_cc", profissional.getProfissional().getPessoacc());
+      session.setAttribute("pessoa_cc", profissional.getPessoa().getPessoacc());
       return new RedirectView("index");
     }
     else {

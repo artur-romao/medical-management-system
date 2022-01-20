@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 //@Data
 @Entity
@@ -25,6 +26,7 @@ public class Paciente {
     @Column(name = "id_paciente")
     private int id;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
     private Pessoa paciente;
@@ -83,11 +85,11 @@ public class Paciente {
         this.id = id;
     }
 
-    public Pessoa getPaciente() {
+    public Pessoa getPessoa() {
         return this.paciente;
     }
 
-    public void setPaciente(Pessoa paciente) {
+    public void setPessoa(Pessoa paciente) {
         this.paciente = paciente;
     }
     
@@ -124,5 +126,15 @@ public class Paciente {
         this.doencas = doencas;
     }
     */
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", paciente='" + getPessoa() + "'" +
+            ", consulta='" + getConsulta() + "'" +
+            ", internamento='" + getInternamento() + "'" +
+            "}";
+    }
     
 }

@@ -1,7 +1,12 @@
 package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
+import com.mms.medmanagesystem.model.Consulta;
+import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.model.Paciente;
+import com.mms.medmanagesystem.model.Pessoa;
+import com.mms.medmanagesystem.repository.ConsultaRepository;
+import com.mms.medmanagesystem.repository.InternamentoRepository;
 import com.mms.medmanagesystem.repository.PacienteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +18,19 @@ import java.util.Map;
 
 @Service
 public class PacienteService {
-    @Autowired
-    private PacienteRepository repository;
+    
+    @Autowired private PacienteRepository repository;
+    // private ConsultaRepository consultarepo;
+    // private InternamentoRepository internamentorepo;
+    @Autowired private PessoaService pessoaService;
+
 
     public Paciente savePaciente(Paciente paciente) {
+
+        // Pessoa pessoa = paciente.getPessoa();
+        // System.out.println(pessoa);
+        // pessoaService.savePessoa(pessoa);
+
         return repository.save(paciente);
     }
 
@@ -27,6 +41,14 @@ public class PacienteService {
     public List<Paciente> getPacientes() {
         return repository.findAll();
     }
+
+    // public List<Consulta> getConsultas() {
+    //     return consultarepo.findAll();
+    // }
+
+    // public List<Internamento> getInternamentos() {
+    //     return internamentorepo.findAll();
+    // }
 
     public Paciente getPacienteById(int id) throws ResourceNotFoundException {
         return repository.findById(id)
@@ -49,6 +71,11 @@ public class PacienteService {
         
         return repository.save(existingPaciente);
     }
+
+    public List<Paciente> findKeyword(String keyword)  {
+        return repository.findKeyword(keyword);
+    }
+
 
 
 }

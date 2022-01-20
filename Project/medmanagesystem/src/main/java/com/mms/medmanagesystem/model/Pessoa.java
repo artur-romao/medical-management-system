@@ -1,5 +1,7 @@
 package com.mms.medmanagesystem.model;
 
+import java.sql.Date;
+
 //import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,11 +33,11 @@ public class Pessoa {
     private String morada;
 
     @Column(name = "datanascimento")
-    private String datanascimento;
+    private Date datanascimento;
     
     public Pessoa () {}
 
-     public Pessoa(int pessoacc, String name, String email, int telemovel, String morada, String datanascimento) {
+     public Pessoa(int pessoacc, String name, String email, int telemovel, String morada, Date datanascimento) {
         this.pessoacc = pessoacc;
         this.name = name;
         this.email = email;
@@ -74,7 +76,7 @@ public class Pessoa {
         return this.telemovel;
     }
 
-    public String getDatanascimento() {
+    public Date getDatanascimento() {
         return this.datanascimento;
     }
     public String getMorada() {
@@ -97,7 +99,7 @@ public class Pessoa {
         this.morada = morada;
     }
 
-    public void setDatanascimento(String datanascimento) {
+    public void setDatanascimento(Date datanascimento) {
         this.datanascimento = datanascimento;
     } 
 
@@ -108,4 +110,18 @@ public class Pessoa {
     public Paciente getPaciente(){
         return this.paciente;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " pessoacc='" + getPessoacc() + "'" +
+            ", name='" + getNome() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", telemovel='" + getTelemovel() + "'" +
+            ", morada='" + getMorada() + "'" +
+            ", datanascimento='" + getDatanascimento() + "'" +
+            "}";
+    }
+
 }
