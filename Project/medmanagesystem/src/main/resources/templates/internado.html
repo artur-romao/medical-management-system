@@ -322,7 +322,7 @@ async function getData(url){
   var mydata = JSON.parse(result);
   //get first key
   var fk =Object.keys(mydata)[0];
-  var pacinfo= JSON.stringify(mydata[fk]["paciente"]);
+  var pacinfo= JSON.stringify(mydata[fk]["pessoa"]);
   var jsonedpacinfo =JSON.parse(pacinfo);
   console.log(mydata[fk]["internamento"][0]);
   var tab = ``;
@@ -361,10 +361,10 @@ async function getData(url){
  
 
   var tab = ``;
-  tab+= jsonedpacinfo["nome"];
+  tab+= jsonedpacinfo["name"];
   document.getElementById("pacname").innerHTML = tab;
   var tab = ``;
-  tab+= jsonedpacinfo["nome"];
+  tab+= jsonedpacinfo["name"];
   document.getElementById("pacname").innerHTML = tab;
   var tab = ``;
   tab+= jsonedpacinfo["pessoacc"];

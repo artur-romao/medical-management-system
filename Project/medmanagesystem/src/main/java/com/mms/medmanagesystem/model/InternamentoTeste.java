@@ -82,11 +82,11 @@ public class InternamentoTeste {
 		this.id = id;
 	}
 
-	public Profissional getProfissional(){
+	public Profissional getPessoa(){
 		return this.profissional;
 	}
 
-	public void setProfissional(Profissional profissional){
+	public void setPessoa(Profissional profissional){
 		this.profissional = profissional;
 	}
 
@@ -100,11 +100,11 @@ public class InternamentoTeste {
 	}
 
 
-	public Paciente getPaciente() {
+	public Paciente getPessoa() {
 		return this.paciente;
 	}
 
-	public void setPaciente(Paciente paciente) {
+	public void setPessoa(Paciente paciente) {
 		this.paciente = paciente;
 	}
 

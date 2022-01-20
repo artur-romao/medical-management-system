@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Lista de Pacientes </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style_crud.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/css/adminlte.min.css">
+    
+    <!-- jQuery -->
+    <!-- <script src="../../plugins/jquery/jquery.min.js"></script>
+ -->
+    <!-- Bootstrap 4 -->
+    <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="../../js/adminlte.min.js"></script>
+ -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- <script src="../../js/demo.js"></script>
+ -->
+
+
+</head>
+
+
+<body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
+    <div class="wrapper">
+            <div>
+                <form action="#" th:action="@{/editsave}" th:object="${pac}"  method="post">
+                    <input type="hidden" th:field="*{id}"/>
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Paciente</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" th:field="*{pessoa.name}"> 
+                    </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" th:field="*{pessoa.email}" >                        
+                        </div>
+                        <div class="form-group">
+                            <label>Morada </label>
+                            <input type="text" class="form-control" th:field="*{pessoa.morada}"  style="width: 20%;" ></input>
+                        </div>
+                        <div class="form-group">
+                            <label>Telemóvel</label>
+                            <input type="text" class="form-control" th:field="*{pessoa.telemovel}" >                        
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="../pacientes" > 
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        </a>
+                        <a href="../pacientes" > 
+                        <input type="submit" class="btn btn-info" value="Save">
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>

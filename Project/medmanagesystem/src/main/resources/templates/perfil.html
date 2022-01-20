@@ -64,7 +64,7 @@
           <img src="img/user.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="perfil" class="d-block" th:text="${nome}"></a>
+          <a href="perfil" class="d-block" th:text="${name}"></a>
         </div>
       </div>
 
@@ -165,7 +165,7 @@
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
-                            <h5 th:text="${nome}"></h5>
+                            <h5 th:text="${name}"></h5>
                             <h6 th:text="${area}"></h6>
                             <div class="row" style="margin-top: 25px">
                                 <div class="col-md-8">
@@ -184,7 +184,7 @@
                                                     <label>Nome</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p th:text="${nome}"></p>
+                                                    <p th:text="${name}"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -216,7 +216,7 @@
                                                     <label>Data de Nascimento</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p th:text="${datanascimento}"></p>
+                                                    <p th:date="${datanascimento}"></p>
                                                 </div>
                                             </div>
                                         </div>

@@ -116,7 +116,7 @@ $(document).ready(function(){
           <img src="img/user.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block" th:text="${nome}"></a>
+          <a href="" class="d-block" th:text="${name}"></a>
         </div>
       </div>
 
@@ -203,61 +203,55 @@ $(document).ready(function(){
                       <h3>Lista de pacientes</h3>
                     </div>
                     <div class="col-sm-6 text-right pr-5">
-                      <a href="#addPacienteModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar novo paciente</span></a>
+                      <a th:href="@{pacientes/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo paciente</span></a>
                     </div>
 
                   </div>
                 </div><!-- /.container-fluid -->
-              </section>
-                <div style="width: 100%; margin-left: 15rem; margin-bottom: 1rem;">
-                  <form th:action="@{/pacientes}" method="GET">
-                    <input type="search" class="form-control form-control-lg"  name="keyword" id="txtSearch" placeholder="Pesquisar por nome" style="width: 50%; display: inline-block;">
-                      <button type="submit" th:onclick="showName(nameJs)" class="btn btn-lg btn-default" style="width: 4%;">
-                        <i class="fa fa-search"></i>
-                      </button>
-                  </form>
-                </div>
+      </section>
+      <div style="width: 100%; margin-left: 15rem; margin-bottom: 1rem;">
+        <form th:action="@{/pacientes}" method="GET">
+          <input type="search" class="form-control form-control-lg"  name="keyword" id="txtSearch" placeholder="Pesquisar por nome" style="width: 50%; display: inline-block;">
+            <button type="submit" th:onclick="showName(nameJs)" class="btn btn-lg btn-default" style="width: 4%;">
+              <i class="fa fa-search"></i>
+            </button>
+        </form>
+      </div>
+    </div>
+    <section class="content" style="width:95%; margin-left: 30px;">
+      <div class="card">
+        <div class="card-body">
+			  <table class="table table-striped table-hover">
+				  <thead>
+					  <tr>		
+              <th>Nome</th>
+              <th>Nº Cartão de Cidadão</th>
+              <th>Email</th>
+              <th>Telemóvel</th>
+              <th>Morada</th>
+              <th>Data de Nascimento</th>
+					  </tr>
+			  	</thead>
+				  <tbody>
+            <th:block th:each="patient : ${listaPacientes}"> 
+              <tr>
+                <td> [[${patient.pessoa.name}]]</td>
+                <td> [[${patient.pessoa.pessoacc}]]</td>
+                <td> [[${patient.pessoa.email}]]</td>
+                <td> [[${patient.pessoa.telemovel}]]</td>
+                <td> [[${patient.pessoa.morada}]]</td>
+                <td> [[${patient.pessoa.datanascimento}]]</td>
+                
+                <td th:if="${medic == true}">
+							    <a th:href="@{/edit/__${patient.pessoa.pessoacc}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                  <a href="#deletePacienteModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                </td>
 
-              <section class="content" style="width:95%; margin-left: 30px;">
-                <div class="card">
-                  <div class="card-body">
-			<table id="patientTable"class="table table-striped table-hover">
-				<thead>
-					<tr>
-						
-						<th>Nome</th>
-            <th>Nº Cartão de Cidadão</th>
-						<th>Email</th>
-						<th>Telemóvel</th>
-						<th>Morada</th>
-						<th>Data de Nascimento</th>
-					</tr>
-				</thead>
-				<tbody>
-        <th:block th:each="patient : ${listaPacientes}"> 
-					<tr>
-						<td> [[${patient.paciente.nome}]]</td>
-            <td> [[${patient.paciente.pessoacc}]]</td>
-						<td> [[${patient.paciente.email}]]</td>
-						<td> [[${patient.paciente.telemovel}]]</td>
-            <td> [[${patient.paciente.morada}]]</td>
-            <td> [[${patient.paciente.datanascimento}]]</td>
-
-
-
-						
-						<td>
-							<a href="#editPacienteModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deletePacienteModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					
-				</tbody>
-			</table>
-			
-                </div>
-            </div>    
-            </section>
+              </tr>
+				  </tbody>
+			  </table>
+      </div>    
+    </section>
 	</div>        
 </div>
 </div>
@@ -272,7 +266,7 @@ $(document).ready(function(){
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Name</label>
+						<label>Nome</label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
@@ -280,11 +274,11 @@ $(document).ready(function(){
 						<input type="email" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Address</label>
+						<label>Morada</label>
 						<textarea class="form-control" required></textarea>
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
+						<label>Telemóvel</label>
 						<input type="text" class="form-control" required>
 					</div>					
 				</div>

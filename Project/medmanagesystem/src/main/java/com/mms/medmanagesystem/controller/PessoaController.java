@@ -23,7 +23,7 @@ public class PessoaController {
     @Autowired
     private PessoaService service;
     
-     @GetMapping("/pessoas")
+    @GetMapping("/pessoas")
     public List<Pessoa> getAllPeople() {
         return service.getPessoas();
     }
