@@ -89,10 +89,6 @@ public class PacienteService {
         return repository.save(existingPaciente);
     }
 
-    public List<Paciente> findKeyword(String keyword)  {
-        return repository.findKeyword(keyword);
-    }
-
 
 
 }

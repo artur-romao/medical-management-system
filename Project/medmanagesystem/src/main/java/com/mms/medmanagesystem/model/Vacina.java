@@ -21,7 +21,7 @@ public class Vacina {
     @GeneratedValue
     private int id;
 
-    private String nome;
+    private String name;
     private String patologia;
 
 	// @OneToMany(cascade = CascadeType.ALL ,mappedBy = "vacina", orphanRemoval = true)
@@ -33,9 +33,9 @@ public class Vacina {
 
 	public Vacina () {}
 
-    public Vacina(int id, String nome, String patologia) {
+    public Vacina(int id, String name, String patologia) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.patologia = patologia;
     }
     
@@ -48,13 +48,13 @@ public class Vacina {
 		this.id = id;
 	}
 
-    @Column(name = "nome")
+    @Column(name = "name")
 	public String getName() {
-		return this.nome;
+		return this.name;
 	}
 
-	public void setName(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
     @Column(name = "patologia")

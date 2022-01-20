@@ -111,4 +111,18 @@ public class Pessoa {
         return this.paciente;
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " pessoacc='" + getPessoacc() + "'" +
+            ", name='" + getName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", telemovel='" + getTelemovel() + "'" +
+            ", morada='" + getMorada() + "'" +
+            ", datanascimento='" + getDatanascimento() + "'" +
+            "}";
+    }
+
+
 }

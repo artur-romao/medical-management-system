@@ -37,9 +37,6 @@ public class PacienteController {
   @Autowired PacienteService pacienteService;
 
   @Autowired
-  PessoaService pessoaService;
-
-  @Autowired
   ObjectFactory<HttpSession> httpSessionFactory;
 
   @GetMapping("/pacientes")
@@ -55,7 +52,7 @@ public class PacienteController {
     
     if (profissional.getPro().equals("Medico")) {medic = true;}
 
-    model.addAttribute("nome", profissional.getPessoa().getNome());
+    model.addAttribute("name", profissional.getPessoa().getName());
     model.addAttribute("medic", medic);
 
     List<Paciente> listaPacientes = pacienteService.getPacientes(); //todos os pacientes
@@ -83,20 +80,6 @@ public class PacienteController {
     
     modelAndView.setViewName("addpaciente");
 
-    List<Paciente> listaPacientes = pacienteService.getPacientes(); //todos os pacientes
-    List<Paciente> listaFiltrada = pacienteService.findKeyword(keyword);
-    
-    if (keyword != null) {
-      modelAndView.addObject("listaPacientes", listaFiltrada);
-    }
-    
-    else{
-
-      modelAndView.addObject("listaPacientes", listaPacientes);
-
-    }
-
-    modelAndView.setViewName("tables/pacientes");
     return modelAndView;
   }
 
@@ -117,8 +100,9 @@ public class PacienteController {
 
     }
 
-  @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public RedirectView editNewPaciente(@ModelAttribute("paciente") Paciente paciente) throws NumberFormatException, ResourceNotFoundEx
+  @RequestMapping(value = "/editsave", method = RequestMethod.POST)
+  
+    public RedirectView editNewPaciente(@ModelAttribute("paciente") Paciente paciente) throws NumberFormatException, ResourceNotFoundException {
       
       int id = paciente.getId();
       System.out.println(paciente);

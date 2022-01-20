@@ -19,7 +19,7 @@ function rebuildTable(data) {
     for (var i=0; i<data.length; i++) {
         row= 
             `<tr>
-                            <td> [[${patient.paciente.nome}]]</td>
+                            <td> [[${patient.paciente.name}]]</td>
                 <td> [[${patient.paciente.pessoacc}]]</td>
                             <td> [[${patient.paciente.email}]]</td>
                             <td> [[${patient.paciente.telemovel}]]</td>

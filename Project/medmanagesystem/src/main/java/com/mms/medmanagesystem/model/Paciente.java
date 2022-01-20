@@ -108,18 +108,6 @@ public class Paciente {
     public void setConsulta(Set<Consulta> consulta) {
         this.consulta = consulta;
     }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", paciente='" + getPaciente() + "'" +
-            ", consulta='" + getConsulta() + "'" +
-            ", internamento='" + getInternamento() + "'" +
-            "}";
-    }
-
    
 
     /*
