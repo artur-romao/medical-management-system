@@ -16,6 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 //@Data
 @Entity
 @Table(name = "paciente")
@@ -33,9 +36,12 @@ public class Paciente {
 
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
+    @JsonManagedReference
+
     private Set<Consulta> consulta;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
+    @JsonManagedReference
     private Set<Internamento> internamento;
 
 

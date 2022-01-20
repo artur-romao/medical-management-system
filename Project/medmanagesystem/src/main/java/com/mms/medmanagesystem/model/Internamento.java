@@ -5,13 +5,17 @@ package com.mms.medmanagesystem.model;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 
 
 // @Data
@@ -39,27 +43,30 @@ public class Internamento {
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
+	@JsonBackReference
     private Paciente paciente;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name="id_profissional")
+	@JsonBackReference
+
 	private Profissional profissional;
 
 	public Internamento(){}
   
   public Internamento(Paciente paciente, Profissional profissional, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida, int[] statefilter) { 
-	  this.profissional = profissional;
-		this.paciente = paciente;
-    this.pulso = pulso;
-		this.oxigenio = oxigenio;
-    this.pressaoarterial = pressaoarterial;
-    this.temperatura = temperatura;
-    this.razaointernamento = razaointernamento;
-		this.estado = estado;
-    this.quartocama = quartocama;
-    this.dataadmissao = dataadmissao;
-    this.datasaida = datasaida;
-		this.statefilter=statefilter;
+	this.profissional = profissional;
+	this.paciente = paciente;
+	this.pulso = pulso;
+	this.oxigenio = oxigenio;
+	this.pressaoarterial = pressaoarterial;
+	this.temperatura = temperatura;
+	this.razaointernamento = razaointernamento;
+	this.estado = estado;
+	this.quartocama = quartocama;
+	this.dataadmissao = dataadmissao;
+	this.datasaida = datasaida;
+	this.statefilter=statefilter;
   }
 
 

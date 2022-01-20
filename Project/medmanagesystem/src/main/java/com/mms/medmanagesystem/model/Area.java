@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 //@Data
 @Entity
 @Table(name = "area")
@@ -26,6 +28,8 @@ public class Area {
     private String name; 
                                                 //o maped by é com as cenas do java
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
+    @JsonManagedReference
+
     private Set<Profissional> profissionais;
     
 

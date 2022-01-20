@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Lista de Pacientes </title>
+<title>Pacientes </title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -23,12 +23,9 @@
  --><!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
  <!-- AdminLTE App -->
-<!-- <script src="../../js/adminlte.min.js"></script>
- --><!-- AdminLTE for demo purposes -->
-<!-- <script src="../../js/demo.js"></script>
- -->
- <script type="text/javascript" th:src="@{../../js/actions.js}"></script>
- <script th:inline="javascript">
+<script src="../../js/adminlte.min.js"></script>
+<script type="text/javascript" th:src="@{../../js/actions.js}"></script>
+<script th:inline="javascript">
 
 
 /*<![CDATA[*/
@@ -172,11 +169,19 @@ $(document).ready(function(){
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" style="margin-bottom: 290px;">
             <a href="chat" class="nav-link">
               <i class="nav-icon fas fa-comment-medical"></i>
               <p>
                 Chat clínico
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="login" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <p>
+              Terminar sessão
               </p>
             </a>
           </li>
@@ -203,18 +208,21 @@ $(document).ready(function(){
       <div class="row mb-2">
         <div class="col-md-8 pl-5 pr-5 col-sm-12">
           <div class="input-group" style="width: 100%;">
-            <input type="search" class="form-control form-control-lg" placeholder="Pesquisar" >
+            <form th:action="@{/pacientes}" method="GET">
+            <input type="search" class="form-control form-control-lg"  name="keyword" id="txtSearch" placeholder="Pesquisar por nome" >
             <div class="input-group-append">
                 <button type="submit" class="btn btn-lg btn-default">
                     <i class="fa fa-search"></i>
                 </button>   
             </div>
+          </form>
           </div>
         </div>
         <div class="col-md-4 col-sm-12 text-right pr-5">
           <a th:href="@{pacientes/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo paciente</span></a>
         </div>
       </div>
+    </div>
     <section class="content" style="width:95%; margin-left: 30px;">
       <div class="card">
         <div class="card-body">

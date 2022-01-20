@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.sql.Date;
 
 
@@ -34,10 +36,12 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
+	@JsonBackReference
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "id_profissional", nullable = false)
+	@JsonBackReference
     private Profissional profissional;
 
     
