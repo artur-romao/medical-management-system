@@ -45,7 +45,7 @@ public class VacinaService {
         Vacina existingvacinas = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Vacina not found for this id:" + id));
         
-        existingvacinas.setNome(vacina.getNome());
+        existingvacinas.setName(vacina.getName());
         existingvacinas.setPatologia(vacina.getPatologia());
         return repository.save(existingvacinas);
         

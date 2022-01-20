@@ -35,6 +35,7 @@ public class PerfilController {
     model.addAttribute("telemovel", profissional.getPessoa().getTelemovel());
     model.addAttribute("morada", profissional.getPessoa().getMorada());
     model.addAttribute("datanascimento", profissional.getPessoa().getDatanascimento());
+
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("perfil");
     return modelAndView;

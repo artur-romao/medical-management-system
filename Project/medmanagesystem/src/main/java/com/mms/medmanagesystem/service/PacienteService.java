@@ -8,6 +8,8 @@ import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
 import com.mms.medmanagesystem.repository.InternamentoRepository;
 import com.mms.medmanagesystem.repository.PacienteRepository;
+import com.mms.medmanagesystem.repository.PessoaRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,16 @@ import java.util.Map;
 
 @Service
 public class PacienteService {
-    
-    @Autowired private PacienteRepository repository;
-    // private ConsultaRepository consultarepo;
-    // private InternamentoRepository internamentorepo;
-    @Autowired private PessoaService pessoaService;
+  
+    @Autowired
+    private PacienteRepository repository;
+    @Autowired
+    private ConsultaRepository crep;
+    @Autowired
+    private InternamentoRepository irep;
+    @Autowired
+    private PessoaRepository pessoarep;
+
 
 
     public Paciente savePaciente(Paciente paciente) {
@@ -55,6 +62,15 @@ public class PacienteService {
         .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
     }
 
+    /* public Paciente getPacienteBycc(int cc) throws ResourceNotFoundException {
+        return repository.findCc(cc);
+    } */
+    
+    public List<Paciente> findKeyword(String keyword)  {
+
+        return repository.findKeyword(keyword);
+    }
+
     public Map<String, Boolean> deletePaciente(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
 
@@ -65,9 +81,10 @@ public class PacienteService {
 
     }
 
-    public Paciente updatePaciente(int id, Paciente paciente) throws ResourceNotFoundException {
+    public Paciente updatePaciente(Paciente paciente) throws ResourceNotFoundException {
+
         Paciente existingPaciente = repository.findById(paciente.getId())
-        .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
+        .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + paciente.getId()));
         
         return repository.save(existingPaciente);
     }

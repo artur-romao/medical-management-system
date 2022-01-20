@@ -50,7 +50,7 @@ public class DoencaService {
         Doenca existingDoenca = repository.findById(Doenca.getid())
         .orElseThrow(() -> new ResourceNotFoundException("Doenca not found for this id : " + id));
         
-        existingDoenca.setNome(Doenca.getNome());
+        existingDoenca.setName(Doenca.getName());
         existingDoenca.setDescricao(Doenca.getDescricao());
         existingDoenca.setid(Doenca.getid());
         return repository.save(existingDoenca);
