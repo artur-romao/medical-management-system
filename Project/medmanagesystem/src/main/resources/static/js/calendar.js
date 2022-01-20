@@ -1,37 +1,3 @@
-  var global_events = [
-    {
-      title          : 'Cirurgia ao pâncreas Afonso Costa',
-      start          : new Date(y, m, 7, 9, 30, 17, 30),
-      allDay         : false,
-      backgroundColor: '#f56954', //red
-      borderColor    : '#f56954', //red
-      id_profissional: 1
-    },
-    {
-      title          : 'MedLabs - Palestras sobre novos fármacos',
-      start          : new Date(y, m, d - 2),
-      end            : new Date(y, m, d),
-      backgroundColor: '#f39c12', //yellow
-      borderColor    : '#f39c12', //yellow
-      id_profissional: 2
-    },
-    {
-      title          : 'Teleconsulta Joana Gomes',
-      start          : new Date(y, m, d, 10, 30),
-      allDay         : false,
-      backgroundColor: '#0073b7', //Blue
-      borderColor    : '#0073b7', //Blue
-      id_profissional: 3
-    },
-    {
-      title          : 'Concerto Joana Gomes',
-      start          : new Date(2022, 1-1, d, 12, 30),
-      allDay         : false,
-      backgroundColor: '#0073b7', //Blue
-      borderColor    : '#0073b7', //Blue
-      id_profissional: 1
-    }
-  ];
   $(function create_calendar() {
 
     /* initialize the external events
@@ -91,7 +57,15 @@
       }
     });
 
-    var events = [
+    var calendar = new Calendar(calendarEl, {
+      headerToolbar: {
+        left  : 'prev,next today',
+        center: 'title',
+        right : 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      themeSystem: 'bootstrap',
+      //Random default events
+      events = [
         {
           title          : 'Cirurgia ao pâncreas Afonso Costa',
           start          : new Date(y, m, 7, 9, 30, 17, 30),
@@ -124,17 +98,7 @@
           borderColor    : '#0073b7', //Blue
           id_profissional: 1
         }
-      ];
-
-    var calendar = new Calendar(calendarEl, {
-      headerToolbar: {
-        left  : 'prev,next today',
-        center: 'title',
-        right : 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      themeSystem: 'bootstrap',
-      //Random default events
-      events,
+      ],
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
       drop      : function(info) {
