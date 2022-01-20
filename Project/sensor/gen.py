@@ -8,7 +8,6 @@ import asyncio
 import numpy
 import json
 import os
-import requests
 import random
 import matplotlib.pyplot as plt
 from scipy.misc import electrocardiogram
@@ -20,7 +19,7 @@ import mysql.connector
 class Generators:
      """ This class houses all the functions that will generate data"""
      def __init__(self):
-          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', port=5672))
+          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='mq', port=5672))
           self.marychanel = self.connection.channel()
           
           self.marychanel.queue_declare(queue='oxi',durable=True)
@@ -31,11 +30,10 @@ class Generators:
           self.id=1
 
           mydb = mysql.connector.connect(
-          host="localhost",
-          port=8081,
+          host="db",
           user="user",
           password="user",
-          database="MMS"
+          db="MMS"
           )
           mycursor = mydb.cursor()
           mycursor.execute("SELECT COUNT(*) FROM internamento")

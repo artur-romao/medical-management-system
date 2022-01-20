@@ -3,6 +3,7 @@ package com.mms.medmanagesystem.model;
 //import lombok.Data;
 //import lombok.EqualsAndHashCode;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // @Data
 @Entity

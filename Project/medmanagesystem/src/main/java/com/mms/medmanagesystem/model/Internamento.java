@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 
 
 // @Data

@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
-import com.mms.medmanagesystem.model.Consulta;
-import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
