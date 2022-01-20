@@ -4,11 +4,8 @@ import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.repository.InternamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.mms.medmanagesystem.messageBroker.Pair;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;

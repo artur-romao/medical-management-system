@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.sql.DataSource;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

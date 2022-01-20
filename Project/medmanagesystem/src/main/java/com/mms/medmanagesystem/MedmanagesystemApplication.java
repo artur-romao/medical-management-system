@@ -1,10 +1,6 @@
 package com.mms.medmanagesystem;
 import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import javax.transaction.Transactional;
 
 import com.mms.medmanagesystem.service.*;
 import com.mms.medmanagesystem.model.*;
@@ -16,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+
 
 @EnableRabbit
 @SpringBootApplication 

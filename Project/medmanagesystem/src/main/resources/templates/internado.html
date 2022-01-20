@@ -285,12 +285,16 @@ async function getData(url){
     console.log("Refreshed"); 
 }
 }
-  const queryString = window.location.href;
-  console.log(queryString.split("/")[queryString.split("/").length-1]);
+  const queryString = window.location.href.toString();
+  
+  const newurl = queryString.replace("6767", "6767/api");
+
+  //max is
+  
   //const id = urlParams.get('id')
   const id=queryString.split("/")[queryString.split("/").length-1];
-  
-  getData("http://localhost:8080/api/internado/"+id);
+
+  getData(newurl);
 
 //upon document load
   //should add data-id to the class with the class sensor

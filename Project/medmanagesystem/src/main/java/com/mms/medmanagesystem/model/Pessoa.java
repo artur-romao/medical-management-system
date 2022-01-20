@@ -3,8 +3,6 @@ package com.mms.medmanagesystem.model;
 //import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Id;
 
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 // @Data 
 @Entity 
