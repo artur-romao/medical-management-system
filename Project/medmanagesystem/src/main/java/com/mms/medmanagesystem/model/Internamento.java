@@ -14,8 +14,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 // @Data
@@ -28,17 +34,35 @@ public class Internamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "pulso")
     private Double[] pulso;
+
+	@Column(name = "pressaoarterial")
     private  Float[] pressaoarterial;
-    private float temperatura;
+    
+	@Column(name = "temperatura")
+	private float temperatura;
+
+	@Column(name = "oxigenio")
 	private float oxigenio;
-    private String razaointernamento;
-    private String quartocama;
-    private String estado;
+    
+	@Column(name = "razaointernamento")
+	private String razaointernamento;
+    
+	@Column(name = "quartocama")
+	private String quartocama;
+    
+	@Column(name = "estado")
+	private String estado;
   
+	@DateTimeFormat
+	@Column(name = "dataadmissao")
     private Date dataadmissao;
+
+	@Column(name = "datasaida")
     private Date datasaida;
 
+	@Column(name= "statefilter")
 	private int[] statefilter;
     
     @ManyToOne(optional = false)
@@ -120,12 +144,10 @@ public class Internamento {
 		this.paciente = paciente;
 	}
 
-	@Column(name = "pulso")
 	public Double[] getPulso() {
 		return this.pulso;
 	}
 
-	@Column(name = "oxigenio")
 	public float getOxigenio() {
 		return this.oxigenio;
 	}
@@ -138,7 +160,6 @@ public class Internamento {
 		this.pulso = pulso;
 	} 
 
-    @Column(name = "pressaoarterial")
 	public Float[] getPressaoarterial() {
 		return this.pressaoarterial;
 	}
@@ -147,7 +168,6 @@ public class Internamento {
 		this.pressaoarterial = pressaoarterial;
 	}
 
-    @Column(name = "temperatura")
 	public float getTemperatura() {
 		return this.temperatura;
 	}
@@ -157,7 +177,6 @@ public class Internamento {
 	}
     
     
-    @Column(name = "razaointernamento")
 	public String getRazaointernamento() {
 		return this.razaointernamento;
 	}
@@ -166,7 +185,6 @@ public class Internamento {
 		this.razaointernamento = razaointernamento;
 	}
 
-    @Column(name = "quartocama")
 	public String getQuartocama() {
 		return this.quartocama;
 	}
@@ -175,7 +193,6 @@ public class Internamento {
 		this.quartocama = quartocama;
 	}
 
-    @Column(name = "estado")
 	public String getEstado() {
 		return this.estado;
 	}
@@ -184,8 +201,6 @@ public class Internamento {
 		this.estado = estado;
 	}
 
-
-    @Column(name = "dataadmissao")
     public Date getDataadmissao() {
 		return this.dataadmissao;
 	}
@@ -194,24 +209,48 @@ public class Internamento {
 		this.dataadmissao = dataadmissao;
 	}
 
-    
-    @Column(name = "datasaida")
-	public Date getDatasaida() {
+    	public Date getDatasaida() {
 		return this.datasaida;
 	}
 
 	public void setDatasaida(Date datasaida) {
 		this.datasaida = datasaida;
 	}
-	@Column(name= "statefilter")
+
 	public int [] statefilter(){
 		return this.statefilter;
 	}
+
     public int[] getStatefilter() {
 		return statefilter;
 	}
+
 	public void setStatefilter(int[] statefilter) {
 		this.statefilter = statefilter;
 	}
+
+	// @Column(name = "paciente_cc")
+	// public int getPacientecc(){
+	// 	return this.paciente_cc
+	// }
+
+
+	@Override
+	public String toString() {
+		return "{" +
+			" id='" + getId() + "'" +
+			", pulso='" + getPulso() + "'" +
+			", pressaoarterial='" + getPressaoarterial() + "'" +
+			", temperatura='" + getTemperatura() + "'" +
+			", oxigenio='" + getOxigenio() + "'" +
+			", razaointernamento='" + getRazaointernamento() + "'" +
+			", quartocama='" + getQuartocama() + "'" +
+			", estado='" + getEstado() + "'" +
+			", dataadmissao='" + getDataadmissao() + "'" +
+			", datasaida='" + getDatasaida() + "'" +
+			", statefilter='" + getStatefilter() + "'" +
+			"}";
+	}
+
 
 }

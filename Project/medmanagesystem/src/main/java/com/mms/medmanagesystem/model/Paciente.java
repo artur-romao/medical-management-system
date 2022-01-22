@@ -30,17 +30,14 @@ public class Paciente {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
+    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc")
     private Pessoa paciente;
 
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
-    @JsonManagedReference
-
     private Set<Consulta> consulta;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
-    @JsonManagedReference
     private Set<Internamento> internamento;
 
 

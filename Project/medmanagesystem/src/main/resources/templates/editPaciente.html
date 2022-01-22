@@ -34,37 +34,41 @@
 <body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
     <div class="wrapper">
             <div>
-                <form action="#" th:action="@{/editsave}" th:object="${pac}"  method="post">
-                    <input type="hidden" th:field="*{id}"/>
-
-
+                <form action="#" th:action="@{/editsave}" th:object="${paciente}"  method="post"> 
+                    
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Paciente</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
+                            <input type="hidden" class="form-control" th:field="*{pessoacc}" required>
+                            <input type="hidden" class="form-control" th:field="*{datanascimento}" required>
+                            <!--<input type="hidden" th:field="*{id}"/>-->
                             <label>Nome</label>
-                            <input type="text" class="form-control" th:field="*{pessoa.name}"> 
-                    </div>
+                            <input type="text" class="form-control" th:field="*{name}"> 
+                        </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" th:field="*{pessoa.email}" >                        
+                            <input type="email" class="form-control" th:field="*{email}" >                        
                         </div>
                         <div class="form-group">
                             <label>Morada </label>
-                            <input type="text" class="form-control" th:field="*{pessoa.morada}"  style="width: 20%;" ></input>
+                            <input type="text" class="form-control" th:field="*{morada}"  style="width: 20%;" ></input>
                         </div>
                         <div class="form-group">
                             <label>Telemóvel</label>
-                            <input type="text" class="form-control" th:field="*{pessoa.telemovel}" >                        
+                            <input type="text" class="form-control" th:field="*{telemovel}" >                        
                         </div>
                     </div>
                     <div class="modal-footer">
                         <a href="../pacientes" > 
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input align="left" name="button" type="submit" class="btn btn-danger" value="Eliminar Paciente">
                         </a>
                         <a href="../pacientes" > 
-                        <input type="submit" class="btn btn-info" value="Save">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        </a>
+                        <a href="../pacientes" > 
+                            <input type="submit" name="button" class="btn btn-info" value="Guardar">
                         </a>
                     </div>
                 </form>

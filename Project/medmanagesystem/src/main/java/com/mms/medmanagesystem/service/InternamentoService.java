@@ -2,6 +2,7 @@ package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
+import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.repository.InternamentoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,9 +91,6 @@ public class InternamentoService {
         return repository.save(existingInternamento);
     }
 
-    // public void updateInternamentoInfo(Internamento internamento, float oxigenio, Double[] pulso, Float[] pressaoarterial, float temperatura, String razaointernamento, String quartocama, String estado, Date dataadmissao, Date datasaida) {
-    
-    // }
     public void updateStates(int idinternamento, String sensorname, int value ) throws ResourceNotFoundException{
         //definir ordem do array como PULSO POS 0, TEMPERATURA POS 1, OXIGENIO POS 2, PRESSÃO POS 3
 
@@ -142,7 +140,7 @@ public class InternamentoService {
             internado.setEstado("grave");
 
         }else if (maximum ==2){
-            internado.setEstado("coma");
+            internado.setEstado("critico");
         }else{ //keeps state in case of error
             internado.setEstado(internado.getEstado());
         }
@@ -153,6 +151,11 @@ public class InternamentoService {
         this.updateInternamento(idinternamento,internado);
 
         
+    }
+
+    public int getInternamentoIdByPaciente(int id) {
+        
+        return repository.getInternamentoByIdPaciente(id);
     }
 
 
