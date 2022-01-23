@@ -30,10 +30,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 public class PacienteController {
-  
-  @Autowired PessoaService pessoaService;
-  @Autowired ProfissionalService profissionalService;
-  @Autowired PacienteService pacienteService;
+
+  @Autowired
+  PessoaService pessoaService;
+  @Autowired
+  ProfissionalService profissionalService;
+  @Autowired
+  PacienteService pacienteService;
 
   @Autowired
   ObjectFactory<HttpSession> httpSessionFactory;
@@ -42,30 +45,34 @@ public class PacienteController {
   public ModelAndView paciente(Model model, String keyword) throws NumberFormatException, ResourceNotFoundException {
 
     ModelAndView modelAndView = new ModelAndView();
-    
+
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
-        
+
     boolean medic = false;
-    
-    if (profissional.getPro().equals("Medico")) {medic = true;}
+
+    if (profissional.getPro().equals("Medico")) {
+      medic = true;
+    }
 
     model.addAttribute("name", profissional.getPessoa().getName());
     model.addAttribute("medic", medic);
 
     List<Paciente> listaPacientes = pacienteService.getPacientes(); // todos os pacientes
     List<Paciente> listaFiltrada = pacienteService.findKeyword(keyword);
-    
-    if (keyword != null) { modelAndView.addObject("listaPacientes", listaFiltrada); }
-    else { modelAndView.addObject("listaPacientes", listaPacientes); }
+
+    if (keyword != null) {
+      modelAndView.addObject("listaPacientes", listaFiltrada);
+    } else {
+      modelAndView.addObject("listaPacientes", listaPacientes);
+    }
 
     modelAndView.setViewName("tables/pacientes");
     return modelAndView;
   }
 
-    // add ---------------------
-
+  // add ---------------------
 
   @GetMapping("pacientes/add")
   public ModelAndView addPacienteForm(Model model) throws NumberFormatException, ResourceNotFoundException {
@@ -74,72 +81,68 @@ public class PacienteController {
 
     Pessoa paciente = new Pessoa();
     model.addAttribute("paciente", paciente);
-    
+
     modelAndView.setViewName("addpaciente");
 
     return modelAndView;
   }
 
-  
   @PostMapping(value = "/save")
-  public RedirectView saveNewPaciente(@ModelAttribute("paciente") Pessoa paciente) throws NumberFormatException, ResourceNotFoundException {
-      
+  public RedirectView saveNewPaciente(@ModelAttribute("paciente") Pessoa paciente)
+      throws NumberFormatException, ResourceNotFoundException {
+
     Paciente pac = new Paciente(paciente);
     pacienteService.savePaciente(pac);
 
     return new RedirectView("pacientes");
   }
-    
 
+  // update or delete ---------------------
 
-    // update or delete ---------------------
-    
-    @RequestMapping("pacientes/edit/{pessoacc}")
-    public ModelAndView updatePaciente(Model model, @PathVariable(name="pessoacc") int pessoacc) throws ResourceNotFoundException {
+  @RequestMapping("pacientes/edit/{pessoacc}")
+  public ModelAndView updatePaciente(Model model, @PathVariable(name = "pessoacc") int pessoacc)
+      throws ResourceNotFoundException {
 
+    ModelAndView modelEdit = new ModelAndView();
 
-      ModelAndView modelEdit = new ModelAndView();
+    Pessoa paciente = pessoaService.getPessoaBycc(pessoacc);
 
-      Pessoa paciente = pessoaService.getPessoaBycc(pessoacc);
+    model.addAttribute("paciente", paciente);
 
-      model.addAttribute("paciente", paciente);
+    modelEdit.setViewName("editPaciente");
 
-      modelEdit.setViewName("editPaciente");
-  
-      return modelEdit;
+    return modelEdit;
+  }
+
+  @PostMapping(value = "/editsave")
+  public RedirectView editNewPaciente(@ModelAttribute("paciente") Pessoa paciente, HttpServletRequest request)
+      throws NumberFormatException, ResourceNotFoundException {
+
+    String button = request.getParameter("button");
+    if ("Guardar".equals(button)) {
+      pessoaService.updatePessoa(paciente);
+    } else if ("Eliminar Paciente".equals(button)) {
+      pessoaService.deletePessoa(paciente);
     }
 
+    return new RedirectView("pacientes");
+  }
 
-    @PostMapping(value = "/editsave")
-    public RedirectView editNewPaciente(@ModelAttribute("paciente") Pessoa paciente, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException {   
+  // delete ---------------------
 
-      String button = request.getParameter("button");
-      if ("Guardar".equals(button)){
-        pessoaService.updatePessoa(paciente);
-      }
-      else if ("Eliminar Paciente".equals(button)){
-        pessoaService.deletePessoa(paciente);
-      }
+  @RequestMapping(value = "/pacientes/delete/{pessoacc}")
+  public ModelAndView deletePaciente(Model model, @PathVariable(name = "pessoacc") int pessoacc)
+      throws ResourceNotFoundException {
 
-      return new RedirectView("pacientes");
-    }
-  
-  
-    // delete ---------------------
+    ModelAndView modelEdit = new ModelAndView();
 
+    Pessoa paciente = pessoaService.getPessoaBycc(pessoacc);
 
-    @RequestMapping(value = "/pacientes/delete/{pessoacc}")
-    public ModelAndView deletePaciente(Model model, @PathVariable(name="pessoacc") int pessoacc) throws ResourceNotFoundException {
-        
-      ModelAndView modelEdit = new ModelAndView();
+    model.addAttribute("paciente", paciente);
 
-      Pessoa paciente = pessoaService.getPessoaBycc(pessoacc);
+    modelEdit.setViewName("deletePaciente");
 
-      model.addAttribute("paciente", paciente);
+    return modelEdit;
+  }
 
-      modelEdit.setViewName("deletePaciente");
-  
-      return modelEdit;
-    }
-  
 }
