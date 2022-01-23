@@ -106,6 +106,16 @@ public class Consulta {
 		this.anotacoes = anotacoes;
 	}
 
+
+	@Override
+	public String toString() {
+		return "{" +
+			" id='" + getId() + "'" +
+			", motivo='" + getMotivo() + "'" +
+			", data='" + getData() + "'" +
+			", anotacoes='" + getAnotacoes() + "'" + 
+			"}";
+	}
     
 }
 

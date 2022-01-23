@@ -26,10 +26,9 @@ public class Area {
 
     @Column (name = "name")
     private String name; 
-                                                //o maped by é com as cenas do java
+    
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
     @JsonManagedReference
-
     private Set<Profissional> profissionais;
     
     
