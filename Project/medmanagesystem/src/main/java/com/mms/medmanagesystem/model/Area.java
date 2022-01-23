@@ -26,10 +26,9 @@ public class Area {
 
     @Column (name = "name")
     private String name; 
-                                                //o maped by é com as cenas do java
+    
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
     @JsonManagedReference
-
     private Set<Profissional> profissionais;
     
 
@@ -55,5 +54,13 @@ public class Area {
 		this.name = name;
 	}
     
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            "}";
+    }
     
 }

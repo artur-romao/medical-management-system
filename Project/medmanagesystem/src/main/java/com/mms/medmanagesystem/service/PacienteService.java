@@ -32,10 +32,6 @@ public class PacienteService {
 
     public Paciente savePaciente(Paciente paciente) {
 
-        // Pessoa pessoa = paciente.getPessoa();
-        // System.out.println(pessoa);
-        // pessoaService.savePessoa(pessoa);
-
         return repository.save(paciente);
     }
 

@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -53,7 +55,7 @@ public class InternamentoController {
     model.addAttribute("name", profissional.getPessoa().getName());
 
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
-    
+
     modelAndView.addObject("listaInternamentos", listaInternamentos);
     modelAndView.setViewName("tables/internados");
 
@@ -79,6 +81,8 @@ public class InternamentoController {
       
     } 
 
+    // add --------------------------
+
     @GetMapping("internados/add")
     public ModelAndView addInternamentoForm(Model model) throws NumberFormatException, ResourceNotFoundException {
   
@@ -93,25 +97,43 @@ public class InternamentoController {
     }
 
     @PostMapping(value = "/saveinternado")
-    public RedirectView saveNewInternamento(Model model, @ModelAttribute("internamento") Internamento internamento, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException {   
+    public RedirectView saveNewInternamento(@ModelAttribute("internamento") Internamento internamento, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException {   
 
+      HttpSession session = httpSessionFactory.getObject();
+      String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+      Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
+      internamento.setId(internamentoService.getInternamentos().size()+1);
+      
       String paciente_cc = request.getParameter("paciente_cc");
-
       Pessoa internado = pessoaService.getPessoaBycc(Integer.parseInt(paciente_cc));
-      if (internado != null) {
+      
+      
+      if (internado.getPaciente() != null) {
+     
+        internamento.setPaciente(internado.getPaciente());
+        internamento.setProfissional(profissional);
 
-        model.addAttribute("name", internado.getName());
-        model.addAttribute("paciente_cc", internado.getPessoacc());
-        model.addAttribute("id_paciente", internado.getProfissional().getId());
-
+        System.out.println(internamento);
         internamentoService.saveInternamento(internamento);
+
       }
   
       return new RedirectView("internados");
     }
 
-    
-  @GetMapping("/api/internado/{id}")
+
+    // --------- delete
+
+    @RequestMapping(value = "deleteinternamento/{id}", method = RequestMethod.GET)
+    public RedirectView handleDeleteInternamento(@PathVariable String id) throws NumberFormatException, ResourceNotFoundException {
+      internamentoService.deleteInternamento(Integer.parseInt(id));
+      
+      return new RedirectView("internados");
+    }
+
+
+    @GetMapping("/api/internado/{id}")
     public @ResponseBody Map<Internamento,Paciente> getInternamentosId(@PathVariable String id) throws ResourceNotFoundException {
       Internamento inter = internamentoService.getInternamentoById(Integer.parseInt(id));
       Paciente pac = inter.getPaciente();

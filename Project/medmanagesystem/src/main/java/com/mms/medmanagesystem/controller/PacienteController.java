@@ -124,22 +124,4 @@ public class PacienteController {
       return new RedirectView("pacientes");
     }
   
-  
-    // delete ---------------------
-
-
-    @RequestMapping(value = "/pacientes/delete/{pessoacc}")
-    public ModelAndView deletePaciente(Model model, @PathVariable(name="pessoacc") int pessoacc) throws ResourceNotFoundException {
-        
-      ModelAndView modelEdit = new ModelAndView();
-
-      Pessoa paciente = pessoaService.getPessoaBycc(pessoacc);
-
-      model.addAttribute("paciente", paciente);
-
-      modelEdit.setViewName("deletePaciente");
-  
-      return modelEdit;
-    }
-  
 }

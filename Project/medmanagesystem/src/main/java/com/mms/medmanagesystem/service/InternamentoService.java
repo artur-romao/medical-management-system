@@ -33,10 +33,11 @@ public class InternamentoService {
     }
 
     public List<Internamento> getInternamentosByProfissionalId(int profissional_id) {
+
         List<Internamento> all_internamentos = getInternamentos();
         List<Internamento> internamentos = new ArrayList<Internamento>();
         for (Internamento i : all_internamentos) {
-            if (i.getProfissional().getId() == profissional_id) {
+            if (i.getProfissional().getId() == profissional_id && i.getDatasaida() == null) {
                 internamentos.add(i);
             }
         }
@@ -44,33 +45,43 @@ public class InternamentoService {
     }
 
     public Set<Internamento> getAllInternamentosById(int... id_internamento) throws ResourceNotFoundException {
-    // Creating an empty Set
-
+        // Creating an empty Set
+        
         Set<Internamento> s = new HashSet<>();
         for (int id : id_internamento){
             Internamento intern = repository.findById(id)
-                            .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
+            .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
             s.add(intern);
         }
-
+        
         return s;
 	}
-
+    
     public Internamento getInternamentoById(int id) throws ResourceNotFoundException{
         
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
 
     }
-
+    
     public Map<String, Boolean> deleteInternamento(int id) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
-    
+        
         repository.deleteById(id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;    
     }
+
+    public void deleteInternamento(Internamento internamento) throws ResourceNotFoundException {
+        int id = internamento.getId();
+
+        repository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
+        
+        repository.deleteById(id);
+    }
+
 
     public Internamento updateInternamento(int id, Internamento Internamento) throws ResourceNotFoundException {
         Internamento existingInternamento = repository.findById(id)
@@ -157,6 +168,7 @@ public class InternamentoService {
         
         return repository.getInternamentoByIdPaciente(id);
     }
+
 
 
 }
