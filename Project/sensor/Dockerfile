@@ -1,11 +1,9 @@
-FROM python:3.8
+FROM python:3
 
 COPY requirements.txt ./
 
-ADD gen.py /
-
-ADD recv.py /
-
 RUN pip install -r requirements.txt
+
+ADD gen.py /
 
 CMD ["python3", "gen.py" ]

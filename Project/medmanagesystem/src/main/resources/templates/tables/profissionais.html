@@ -200,10 +200,10 @@ $(document).ready(function(){
                   <div class="row mb-2">
                     
                     <div class="col-sm-6">
-                      <h3>Lista de pacientes</h3>
+                      <h3>Lista de Profissionais</h3>
                     </div>
                     <div class="col-sm-6 text-right pr-5">
-                      <a th:href="@{pacientes/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo paciente</span></a>
+                      <a th:href="@{profissional/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo profissional</span></a>
                     </div>
 
                   </div>
@@ -230,21 +230,22 @@ $(document).ready(function(){
               <th>Telemóvel</th>
               <th>Morada</th>
               <th>Data de Nascimento</th>
+              <th>Área</th>
 					  </tr>
 			  	</thead>
 				  <tbody>
-            <th:block th:each="patient : ${listaPacientes}"> 
+            <th:block th:each="prof : ${listaProfs}"> 
               <tr>
-                <td> [[${patient.pessoa.name}]]</td>
-                <td> [[${patient.pessoa.pessoacc}]]</td>
-                <td> [[${patient.pessoa.email}]]</td>
-                <td> [[${patient.pessoa.telemovel}]]</td>
-                <td> [[${patient.pessoa.morada}]]</td>
-                <td> [[${patient.pessoa.datanascimento}]]</td>
+                <td> [[${prof.pessoa.name}]]</td>
+                <td> [[${prof.pessoa.pessoacc}]]</td>
+                <td> [[${prof.pessoa.email}]]</td>
+                <td> [[${prof.pessoa.telemovel}]]</td>
+                <td> [[${prof.pessoa.morada}]]</td>
+                <td> [[${prof.pessoa.datanascimento}]]</td>
+                <td> [[${prof.area.name}]]</td>
+
                 
-                <td th:if="${medic == true}">
-							    <a th:href="@{pacientes/edit/__${patient.pessoa.pessoacc}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                </td>
+                
 
               </tr>
 				  </tbody>

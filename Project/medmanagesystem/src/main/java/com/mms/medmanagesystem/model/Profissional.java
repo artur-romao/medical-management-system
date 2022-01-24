@@ -3,6 +3,7 @@ package com.mms.medmanagesystem.model;
 //import lombok.Data;
 //import lombok.EqualsAndHashCode;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 // @Data
 @Entity
@@ -52,11 +55,36 @@ public class Profissional {
     
     public Profissional(){}
 
+    public Profissional(Pessoa profissional) {
+        this.profissional=profissional;
+    }
+
     public Profissional(String password, Pessoa profissional, Area area, String pro) { 
         this.area = area;
         this.profissional = profissional;
         this.password = password;
         this.pro = pro;
+    }
+    
+    public static enum state {
+
+        MEDICO("Medico"),
+        ENFERMEIRO("Enfermeiro");
+        
+        private final String profissional;  
+    
+        private state (String profissional) {
+            this.profissional = profissional;
+        }
+    
+        public boolean equalsProfissional(String otherProfissional) {
+            return profissional.equals(otherProfissional);
+        }
+    
+        public String toString() {
+           return this.profissional;
+        }
+        
     }
 
     @Column(name = "id_profissional")

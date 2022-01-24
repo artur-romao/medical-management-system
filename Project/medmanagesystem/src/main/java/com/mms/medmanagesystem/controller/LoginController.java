@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.LoginCredentials;
+import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.model.Profissional;
+import com.mms.medmanagesystem.service.PessoaService;
 import com.mms.medmanagesystem.service.ProfissionalService;
 
 import org.springframework.beans.factory.ObjectFactory;
@@ -22,8 +24,8 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class LoginController {
 
-  @Autowired
-  private ProfissionalService profissionalService;
+  @Autowired private ProfissionalService profissionalService;
+  @Autowired private PessoaService pessoaService;
 
   @Autowired
   ObjectFactory<HttpSession> httpSessionFactory;
@@ -53,14 +55,14 @@ public class LoginController {
   @PostMapping("/")
   public RedirectView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model) throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
-    String profissionalid = loginCredentials.getProfissionalid();
+    String profissionalcc = loginCredentials.getProfissionalcc();
     String password = loginCredentials.getPassword();
     
-    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+    Pessoa profissional = pessoaService.getPessoaBycc(Integer.parseInt(profissionalcc));
     
-    if (profissional.getPassword().equals(password)) {
-      session.setAttribute("id_profissional", profissionalid);
-      session.setAttribute("pessoa_cc", profissional.getPessoa().getPessoacc());
+    if (profissional.getProfissional().getPassword().equals(password)) {
+      session.setAttribute("profissional_cc", profissionalcc);
+      session.setAttribute("id_profissional", profissional.getProfissional().getId());
       return new RedirectView("index");
     }
     else {

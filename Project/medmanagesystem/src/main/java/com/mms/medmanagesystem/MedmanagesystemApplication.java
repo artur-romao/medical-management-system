@@ -1,6 +1,7 @@
 package com.mms.medmanagesystem;
 import com.mms.medmanagesystem.enumFolder.EstadoEnum;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import com.mms.medmanagesystem.service.*;
 import com.mms.medmanagesystem.model.*;
@@ -69,7 +70,6 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			profissionalService.saveProfissional(new Profissional("7381230573812305", (new Pessoa(73812305, "Alexandra Dominguez", "alexandradominguez7380@google.com", 921622641, "5626 Magna. Street",Date.valueOf("1978-11-22"))), areaRepository.getById(4), ProfissionalEnum.MEDICO.toString()));
 			
 			// Enfermeiros
-
 			profissionalService.saveProfissional(new Profissional("6041147860411478", (new Pessoa(60411478, "Max Waldo", "waldowino@google.com", 914721284, "963-7884 Ipsum St.",Date.valueOf("1996-08-07"))), areaRepository.getById(17), ProfissionalEnum.ENFERMEIRO.toString()));
 			
 			// Pacientes
@@ -97,8 +97,12 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(8), profissionalRepository.getById(1), "Dificuldades a respirar - COVID19", Date.valueOf("2022-01-10"), "Complicações nos pulmoões"));
 
 			// Internamentos
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(1), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Queimaduras no corpo 3º grau","2A", EstadoEnum.GRAVE.toString(), Date.valueOf("2021-5-20"),Date.valueOf("2022-5-20"), new int[4]));
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), profissionalRepository.getById(3),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B", EstadoEnum.ESTAVEL.toString(), Date.valueOf("2021-5-22"),Date.valueOf("2022-5-22"), new int[4]));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(3), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Queimaduras no corpo 3º grau","2A", null, LocalDate.of(2021, 5, 20), LocalDate.of(2021,6,20), new int[4]));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(3), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B", EstadoEnum.ESTAVEL.toString(), LocalDate.of(2020, 4, 30), null, new int[4]));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Dores de cabeça","2C", EstadoEnum.ESTAVEL.toString(), LocalDate.of(2021, 12, 22), null, new int[4]));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(6), profissionalRepository.getById(2),(float)0, (new Double[10]), (new Float[10]), (float)0, "Cancro da pele","2D", EstadoEnum.GRAVE.toString(), LocalDate.of(2021, 8, 3), null, new int[4]));
+			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(7), profissionalRepository.getById(3),(float)0, (new Double[10]), (new Float[10]), (float)0, "Acidente de carro","3A", EstadoEnum.CRITICO.toString(), LocalDate.of(2022, 1, 1), null, new int[4]));
+
 
 		}
 

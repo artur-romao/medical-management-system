@@ -6,6 +6,7 @@ import com.mms.medmanagesystem.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,4 +54,20 @@ public class AreaService {
         existingArea.setId(Area.getId());
         return repository.save(existingArea);
     }
+    
+    public ArrayList<String> getArrayareas() {
+
+        List areas = repository.findAll();
+
+        ArrayList<String> arrayAreas = new ArrayList<>();
+
+        for (int i=0; i < areas.size();  i++) {
+            arrayAreas.add((String) areas.get(i));
+            
+        }
+        return arrayAreas;
+    }
+    
+
+
 }

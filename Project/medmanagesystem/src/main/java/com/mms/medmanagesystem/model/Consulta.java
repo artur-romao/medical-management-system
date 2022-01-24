@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.sql.Date;
 
 
@@ -103,6 +106,16 @@ public class Consulta {
 		this.anotacoes = anotacoes;
 	}
 
+
+	@Override
+	public String toString() {
+		return "{" +
+			" id='" + getId() + "'" +
+			", motivo='" + getMotivo() + "'" +
+			", data='" + getData() + "'" +
+			", anotacoes='" + getAnotacoes() + "'" + 
+			"}";
+	}
     
 }
 

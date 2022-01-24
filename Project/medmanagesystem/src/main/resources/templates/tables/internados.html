@@ -191,21 +191,27 @@
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
+            
             <div class="col-sm-6">
-              <h1>Os seus pacientes internados</h1>
+              <h3>Os seus pacientes internados</h3>
             </div>
+            <div class="col-sm-6 text-right pr-5">
+              <a th:href="@{internados/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo internamento</span></a>
+            </div>
+
           </div>
-        </div>
-      <section class="content" style="width:95%; margin-left: 30px;">
+        </div><!-- /.container-fluid -->
+      </section>
         <div class="card">
           <div class="card-body">
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Nº Quarto</th>
+                  <th>Quarto</th>
                   <th>Data de Admissão</th>
                   <th>Razão do Internamento</th>
+                  <!-- <th>Data de Saída</th> -->
                   <th style="text-align:center">Sinais Vitais</th>
                 </tr>
               </thead>
@@ -216,29 +222,17 @@
                     <td> [[${intern.quartocama}]]</td>
                     <td> [[${intern.dataadmissao}]]</td>
                     <td> [[${intern.razaointernamento}]]</td>
-                    <td style="text-align: center;"> <a th:href="@{/internado/__${intern.id}__}"> <i class="fas fa-eye"></i> </a> </td>
-                    <td>
-                      <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
-                          data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                      <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons"
-                          data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    <!-- <td> [[${intern.datasaida}]]</td> -->
+
+                    <td style="text-align: center;"> <a th:href="@{/internados/__${intern.paciente.pessoa.pessoacc}__}"> <i class="fas fa-eye"></i> </a> </td>
+
+                  <td>
+                      <a th:href="@{deleteinternamento/__${intern.id}__}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                     </td>
                   </tr>
-
+                </th>
               </tbody>
             </table>
-            <div class="clearfix">
-              <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-              <ul class="pagination">
-                <li class="page-item disabled"><a href="#">Previous</a></li>
-                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item"><a href="#" class="page-link">Next</a></li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>

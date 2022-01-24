@@ -18,7 +18,7 @@ public class newConsumer {
 
     @RabbitListener(queues = {Config.hbq, Config.tempq, Config.pressq, Config.oxiq})
     public void listen(String input) {
-        System.out.println("   Receive input: " + input);
+        // System.out.println("   Receive input: " + input);
 
     
         JSONObject msg =new JSONObject(input);
@@ -70,7 +70,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    System.err.println("erro");
+                    //System.err.println("erro");
                 }
             break;
             
@@ -92,7 +92,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    System.err.println("erro");
+                    //System.err.println("erro");
                 }
                 
 
@@ -119,7 +119,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    System.err.println("erro");
+                    //System.err.println("erro");
                 }
                 break;
             case "oxi":
@@ -139,7 +139,7 @@ public class newConsumer {
                         service.updateStates(id,"oxi", 1);
                     }
             } catch (ResourceNotFoundException e) {
-                System.err.println("erro");
+                //System.err.println("erro");
             }
             break;
             default:
@@ -182,12 +182,11 @@ public class newConsumer {
         return ArrayUtils.toObject(res);
         
     } 
-    
 
     public static Float[] eatpress(Object object){
         //o obejto vem like [sis,dia]
         String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
-        System.out.println(Float.parseFloat(actualvals[0].trim()) +"as"+ actualvals[1]);
+        // System.out.println(Float.parseFloat(actualvals[0].trim()) +"as"+ actualvals[1]);
         return new Float[] {Float.parseFloat(actualvals[0].trim()),Float.parseFloat(actualvals[1].trim())};    
     }
         
@@ -204,4 +203,3 @@ public class newConsumer {
         
         
     }
-    

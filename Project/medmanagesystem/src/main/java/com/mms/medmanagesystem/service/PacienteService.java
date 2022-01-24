@@ -1,8 +1,6 @@
 package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
-import com.mms.medmanagesystem.model.Consulta;
-import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
@@ -33,10 +31,6 @@ public class PacienteService {
 
 
     public Paciente savePaciente(Paciente paciente) {
-
-        // Pessoa pessoa = paciente.getPessoa();
-        // System.out.println(pessoa);
-        // pessoaService.savePessoa(pessoa);
 
         return repository.save(paciente);
     }
@@ -86,7 +80,9 @@ public class PacienteService {
         Paciente existingPaciente = repository.findById(paciente.getId())
         .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + paciente.getId()));
         
-        return repository.save(existingPaciente);
+        existingPaciente.setPessoa(existingPaciente.getPessoa());
+
+        return repository.save(existingPaciente);   
     }
 
 
