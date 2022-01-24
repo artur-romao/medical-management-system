@@ -1,0 +1,49 @@
+[ 
+    {"id":1,
+    "profissional_cc":70180323,
+    "area":1,
+    "pacientes": [1],
+    "consultas": [1],
+    "password":"7018032370180323"
+    },
+    {"id":2,
+    "profissional_cc":73856805,
+    "area":2,
+    "pacientes": [2],
+    "consultas": [2],
+    "password":"7385680573856805"
+    },
+    {"id":3,
+    "profissional_cc":60412328,
+    "area":3,
+    "pacientes": [3],
+    "consultas": [3],
+    "password":"6041232860412328"
+    },{"id":4,
+    "profissional_cc":44265696,
+    "area":4,
+    "pacientes": [4],
+    "consultas": [4],
+    "password":"4426569644265696"
+    },{"id":5,
+    "profissional_cc":68692991,
+    "area":5,
+    "pacientes": [5],
+    "consultas": [5],
+    "password":"6869299168692991"
+    },
+    {"id":6,
+    "profissional_cc":67586859,
+    "area":2,
+    "pacientes": [2,8],
+    "consultas": [2,8],
+    "password":"6758685967586859"
+    },{"id":7,
+    "profissional_cc":75766646,
+    "area":14,
+    "pacientes": [7],
+    "consultas": [7],
+    "password":"7576664675766646"
+    }
+]
+   

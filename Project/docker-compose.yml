@@ -2,25 +2,34 @@
 version: '3.1'
 
 services: 
+
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password 
     ports: 
-       - "8081:3306"
+       - "3306:3306"
     environment:
       MYSQL_DATABASE: MMS
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: user
     volumes:
-      - ./db:/var/lib/mysql            
-    networks:
-      - default
+      - datafiles:/var/lib/mysql
     restart: always
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+    healthcheck:
+      test: "mysql MMS -uuser -puser -e 'SELECT 1;'"
+      interval: 20s
+      timeout: 10s
+      retries: 2
+
   medmanagesystem:
     depends_on:
-      - db
-      - mq
+      db:
+        condition: service_healthy
+      mq:
+        condition: service_healthy
     build: ./medmanagesystem
     environment:
       SPRING_APPLICATION_JSON: '{
@@ -29,30 +38,46 @@ services:
         "spring.datasource.password" : "user",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL8Dialect",
         "spring.jpa.hibernate.ddl-auto" : "update",
-        "spring.rabbitmq.host" : "localhost",
+        "spring.rabbitmq.host" : "mq",
         "spring.rabbitmq.port" : 5672,
-        "spring.rabbitmq.username" : "user",
-        "spring.rabbitmq.password": "user",
-        "server.port": 8000 configs:
+        "spring.rabbitmq.username" : "guest",
+        "spring.rabbitmq.password": "guest",
+        "server.port": 8000
+
         }'
     ports: 
-      - 6666:8000
+      - 6767:8000
     restart: on-failure
-  mms-master:
-    depends_on:
-      - medmanagesystem
-    image: nginx
-    ports: 
-        - "8000:80"
-    volumes:
-        - ./mms-master:/usr/nginx/html/
-    links:
-        - db
-    networks:
-        - default
-    restart: always  
+    healthcheck:
+        test: "curl http://localhost:8000"
+        interval: 20s
+        timeout: 10s
+        retries: 2
   mq:
     image: rabbitmq:management
+    environment:
+          - RABBITMQ_DEFAULT_USER=guest
+          - RABBITMQ_DEFAULT_PASS=guest
     ports:
-      - 15672:15672
-      - 5672:5672 
+      - '5672:5672' 
+      - '15672:15672'
+    healthcheck:
+        test: rabbitmq-diagnostics -q status
+        interval: 20s
+        timeout: 10s
+        retries: 2
+  datagen:
+    build: ./sensor/
+    restart: on-failure
+    
+    depends_on:
+        db:
+          condition: service_healthy
+        mq:
+          condition: service_healthy
+        medmanagesystem:
+          condition: service_healthy
+    links:
+      - mq
+volumes:
+  datafiles:
