@@ -183,7 +183,7 @@ public class InternamentoController {
     public RedirectView handleDeleteInternamento(@PathVariable String id) throws NumberFormatException, ResourceNotFoundException {
       internamentoService.deleteInternamento(Integer.parseInt(id));
       
-      return new RedirectView("internados");
+      return new RedirectView("/internados");
     }
  */
 
