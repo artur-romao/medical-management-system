@@ -32,8 +32,9 @@
     var date = new Date()
     var d    = date.getDate(),
         m    = date.getMonth(),
-        y    = date.getFullYear()
-    console.log(d, m, y);
+        y    = date.getFullYear(),
+        wk   = date.getDay()
+    console.log(d, m, y, wk);
 
     var Calendar = FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;
@@ -92,6 +93,14 @@
         },
         {
           title          : 'Concerto Joana Gomes',
+          start          : new Date(2022, 1-1, d, 12, 30),
+          allDay         : false,
+          backgroundColor: '#0073b7', //Blue
+          borderColor    : '#0073b7', //Blue
+          id_profissional: 1
+        },
+        {
+          title          : 'Andre serralheiro',
           start          : new Date(2022, 1-1, d, 12, 30),
           allDay         : false,
           backgroundColor: '#0073b7', //Blue
