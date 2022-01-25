@@ -42,9 +42,14 @@ public class ProfissionalService {
         return response;
     }
 
+    public List<Profissional> findKeyword(String keyword)  {
+
+        return repository.findKeyword(keyword);
+    }
+
     public Profissional updateProfissional(int id, Profissional pro) throws ResourceNotFoundException {
         Profissional existingProfissional = repository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Profissional not found for this id:" + id));
+        .orElseThrow(() -> new ResourceNotFoundException("Profissional not found for this id/cc:" + id + "/" + pro.getPessoa().getPessoacc()));
         
         existingProfissional.setPessoa(pro.getPessoa());
         existingProfissional.setArea(pro.getArea());

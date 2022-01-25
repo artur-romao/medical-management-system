@@ -87,7 +87,7 @@ public class InternamentoService {
         Internamento existingInternamento = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
 
-        existingInternamento.setPulso(internamento.getPulso());
+        // existingInternamento.setPulso(internamento.getPulso());
         existingInternamento.setTemperatura(internamento.getTemperatura());
         existingInternamento.setPressaoarterial(internamento.getPressaoarterial());
         existingInternamento.setRazaointernamento(internamento.getRazaointernamento());

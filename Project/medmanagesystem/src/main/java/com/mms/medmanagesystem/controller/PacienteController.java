@@ -31,15 +31,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class PacienteController {
 
-  @Autowired
-  PessoaService pessoaService;
-  @Autowired
-  ProfissionalService profissionalService;
-  @Autowired
-  PacienteService pacienteService;
-
-  @Autowired
-  ObjectFactory<HttpSession> httpSessionFactory;
+  @Autowired PessoaService pessoaService;
+  @Autowired ProfissionalService profissionalService;
+  @Autowired PacienteService pacienteService;
+  @Autowired ObjectFactory<HttpSession> httpSessionFactory;
 
   @GetMapping("/pacientes")
   public ModelAndView paciente(Model model, String keyword) throws NumberFormatException, ResourceNotFoundException {

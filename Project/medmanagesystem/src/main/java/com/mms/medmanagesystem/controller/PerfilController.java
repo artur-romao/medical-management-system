@@ -26,9 +26,11 @@ public class PerfilController {
 
   @GetMapping("/perfil")
   public ModelAndView perfil(Model model) throws NumberFormatException, ResourceNotFoundException {
+    
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
     model.addAttribute("id", profissional.getId());
     model.addAttribute("area", profissional.getArea().getName());
     model.addAttribute("name", profissional.getPessoa().getName());
