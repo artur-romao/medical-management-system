@@ -115,6 +115,10 @@ public class Paciente {
     public void setConsulta(Set<Consulta> consulta) {
         this.consulta = consulta;
     }
+
+
+   
+
    
 
     /*
