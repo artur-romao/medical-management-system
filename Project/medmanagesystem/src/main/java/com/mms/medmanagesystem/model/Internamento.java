@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,6 +32,8 @@ public class Internamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_internamento")
+	@JsonIgnore
+
 	private int id;
 
 	@Column(name = "pulso")
@@ -55,10 +58,12 @@ public class Internamento {
 	private String estado;
   
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
 	@Column(name = "dataadmissao")
     private LocalDate dataadmissao;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
 	@Column(name = "datasaida")
     private LocalDate datasaida;
 
@@ -67,13 +72,12 @@ public class Internamento {
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_paciente")
-	@JsonBackReference
+	@JsonIgnore
     private Paciente paciente;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name="id_profissional")
-	@JsonBackReference
-
+	@JsonIgnore
 	private Profissional profissional;
 
 	public Internamento(){}
@@ -221,24 +225,24 @@ public class Internamento {
 
 
 
-	@Override
+/* 	@Override
 	public String toString() {
 		return "{" +
-			" id='" + getId() + "'" +
-			", pulso='" + getPulso() + "'" +
-			", pressaoarterial='" + getPressaoarterial() + "'" +
-			", temperatura='" + getTemperatura() + "'" +
-			", oxigenio='" + getOxigenio() + "'" +
-			", razaointernamento='" + getRazaointernamento() + "'" +
-			", quartocama='" + getQuartocama() + "'" +
-			", estado='" + getEstado() + "'" +
-			", dataadmissao='" + getDataadmissao() + "'" +
-			", datasaida='" + getDatasaida() + "'" +
-			", statefilter='" + getStatefilter() + "'" +
-			", paciente='" + getPaciente() + "'" +
-			", profissional='" + getProfissional() + "'" +
+			" 'id':" + getId() +
+			", 'pulso':" + getPulso() + 
+			", 'pressaoarterial:" + getPressaoarterial() + 
+			", 'temperatura:" + getTemperatura() + 
+			", 'oxigenio':" + getOxigenio() + 
+			", 'razaointernamento':" + getRazaointernamento() + 
+			", 'quartocama':" + getQuartocama() + 
+			", 'estado':" + getEstado() + 
+			", 'dataadmissao':" + getDataadmissao() + 
+			", 'datasaida':" + getDatasaida() + 
+			", 'statefilter':" + getStatefilter() + 
+			", 'paciente':" + getPaciente().getId() + 
+			", 'profissional':" + getProfissional().getId()+ 
 			"}";
-	}
-
+	} */
+ 
 
 }

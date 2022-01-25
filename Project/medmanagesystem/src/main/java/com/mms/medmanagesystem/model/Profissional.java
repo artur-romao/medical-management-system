@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -34,13 +35,14 @@ public class Profissional {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profissional_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
+    @JsonIgnore
     private Pessoa profissional;
 
     private String password;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_area")
-    @JsonBackReference
+    @JsonIgnore
     private Area area;
 
     private String pro;

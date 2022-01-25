@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 //@Data
@@ -28,7 +29,7 @@ public class Area {
     private String name; 
     
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
-    @JsonManagedReference
+    @JsonIgnore
     private Set<Profissional> profissionais;
     
     

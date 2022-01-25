@@ -1,5 +1,6 @@
 package com.mms.medmanagesystem.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,13 +134,20 @@ public class InternamentoController {
     }
 
 
-    @GetMapping("/api/internado/{id}")
-    public @ResponseBody Map<Internamento,Paciente> getInternamentosId(@PathVariable String id) throws ResourceNotFoundException {
-      Internamento inter = internamentoService.getInternamentoById(Integer.parseInt(id));
-      Paciente pac = inter.getPaciente();
-      Map<Internamento,Paciente> a = new HashMap<Internamento,Paciente>(); 
-      a.put(inter,pac);
-      return a;
+    @GetMapping("/api/internados/{pessoacc}")
+    public @ResponseBody Map<Integer,List<Object>>getInternamentosId(@PathVariable int pessoacc) throws ResourceNotFoundException {
+      Paciente pac = pessoaService.getPessoaBycc(pessoacc).getPaciente();
+      int pacid= pac.getId();
+
+      Internamento inter = internamentoService.getInternamentoById(pacid);
+      Paciente npac= inter.getPaciente();
+
+      List<Object> a = new ArrayList<Object>(); 
+      a.add(inter);
+      a.add(npac);
+      Map<Integer,List<Object>> b =new HashMap<Integer,List<Object>>();
+      b.put(pessoacc,a);
+      return b;
   }
 
 }
