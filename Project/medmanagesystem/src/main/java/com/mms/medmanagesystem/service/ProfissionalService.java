@@ -1,5 +1,6 @@
 package com.mms.medmanagesystem.service;
 
+import com.mms.medmanagesystem.enumFolder.ProfissionalEnum;
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Profissional;
 import com.mms.medmanagesystem.repository.ProfissionalRepository;
@@ -26,11 +27,13 @@ public class ProfissionalService {
     public List<Profissional> getProfissionais() {
         return repository.findAll();
     }
-
+    
     public Profissional getProfissionalByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Profissional not found for this id:" + id));
     }
+
+   
 
 
     public Map<String, Boolean> deleteProfissional(int id) throws ResourceNotFoundException {
@@ -54,7 +57,8 @@ public class ProfissionalService {
         existingProfissional.setPessoa(pro.getPessoa());
         existingProfissional.setArea(pro.getArea());
         existingProfissional.setPassword(pro.getPassword());
-        
+        existingProfissional.setPro(pro.getPro());
+
         return repository.save(existingProfissional);
     }
 }

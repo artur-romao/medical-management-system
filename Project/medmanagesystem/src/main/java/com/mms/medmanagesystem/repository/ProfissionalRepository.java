@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProfissionalRepository extends JpaRepository<Profissional,Integer> {
 
-    @Query(value="SELECT * FROM profissional pr INNER JOIN pessoa pe ON pe.pessoacc = pr.profissional_cc WHERE pe.name like %:keyword%" , nativeQuery = true)
+    @Query(value="SELECT * FROM profissional pf INNER JOIN pessoa pe ON pe.pessoacc = pf.profissional_cc WHERE pe.name like %:keyword%" , nativeQuery = true)
     List <Profissional> findKeyword(@Param("keyword") String keyword);
 }
+

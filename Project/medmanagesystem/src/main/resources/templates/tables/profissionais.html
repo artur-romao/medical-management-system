@@ -215,7 +215,7 @@ $(document).ready(function(){
       <div style="width: 100%; margin-left: 15rem; margin-bottom: 1rem;">
         <form th:action="@{/profissionais}" method="GET">
           <input type="search" class="form-control form-control-lg"  name="keyword" id="txtSearch" placeholder="Pesquisar por nome" style="width: 50%; display: inline-block;">
-            <button type="submit" th:onclick="showName(nameJs)" class="btn btn-lg btn-default" style="width: 4%;">
+            <button type="submit"  class="btn btn-lg btn-default" style="width: 4%;">
               <i class="fa fa-search"></i>
             </button>
         </form>
@@ -237,7 +237,7 @@ $(document).ready(function(){
 					  </tr>
 			  	</thead>
 				  <tbody>
-            <th:block th:each="prof : ${listaProfs}"> 
+            <th:block th:each="prof : ${listaProfissionais}"> 
               <tr>
                 <td> [[${prof.pessoa.name}]]</td>
                 <td> [[${prof.pessoa.pessoacc}]]</td>

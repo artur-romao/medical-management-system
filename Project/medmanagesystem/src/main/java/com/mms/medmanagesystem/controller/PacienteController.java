@@ -138,6 +138,15 @@ public class PacienteController {
     modelEdit.setViewName("deletePaciente");
 
     return modelEdit;
-  } */
+  } 
+   @RequestMapping(value = "/editsave", method = RequestMethod.POST)
+    public RedirectView editNewPaciente(@ModelAttribute("paciente") Paciente paciente) throws NumberFormatException, ResourceNotFoundException {
+      
+      int id = paciente.getId();
+      System.out.println(paciente);
+      
+      pacienteService.updatePaciente(paciente);
+  
+  */
 
 }
