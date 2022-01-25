@@ -32,10 +32,10 @@ mvn clean package -DskipTests
 
 #### Possible Logins:
 
-| ID   | Password         | Role (just additional info, not for login) |
-| ---- | ---------------- | ------------------------------------------ |
-| 1    | 7576664675766646 | Medico                                     |
-| 6    | 6041147860411478 | Enfermeiro                                 |
+| CC          | Password         | Role (just additional info, not for login) |
+| ----------- | ---------------- | ------------------------------------------ |
+| 75766646    | 7576664675766646 | Medico                                     |
+| 60411478    | 6041147860411478 | Enfermeiro                                 |
 
 
 

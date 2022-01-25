@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Lista de Pacientes </title>
+    <title>Editar Paciente </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -32,17 +32,17 @@
 
 
 <body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
-    <div class="wrapper">
+    <div class="wrapper" style="max-width: 75%; margin: 0 auto;">
         <div>
-            <form action="#" th:action="@{/editsave}" th:object="${paciente}"  method="post"> 
+            <form action="#" th:action="@{/editpaciente}" th:object="${paciente}"  method="post"> 
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Paciente</h4>
+                    <h4 class="modal-title">Editar Paciente</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" th:field="*{pessoacc}" required>
-                        <input type="hidden" class="form-control" th:field="*{datanascimento}" required>
-                        <!--<input type="hidden" th:field="*{id}"/>-->
+                        <input type="hidden" class="form-control" th:field="*{pessoacc}" >
+                        <!--<input type="hidden" class="form-control" th:field="*{datanascimento}" >
+                        <input type="hidden" th:field="*{id}"/>-->
                         <label>Nome</label>
                         <input type="text" class="form-control" th:field="*{name}"> 
                     </div>
@@ -60,14 +60,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="../pacientes" > 
-                        <input align="left" name="button" type="submit" class="btn btn-danger" value="Eliminar Paciente">
+                    <a href="../../pacientes" > 
+                        <input type="submit" name="button" class="btn btn-info" value="Guardar">
                     </a>
-                    <a href="../pacientes" > 
+                    <a href="../../pacientes" > 
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                     </a>
-                    <a href="../pacientes" > 
-                        <input type="submit" name="button" class="btn btn-info" value="Guardar">
+                    <a href="../../pacientes" > 
+                        <input align="left" name="button" type="submit" class="btn btn-danger" value="Eliminar Paciente">
                     </a>
                 </div>
             </form>
