@@ -26,6 +26,8 @@ public class Pessoa {
 
     @Id
     @Column(name = "pessoacc")
+    @JsonIgnore
+
     private int pessoacc;
 
     @Column(name = "name")
@@ -55,9 +57,13 @@ public class Pessoa {
     }
 
     @OneToOne(mappedBy = "profissional", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+
     private Profissional profissional;
 
     @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+
     private Paciente paciente;
 
 
