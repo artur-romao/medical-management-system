@@ -235,8 +235,8 @@ public class Internamento {
 			", dataadmissao='" + getDataadmissao() + "'" +
 			", datasaida='" + getDatasaida() + "'" +
 			", statefilter='" + getStatefilter() + "'" +
-			", paciente='" + getPaciente() + "'" +
-			", profissional='" + getProfissional() + "'" +
+			", paciente='" + getPaciente().getId() + "'" +
+			", profissional='" + getProfissional().getId() + "'" +
 			"}";
 	}
 

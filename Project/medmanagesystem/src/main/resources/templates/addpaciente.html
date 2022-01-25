@@ -37,7 +37,7 @@
 <body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
   <div class="wrapper">
     <div>
-      <form action="#" method="post" th:action="@{/save}" th:object="${paciente}">
+      <form action="#" method="post" th:action="@{/savepaciente}" th:object="${paciente}">
         <div class="modal-header">						
           <h4 class="modal-title">Adicionar Paciente</h4>
         </div>
@@ -71,8 +71,8 @@
         </div>
         
         <div class="modal-footer">
-          <a href="../pacientes"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
-          <a href="../pacientes"><input type="submit" class="btn btn-info" value="Save"></a>
+          <a href="../../pacientes"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
+          <a href="../../pacientes"><input type="submit" class="btn btn-info" value="Save"></a>
         </div>
         
       </form>

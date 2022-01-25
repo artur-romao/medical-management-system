@@ -61,7 +61,7 @@ public class newConsumer {
                     //create conditions
                     if(maximum >1.7){ //stable
                         service.updateStates(id,"hb", 0);
-                    }else if(maximum<0.5){//coma
+                    }else if(maximum<0.5){//critico
                         service.updateStates(id,"hb", 1);
                     }else{ //grave
                         service.updateStates(id,"hb", 2);
