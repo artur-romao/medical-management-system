@@ -83,21 +83,20 @@ public class InternamentoService {
     }
 
 
-    public Internamento updateInternamento(int id, Internamento Internamento) throws ResourceNotFoundException {
+    public Internamento updateInternamento(int id, Internamento internamento) throws ResourceNotFoundException {
         Internamento existingInternamento = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
 
-        existingInternamento.setPaciente(Internamento.getPaciente());
-        //existingInternamento.setPulso(Internamento.getPulso());
-        existingInternamento.setTemperatura(Internamento.getTemperatura());
-        existingInternamento.setPressaoarterial(Internamento.getPressaoarterial());
-        existingInternamento.setRazaointernamento(Internamento.getRazaointernamento());
-        existingInternamento.setOxigenio(Internamento.getOxigenio());
-        existingInternamento.setQuartocama(Internamento.getQuartocama());
-        existingInternamento.setEstado(Internamento.getEstado());
-        existingInternamento.setDataadmissao(Internamento.getDataadmissao());
-        existingInternamento.setDatasaida(Internamento.getDatasaida());
-        existingInternamento.setStatefilter(Internamento.getStatefilter());
+        existingInternamento.setPulso(internamento.getPulso());
+        existingInternamento.setTemperatura(internamento.getTemperatura());
+        existingInternamento.setPressaoarterial(internamento.getPressaoarterial());
+        existingInternamento.setRazaointernamento(internamento.getRazaointernamento());
+        existingInternamento.setOxigenio(internamento.getOxigenio());
+        existingInternamento.setQuartocama(internamento.getQuartocama());
+        existingInternamento.setEstado(internamento.getEstado());
+        //existingInternamento.setDataadmissao(internamento.getDataadmissao());
+        existingInternamento.setDatasaida(internamento.getDatasaida());
+        existingInternamento.setStatefilter(internamento.getStatefilter());
         
         return repository.save(existingInternamento);
     }
@@ -159,7 +158,7 @@ public class InternamentoService {
 
         //send array
         internado.setStatefilter(states);
-        this.updateInternamento(idinternamento,internado);
+        this.updateInternamento(idinternamento, internado);
 
         
     }
@@ -168,7 +167,6 @@ public class InternamentoService {
         
         return repository.getInternamentoByIdPaciente(id);
     }
-
 
 
 }

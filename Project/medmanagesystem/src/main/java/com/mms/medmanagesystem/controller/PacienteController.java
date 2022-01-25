@@ -87,7 +87,7 @@ public class PacienteController {
     return modelAndView;
   }
 
-  @PostMapping(value = "/save")
+  @PostMapping(value = "/savepaciente")
   public RedirectView saveNewPaciente(@ModelAttribute("paciente") Pessoa paciente)
       throws NumberFormatException, ResourceNotFoundException {
 
@@ -109,13 +109,13 @@ public class PacienteController {
 
     model.addAttribute("paciente", paciente);
 
-    modelEdit.setViewName("editPaciente");
+    modelEdit.setViewName("editpaciente");
 
     return modelEdit;
   }
 
-  @PostMapping(value = "/editsave")
-  public RedirectView editNewPaciente(@ModelAttribute("paciente") Pessoa paciente, HttpServletRequest request)
+  @PostMapping(value = "/editpaciente")
+  public RedirectView savePaciente(@ModelAttribute("paciente") Pessoa paciente, HttpServletRequest request)
       throws NumberFormatException, ResourceNotFoundException {
 
     String button = request.getParameter("button");
@@ -130,7 +130,7 @@ public class PacienteController {
 
   // delete ---------------------
 
-  @RequestMapping(value = "/pacientes/delete/{pessoacc}")
+/*   @RequestMapping(value = "/pacientes/delete/{pessoacc}")
   public ModelAndView deletePaciente(Model model, @PathVariable(name = "pessoacc") int pessoacc)
       throws ResourceNotFoundException {
 
@@ -143,6 +143,6 @@ public class PacienteController {
     modelEdit.setViewName("deletePaciente");
 
     return modelEdit;
-  }
+  } */
 
 }

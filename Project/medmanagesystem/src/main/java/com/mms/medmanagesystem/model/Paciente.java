@@ -78,7 +78,6 @@ public class Paciente {
         this.paciente=paciente;
     }
 
-    @Column(name = "id_paciente")
     public int getId() {
         return this.id;
     }
