@@ -70,7 +70,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
             break;
             
@@ -92,7 +92,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
                 
 
@@ -119,7 +119,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
                 break;
             case "oxi":
@@ -139,7 +139,7 @@ public class newConsumer {
                         service.updateStates(id,"oxi", 1);
                     }
             } catch (ResourceNotFoundException e) {
-                //System.err.println("erro");
+                System.err.println("erro");
             }
             break;
             default:

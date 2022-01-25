@@ -97,7 +97,7 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(8), profissionalRepository.getById(1), "Dificuldades a respirar - COVID19", Date.valueOf("2022-01-10"), "Complicações nos pulmoões"));
 
 			// Internamentos
-			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(3), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Queimaduras no corpo 3º grau","2A", null, LocalDate.of(2021, 5, 20), LocalDate.of(2021,6,20), new int[4]));
+			//internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(3), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Queimaduras no corpo 3º grau","2A", null, LocalDate.of(2021, 5, 20), LocalDate.of(2021,6,20), new int[4]));
 			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(3), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Apendicite","2B", EstadoEnum.ESTAVEL.toString(), LocalDate.of(2020, 4, 30), null, new int[4]));
 			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(2), profissionalRepository.getById(1),(float)0, (new Double[10]), (new Float[10]), (float)0, "Dores de cabeça","2C", EstadoEnum.ESTAVEL.toString(), LocalDate.of(2021, 12, 22), null, new int[4]));
 			internamentoService.saveInternamento(new Internamento(pacienteRepository.getById(6), profissionalRepository.getById(2),(float)0, (new Double[10]), (new Float[10]), (float)0, "Cancro da pele","2D", EstadoEnum.GRAVE.toString(), LocalDate.of(2021, 8, 3), null, new int[4]));

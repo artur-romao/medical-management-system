@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -39,12 +40,12 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
-	@JsonBackReference
+	@JsonIgnore
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "id_profissional", nullable = false)
-	@JsonBackReference
+	@JsonIgnore
     private Profissional profissional;
 
     

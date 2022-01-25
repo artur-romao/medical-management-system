@@ -322,35 +322,35 @@ async function getData(url){
   var mydata = JSON.parse(result);
   //get first key
   var fk =Object.keys(mydata)[0];
-  var pacinfo= JSON.stringify(mydata[fk]["pessoa"]);
+  var pacinfo= JSON.stringify(mydata[fk][1]["pessoa"]);
   var jsonedpacinfo =JSON.parse(pacinfo);
-  console.log(mydata[fk]["internamento"][0]);
+  
   var tab = ``;
-  tab+= mydata[fk]["internamento"][0]["temperatura"];
+  tab+= mydata[fk][0]["temperatura"];
   document.getElementById("2").innerHTML = tab; //temp
   var tab = ``;
-  tab+= mydata[fk]["internamento"][0]["oxigenio"];
+  tab+= mydata[fk][0]["oxigenio"];
   document.getElementById("1").innerHTML = tab; //oxi
   var tab = ``;
-  tab+= mydata[fk]["internamento"][0]["pressaoarterial"][0];
+  tab+= mydata[fk][0]["pressaoarterial"][0];
   tab+="|";
-  tab+= mydata[fk]["internamento"][0]["pressaoarterial"][1];
+  tab+= mydata[fk][0]["pressaoarterial"][1];
 
   document.getElementById("3").innerHTML = tab; //pressa
   var tab = ``;
-  tab+= mydata[fk]["internamento"][0]["quartocama"];
+  tab+= mydata[fk][0]["quartocama"];
   document.getElementById("quarto").innerHTML = tab; 
   var tab = ``;
   tab+="Razão de Internamento - "
-  tab+= mydata[fk]["internamento"][0]["razaointernamento"];
+  tab+= mydata[fk][0]["razaointernamento"];
   document.getElementById("razao").innerHTML = tab; //temp
   var tab = ``;
-  tab+= mydata[fk]["internamento"][0]["estado"];
+  tab+= mydata[fk][0]["estado"];
   document.getElementById("estado").innerHTML = tab; //temp
-  var state= mydata[fk]["internamento"][0]["estado"];
+  var state= mydata[fk][0]["estado"];
 
   var tab = ``;
-  tab+= mydata[fk]["internamento"][0]["dataadmissao"];
+  tab+= mydata[fk][0]["dataadmissao"];
   document.getElementById("datainter").innerHTML = tab;
  /*  var tab = ``;
   tab+= mydata[fk]["internamento"][0]["datasaida"];
@@ -367,7 +367,8 @@ async function getData(url){
   tab+= jsonedpacinfo["name"];
   document.getElementById("pacname").innerHTML = tab;
   var tab = ``;
-  tab+= jsonedpacinfo["pessoacc"];
+  tab+= id;
+  
   document.getElementById("cc").innerHTML = tab;
   var tab = ``;
   tab+= jsonedpacinfo["telemovel"];
