@@ -43,13 +43,13 @@ public class PessoaController {
   
     @PutMapping("/pessoas/{id}")
     public Pessoa updatePessoa(@PathVariable("id") int id, @Valid @RequestBody Pessoa pessoa) throws ResourceNotFoundException {
-       return service.updatePessoa(id, pessoa);
+       return service.updatePessoa(pessoa);
     }
 
-    @DeleteMapping("/pessoas/{id}")
-    public Map<String, Boolean> deletePeople(@PathVariable(value="id") int cc) throws ResourceNotFoundException {
-        return service.deletePessoa(cc);
-    }
+    // @DeleteMapping("/pessoas/{id}")
+    // public Map<String, Boolean> deletePeople(@PathVariable(value="id") int cc) throws ResourceNotFoundException {
+    //     return service.deletePessoa(cc);
+    // }
 
 
 

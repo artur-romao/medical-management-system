@@ -8,7 +8,6 @@ import asyncio
 import numpy
 import json
 import os
-import requests
 import random
 import matplotlib.pyplot as plt
 from scipy.misc import electrocardiogram
@@ -20,7 +19,7 @@ import mysql.connector
 class Generators:
      """ This class houses all the functions that will generate data"""
      def __init__(self):
-          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost', port=5672))
+          self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='mq', port=5672))
           self.marychanel = self.connection.channel()
           
           self.marychanel.queue_declare(queue='oxi',durable=True)
@@ -31,11 +30,10 @@ class Generators:
           self.id=1
 
           mydb = mysql.connector.connect(
-          host="localhost",
-          port=8081,
+          host="db",
           user="user",
           password="user",
-          database="MMS"
+          db="MMS"
           )
           mycursor = mydb.cursor()
           mycursor.execute("SELECT COUNT(*) FROM internamento")
@@ -62,7 +60,7 @@ class Generators:
                     t = np.real((ecg[n]*(random.randrange(-10,10)**0.05)))
                     hblist.append(t)
 
-               print(len(hblist))
+               # print(len(hblist))
                i+=1
                time_data = np.arange(len(hblist)) / frequency
                vallist=time_data[:250].tolist()+hblist[:250]
@@ -138,13 +136,13 @@ if __name__ == "__main__":
      temperatura = loop.create_task(g.temp())
 
      
-     print(oxi)
-     print(pressaoarterial)
-     print(heartbeats)
-     print(temperatura)
+     # print(oxi)
+     # print(pressaoarterial)
+     # print(heartbeats)
+     # print(temperatura)
      loop.run_until_complete(asyncio.gather(heartbeats,oxi,pressaoarterial,temperatura))
-     print(oxi)
-     print(pressaoarterial)
-     print(heartbeats)
-     print(temperatura)
+     # print(oxi)
+     # print(pressaoarterial)
+     # print(heartbeats)
+     # print(temperatura)
      loop.close()

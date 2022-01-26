@@ -16,6 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 //@Data
 @Entity
 @Table(name = "paciente")
@@ -28,14 +31,17 @@ public class Paciente {
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
+    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc")
+    @JsonIgnore
     private Pessoa paciente;
 
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
+    @JsonIgnore
     private Set<Consulta> consulta;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
+    @JsonIgnore
     private Set<Internamento> internamento;
 
 
@@ -77,6 +83,7 @@ public class Paciente {
     }
 
     @Column(name = "id_paciente")
+    @JsonIgnore
     public int getId() {
         return this.id;
     }
@@ -110,15 +117,7 @@ public class Paciente {
     }
 
 
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", paciente='" + getPaciente() + "'" +
-            ", consulta='" + getConsulta() + "'" +
-            ", internamento='" + getInternamento() + "'" +
-            "}";
-    }
+   
 
    
 

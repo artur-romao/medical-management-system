@@ -11,6 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.sql.Date;
 
 
@@ -34,10 +40,12 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
+	@JsonIgnore
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "id_profissional", nullable = false)
+	@JsonIgnore
     private Profissional profissional;
 
     
@@ -99,6 +107,16 @@ public class Consulta {
 		this.anotacoes = anotacoes;
 	}
 
+
+	@Override
+	public String toString() {
+		return "{" +
+			" id='" + getId() + "'" +
+			", motivo='" + getMotivo() + "'" +
+			", data='" + getData() + "'" +
+			", anotacoes='" + getAnotacoes() + "'" + 
+			"}";
+	}
     
 }
 

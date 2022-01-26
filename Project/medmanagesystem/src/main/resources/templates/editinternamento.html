@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Editar Internamento </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style_crud.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/css/adminlte.min.css">
+    
+    <!-- jQuery -->
+    <!-- <script src="../../plugins/jquery/jquery.min.js"></script>
+ -->
+    <!-- Bootstrap 4 -->
+    <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="../../js/adminlte.min.js"></script>
+ -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- <script src="../../js/demo.js"></script>
+ -->
+
+
+</head>
+
+
+<body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
+    <div class="wrapper" style="max-width: 75%; margin: 0 auto;">
+        <div>
+            <form action="#" th:action="@{/editinternado}" th:object="${internamento}"  method="post"> 
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Internamento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                        <label>Quarto</label>
+                        <input type="text" class="form-control" th:field="*{quartocama}"> 
+                    </div>
+                    <div class="form-group">
+                        <label>Razão de Internamento</label>
+                        <input type="text" class="form-control" th:field="*{razaointernamento}" >                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="../../internados" > 
+                        <input type="submit" name="button" class="btn btn-info" value="Guardar">
+                    </a>
+                    <a href="../../internados" > 
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    </a>
+                    <a href="../../internados" > 
+                        <input align="left" name="button" type="submit" class="btn btn-danger" value="Eliminar Internamento">
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

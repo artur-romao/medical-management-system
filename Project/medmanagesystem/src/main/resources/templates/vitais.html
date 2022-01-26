@@ -3,80 +3,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | uPlot</title>
+  <title>Sinais Vitais</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- uPlot -->
-  <link rel="stylesheet" href="../static/plugins/uplot/uPlot.min.css">
+  <link rel="stylesheet" href="../../plugins/uplot/uPlot.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../static/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
 
-
-    <!-- Sidebar -->
-
-
-      <!-- Sidebar Menu -->
-
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-
-  <div class="wrapper">
-    <h3 style="margin-top: 19px; margin-left: 15px;">Perfil</h3>
   <!-- Content Wrapper. Contains page content -->
   <div class="container emp-profile" style="margin-top: 50px;">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="../img/medico1.jpg" alt="" style="width: 150px; height: 150px;"/>
-                    
-                </div>
+               
             </div>
             <div class="col-md-6">
                 <div class="profile-head">
-                            <h5>
-                                Joaquim Fagundes
+                            <h3 style="font-weight: 550;" id="pacname">
+                                
+                            </h3>
+                            <h5 id="razao">
+                                
                             </h5>
-                            <h6>
-                                Médico Obstetra
-                            </h6>
                             <div class="row" style="margin-top: 25px">
                                 <div class="col-md-8">
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Id</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>12345678</p>
-                                                </div>
+                                          <div class="row state-row"  >
+                                            <div class="col-md-6">
+                                                <label>Estado</label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Nome</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>Joaquim Fagundes</p>
-                                                </div>
+                                            <div class="col-md-6">
+                                                <p id="estado"></p>
                                             </div>
+                                        </div>
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Cartão de Cidadão</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p id="cc"></p>
+                                            </div>
+                                        </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Especialidade</label>
+                                                    <label>Email</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Obstetrícia</p>
+                                                    <p id="mail"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -84,7 +67,7 @@
                                                     <label>Número de telemóvel</label>
                                                 </div>  
                                                 <div class="col-md-6">
-                                                    <p>914140140</p>
+                                                    <p id="numtel"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -92,7 +75,7 @@
                                                     <label>Morada</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>Rua Coberto das Flores nº6 - Águeda</p>
+                                                    <p id="address"></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -100,29 +83,36 @@
                                                     <label>Data de Nascimento</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p>19-11-1983</p>
+                                                    <p id="datanasc"></p>
                                                 </div>
-                                            </div>
+                                            </div>                                           
+                                             <div class="row">
+                                              <div class="col-md-6">
+                                                  <label>Data de internamento</label>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <p id="datainter"></p>
+                                              </div>
+                                          </div>
+                                          
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Quarto</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p id="quarto"></p>
+                                        </div>
+                                  </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <input type="submit" class="profile-button" name="btnAddMore" value="Editar Perfil"/>
-            </div>
         </div>
     </form>           
-</div>
-    <!-- /.content -->
   </div>
 
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-  
 
     
     <!-- Main content -->
@@ -152,32 +142,77 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
-<!-- AREA CHART -->
 
-  <!-- /.card-body -->
+
+<!-- /.card-body -->
 </div>
 <!-- /.card -->
+
+<div class="row">
+  <div  class="col-lg-4 col-6">
+    <!-- small card -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3 class="sensor" id="1">150</h3>
+
+        <p>Oxigénio</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-lungs"></i>
+      </div>
+      
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-4 col-6">
+    <!-- small card -->
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3 class="sensor" id="2" >53</h3>
+
+        <p>Temperatura</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-temperature-low"></i>
+      </div>
+      
+    </div>
+  </div>
+  <!-- ./col -->
+  <div id="yourDiv" class="col-lg-4 col-6">
+    <!-- small card -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3 id="3" class="sensor" >44/44</h3>
+
+        <p>Pressão Arterial</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-stethoscope"></i>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
 </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  
-</div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../static/plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- uPlot -->
-<script src="../static/plugins/uplot/uPlot.iife.min.js"></script>
+<script src="../../plugins/uplot/uPlot.iife.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../static/js/adminlte.min.js"></script>
+<script src="../../js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../static/js/demo.js"></script>
+<script src="../../js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+  
   $(function () {
     /* uPlot
      * -------
@@ -190,6 +225,7 @@
         height: document.getElementById(elementId).offsetHeight,
       }
     }
+//data can be gotten from a js fuction
     let data = [
 
 
@@ -231,6 +267,155 @@
       lineChart.setSize(getSize('lineChart'));
     });
   })
+</script>
+<script>
+$( document ).ready(function() {
+async function getData(url){
+  console.log(url)
+    const response = await fetch(url);
+    var data = await response.json();
+    
+    show_data(data);
+  function reload(){
+    var container = document.getElementById("yourDiv");
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    
+   //this line is to watch the result in console , you can remove it later	
+    console.log("Refreshed"); 
+}
+}
+  const queryString = window.location.href.toString();
+  
+  const newurl = queryString.replace("6767", "6767/api");
+
+  //max is
+  
+  //const id = urlParams.get('id')
+  const id=queryString.split("/")[queryString.split("/").length-1];
+
+  getData(newurl);
+
+//upon document load
+  //should add data-id to the class with the class sensor
+  //get elements that use class 
+  //change by class sense and #id
+  // recebo o id no url
+  // vou à tag html com a classe sensor
+  //adicionar a classe data-id='id'
+  //TODO change later the 1 to id
+ /*  $( ".sensor" ).data( "data-id",1 );
+  $('div').attr('data-id', 1);
+
+
+  var igot = $(this).data('id');
+  $(".sensor #deid").val( igot ); 
+
+
+  */
+ 
+ var c = 0;
+ 
+ function show_data(data){
+  var result = JSON.stringify(data);
+  console.log(data);
+  var mydata = JSON.parse(result);
+  //get first key
+  var fk =Object.keys(mydata)[0];
+  var pacinfo= JSON.stringify(mydata[fk][1]["pessoa"]);
+  var jsonedpacinfo =JSON.parse(pacinfo);
+  
+  var tab = ``;
+  tab+= mydata[fk][0]["temperatura"];
+  document.getElementById("2").innerHTML = tab; //temp
+  var tab = ``;
+  tab+= mydata[fk][0]["oxigenio"];
+  document.getElementById("1").innerHTML = tab; //oxi
+  var tab = ``;
+  tab+= mydata[fk][0]["pressaoarterial"][0];
+  tab+="|";
+  tab+= mydata[fk][0]["pressaoarterial"][1];
+
+  document.getElementById("3").innerHTML = tab; //pressa
+  var tab = ``;
+  tab+= mydata[fk][0]["quartocama"];
+  document.getElementById("quarto").innerHTML = tab; 
+  var tab = ``;
+  tab+="Razão de Internamento - "
+  tab+= mydata[fk][0]["razaointernamento"];
+  document.getElementById("razao").innerHTML = tab; //temp
+  var tab = ``;
+  tab+= mydata[fk][0]["estado"];
+  document.getElementById("estado").innerHTML = tab; //temp
+  var state= mydata[fk][0]["estado"];
+
+  var tab = ``;
+  tab+= mydata[fk][0]["dataadmissao"];
+  document.getElementById("datainter").innerHTML = tab;
+ /*  var tab = ``;
+  tab+= mydata[fk]["internamento"][0]["datasaida"];
+  document.getElementById("datas").innerHTML = tab; */
+ // camaquarto razao estado
+
+ //pacdata
+ 
+
+  var tab = ``;
+  tab+= jsonedpacinfo["name"];
+  document.getElementById("pacname").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["name"];
+  document.getElementById("pacname").innerHTML = tab;
+  var tab = ``;
+  tab+= id;
+  
+  document.getElementById("cc").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["telemovel"];
+  document.getElementById("numtel").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["morada"];
+  document.getElementById("address").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["datanascimento"];
+  document.getElementById("datanasc").innerHTML = tab;
+  var tab = ``;
+  tab+= jsonedpacinfo["email"];
+  document.getElementById("mail").innerHTML = tab;
+/*   var list;
+  
+  
+  tab+='|';
+  tab+= result[7][1][1];
+  
+  
+  tab = ``;
+  tab+= result[3][1];
+  document.getElementById("1").innerHTML = tab; //oxi
+  tab = ``;
+  
+  tab+= result[2][1];
+  document.getElementById("2").innerHTML = tab; //temp */
+
+  //change color of state according to state
+  if(state=="estável"){
+    $('.state-row').addClass("bg-success");
+    
+  }else if(state=="coma"){
+    $('.state-row').addClass("bg-danger");
+    
+  }else{
+    $('.state-row').addClass("bg-warning");
+    
+  }
+  
+}
+
+
+
+console.log("control");
+
+}); 
 </script>
 </body>
 </html>

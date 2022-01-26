@@ -37,7 +37,9 @@ public class PessoaService {
         return repository.findByName(name);
     }
 
-    public Map<String, Boolean> deletePessoa(int cc) throws ResourceNotFoundException {
+    public Map<String, Boolean> deletePessoa(Pessoa pessoa) throws ResourceNotFoundException {
+
+        int cc = pessoa.getPessoacc();
 
         repository.findById(cc).orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + cc));
     
@@ -47,9 +49,9 @@ public class PessoaService {
         return response;  
     }
 
-    public Pessoa updatePessoa(int cc, Pessoa pessoa) throws ResourceNotFoundException {
+    public Pessoa updatePessoa(Pessoa pessoa) throws ResourceNotFoundException {
         Pessoa existingPessoa = repository.findById(pessoa.getPessoacc())
-        .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + cc));
+        .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + pessoa.getPessoacc()));
 
         existingPessoa.setName(pessoa.getName());
         existingPessoa.setEmail(pessoa.getEmail());
@@ -58,4 +60,5 @@ public class PessoaService {
         return repository.save(existingPessoa);
     }
 }
+
  

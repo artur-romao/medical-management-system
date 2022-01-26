@@ -2,14 +2,22 @@ package com.mms.medmanagesystem.model;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 //import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 // @Data 
 @Entity 
@@ -18,6 +26,8 @@ public class Pessoa {
 
     @Id
     @Column(name = "pessoacc")
+    @JsonIgnore
+
     private int pessoacc;
 
     @Column(name = "name")
@@ -46,13 +56,14 @@ public class Pessoa {
         this.datanascimento = datanascimento;
     }
 
-
-    @OneToOne (mappedBy = "profissional")
+    @OneToOne(mappedBy = "profissional", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+
     private Profissional profissional;
 
-    @OneToOne (mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+
     private Paciente paciente;
 
 
@@ -60,7 +71,7 @@ public class Pessoa {
         return this.pessoacc;
     }
 
-    public void setCc(int pessoacc) {
+    public void setPessoacc(int pessoacc) {
         this.pessoacc = pessoacc;
     }
 
@@ -68,40 +79,42 @@ public class Pessoa {
         return this.name;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public int getTelemovel() {
-        return this.telemovel;
-    }
-
-    public Date getDatanascimento() {
-        return this.datanascimento;
-    }
-    public String getMorada() {
-        return this.morada;
-    }
-
     
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public int getTelemovel() {
+        return this.telemovel;
     }
 
     public void setTelemovel(int telemovel) {
         this.telemovel = telemovel;
     }
 
-    public void setMorada(String morada) {
-        this.morada = morada;
+    public Date getDatanascimento() {
+        return this.datanascimento;
     }
 
     public void setDatanascimento(Date datanascimento) {
         this.datanascimento = datanascimento;
     } 
+    
+    public String getMorada() {
+        return this.morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
+    }
 
     public Profissional getProfissional(){
         return this.profissional;
@@ -110,5 +123,20 @@ public class Pessoa {
     public Paciente getPaciente(){
         return this.paciente;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " pessoacc='" + getPessoacc() + "'" +
+            ", name='" + getName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", telemovel='" + getTelemovel() + "'" +
+            ", morada='" + getMorada() + "'" +
+            ", datanascimento='" + getDatanascimento() + "'" +
+            "}";
+    }
+
 
 }

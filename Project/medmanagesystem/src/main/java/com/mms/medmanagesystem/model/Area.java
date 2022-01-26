@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 //@Data
 @Entity
 @Table(name = "area")
@@ -24,11 +27,12 @@ public class Area {
 
     @Column (name = "name")
     private String name; 
-                                                //o maped by é com as cenas do java
+    
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "area")
+    @JsonIgnore
     private Set<Profissional> profissionais;
     
-
+    
     public Area () {}
     
     public Area(String name) {
@@ -50,6 +54,15 @@ public class Area {
 	public void setName(String name) {
 		this.name = name;
 	}
+
     
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            "}";
+    }
     
 }

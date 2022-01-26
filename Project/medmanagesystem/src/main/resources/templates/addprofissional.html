@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> Adicionar Paciente </title>
+    <title> Adicionar Profissional </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,42 +37,63 @@
 <body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
   <div class="wrapper">
     <div>
-      <form action="#" method="post" th:action="@{/savepaciente}" th:object="${paciente}">
+      <form action="#" method="post" th:action="@{/saveprofissional}" th:object="${profissional}">
         <div class="modal-header">						
-          <h4 class="modal-title">Adicionar Paciente</h4>
+          <h4 class="modal-title">Adicionar Profissional de Saúde</h4>
         </div>
 
         <div class="modal-body">					
           <div class="form-group">
           <!-- <input type="hidden" th:field="*{id}"/> -->
             <label>Nome</label>
-            <input type="text" class="form-control" th:field="*{name}" required>
+            <input type="text" class="form-control" th:field="*{pessoa.name}" required>
           </div>
           <div class="form-group">
             <label>Cartão de Cidadão</label>
-            <input type="number" class="form-control" th:field="*{pessoacc}" required>
+            <input type="number" class="form-control" th:field="*{pessoa.pessoacc}" required>
           </div>					 
           <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" th:field="*{email}" >
+            <input type="email" class="form-control" th:field="*{pessoa.email}" >
+          </div>
+          <div class="form-group">
+            <label>Password para acesso à conta</label>
+            <input type="password" class="form-control" name="password" th:field="*{password}" required>
           </div>
           <div class="form-group">
             <label>Morada</label>
-            <textarea type="text" class="form-control" th:field="*{morada}" required></textarea>
+            <textarea type="text" class="form-control" th:field="*{pessoa.morada}" required></textarea>
           </div>
           <div class="form-group">
             <label>Telemóvel</label>
-            <input type="number" class="form-control" th:field="*{telemovel}" required>
+            <input type="number" class="form-control" th:field="*{pessoa.telemovel}" required>
           </div>
           <div class="form-group">
             <label>Data de Nascimento</label>
-            <input type="date" class="form-control" th:field="*{datanascimento}" required>
+            <input type="date" class="form-control" th:field="*{pessoa.datanascimento}" required>
           </div>
+          
+          <div class="form-group" >
+            <label>Área de trabalho</label>
+            <select name="area" th:field="*{area}" >
+                <option th:each=" a: ${listaAreas}"  th:value="${a.id}" th:text="${a.name}">
+            </select>
+          </div>
+          <div class="form-group" >
+            <label>Tipo de profissional</label>
+            <select th:field="*{pro}" name="pro">
+                <option  th:each="state : ${T(com.mms.medmanagesystem.model.Profissional.state).values()}"
+                        th:text="${state}"
+                        th:value="${state}" >
+                </option>
+            </select>          
+        </div>
+
         </div>
         
         <div class="modal-footer">
-          <a href="../../pacientes"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
-          <a href="../../pacientes"><input type="submit" class="btn btn-info" value="Save"></a>
+          <a href="../profissionais"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
+          <a href="../profissionais"><input type="submit" class="btn btn-info" value="Save"></a>
         </div>
         
       </form>
