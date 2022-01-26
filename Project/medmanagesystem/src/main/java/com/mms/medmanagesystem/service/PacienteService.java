@@ -55,10 +55,6 @@ public class PacienteService {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
     }
-
-    /* public Paciente getPacienteBycc(int cc) throws ResourceNotFoundException {
-        return repository.findCc(cc);
-    } */
     
     public List<Paciente> findKeyword(String keyword)  {
 

@@ -203,16 +203,19 @@ $(document).ready(function(){
                       <h3>Lista de Profissionais</h3>
                     </div>
                     <div class="col-sm-6 text-right pr-5">
-                      <a th:href="@{profissional/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo profissional</span></a>
+                  <!-- FUTURAMENTE PARA NO HTML DOS MEDICOS APARECER EDITAR SÓ PARA O ADMIN, MAS A PAGINA PODE SER VISTA POR QUALQUER MEDICO
+                      <td th:if="${admin == true}">-->
+                        <a th:href="@{profissionais/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo profissional</span></a>
+                  <!--</td-->
                     </div>
 
                   </div>
                 </div><!-- /.container-fluid -->
       </section>
       <div style="width: 100%; margin-left: 15rem; margin-bottom: 1rem;">
-        <form th:action="@{/pacientes}" method="GET">
+        <form th:action="@{/profissionais}" method="GET">
           <input type="search" class="form-control form-control-lg"  name="keyword" id="txtSearch" placeholder="Pesquisar por nome" style="width: 50%; display: inline-block;">
-            <button type="submit" th:onclick="showName(nameJs)" class="btn btn-lg btn-default" style="width: 4%;">
+            <button type="submit"  class="btn btn-lg btn-default" style="width: 4%;">
               <i class="fa fa-search"></i>
             </button>
         </form>
@@ -225,7 +228,7 @@ $(document).ready(function(){
 				  <thead>
 					  <tr>		
               <th>Nome</th>
-              <th>Nº Cartão de Cidadão</th>
+              <th>Cartão de Cidadão</th>
               <th>Email</th>
               <th>Telemóvel</th>
               <th>Morada</th>
@@ -234,7 +237,7 @@ $(document).ready(function(){
 					  </tr>
 			  	</thead>
 				  <tbody>
-            <th:block th:each="prof : ${listaProfs}"> 
+            <th:block th:each="prof : ${listaProfissionais}"> 
               <tr>
                 <td> [[${prof.pessoa.name}]]</td>
                 <td> [[${prof.pessoa.pessoacc}]]</td>
@@ -244,9 +247,10 @@ $(document).ready(function(){
                 <td> [[${prof.pessoa.datanascimento}]]</td>
                 <td> [[${prof.area.name}]]</td>
 
-                
-                
-
+                <!-- FUTURAMENTE PARA NO HTML DOS MEDICOS APARECER EDITAR SÓ PARA O ADMIN, MAS A PAGINA PODE SER VISTA POR QUALQUER MEDICO
+                  <td th:if="${admin == true}">
+                  <a th:href="@{profissionais/edit/__${prof.pessoa.pessoacc}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                </td>-->
               </tr>
 				  </tbody>
 			  </table>
