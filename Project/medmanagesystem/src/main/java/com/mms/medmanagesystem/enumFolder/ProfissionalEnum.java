@@ -2,6 +2,7 @@ package com.mms.medmanagesystem.enumFolder;
 
 public enum ProfissionalEnum {
 
+    ADMIN("Admin"),
     MEDICO("Medico"),
     ENFERMEIRO("Enfermeiro"),
     ADMIN("Admin");
