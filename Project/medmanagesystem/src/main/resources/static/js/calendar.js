@@ -1,4 +1,16 @@
-  $(function create_calendar() {
+  async function callAPI () {
+    return new Promise((resolve, reject)=>{
+      var http = new XMLHttpRequest();
+      http.open("GET", "/consultas/getconsultas", true);
+      http.addEventListener("readystatechange", function() {
+          if (http.readyState === 4 && http.status === 200) {
+            resolve(http.responseText)
+          }
+      });
+      http.send();
+    })
+  }
+  $(async function create_calendar() {
 
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -57,7 +69,15 @@
         };
       }
     });
-
+    var events = JSON.parse((await callAPI())).map(consulta=>{
+      return {
+        title          : consulta.paciente.pessoa.name,
+        start          : new Date(consulta.data),
+        allDay         : false,
+        backgroundColor: '#3E899A',
+        borderColor    : '#3E899A',
+      }
+    })
     var calendar = new Calendar(calendarEl, {
       headerToolbar: {
         left  : 'prev,next today',
@@ -66,47 +86,8 @@
       },
       themeSystem: 'bootstrap',
       //Random default events
-      events = [
-        {
-          title          : 'Cirurgia ao pâncreas Afonso Costa',
-          start          : new Date(y, m, 7, 9, 30, 17, 30),
-          allDay         : false,
-          backgroundColor: '#f56954', //red
-          borderColor    : '#f56954', //red
-          id_profissional: 1
-        },
-        {
-          title          : 'MedLabs - Palestras sobre novos fármacos',
-          start          : new Date(y, m, d - 2),
-          end            : new Date(y, m, d),
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12', //yellow
-          id_profissional: 2
-        },
-        {
-          title          : 'Teleconsulta Joana Gomes',
-          start          : new Date(y, m, d, 10, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7', //Blue
-          id_profissional: 3
-        },
-        {
-          title          : 'Concerto Joana Gomes',
-          start          : new Date(2022, 1-1, d, 12, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7', //Blue
-          id_profissional: 1
-        },
-        {
-          title          : 'Andre serralheiro',
-          start          : new Date(2022, 1-1, d, 12, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7', //Blue
-          id_profissional: 1
-        }
+      events: [
+        ...events,
       ],
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
