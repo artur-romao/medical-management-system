@@ -172,27 +172,27 @@
                     <div class="tab-content profile-tab" id="myTabContent">
                       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
+                          <div class="col-md-6">
+                              <label>Id</label>
+                          </div>
+                          <div class="col-md-6">
+                              <p th:text="${id}"></p>
+                          </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
-                                <label>Id</label>
+                                <label>Cartão de Cidadão</label>
                             </div>
                             <div class="col-md-6">
-                                <p th:text="${id}"></p>
+                                <p th:text="${pessoacc}"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Nome</label>
+                                <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p th:text="${name}"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Área</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p th:text="${area}"></p>
+                                <p th:text="${email}"></p>
                             </div>
                         </div>
                         <div class="row">
@@ -225,12 +225,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-2">
-              <a th:href="@{perfil/edit/__${id}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+            <div>
+                <a th:href="@{perfil/edit/__${id}__}" type="submit" name="button" class="btn btn-info" value="Editar Perfil">Editar Perfil</a>
             </div>
-           <!-- <div class="col-md-2">
-              <a th:href="@{/profissionais}" ><input type="submit" name="button" class="btn btn-info" value="Lista de Médicos"></a>
-            </div>  -->
       </div>
     </form>           
 </div>

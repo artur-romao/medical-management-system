@@ -55,7 +55,9 @@ public class InternamentoController {
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
     model.addAttribute("nome", profissional.getPessoa().getName());
+    
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
 
     modelAndView.addObject("listaInternamentos", listaInternamentos);
