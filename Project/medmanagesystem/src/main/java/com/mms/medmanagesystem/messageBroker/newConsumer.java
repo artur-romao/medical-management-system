@@ -10,9 +10,13 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 public class newConsumer {
 
+    @Autowired
+    private SimpMessagingTemplate template;
     @Autowired
     private InternamentoService service;
 
@@ -24,6 +28,8 @@ public class newConsumer {
         JSONObject msg =new JSONObject(input);
         // System.out.println(message);
         int id=Integer.parseInt(msg.get("id").toString());
+        
+        template.convertAndSend("/topic/messages", input);
         switch (msg.get("name").toString()) {
             case "hb":
             //first half of the array is the hb values  peaks usually around 2

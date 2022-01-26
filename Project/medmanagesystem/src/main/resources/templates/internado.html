@@ -16,8 +16,13 @@
   <link rel="stylesheet" href="../../plugins/uplot/uPlot.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../css/adminlte.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js" integrity="sha512-ayb5R/nKQ3fgNrQdYynCti/n+GD0ybAhd3ACExcYvOR2J1o3HebiAe/P0oZDx5qwB+xkxuKG6Nc0AFTsPT/JDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js" integrity="sha512-tL4PIUsPy+Rks1go4kQG8M8/ItpRMvKnbBjQm4d2DQnFwgcBYRRN00QdyQnWSCwNMsoY/MfJY8nHp2CzlNdtZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 </head>
-<body class="hold-transition sidebar-mini">
+<body  onload ="connect()" class="hold-transition sidebar-mini">
 
   <!-- Content Wrapper. Contains page content -->
   <div class="container emp-profile" style="margin-top: 50px;">
@@ -168,7 +173,7 @@
     <!-- small card -->
     <div class="small-box bg-danger">
       <div class="inner">
-        <h3 class="sensor" id="2" >53</h3>
+        <h3 class="sensor" id="2" >null</h3>
 
         <p>Temperatura</p>
       </div>
@@ -271,7 +276,6 @@
 <script>
 $( document ).ready(function() {
 async function getData(url){
-  console.log(url)
     const response = await fetch(url);
     var data = await response.json();
     
@@ -318,7 +322,6 @@ async function getData(url){
  
  function show_data(data){
   var result = JSON.stringify(data);
-  console.log(data);
   var mydata = JSON.parse(result);
   //get first key
   var fk =Object.keys(mydata)[0];
@@ -417,5 +420,75 @@ console.log("control");
 
 }); 
 </script>
+
+<script>
+
+
+
+var stompClient = null;
+            
+           /*  function setConnected(connected) {
+                document.getElementById('connect').disabled = connected;
+                document.getElementById('disconnect').disabled = !connected;
+                document.getElementById('conversationDiv').style.visibility 
+                  = connected ? 'visible' : 'hidden';
+                document.getElementById('response').innerHTML = '';
+            } */           
+            const queryString = window.location.href.toString();
+
+//const id = urlParams.get('id')
+            const id=queryString.split("/")[queryString.split("/").length-1];
+            function connect() {
+                var socket = new SockJS('/ws');
+                stompClient = Stomp.over(socket);  
+                stompClient.connect({}, function(frame) {
+                    console.log('Connected: ' + frame);
+                    stompClient.subscribe('/topic/messages', function(messageOutput) {
+                        console.log(messageOutput.body);
+                        showMessageOutput(messageOutput.body);
+                    });
+                });
+            }
+            
+            function disconnect() {
+                if(stompClient != null) {
+                    stompClient.disconnect();
+                }
+                setConnected(false);
+                console.log("Disconnected");
+            }
+            
+            
+            
+            function showMessageOutput(messageOutput) {
+              console.log("sou a entrada",messageOutput);
+              var t= messageOutput.toString();
+              console.log("soy t", t);
+              var result = JSON.stringify(t);
+              var dados = JSON.parse(result);
+              //get first key
+              if (dados.split(',')[0].split(':')[1].trim() == "\"temp\""){
+                var fina= dados.split(',')[1].split(':')[1];
+
+                document.getElementById('2').textContent=fina;
+              }else if(dados.split(',')[0].split(':')[1].trim() == "\"press\""){
+
+                var fina = dados.split(',')[1].split(':')[1].split("\[")[1];
+                fina+="|";
+                fina+=dados.split('[')[1].split(',')[1].split("\]")[0];
+                console.log(fina,"magro");
+                document.getElementById('3').textContent=fina;
+               } else if(dados.split(',')[0].split(':')[1].trim() == "\"oxi\"") {
+                  var fina= dados.split(',')[1].split(':')[1];
+
+                  console.log("si")
+                  document.getElementById('1').textContent=fina;
+
+                }
+            
+            }
+
+</script>
+
 </body>
 </html>
