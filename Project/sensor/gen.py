@@ -60,7 +60,7 @@ class Generators:
                     t = np.real((ecg[n]*(random.randrange(-10,10)**0.05)))
                     hblist.append(t)
 
-               print(len(hblist))
+               # print(len(hblist))
                i+=1
                time_data = np.arange(len(hblist)) / frequency
                vallist=time_data[:250].tolist()+hblist[:250]
@@ -136,13 +136,13 @@ if __name__ == "__main__":
      temperatura = loop.create_task(g.temp())
 
      
-     print(oxi)
-     print(pressaoarterial)
-     print(heartbeats)
-     print(temperatura)
+     # print(oxi)
+     # print(pressaoarterial)
+     # print(heartbeats)
+     # print(temperatura)
      loop.run_until_complete(asyncio.gather(heartbeats,oxi,pressaoarterial,temperatura))
-     print(oxi)
-     print(pressaoarterial)
-     print(heartbeats)
-     print(temperatura)
+     # print(oxi)
+     # print(pressaoarterial)
+     # print(heartbeats)
+     # print(temperatura)
      loop.close()

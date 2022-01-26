@@ -56,8 +56,8 @@ public class InternamentoController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
-    model.addAttribute("name", profissional.getPessoa().getName());
-
+    model.addAttribute("nome", profissional.getPessoa().getName());
+    
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
 
     modelAndView.addObject("listaInternamentos", listaInternamentos);
@@ -66,39 +66,39 @@ public class InternamentoController {
     return modelAndView;
   }
 
-  // @GetMapping("/internados/{pessoacc}") 
-  //   public ModelAndView getInternamentosId(@PathVariable(value="pessoacc") int pessoacc, Model model) throws ResourceNotFoundException {
-      
-  //     ModelAndView modelAndView = new ModelAndView();
-      
-  //     Paciente internado = pessoaService.getPessoaBycc(pessoacc).getPaciente();
-
-  //     int internamento_id = internamentoService.getInternamentoIdByPaciente(internado.getId());
-
-  //     // por aqui as variáveis do internado que são mostradas
-  //     internamentoService.getInternamentoById(internamento_id).getPaciente();
-  //     model.addAttribute("internadoid", internamento_id);
-
-  //     modelAndView.setViewName("sinaisvitais");
-      
-  //     return modelAndView;
-      
-  //   } 
-
-    @GetMapping("/internados/{id}") 
-    public ModelAndView getInternamentosId(@PathVariable(value="id") int internamento_id, Model model) throws ResourceNotFoundException {
+  @GetMapping("/internados/{pessoacc}") 
+    public ModelAndView getInternamentosId(@PathVariable(value="pessoacc") int pessoacc, Model model) throws ResourceNotFoundException {
       
       ModelAndView modelAndView = new ModelAndView();
       
+      Paciente internado = pessoaService.getPessoaBycc(pessoacc).getPaciente();
+
+      int internamento_id = internamentoService.getInternamentoIdByPaciente(internado.getId());
+
       // por aqui as variáveis do internado que são mostradas
+      internamentoService.getInternamentoById(internamento_id).getPaciente();
+      model.addAttribute("internadoid", internamento_id);
+
+      modelAndView.setViewName("vitais");
       
-      Paciente paciente = internamentoService.getInternamentoById(internamento_id).getPaciente();
-      //model.addAttribute("internadoid", id);
-      
-      modelAndView.setViewName("sinaisvitais");
       return modelAndView;
       
     } 
+
+    // @GetMapping("/internados/{id}") 
+    // public ModelAndView getInternamentosId(@PathVariable(value="id") int internamento_id, Model model) throws ResourceNotFoundException {
+      
+    //   ModelAndView modelAndView = new ModelAndView();
+      
+    //   // por aqui as variáveis do internado que são mostradas
+      
+    //   Paciente paciente = internamentoService.getInternamentoById(internamento_id).getPaciente();
+    //   //model.addAttribute("internadoid", id);
+      
+    //   modelAndView.setViewName("internado");
+    //   return modelAndView;
+      
+    // } 
 
     // add --------------------------
 

@@ -31,15 +31,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class PacienteController {
 
-  @Autowired
-  PessoaService pessoaService;
-  @Autowired
-  ProfissionalService profissionalService;
-  @Autowired
-  PacienteService pacienteService;
-
-  @Autowired
-  ObjectFactory<HttpSession> httpSessionFactory;
+  @Autowired PessoaService pessoaService;
+  @Autowired ProfissionalService profissionalService;
+  @Autowired PacienteService pacienteService;
+  @Autowired ObjectFactory<HttpSession> httpSessionFactory;
 
   @GetMapping("/pacientes")
   public ModelAndView paciente(Model model, String keyword) throws NumberFormatException, ResourceNotFoundException {
@@ -143,6 +138,15 @@ public class PacienteController {
     modelEdit.setViewName("deletePaciente");
 
     return modelEdit;
-  } */
+  } 
+   @RequestMapping(value = "/editsave", method = RequestMethod.POST)
+    public RedirectView editNewPaciente(@ModelAttribute("paciente") Paciente paciente) throws NumberFormatException, ResourceNotFoundException {
+      
+      int id = paciente.getId();
+      System.out.println(paciente);
+      
+      pacienteService.updatePaciente(paciente);
+  
+  */
 
 }
