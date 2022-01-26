@@ -60,6 +60,10 @@ public class InternamentoController {
     
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
 
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+
     modelAndView.addObject("listaInternamentos", listaInternamentos);
     modelAndView.setViewName("tables/internados");
 

@@ -45,14 +45,15 @@ public class PacienteController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+    
     boolean medic = false;
-
-    if (profissional.getPro().equals("Medico")) {
-      medic = true;
-    }
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
 
     model.addAttribute("name", profissional.getPessoa().getName());
-    model.addAttribute("medic", medic);
 
     List<Paciente> listaPacientes = pacienteService.getPacientes(); // todos os pacientes
     List<Paciente> listaFiltrada = pacienteService.findKeyword(keyword);

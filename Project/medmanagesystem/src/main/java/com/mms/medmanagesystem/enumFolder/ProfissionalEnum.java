@@ -3,7 +3,8 @@ package com.mms.medmanagesystem.enumFolder;
 public enum ProfissionalEnum {
 
     MEDICO("Medico"),
-    ENFERMEIRO("Enfermeiro");
+    ENFERMEIRO("Enfermeiro"),
+    ADMIN("Admin");
     
     private final String profissional;  
 
