@@ -5,12 +5,12 @@ Medical Management System (MMS) - Integrated system for Medical Professionals to
 
 # Project team:
 
-| Role          | Nome          | NMEC  |
-| ------------- | ------------- | ----- |
-| DevOps        | Artur Romão   | 98470 |
-| Product Owner | Diogo Cruz    | 98595 |
-| Team Manager  | Mariana Rosa  | 98390 |
-| Architect     | Paulo Pereira | 98430 |
+| Role          | Nome          | **Email**            | NMEC  |
+| ------------- | ------------- | -------------------- | ----- |
+| DevOps        | Artur Romão   | artur.romao@ua.pt    | 98470 |
+| Product Owner | Diogo Cruz    | diogophc@ua.pt       | 98595 |
+| Team Manager  | Mariana Rosa  | marianarosa@ua.pt    | 98390 |
+| Architect     | Paulo Pereira | paulogspereira@ua.pt | 98430 |
 
 
 
