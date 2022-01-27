@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Profissional;
@@ -123,31 +122,5 @@ public class PacienteController {
 
     return new RedirectView("pacientes");
   }
-
-  // delete ---------------------
-
-/*   @RequestMapping(value = "/pacientes/delete/{pessoacc}")
-  public ModelAndView deletePaciente(Model model, @PathVariable(name = "pessoacc") int pessoacc)
-      throws ResourceNotFoundException {
-
-    ModelAndView modelEdit = new ModelAndView();
-
-    Pessoa paciente = pessoaService.getPessoaBycc(pessoacc);
-
-    model.addAttribute("paciente", paciente);
-
-    modelEdit.setViewName("deletePaciente");
-
-    return modelEdit;
-  } 
-   @RequestMapping(value = "/editsave", method = RequestMethod.POST)
-    public RedirectView editNewPaciente(@ModelAttribute("paciente") Paciente paciente) throws NumberFormatException, ResourceNotFoundException {
-      
-      int id = paciente.getId();
-      System.out.println(paciente);
-      
-      pacienteService.updatePaciente(paciente);
-  
-  */
 
 }

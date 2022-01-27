@@ -18,46 +18,34 @@ public class Config {
 
     public static final String EXCHANGE_NAME = "";
     @Bean
-	Queue queue1() {
-		return new Queue(pressq, true);
-	}
-    @Bean
-	Queue queue2() {
-		return new Queue(tempq, true);
-	}
-    @Bean
-	Queue queue3() {
-		return new Queue(oxiq, true);
-	}   
-    @Bean
-	Queue queue4() {
-		return new Queue(hbq, true);
-	}
+	Queue queue1() { return new Queue(pressq, true); }
 
     @Bean
-	DirectExchange exchange() {
-		return new DirectExchange(EXCHANGE_NAME);
-	}
+	Queue queue2() { return new Queue(tempq, true); }
+
     @Bean
-    Binding binding1(@Qualifier("queue1") Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(pressq);
-    }
+	Queue queue3() { return new Queue(oxiq, true); }
+
     @Bean
-    Binding binding4(@Qualifier("queue4") Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(hbq);
-    }
-    @Bean
-    Binding binding3(@Qualifier("queue3") Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(oxiq);
-    }
-    @Bean
-    Binding binding2(@Qualifier("queue2") Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(tempq);
-    }
+	Queue queue4() { return new Queue(hbq, true); }
 
 
     @Bean
-    public newConsumer receiver() {
-        return new newConsumer();
-    }
+	DirectExchange exchange() { return new DirectExchange(EXCHANGE_NAME); }
+
+    @Bean
+    Binding binding1(@Qualifier("queue1") Queue queue, DirectExchange exchange) { return BindingBuilder.bind(queue).to(exchange).with(pressq); }
+
+    @Bean
+    Binding binding4(@Qualifier("queue4") Queue queue, DirectExchange exchange) { return BindingBuilder.bind(queue).to(exchange).with(hbq); }
+
+    @Bean
+    Binding binding3(@Qualifier("queue3") Queue queue, DirectExchange exchange) { return BindingBuilder.bind(queue).to(exchange).with(oxiq); }
+
+    @Bean
+    Binding binding2(@Qualifier("queue2") Queue queue, DirectExchange exchange) { return BindingBuilder.bind(queue).to(exchange).with(tempq); }
+    
+
+    @Bean
+    public newConsumer receiver() { return new newConsumer(); }
 } 

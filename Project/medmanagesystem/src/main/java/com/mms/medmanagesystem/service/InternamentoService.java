@@ -2,7 +2,6 @@ package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
-import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.repository.InternamentoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +18,18 @@ import java.util.ArrayList;
 public class InternamentoService {
     @Autowired
     private InternamentoRepository repository;
+    
+    public Internamento saveInternamento(Internamento internamento) { return repository.save(internamento); }
+    
+    public List<Internamento> saveInternamento(List<Internamento> internamento) { return repository.saveAll(internamento); }
+    
+    public List<Internamento> getInternamentos() { return repository.findAll(); }
+    
+    public int getInternamentoIdByPaciente(int id) { return repository.getInternamentoByIdPaciente(id); }
 
-    public Internamento saveInternamento(Internamento internamento) {
-        return repository.save(internamento);
-    }
-
-    public List<Internamento> saveInternamento(List<Internamento> internamento) {
-        return repository.saveAll(internamento);
-    }
-
-    public List<Internamento> getInternamentos() {
-        return repository.findAll();
-    }
 
     public List<Internamento> getInternamentosByProfissionalId(int profissional_id) {
-
+        
         List<Internamento> all_internamentos = getInternamentos();
         List<Internamento> internamentos = new ArrayList<Internamento>();
         for (Internamento i : all_internamentos) {
@@ -58,10 +54,8 @@ public class InternamentoService {
 	}
     
     public Internamento getInternamentoById(int id) throws ResourceNotFoundException{
-        
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id:" + id));
-
     }
     
     public Map<String, Boolean> deleteInternamento(int id) throws ResourceNotFoundException {
@@ -87,14 +81,12 @@ public class InternamentoService {
         Internamento existingInternamento = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Internamento not found for this id: " + id));
 
-        // existingInternamento.setPulso(internamento.getPulso());
         existingInternamento.setTemperatura(internamento.getTemperatura());
         existingInternamento.setPressaoarterial(internamento.getPressaoarterial());
         existingInternamento.setRazaointernamento(internamento.getRazaointernamento());
         existingInternamento.setOxigenio(internamento.getOxigenio());
         existingInternamento.setQuartocama(internamento.getQuartocama());
         existingInternamento.setEstado(internamento.getEstado());
-        //existingInternamento.setDataadmissao(internamento.getDataadmissao());
         existingInternamento.setDatasaida(internamento.getDatasaida());
         existingInternamento.setStatefilter(internamento.getStatefilter());
         
@@ -161,11 +153,6 @@ public class InternamentoService {
         this.updateInternamento(idinternamento, internado);
 
         
-    }
-
-    public int getInternamentoIdByPaciente(int id) {
-        
-        return repository.getInternamentoByIdPaciente(id);
     }
 
 

@@ -89,12 +89,6 @@ public class ProfissionalController {
         return modelAndView;
     }
 
-/*     @GetMapping("/profissional/{id}")
-    public Profissional getProfissionalId(@PathVariable(value="id") int profissional_id) throws ResourceNotFoundException {
-        Profissional profissional = profissionalService.getProfissionalByID(profissional_id);
-        return Profissional;
-    } */
-
     @PostMapping("/profissional")
     public Profissional createProfissional(@Valid @RequestBody Profissional pro){
         return profissionalService.saveProfissional(pro);

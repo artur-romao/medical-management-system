@@ -11,12 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import java.sql.Date;
 
 
@@ -57,64 +51,29 @@ public class Consulta {
         this.anotacoes = anotacoes;
     }
 
-	public int getId() {
-		return this.id;
-	}
+	public int getId() { return this.id; }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	public void setId(int id) { this.id = id; }
 
-	public Paciente getPaciente() {
-		return this.paciente;
-	}
+	public Paciente getPaciente() { return this.paciente; }
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
+	public void setPaciente(Paciente paciente) { this.paciente = paciente; }
 
-	public Profissional getProfissional() {
-		return this.profissional;
-	}
+	public Profissional getProfissional() { return this.profissional; }
 
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
-	}
+	public void setProfissional(Profissional profissional) { this.profissional = profissional; }
 
-	public String getMotivo() {
-		return this.motivo;
-	}
+	public String getMotivo() { return this.motivo; }
 
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
-	}
+	public void setMotivo(String motivo) { this.motivo = motivo; }
 
-	public Date getData() {
-		return this.data;
-	}
+	public Date getData() { return this.data; }
 
-	public void setData(Date data) {
-		this.data = data;
-	}
+	public void setData(Date data) { this.data = data; }
 
-	public String getAnotacoes() {
-		return this.anotacoes;
-	}
+	public String getAnotacoes() { return this.anotacoes; }
 
-	public void setAnotacoes(String anotacoes) {
-		this.anotacoes = anotacoes;
-	}
-
-
-	@Override
-	public String toString() {
-		return "{" +
-			" id='" + getId() + "'" +
-			", motivo='" + getMotivo() + "'" +
-			", data='" + getData() + "'" +
-			", anotacoes='" + getAnotacoes() + "'" + 
-			"}";
-	}
+	public void setAnotacoes(String anotacoes) { this.anotacoes = anotacoes; }
     
 }
 

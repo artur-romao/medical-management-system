@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.model.Paciente;
-import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.model.Profissional;
 import com.mms.medmanagesystem.repository.InternamentoRepository;
 import com.mms.medmanagesystem.service.InternamentoService;
@@ -29,7 +28,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -169,31 +167,20 @@ public class InternamentoController {
   }
 
 
+  @GetMapping("/api/internados/{pessoacc}")
+  public @ResponseBody Map<Integer,List<Object>>getInternamentosId(@PathVariable int pessoacc) throws ResourceNotFoundException {
+    Paciente pac = pessoaService.getPessoaBycc(pessoacc).getPaciente();
+    int pacid= pac.getId();
 
-    // --------- delete
+    Internamento inter = internamentoService.getInternamentoById(pacid);
+    Paciente npac= inter.getPaciente();
 
-/*     @RequestMapping(value = "deleteinternamento/{id}", method = RequestMethod.GET)
-    public RedirectView handleDeleteInternamento(@PathVariable String id) throws NumberFormatException, ResourceNotFoundException {
-      internamentoService.deleteInternamento(Integer.parseInt(id));
-      
-      return new RedirectView("/internados");
-    }
- */
-
-    @GetMapping("/api/internados/{pessoacc}")
-    public @ResponseBody Map<Integer,List<Object>>getInternamentosId(@PathVariable int pessoacc) throws ResourceNotFoundException {
-      Paciente pac = pessoaService.getPessoaBycc(pessoacc).getPaciente();
-      int pacid= pac.getId();
-
-      Internamento inter = internamentoService.getInternamentoById(pacid);
-      Paciente npac= inter.getPaciente();
-
-      List<Object> a = new ArrayList<Object>(); 
-      a.add(inter);
-      a.add(npac);
-      Map<Integer,List<Object>> b =new HashMap<Integer,List<Object>>();
-      b.put(pessoacc,a);
-      return b;
+    List<Object> a = new ArrayList<Object>(); 
+    a.add(inter);
+    a.add(npac);
+    Map<Integer,List<Object>> b =new HashMap<Integer,List<Object>>();
+    b.put(pessoacc,a);
+    return b;
   }
 
 }

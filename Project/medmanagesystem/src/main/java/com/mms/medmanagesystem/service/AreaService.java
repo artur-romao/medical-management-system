@@ -6,35 +6,27 @@ import com.mms.medmanagesystem.repository.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Service
 public class AreaService {
     @Autowired
     private AreaRepository repository;
 
-    public Area saveArea(Area area) {
-        return repository.save(area);
-    }
+    public Area saveArea(Area area) { return repository.save(area); }
 
-    public List<Area> saveAreas(List<Area> areas) {
-        return repository.saveAll(areas);
-    }
+    public List<Area> saveAreas(List<Area> areas) { return repository.saveAll(areas); }
 
-    public List<Area> getAreas() {
-        return repository.findAll();
-    }
+    public List<Area> getAreas() { return repository.findAll(); }
+
+    public Area getAreaByName(String name) { return repository.findByName(name); }
+
 
     public Area getAreaByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Area not found for this id:" + id));
-        // return ResponseEntity.ok().body(area);
-    }
-
-    public Area getAreaByName(String name) {
-        return repository.findByName(name);
     }
 
     public Map<String, Boolean> deleteArea(int id) throws ResourceNotFoundException {
@@ -54,20 +46,5 @@ public class AreaService {
         existingArea.setId(Area.getId());
         return repository.save(existingArea);
     }
-    
-    public ArrayList<String> getArrayareas() {
-
-        List areas = repository.findAll();
-
-        ArrayList<String> arrayAreas = new ArrayList<>();
-
-        for (int i=0; i < areas.size();  i++) {
-            arrayAreas.add((String) areas.get(i));
-            
-        }
-        return arrayAreas;
-    }
-    
-
 
 }

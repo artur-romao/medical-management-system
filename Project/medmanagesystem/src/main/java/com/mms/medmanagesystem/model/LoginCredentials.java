@@ -5,20 +5,12 @@ public class LoginCredentials {
     private String profissionalcc;
     private String password;
   
-    public String getProfissionalcc() {
-      return profissionalcc;
-    }
+    public String getProfissionalcc() { return profissionalcc; }
   
-    public void setProfissionalcc(String profissionalcc) {
-      this.profissionalcc = profissionalcc;
-    }
+    public void setProfissionalcc(String profissionalcc) { this.profissionalcc = profissionalcc; }
   
-    public String getPassword() {
-      return password;
-    }
+    public String getPassword() { return password; }
   
-    public void setPassword(String password) {
-      this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
   
   }

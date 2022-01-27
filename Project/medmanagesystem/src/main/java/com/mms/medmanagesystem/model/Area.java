@@ -13,9 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-//@Data
 @Entity
 @Table(name = "area")
 public class Area {
@@ -35,34 +33,14 @@ public class Area {
     
     public Area () {}
     
-    public Area(String name) {
-        this.name = name;   
-    }
+    public Area(String name) { this.name = name; }
 
-    public int getId() {
-		return this.id;
-	}
+    public int getId() { return this.id; }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	public void setId(int id) { this.id = id; }
 
-	public String getName() {
-		return this.name;
-	}
+	public String getName() { return this.name; }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(String name) { this.name = name; }
 
-    
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
-    }
-    
 }

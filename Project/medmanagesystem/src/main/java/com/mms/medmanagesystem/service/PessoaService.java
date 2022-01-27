@@ -16,26 +16,20 @@ public class PessoaService {
     @Autowired
     private PessoaRepository repository;
 
-    public Pessoa savePessoa(Pessoa pessoa) {
-        return repository.save(pessoa);
-    }
+    public Pessoa savePessoa(Pessoa pessoa) { return repository.save(pessoa); }
 
-    public List<Pessoa> savePessoas(List<Pessoa> pessoas) {
-        return repository.saveAll(pessoas);
-    }
+    public List<Pessoa> savePessoas(List<Pessoa> pessoas) { return repository.saveAll(pessoas); }
 
-    public List<Pessoa> getPessoas() {
-        return repository.findAll();
-    }
+    public List<Pessoa> getPessoas() { return repository.findAll(); }
 
+    public Pessoa getPessoaByName(String name) { return repository.findByName(name); }
+
+    
     public Pessoa getPessoaBycc(int cc) throws ResourceNotFoundException {
         return repository.findById(cc)
         .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + cc));
     }
     
-    public Pessoa getPessoaByName(String name) {
-        return repository.findByName(name);
-    }
 
     public Map<String, Boolean> deletePessoa(Pessoa pessoa) throws ResourceNotFoundException {
 

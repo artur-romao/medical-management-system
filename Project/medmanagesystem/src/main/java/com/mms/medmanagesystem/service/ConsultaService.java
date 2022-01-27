@@ -17,22 +17,15 @@ public class ConsultaService {
     @Autowired
     private ConsultaRepository repository;
 
-    public Consulta saveConsulta(Consulta Consulta) {
-        return repository.save(Consulta);
-    }
+    public Consulta saveConsulta(Consulta Consulta) { return repository.save(Consulta); }
 
-    public List<Consulta> saveConsultas(List<Consulta> Consultas) {
-        return repository.saveAll(Consultas);
-    }
+    public List<Consulta> saveConsultas(List<Consulta> Consultas) { return repository.saveAll(Consultas); }
 
-    public List<Consulta> getConsultas() {
-        return repository.findAll();
-    }
+    public List<Consulta> getConsultas() { return repository.findAll(); }
 
     public Consulta getConsultaByID(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
-        // return ResponseEntity.ok().body(consulta);
     }
 
 	public Set<Consulta> getAllConsultasById(int... id_consulta) throws ResourceNotFoundException {

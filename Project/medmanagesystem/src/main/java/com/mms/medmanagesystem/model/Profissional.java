@@ -19,11 +19,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 // @Data
 @Entity
@@ -92,66 +90,29 @@ public class Profissional {
     }
 
     @Column(name = "id_profissional")
-    public int getId() {
-        return this.id;
-    }
+    public int getId() { return this.id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public Pessoa getPessoa() {
-        return this.profissional;
-    }
+    public Pessoa getPessoa() { return this.profissional; }
 
-    public void setPessoa(Pessoa profissional) {
-        this.profissional = profissional;
-    }
+    public void setPessoa(Pessoa profissional) { this.profissional = profissional; }
 
-    public Area getArea() {
-        return this.area;
-    }
+    public Area getArea() { return this.area; }
 
-    public void setArea(Area area) {
-        this.area = area;
-    }
+    public void setArea(Area area) { this.area = area; }
 
     @Column(name = "pswd")
-    public String getPassword() {
-        return this.password;
-    }
+    public String getPassword() { return this.password; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getPro() {
-        return this.pro;
-    }
+    public String getPro() { return this.pro; }
 
-    public void setPro(String pro) {
-        this.pro = pro;
-    }
+    public void setPro(String pro) { this.pro = pro; }
 
-    public Set<Internamento> getInternamento() {
-        return this.internamento;
-    }
+    public Set<Internamento> getInternamento() { return this.internamento; }
 
-    public void setInternamento(Set<Internamento> internamento) {
-        this.internamento = internamento;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", profissional='" + getPessoa() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", area='" + getArea() + "'" +
-            ", pro='" + getPro() + "'" +
-            "}";
-    }
-    
+    public void setInternamento(Set<Internamento> internamento) { this.internamento = internamento; }
 
 }

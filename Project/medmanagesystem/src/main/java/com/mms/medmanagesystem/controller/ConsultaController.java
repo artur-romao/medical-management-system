@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpServletRequest;
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
 
 import com.mms.medmanagesystem.model.Profissional;
@@ -16,9 +15,7 @@ import com.mms.medmanagesystem.model.Paciente;
 import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.service.ConsultaService;
 import com.mms.medmanagesystem.service.PacienteService;
-
 import com.mms.medmanagesystem.service.ProfissionalService;
-import com.zaxxer.hikari.util.SuspendResumeLock;
 
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
