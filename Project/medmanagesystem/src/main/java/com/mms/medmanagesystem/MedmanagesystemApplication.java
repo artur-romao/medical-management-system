@@ -78,7 +78,6 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			// Pacientes
 			pacienteService.savePaciente(new Paciente((new Pessoa(83664712, "Miguel dos Santos", "miguelds@outlook.com", 914415566, "331-3048 Sodales. Rd", Date.valueOf("1982-03-20")))));
 			pacienteService.savePaciente(new Paciente((new Pessoa(14151414, "Ana Maria", "anamaria@outlook.com", 965147826, "Alameda 29 Aveiro,12", Date.valueOf("2000-03-10")))));
-			pacienteService.savePaciente(new Paciente((new Pessoa(70180323, "Leslie Landry", "leslielandry801@hotmail.com", 933236833, "5626 Magna. Street", Date.valueOf("1959-12-10")))));
 			pacienteService.savePaciente(new Paciente((new Pessoa(60412328, "Cally Crosby", "callycrosby3755@google.com", 964187242, "Ap #108-4396 Vel Av.", Date.valueOf("1965-03-18")))));
 			pacienteService.savePaciente(new Paciente((new Pessoa(44265123, "Charles Morris", "charlesmorris@google.com", 914721284, "865-1262 Scelerisque Av.", Date.valueOf("1996-05-10")))));
 			pacienteService.savePaciente(new Paciente((new Pessoa(16914043, "Christen Bailey", "christenbailey2208@google.com", 928812722, "P.O. Box 120, 8950 Lorem Ave", Date.valueOf("1937-05-01")))));

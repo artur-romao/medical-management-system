@@ -34,20 +34,11 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class ConsultaController {
 
-  @Autowired
-  ConsultaService consultaService;
+  @Autowired ConsultaService consultaService;
+  @Autowired ProfissionalService profissionalService;
+  @Autowired PacienteService pacienteService;
+  @Autowired ObjectFactory<HttpSession> httpSessionFactory;
 
-  @Autowired
-  ProfissionalService profissionalService;
-
-  @Autowired
-  ConsultaService consultaService;
-
-  @Autowired
-  PacienteService pacienteService;
-
-  @Autowired
-  ObjectFactory<HttpSession> httpSessionFactory;
 
   @GetMapping("/consultas")
   public ModelAndView consulta(Model model) throws NumberFormatException, ResourceNotFoundException {
@@ -78,10 +69,13 @@ public class ConsultaController {
   public ModelAndView showConsulta(Model model, @PathVariable(name = "id") int id) throws ResourceNotFoundException {
     Consulta consulta = consultaService.getConsultaByID(id);
     Pessoa paciente = consulta.getPaciente().getPessoa();
+    
     model.addAttribute("consulta", consulta);
     model.addAttribute("paciente", paciente);
+    
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("consulta");
+    
     return modelAndView;
   }
 
@@ -130,13 +124,6 @@ public class ConsultaController {
     }
 
 
-}
-
-
-
-  
-
-
   @GetMapping("consultas/getconsultas")
   public List<Consulta> getConsultas(Model model) {
     HttpSession session = httpSessionFactory.getObject();
@@ -149,18 +136,6 @@ public class ConsultaController {
       }
     }
     return listaConsultasProfissional;
-  }
-
-  @GetMapping("consulta/{id}")
-  public ModelAndView showConsulta(Model model, @PathVariable(name = "id") int id, HttpServletRequest request) throws ResourceNotFoundException {
-    Consulta consulta = consultaService.getConsultaByID(id);
-    Pessoa paciente = consulta.getPaciente().getPessoa();
-    model.addAttribute("consulta", consulta);
-    model.addAttribute("paciente", paciente);
-    model.addAttribute("id", id);
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("consulta");
-    return modelAndView;
   }
 
   @PostMapping("consulta/{id}")
