@@ -29,9 +29,9 @@ VM Link :http://192.168.160.209:6767/index
 
 # Access to the website
 
-| Role            | Patient CC  | Password         |
-| ----------------|-------------|------------------|
-| Doctor          | 75766646    | 7576664675766646 |
-| Nurse           | 60411478    | 6041147860411478 |
-| Admin (manager) | 0           | admin            |
+| Role            | Profissional CC  | Password         |
+| ----------------|------------------|------------------|
+| Doctor          | 75766646         | 7576664675766646 |
+| Nurse           | 60411478         | 6041147860411478 |
+| Admin (manager) | 0                | admin            |
 
