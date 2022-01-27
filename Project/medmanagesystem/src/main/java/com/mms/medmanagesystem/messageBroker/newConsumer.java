@@ -85,9 +85,9 @@ public class newConsumer {
                     inter.setTemperatura(sendtemp);
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
-                    if(sendtemp<=37.5 || sendtemp>= 36.5){ //stable
+                    if(sendtemp<38 || sendtemp>= 36.5){ //stable
                         service.updateStates(id,"temp", 0);
-                    }else if(sendtemp<=38.3 || sendtemp>= 35.5){ //grave
+                    }else if(sendtemp<=38.5 || sendtemp>= 35.5){ //grave
                         
                         service.updateStates(id,"temp", 1);
                     }else{ //coma
@@ -134,7 +134,7 @@ public class newConsumer {
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
 
-                    if (sendoxi>94){ //stable
+                    if (sendoxi>95){ //stable
                         service.updateStates(id,"oxi", 0);
                     }else if(sendoxi<90 ){ //coma
 

@@ -433,7 +433,7 @@ var stompClient = null;
                   document.getElementById('2').textContent=fina;
                   fina= parseFloat(fina);
 
-                  if (fina<=37.5 || fina >=36.5){
+                  if (fina<38 || fina >=36.5){
                     states[1]=0;
                   }else if(fina<=38.5 || fina >=35.5){
                     states[1]=1;
@@ -466,7 +466,7 @@ var stompClient = null;
                   console.log("si")
                   document.getElementById('1').textContent=fina;
                   fina= parseFloat(fina);
-                  if (fina>94){
+                  if (fina>95){
                     states[3]=0;
                   }else if(fina<90){
                     states[3]=2;
