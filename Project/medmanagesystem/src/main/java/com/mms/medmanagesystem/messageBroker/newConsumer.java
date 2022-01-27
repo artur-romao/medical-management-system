@@ -10,9 +10,13 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 public class newConsumer {
 
+    @Autowired
+    private SimpMessagingTemplate template;
     @Autowired
     private InternamentoService service;
 
@@ -24,16 +28,16 @@ public class newConsumer {
         JSONObject msg =new JSONObject(input);
         // System.out.println(message);
         int id=Integer.parseInt(msg.get("id").toString());
+        
+        template.convertAndSend("/topic/messages", input);
         switch (msg.get("name").toString()) {
             case "hb":
             //first half of the array is the hb values  peaks usually around 2
             Double[] sendhb= eatHB(msg.get("values"));
             try {
                 Internamento inter= service.getInternamentoById(id);
-                
                 inter.setPulso(sendhb);
                 service.updateInternamento(id, inter);
-                
                     //not sure how to update this one
                     //maybe localizar o intervalo q mostra um e apenas um maximo de forma garantida 
                     // trabalhar com o maximo detro desse intervalo, saber um maximo normal e usalo como benchmark?
@@ -70,7 +74,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
             break;
             
@@ -81,9 +85,9 @@ public class newConsumer {
                     inter.setTemperatura(sendtemp);
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
-                    if(sendtemp<=37.5 || sendtemp>= 36.5){ //stable
+                    if(sendtemp<38 || sendtemp>= 36.5){ //stable
                         service.updateStates(id,"temp", 0);
-                    }else if(sendtemp<=38.3 || sendtemp>= 35.5){ //grave
+                    }else if(sendtemp<=38.5 || sendtemp>= 35.5){ //grave
                         
                         service.updateStates(id,"temp", 1);
                     }else{ //coma
@@ -110,7 +114,7 @@ public class newConsumer {
                     if(sendp[1]>105 || sendp[0]>160   ){ //coma
 
                         service.updateStates(id,"press", 2);
-                    }else if((sendp[0]<=140 && sendp[0]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
+                    }else if((sendp[0]<=140 && sendp[1]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
                         service.updateStates(id,"press", 0);
 
                     }else{ //grave
@@ -130,7 +134,7 @@ public class newConsumer {
                     service.updateInternamento(id, inter);
                     //update paciente statues due to critical conditions:D
 
-                    if (sendoxi>94){ //stable
+                    if (sendoxi>95){ //stable
                         service.updateStates(id,"oxi", 0);
                     }else if(sendoxi<90 ){ //coma
 

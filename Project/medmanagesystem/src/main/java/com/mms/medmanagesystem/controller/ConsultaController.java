@@ -77,6 +77,18 @@ public class ConsultaController {
     model.addAttribute("consulta", consulta);
     model.addAttribute("paciente", paciente);
     
+    HttpSession session = httpSessionFactory.getObject();
+    String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+
+    boolean medic = false;
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
+
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("consulta");
     
@@ -92,6 +104,8 @@ public class ConsultaController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
+
+    model.addAttribute("name", profissional.getPessoa().getName());
 
     boolean admin = false;
     if (profissional.getPro().equals("Admin")) { admin = true; }

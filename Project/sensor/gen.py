@@ -27,7 +27,9 @@ class Generators:
           self.marychanel.queue_declare(queue='temp',durable=True)
           self.marychanel.queue_declare(queue='press',durable=True)
           self.numinter=0
-          self.id=1
+          self.id=0
+          self.cclist=[]
+          self.heartbeatmap={}
 
           mydb = mysql.connector.connect(
           host="db",
@@ -37,9 +39,16 @@ class Generators:
           )
           mycursor = mydb.cursor()
           mycursor.execute("SELECT COUNT(*) FROM internamento")
+          
           for x in mycursor:
                self.numinter=x[0]
-          
+          newcursor = mydb.cursor()
+          newcursor.execute("SELECT paciente_cc  FROM paciente INNER JOIN internamento ON paciente.id_paciente = internamento.id_paciente")
+          for x in newcursor:
+               self.cclist.append(x[0])
+               print("soy el x",x[0])
+          print(self.cclist)
+                    
      async def electrocardiogramf(self):
 
           # define electrocardiogram as ecg model
@@ -50,26 +59,34 @@ class Generators:
           hblist=[]
           i=0
           while True:
-               
-               self.id= random.randint(1, self.numinter)
-               if i>4:   
+               self.id+=1
+               if self.id==self.numinter:
+                    self.id=0
+               print(i,"soy i")
+               if i*250>108000:   
                     hblist=hblist[108000:]
+                    #i keeps array capped at 108000 values
+               if self.id not in self.heartbeatmap:
+                    self.heartbeatmap[self.id]=0
                
 
                for n in range(len(ecg)):
                     t = np.real((ecg[n]*(random.randrange(-10,10)**0.05)))
                     hblist.append(t)
 
-               # print(len(hblist))
-               i+=1
                time_data = np.arange(len(hblist)) / frequency
-               vallist=time_data[:250].tolist()+hblist[:250]
-          
-               tojson={'name':'hb', 'values':vallist, 'id':self.id}
+               #keeps track of number of calls of each id
+               self.heartbeatmap[self.id]= self.heartbeatmap[self.id]+1
+               print(self.heartbeatmap)
+               #will send data with flow for each id
+               vallist=time_data[250*(self.heartbeatmap[self.id]-1):250*self.heartbeatmap[self.id]].tolist()+hblist[250*(self.heartbeatmap[self.id]-1):250*self.heartbeatmap[self.id]]
+
+               tojson={'name':'hb', 'values':vallist,'id':self.id+1,'cc':self.cclist[self.id]}
 
                self.marychanel.basic_publish(exchange='', routing_key='hb', body=json.dumps(tojson))
+               i+=1
             
-               await asyncio.sleep(2)
+               await asyncio.sleep(0.2/self.numinter)
                """
                plt.plot(time_data, hblist)
                plt.xlabel("time in seconds")
@@ -85,10 +102,10 @@ class Generators:
                avgtemp=37
 
                currtemp = avgtemp+random.randrange(-10,10)*0.15
-               tojson={'name':'temp', 'values':currtemp, 'id':self.id}
+               tojson={'name':'temp', 'values':currtemp,'id':self.id+1, 'cc':self.cclist[self.id]}
                self.marychanel.basic_publish(exchange='', routing_key='temp', body=json.dumps(tojson))
 
-               await asyncio.sleep(2)
+               await asyncio.sleep(0.2/self.numinter)
            
                 
      async def pressaoarterial(self):
@@ -98,9 +115,9 @@ class Generators:
                sisnew = round(sis+random.randrange(-20,20)+random.random(),2)
                dianew=round(dia +random.randrange(-20,20)+random.random(),2)
                vallist = [sisnew, dianew]
-               tojson={'name':'press', 'values': vallist ,'id':self.id}
+               tojson={'name':'press', 'values': vallist ,'id':self.id+1,'cc':self.cclist[self.id]}
                self.marychanel.basic_publish(exchange='', routing_key='press', body=json.dumps(tojson))
-               await asyncio.sleep(2)
+               await asyncio.sleep(0.2/self.numinter)
                
                 
      async def oxigeniosaturarion(self):
@@ -112,11 +129,12 @@ class Generators:
           while True:
                getrandomoxi= np.random.choice(values,1,True,dist)
                oxi= round(getrandomoxi[0] + random.random(),2)
-               tojson={'name':'oxi', 'values':oxi , 'id':self.id}
+               tojson={'name':'oxi', 'values':oxi ,'id':self.id+1, 'cc':self.cclist[self.id]}
+               print(tojson)
                self.marychanel.basic_publish(exchange='', routing_key='oxi', body=json.dumps(tojson))
                
 
-               await asyncio.sleep(2)
+               await asyncio.sleep(0.2/self.numinter)
               
                 
 if __name__ == "__main__":
