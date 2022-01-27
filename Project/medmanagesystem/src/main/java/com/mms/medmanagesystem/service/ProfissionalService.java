@@ -58,10 +58,8 @@ public class ProfissionalService {
         Profissional existingProfissional = repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Profissional not found for this id:" + id ));
         
-        existingProfissional.setPessoa(pro.getPessoa());
         existingProfissional.setArea(pro.getArea());
         existingProfissional.setPassword(pro.getPassword());
-        //existingProfissional.setPro(pro.getPro());
 
         return repository.save(existingProfissional);
     }

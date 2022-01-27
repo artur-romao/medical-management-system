@@ -48,7 +48,7 @@
           <div>
             <label>Médico Responsável</label>
             <select name="profissional" th:field="*{profissional}" >
-                <option th:each=" m: ${profissionais}"  th:value="${m.id}" th:text="${m.pessoa.name}">
+                <option th:each=" m: ${profissionais}" th:value="${m.id}" th:text="${m.pessoa.name}">
             </select>
             </div>
             <div>

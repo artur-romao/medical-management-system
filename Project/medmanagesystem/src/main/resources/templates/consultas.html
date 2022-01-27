@@ -83,14 +83,14 @@
           </a>
         </li>
       <td th:if="${admin == false}">
-      <li class="nav-item">
-      <a href="perfil" class="nav-link">
-        <i class="nav-icon fas fa-user-md"></i>
-        <p>
-        Perfil
-        </p>
-      </a>
-      </li>
+        <li class="nav-item">
+        <a href="perfil" class="nav-link">
+          <i class="nav-icon fas fa-user-md"></i>
+          <p>
+          Perfil
+          </p>
+        </a>
+        </li>
       </td>
       <li class="nav-item">
       <a href="pacientes" class="nav-link">
@@ -100,7 +100,7 @@
         </p>
       </a>
       </li>
-      <td th:if="${admin == false}">
+      <td th:if="${medic == true}">
       <li class="nav-item">
       <a href="internados" class="nav-link">
         <i class="nav-icon fas fa-procedures"></i>
@@ -110,6 +110,7 @@
       </a>
       </li>
       </td>
+      <td th:if="${medic == true}">
       <li class="nav-item">
       <a href="consultas" class="nav-link">
         <i class="nav-icon fas fa-stethoscope"></i>
@@ -118,6 +119,17 @@
         </p>
       </a>
       </li>
+    </td>
+    <td th:if="${medic == false}">
+      <li class="nav-item">
+        <a href="listaconsultas" class="nav-link">
+          <i class="nav-icon fas fa-stethoscope"></i>
+          <p>
+            Consultas
+          </p>
+        </a>
+      </li>
+    </td>
       <td th:if="${admin == false}">
       <li class="nav-item" style="margin-bottom: 290px;">
       <a href="chat" class="nav-link">

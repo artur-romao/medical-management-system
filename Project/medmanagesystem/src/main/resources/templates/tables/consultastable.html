@@ -118,70 +118,47 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
-         <td th:if="${admin == false}">
-            <li class="nav-item">
-              <a href="perfil" class="nav-link">
-                <i class="nav-icon fas fa-user-md"></i>
-                <p>
-                  Perfil
-                </p>
-              </a>
-            </li>
-          </td>
-            <li class="nav-item">
-              <a href="pacientes" class="nav-link">
-                <i class="nav-icon fas fa-hospital-user"></i>
-                <p>
-                  Pacientes
-                </p>
-              </a>
-            </li>
-            <td th:if="${admin == false}">
-            <li class="nav-item">
-              <a href="internados" class="nav-link">
-                <i class="nav-icon fas fa-procedures"></i>
-                <p>
-                  Internados
-                </p>
-              </a>
-            </li>
-          </td>
-          <td th:if="${admin == false}">
-            <li class="nav-item">
-              <a href="consultas" class="nav-link">
-                <i class="nav-icon fas fa-stethoscope"></i>
-                <p>
-                  Consultas e Horário
-                </p>
-              </a>
-            </li>
-          </td>
-          <td th:if="${admin == true}">
-            <li class="nav-item">
-              <a href="listaconsultas" class="nav-link">
-                <i class="nav-icon fas fa-stethoscope"></i>
-                <p>
-                  Consultas
-                </p>
-              </a>
-            </li>
-          </td>
-          <td th:if="${admin == false}">
-            <li class="nav-item" style="margin-bottom: 290px;">
-              <a href="chat" class="nav-link">
-                <i class="nav-icon fas fa-comment-medical"></i>
-                <p>
-                  Chat clínico
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="login" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i>
-                <p>
-                  Terminar sessão
-                </p>
-              </a>
+         <li class="nav-item">
+          <a href="profissionais" class="nav-link">
+            <i class="fas fa-users-cog"></i>
+            <p>
+              Profissionais
+            </p>
+          </a>
+        </li>
+        <td th:if="${admin == false}">
+          <li class="nav-item">
+            <a href="perfil" class="nav-link">
+              <i class="nav-icon fas fa-user-md"></i>
+              <p>
+                Perfil
+              </p>
+            </a>
+          </li>
+        </td>
+        <li class="nav-item">
+          <a href="pacientes" class="nav-link">
+            <i class="nav-icon fas fa-hospital-user"></i>
+            <p>
+              Pacientes
+            </p>
+          </a>
+        </li>
+          <li class="nav-item">
+            <a href="listaconsultas" class="nav-link">
+              <i class="nav-icon fas fa-stethoscope"></i>
+              <p>
+                Consultas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="login" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <p>
+              Terminar sessão
+              </p>
+            </a>
             </li>
           </ul>
         </nav>
@@ -212,7 +189,7 @@
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Médico</th>
+                  <th>Profissional</th>
                   <th>Paciente</th>
                   <th>Data da consulta</th>
                   <th>Motivo</th>
@@ -228,9 +205,9 @@
                     <td> [[${consultas.motivo}]]</td>
                     <td> [[${consultas.anotacoes}]]</td> 
 
-                  <td>
- 				 <a th:href="@{internados/}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                     </td>
+                    <td th:if="${admin == true}">
+ 				              <a th:href="@{/consulta/__${consultas.id}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    </td>
                   </tr>
                 </th>
               </tbody>

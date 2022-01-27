@@ -32,6 +32,11 @@ public class IndexController {
     if (profissional.getPro().equals("Admin")) { admin = true; }
     model.addAttribute("admin", admin);
     
+    boolean medic = false;
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
+
+    
     model.addAttribute("name", profissional.getPessoa().getName());
 
     ModelAndView modelAndView = new ModelAndView();

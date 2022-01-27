@@ -100,22 +100,28 @@ public class InternamentoController {
       Internamento internamento = new Internamento();
       model.addAttribute("internamento", internamento);
       
+      List<Paciente> listaPacientes = pacienteService.getPacientes();
+      model.addAttribute("pacientes", listaPacientes);
+
       modelAndView.setViewName("addinternamento");
   
       return modelAndView;
     }
 
     @PostMapping(value = "/saveinternado")
-    public RedirectView saveNewInternamento(@ModelAttribute("internamento") Internamento internamento, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException {   
+    public RedirectView saveNewInternamento(Model model,@ModelAttribute("internamento") Internamento internamento, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException {   
 
       HttpSession session = httpSessionFactory.getObject();
       String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
       Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+      System.out.println(internamento);
 
       internamento.setId(internamentoService.getInternamentos().size()+1);
       
-      String paciente_cc = request.getParameter("paciente_cc");
-      Paciente internado = pessoaService.getPessoaBycc(Integer.parseInt(paciente_cc)).getPaciente();
+      int paciente_id = Integer.parseInt(request.getParameter("paciente"));
+      int paciente_cc = pacienteService.getPacienteById(paciente_id).getPessoa().getPessoacc();
+      model.addAttribute("pacientecc", paciente_cc);
+      Paciente internado = pessoaService.getPessoaBycc(paciente_cc).getPaciente();
       
       
       if (internado != null) {

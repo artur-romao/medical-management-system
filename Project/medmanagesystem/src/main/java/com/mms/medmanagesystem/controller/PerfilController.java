@@ -50,6 +50,11 @@ public class PerfilController {
     boolean admin = false;
     if (profissional.getPro().equals("Admin")) { admin = true; }
     model.addAttribute("admin", admin);
+
+    boolean medic = false;
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
+
     
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("perfil");

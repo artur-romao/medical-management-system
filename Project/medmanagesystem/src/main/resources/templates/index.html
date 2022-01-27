@@ -105,7 +105,7 @@
               </p>
             </a>
           </li>
-          <td th:if="${admin == false}">
+          <td th:if="${medic == true}">
             <li class="nav-item">
               <a href="internados" class="nav-link">
                 <i class="nav-icon fas fa-procedures"></i>
@@ -115,7 +115,7 @@
               </a>
           </td>
           </li>
-          <td th:if="${admin == false}">
+          <td th:if="${medic == true}">
           <li class="nav-item">
             <a href="consultas" class="nav-link">
               <i class="nav-icon fas fa-stethoscope"></i>

@@ -58,10 +58,14 @@ public class ProfissionalController {
         Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
         boolean admin = false;
-
         if (profissional.getPro().equals("Admin")) { admin = true; }
-
         model.addAttribute("admin", admin);
+
+        boolean medic = false;
+        if (profissional.getPro().equals("Medico")) { medic = true; }
+        model.addAttribute("medic", medic);
+
+
         model.addAttribute("name", profissional.getPessoa().getName());
     
         List<Profissional> listaProfissionais = profissionalService.getProfissionais(); // todos os pacientes
@@ -189,8 +193,8 @@ public class ProfissionalController {
         String button = request.getParameter("button");
 
         if ("Guardar".equals(button)) {
-            profissionalService.updateProfissional(id, profissional); //! this is deleting 
-            //pessoaService.updatePessoa(profissional.getPessoa());     // try this (remove area and pro)
+            pessoaService.updatePessoa(profissional.getPessoa());
+            profissionalService.updateProfissional(id, profissional);
         } else if ("Eliminar Profissional".equals(button)) {
             pessoaService.deletePessoa(profissional.getPessoa());
         }

@@ -44,8 +44,10 @@
 
         <div class="modal-body">					
           <div class="form-group">
-            <label>Cartão de Cidadão do Paciente</label>
-            <input type="text" class="form-control" name="paciente_cc" required>
+            <label> Paciente</label>
+            <select name="paciente" th:field="*{paciente}" >
+              <option th:each=" p : ${pacientes}"  th:value="${p.id}" th:text="${p.pessoa.name}">
+          </select>
           </div>
           <div class="form-group">
             <label>Quarto</label>

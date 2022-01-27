@@ -51,6 +51,10 @@ public class ConsultaController {
     if (profissional.getPro().equals("Admin")) { admin = true; }
     model.addAttribute("admin", admin);
 
+    boolean medic = false;
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
+    
     model.addAttribute("name", profissional.getPessoa().getName());
     
     ModelAndView modelAndView = new ModelAndView();
@@ -83,6 +87,19 @@ public class ConsultaController {
   public ModelAndView allConsultas(Model model) throws ResourceNotFoundException {
     List <Consulta> lista = getAllConsultas();
     model.addAttribute("listaConsultas", lista);
+
+    HttpSession session = httpSessionFactory.getObject();
+    String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
+
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+
+    boolean medic = false;
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
 
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("tables/consultastable");
@@ -140,12 +157,27 @@ public class ConsultaController {
 
   @PostMapping("consulta/{id}")
   public RedirectView editConsulta(Model model, @ModelAttribute("consulta") Consulta consulta, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException{
+
+    HttpSession session = httpSessionFactory.getObject();
+    String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
+    Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+
     String button = request.getParameter("button");
     System.out.println(button);
     if ("Guardar".equals(button)) {
       consultaService.updateConsulta(consulta);
+    } else if ("Eliminar Consulta".equals(button)) {
+      consultaService.deleteConsulta(consulta.getId());
     }
-    return new RedirectView("../consultas");
+    
+    if (admin){
+      return new RedirectView("../listaconsultas");
+    } else{
+      return new RedirectView("../consultas");
+    }
   }
 }
 

@@ -151,7 +151,7 @@ $(document).ready(function(){
                   </p>
                 </a>
               </li>
-              <td th:if="${admin == false}">
+              <td th:if="${medic == true}">
                 <li class="nav-item">
                   <a href="internados" class="nav-link">
                     <i class="nav-icon fas fa-procedures"></i>
@@ -161,7 +161,7 @@ $(document).ready(function(){
                   </a>
               </td>
               </li>
-              <td th:if="${admin == false}">
+              <td th:if="${medic == true}">
               <li class="nav-item">
                 <a href="consultas" class="nav-link">
                   <i class="nav-icon fas fa-stethoscope"></i>
@@ -171,7 +171,7 @@ $(document).ready(function(){
                 </a>
               </li>
             </td>
-              <td th:if="${admin == true}">
+              <td th:if="${medic == false}">
                 <li class="nav-item">
                   <a href="listaconsultas" class="nav-link">
                     <i class="nav-icon fas fa-stethoscope"></i>
@@ -225,7 +225,7 @@ $(document).ready(function(){
                   </div>
                 </div><!-- /.container-fluid -->
       </section>
-      <div style="width: 100%; margin-left: 15rem; margin-bottom: 1rem;">
+      <div style="width: 80%; margin-left: 15rem; margin-bottom: 1rem;">
         <form th:action="@{/profissionais}" method="GET">
           <input type="search" class="form-control form-control-lg"  name="keyword" id="txtSearch" placeholder="Pesquisar por nome" style="width: 50%; display: inline-block;">
             <button type="submit"  class="btn btn-lg btn-default" style="width: 4%;">
