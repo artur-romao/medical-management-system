@@ -29,9 +29,15 @@ public class ChatController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
+    model.addAttribute("name", profissional.getPessoa().getName());
+
     boolean admin = false;
     if (profissional.getPro().equals("Admin")) { admin = true; }
     model.addAttribute("admin", admin);
+
+    boolean medic = false;
+    if (profissional.getPro().equals("Medico")) { medic = true; }
+    model.addAttribute("medic", medic);
 
     model.addAttribute("name", profissional.getPessoa().getName());
     

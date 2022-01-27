@@ -35,13 +35,9 @@ public class newConsumer {
             //first half of the array is the hb values  peaks usually around 2
             Double[] sendhb= eatHB(msg.get("values"));
             try {
-                System.out.println("attempt1");
                 Internamento inter= service.getInternamentoById(id);
-                System.out.println("attempt2");
                 inter.setPulso(sendhb);
-                System.out.println("attempt3");
                 service.updateInternamento(id, inter);
-                System.out.println("attempt4");
                     //not sure how to update this one
                     //maybe localizar o intervalo q mostra um e apenas um maximo de forma garantida 
                     // trabalhar com o maximo detro desse intervalo, saber um maximo normal e usalo como benchmark?
@@ -66,7 +62,6 @@ public class newConsumer {
                             maximum=d[i];
                         }
                     }
-                    System.out.println("attempt5");
                     //create conditions
                     if(maximum >1.7){ //stable
                         service.updateStates(id,"hb", 0);
@@ -76,7 +71,6 @@ public class newConsumer {
                         service.updateStates(id,"hb", 2);
                     
                     }
-                    System.out.println("attempt6");
 
 
                 } catch (ResourceNotFoundException e) {

@@ -75,7 +75,10 @@
                     <a href="../../consultas" > 
                         <input type="submit" name="button" class="btn btn-info" data-dismiss="modal" value="Guardar">
                     </a>
-                    <a href="../listaconsultas" > 
+                    <a th:if="${admin == true}" href="../listaconsultas" > 
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    </a>
+                    <a th:if="${medic == true}" href="../../consultas" > 
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                     </a>
                     <a href="../../consultas" > 

@@ -89,13 +89,13 @@ public class MedmanagesystemApplication implements CommandLineRunner {
 			pacienteService.savePaciente(new Paciente((new Pessoa(40882324, "Hayley Ellison ", "hayleyellison@google.com", 927699778, "Ap #261-3437 Montes, Street", Date.valueOf("1960-11-16")))));
 
 			// Consultas
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(1), profissionalRepository.getById(2), "Queixas a fazer exercício físico", Date.valueOf("2020-05-20"), ""));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(2), profissionalRepository.getById(3), "Apendicite", Date.valueOf("2021-12-02"), "Em estado crítico."));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(3), profissionalRepository.getById(2), "Asma crítica", Date.valueOf("2021-06-15"), ""));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(4), profissionalRepository.getById(2), "Transplante de rim", Date.valueOf("2022-01-01"), "Rim direito em falência"));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(10), profissionalRepository.getById(4), "Varicela", Date.valueOf("2021-11-07"), ""));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(6), profissionalRepository.getById(4), "Dores de estômago diárias", Date.valueOf("2021-04-04"), ""));
-			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(7), profissionalRepository.getById(4), "Raio-X ao pé direito", Date.valueOf("2021-09-27"), ""));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(1), profissionalRepository.getById(2), "Queixas a fazer exercício físico", Date.valueOf("2020-01-20"), ""));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(2), profissionalRepository.getById(3), "Apendicite", Date.valueOf("2021-01-02"), "Em estado crítico."));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(3), profissionalRepository.getById(2), "Asma crítica", Date.valueOf("2021-01-15"), ""));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(4), profissionalRepository.getById(2), "Transplante de rim", Date.valueOf("2022-01-02"), "Rim direito em falência"));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(10), profissionalRepository.getById(4), "Varicela", Date.valueOf("2021-01-07"), ""));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(6), profissionalRepository.getById(4), "Dores de estômago diárias", Date.valueOf("2021-01-04"), ""));
+			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(7), profissionalRepository.getById(2), "Raio-X ao pé direito", Date.valueOf("2021-01-27"), "Microfratura com recuperação prolongada"));
 			consultaService.saveConsulta(new Consulta(pacienteRepository.getById(8), profissionalRepository.getById(2), "Dificuldades a respirar - COVID19", Date.valueOf("2022-01-10"), "Complicações nos pulmoões"));
 
 			// Internamentos
