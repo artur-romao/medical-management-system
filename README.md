@@ -20,7 +20,7 @@ Atlassian Scrum Board: https://medicalmanagementsystem.atlassian.net/jira/softwa
 
 API Documentation: https://documenter.getpostman.com/view/18915431/UVeAu8XZ
 
-VM Link :http://192.168.160.209:6767/index
+VM Link :http://192.168.160.209:6767/
 
 
 
