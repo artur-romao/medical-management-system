@@ -56,7 +56,7 @@ public class InternamentoController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
-    model.addAttribute("nome", profissional.getPessoa().getName());
+    model.addAttribute("name", profissional.getPessoa().getName());
     
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
 

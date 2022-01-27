@@ -40,12 +40,10 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name = "id_paciente", nullable = false)
-	@JsonIgnore
     private Paciente paciente;
 
     @ManyToOne
     @JoinColumn(name = "id_profissional", nullable = false)
-	@JsonIgnore
     private Profissional profissional;
 
     
