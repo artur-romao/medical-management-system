@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -29,16 +30,15 @@ import com.mms.medmanagesystem.model.Area;
 import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.model.Profissional;
 import com.mms.medmanagesystem.service.AreaService;
+import com.mms.medmanagesystem.service.PessoaService;
 import com.mms.medmanagesystem.service.ProfissionalService;
 
 @RestController
 public class ProfissionalController {
 
-    @Autowired
-    private ProfissionalService profissionalService;
-
-    @Autowired
-    private AreaService areaService;
+    @Autowired private ProfissionalService profissionalService;
+    @Autowired private PessoaService pessoaService;
+    @Autowired private AreaService areaService;
 
     @Autowired ObjectFactory<HttpSession> httpSessionFactory;
 
@@ -65,12 +65,20 @@ public class ProfissionalController {
         model.addAttribute("name", profissional.getPessoa().getName());
     
         List<Profissional> listaProfissionais = profissionalService.getProfissionais(); // todos os pacientes
+        
+        List<Profissional> finalProfissionais = new ArrayList<Profissional>();
+        for (Profissional pro:listaProfissionais){
+            if (pro.getPessoa().getPessoacc() != 0){
+                finalProfissionais.add(pro);
+            }
+
+        }
         List<Profissional> listaFiltrada = profissionalService.findKeyword(keyword);
     
         if (keyword != null) {
             modelAndView.addObject("listaProfissionais", listaFiltrada);
         } else {
-            modelAndView.addObject("listaProfissionais", listaProfissionais);
+            modelAndView.addObject("listaProfissionais", finalProfissionais);
         }
     
         modelAndView.setViewName("tables/profissionais");
@@ -102,7 +110,7 @@ public class ProfissionalController {
 
     // add ---------------------
 
-    @GetMapping("profissional/add")
+    @GetMapping("profissionais/add")
     public ModelAndView addProfissionalForm(Model model) throws NumberFormatException, ResourceNotFoundException {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -113,8 +121,15 @@ public class ProfissionalController {
         model.addAttribute("profissional", profissional);
 
 
+        List<Area> finalAreas = new ArrayList<Area>();
         List<Area> listaAreas = areaService.getAreas();
-        model.addAttribute("listaAreas", listaAreas);
+        for (Area area:listaAreas){
+            if (area.getId() != 18){
+                finalAreas.add(area);
+            }
+        }
+
+        model.addAttribute("listaAreas", finalAreas);
 
         modelAndView.setViewName("addprofissional");
 
@@ -136,6 +151,49 @@ public class ProfissionalController {
     
 
         profissionalService.saveProfissional(profissional);
+
+        return new RedirectView("profissionais");
+    }
+
+      // update or delete ---------------------
+
+    @RequestMapping("profissionais/edit/{id}")
+    public ModelAndView updateProfissionalAdmin(Model model, @PathVariable(name = "id") int id)
+    throws ResourceNotFoundException {
+
+        ModelAndView modelEdit = new ModelAndView();
+
+        Profissional profissional = profissionalService.getProfissionalByID(id);
+        model.addAttribute("profissional", profissional);
+
+        List<Area> listaAreas = areaService.getAreas();
+        List<Area> finalAreas = new ArrayList<Area>();
+        for (Area area:listaAreas){
+            if (area.getId() != 18){
+                finalAreas.add(area);
+            }
+        }
+        model.addAttribute("listaAreas", finalAreas);
+
+        modelEdit.setViewName("editprofissional");
+
+        return modelEdit;
+    }
+
+    @PostMapping(value = "/editprofissional")
+    public RedirectView saveProfissionalAdmin(@ModelAttribute("profissional") Profissional profissional, HttpServletRequest request)
+        throws NumberFormatException, ResourceNotFoundException {
+
+        int id = profissional.getId();
+
+        String button = request.getParameter("button");
+
+        if ("Guardar".equals(button)) {
+            profissionalService.updateProfissional(id, profissional); //! this is deleting 
+            //pessoaService.updatePessoa(profissional.getPessoa());     // try this (remove area and pro)
+        } else if ("Eliminar Profissional".equals(button)) {
+            pessoaService.deletePessoa(profissional.getPessoa());
+        }
 
         return new RedirectView("profissionais");
     }

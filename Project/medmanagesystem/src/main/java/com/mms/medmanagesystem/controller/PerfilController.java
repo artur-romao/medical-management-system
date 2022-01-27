@@ -67,7 +67,7 @@ public class PerfilController {
     Profissional pro = profissionalService.getProfissionalByID(id);
 
     Pessoa profissional = pro.getPessoa();
-    System.out.println(profissional);
+ 
     model.addAttribute("profissional", profissional);
 
     modelEdit.setViewName("editperfil");

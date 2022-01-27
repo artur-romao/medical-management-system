@@ -28,6 +28,10 @@ public class IndexController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+    
     model.addAttribute("name", profissional.getPessoa().getName());
 
     ModelAndView modelAndView = new ModelAndView();

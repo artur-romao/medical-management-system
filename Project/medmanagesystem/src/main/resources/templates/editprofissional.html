@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Editar Paciente </title>
+    <title>Editar Profissional </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -34,38 +34,57 @@
 <body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
     <div class="wrapper" style="max-width: 75%; margin: 0 auto;">
         <div>
-            <form action="#" th:action="@{/editpaciente}" th:object="${paciente}"  method="post"> 
+            <form action="#" th:action="@{/editprofissional}" th:object="${profissional}"  method="post"> 
                 <div class="modal-header">
-                    <h4 class="modal-title">Editar Paciente</h4>
+                    <h4 class="modal-title">Editar Profissional</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" th:field="*{pessoacc}" >
+                        <input type="hidden" class="form-control" th:field="*{id}" >
+                        <input type="hidden" class="form-control" th:field="*{password}" >
+                        <input type="hidden" class="form-control" th:field="*{pessoa.pessoacc}" >
+                        <input type="hidden" class="form-control" th:field="*{pessoa.datanascimento}" >
                         <label>Nome</label>
-                        <input type="text" class="form-control" th:field="*{name}"> 
+                        <input type="text" class="form-control" th:field="*{pessoa.name}"> 
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" th:field="*{email}" >                        
+                        <input type="email" class="form-control" th:field="*{pessoa.email}" >                        
                     </div>
                     <div class="form-group">
                         <label>Morada </label>
-                        <input type="text" class="form-control" th:field="*{morada}"  style="width: 20%;" ></input>
+                        <input type="text" class="form-control" th:field="*{pessoa.morada}"  style="width: 20%;" ></input>
                     </div>
                     <div class="form-group">
                         <label>Telemóvel</label>
-                        <input type="text" class="form-control" th:field="*{telemovel}" >                        
+                        <input type="text" class="form-control" th:field="*{pessoa.telemovel}" >                        
                     </div>
                 </div>
+                <div class="form-group" >
+                    <label>Área de trabalho</label>
+                    <select name="area" th:field="*{area}" >
+                        <option th:each=" a: ${listaAreas}"  
+                                th:value="${a.id}"
+                                th:text="${a.name}">
+                    </select>
+                <!--</div>
+                  <div class="form-group" >
+                    <label>Tipo de profissional</label>
+                    <select name="pro" th:field="*{pro}">
+                        <option th:each="state : ${T(com.mms.medmanagesystem.model.Profissional.state).values()}"
+                                th:value="${state}" 
+                                th:text="${state}" >
+                    </select>          
+                </div>-->
                 <div class="modal-footer">
-                    <a href="../../pacientes" > 
+                    <a href="../../profissionais" > 
                         <input type="submit" name="button" class="btn btn-info" value="Guardar">
                     </a>
-                    <a href="../../pacientes" > 
+                    <a href="../../profissionais" > 
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                     </a>
-                    <a href="../../pacientes" > 
-                        <input align="left" name="button" type="submit" class="btn btn-danger" value="Eliminar Paciente">
+                    <a href="../../profissionais" > 
+                        <input align="left" name="button" type="submit" class="btn btn-danger" value="Eliminar Profissional">
                     </a>
                 </div>
             </form>

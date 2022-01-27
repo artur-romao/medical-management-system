@@ -4,8 +4,7 @@ public enum ProfissionalEnum {
 
     ADMIN("Admin"),
     MEDICO("Medico"),
-    ENFERMEIRO("Enfermeiro"),
-    ADMIN("Admin");
+    ENFERMEIRO("Enfermeiro");
     
     private final String profissional;  
 

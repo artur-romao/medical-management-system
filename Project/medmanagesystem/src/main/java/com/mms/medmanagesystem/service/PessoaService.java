@@ -50,6 +50,7 @@ public class PessoaService {
     }
 
     public Pessoa updatePessoa(Pessoa pessoa) throws ResourceNotFoundException {
+        
         Pessoa existingPessoa = repository.findById(pessoa.getPessoacc())
         .orElseThrow(() -> new ResourceNotFoundException("Pessoa not found for this cc:" + pessoa.getPessoacc()));
 
