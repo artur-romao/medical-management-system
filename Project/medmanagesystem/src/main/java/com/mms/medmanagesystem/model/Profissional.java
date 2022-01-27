@@ -1,5 +1,7 @@
 package com.mms.medmanagesystem.model;
 
+import java.util.Set;
+
 //import lombok.Data;
 //import lombok.EqualsAndHashCode;
 
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -48,12 +51,11 @@ public class Profissional {
     private String pro;
 
 
-/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "profissional", orphanRemoval = true)
-    private Set<Internamentos> internamentos;  */
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "profissional", orphanRemoval = true)
+    private Set<Internamento> internamento; 
 
-
-/*     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "profissional", orphanRemoval = true)
-    private Set<Consulta> consultas; */
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "profissional", orphanRemoval = true)
+    private Set<Consulta> consultas;
     
     public Profissional(){}
 
@@ -130,6 +132,15 @@ public class Profissional {
     public void setPro(String pro) {
         this.pro = pro;
     }
+
+    public Set<Internamento> getInternamento() {
+        return this.internamento;
+    }
+
+    public void setInternamento(Set<Internamento> internamento) {
+        this.internamento = internamento;
+    }
+
 
     @Override
     public String toString() {

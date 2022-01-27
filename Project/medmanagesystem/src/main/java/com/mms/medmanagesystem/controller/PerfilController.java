@@ -47,6 +47,10 @@ public class PerfilController {
     model.addAttribute("morada", profissional.getPessoa().getMorada());
     model.addAttribute("datanascimento", profissional.getPessoa().getDatanascimento());
 
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+    
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("perfil");
     return modelAndView;
@@ -63,7 +67,7 @@ public class PerfilController {
     Profissional pro = profissionalService.getProfissionalByID(id);
 
     Pessoa profissional = pro.getPessoa();
-    System.out.println(profissional);
+ 
     model.addAttribute("profissional", profissional);
 
     modelEdit.setViewName("editperfil");

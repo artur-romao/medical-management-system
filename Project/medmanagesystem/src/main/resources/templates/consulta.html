@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Consulta </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style_crud.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/css/adminlte.min.css">
+    
+    <!-- jQuery -->
+    <!-- <script src="../../plugins/jquery/jquery.min.js"></script>
+ -->
+    <!-- Bootstrap 4 -->
+    <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="../../js/adminlte.min.js"></script>
+ -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- <script src="../../js/demo.js"></script>
+ -->
+
+
+</head>
+
+
+<body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
+    <div class="wrapper" style="max-width: 50%; margin: 10rem auto;">
+        <div>
+            <form action="#" th:action="@{/consulta/__${consulta.id}__}" method="post"> 
+                <div class="modal-header">
+                    <h4 class="modal-title">Consulta</h4>
+                </div>
+                <div class="modal-body" style="display:inline-block">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="form-group">
+                        <label><b style="color: #0062cc;">Nome do paciente:</b></label>
+                        <label style="margin-left: 0.2rem;" th:text="${paciente.name}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label><b style="color: #0062cc;">Data de Nascimento:</b></label>
+                        <label style="margin-left: 0.2rem;" th:text="${paciente.datanascimento}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label><b style="color: #0062cc;">Email:</b></label>
+                        <label style="margin-left: 0.2rem;" th:text="${paciente.email}"></label> 
+                    </div>
+                    <div class="form-group">
+                        <label><b style="color: #0062cc;">Telemóvel:</b></label>
+                        <label style="margin-left: 0.2rem;" th:text="${paciente.telemovel}"></label> 
+                    </div>
+                </div>
+                <div class="modal-body" style="display:inline-block; float:right">
+                    <div class="form-group">
+                        <label><b style="color: #0062cc;">Data da Consulta:</b></label>
+                        <label style="margin-left: 0.2rem;" th:text="${consulta.data}"></label> 
+                    </div>
+                    <div class="form-group">
+                        <label><b style="color: #0062cc;">Motivo:</b></label>
+                        <label style="margin-left: 0.2rem;" th:text="${consulta.motivo}"></label>
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label><b style="color: #0062cc;">Anotações:</b></label>
+                        <textarea style="margin-left: 0.2rem;" th:field="*{consulta.anotacoes}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="../../consultas" > 
+                        <input type="submit" name="button" class="btn btn-info" data-dismiss="modal" value="Guardar">
+                    </a>
+                    <a href="../../consultas" > 
+                        <input type="button" class="btn btn-danger" data-dismiss="modal" value="Voltar">
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

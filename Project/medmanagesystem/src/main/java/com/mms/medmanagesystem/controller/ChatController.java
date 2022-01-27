@@ -24,12 +24,20 @@ public class ChatController {
 
   @GetMapping("/chat")
   public ModelAndView chat(Model model) throws NumberFormatException, ResourceNotFoundException {
+
     HttpSession session = httpSessionFactory.getObject();
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
+
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
+
     model.addAttribute("name", profissional.getPessoa().getName());
+    
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("chat");
+    
     return modelAndView;
   }
 

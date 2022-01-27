@@ -1,4 +1,16 @@
-  $(function create_calendar() {
+  async function callAPI () {
+    return new Promise((resolve, reject)=>{
+      var http = new XMLHttpRequest();
+      http.open("GET", "/consultas/getconsultas", true);
+      http.addEventListener("readystatechange", function() {
+          if (http.readyState === 4 && http.status === 200) {
+            resolve(http.responseText)
+          }
+      });
+      http.send();
+    })
+  }
+  $(async function create_calendar() {
 
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -57,7 +69,16 @@
         };
       }
     });
-
+    var events = JSON.parse((await callAPI())).map(consulta=>{
+      return {
+        title          : consulta.paciente.pessoa.name,
+        start          : new Date(consulta.data),
+        allDay         : false,
+        backgroundColor: '#3E899A',
+        borderColor    : '#3E899A',
+        id             : consulta.id
+      }
+    })
     var calendar = new Calendar(calendarEl, {
       headerToolbar: {
         left  : 'prev,next today',
@@ -66,47 +87,8 @@
       },
       themeSystem: 'bootstrap',
       //Random default events
-      events = [
-        {
-          title          : 'Cirurgia ao pâncreas Afonso Costa',
-          start          : new Date(y, m, 7, 9, 30, 17, 30),
-          allDay         : false,
-          backgroundColor: '#f56954', //red
-          borderColor    : '#f56954', //red
-          id_profissional: 1
-        },
-        {
-          title          : 'MedLabs - Palestras sobre novos fármacos',
-          start          : new Date(y, m, d - 2),
-          end            : new Date(y, m, d),
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12', //yellow
-          id_profissional: 2
-        },
-        {
-          title          : 'Teleconsulta Joana Gomes',
-          start          : new Date(y, m, d, 10, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7', //Blue
-          id_profissional: 3
-        },
-        {
-          title          : 'Concerto Joana Gomes',
-          start          : new Date(2022, 1-1, d, 12, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7', //Blue
-          id_profissional: 1
-        },
-        {
-          title          : 'Andre serralheiro',
-          start          : new Date(2022, 1-1, d, 12, 30),
-          allDay         : false,
-          backgroundColor: '#0073b7', //Blue
-          borderColor    : '#0073b7', //Blue
-          id_profissional: 1
-        }
+      events: [
+        ...events,
       ],
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
@@ -121,42 +103,13 @@
 
     calendar.render();
     // $('#calendar').fullCalendar()
-
-    /* ADDING EVENTS */
-    var currColor = '#3c8dbc' //Red by default
-    // Color chooser button
-    $('#color-chooser > li > a').click(function (e) {
-      e.preventDefault()
-      // Save color
-      currColor = $(this).css('color')
-      // Add color effect to button
-      $('#add-new-event').css({
-        'background-color': currColor,
-        'border-color'    : currColor
+    
+    var consulta = document.querySelectorAll("a.fc-daygrid-event")
+    for (let i = 0; i < consulta.length; i++) {
+      consulta[i].addEventListener("click", event => {
+        var paciente = event.target.closest("a.fc-daygrid-event").querySelector(".fc-event-title").innerText
+        let foundEvent = events.find(e => e.title === paciente)
+        window.location.href="/consulta/" + foundEvent.id
       })
-    })
-    $('#add-new-event').click(function (e) {
-      e.preventDefault()
-      // Get value and make sure it is not null
-      var val = $('#new-event').val()
-      if (val.length == 0) {
-        return
-      }
-
-      // Create events
-      var event = $('<div />')
-      event.css({
-        'background-color': currColor,
-        'border-color'    : currColor,
-        'color'           : '#fff'
-      }).addClass('external-event')
-      event.text(val)
-      $('#external-events').prepend(event)
-
-      // Add draggable funtionality
-      ini_events(event)
-
-      // Remove event from text input
-      $('#new-event').val('')
-    })
+    }
   })

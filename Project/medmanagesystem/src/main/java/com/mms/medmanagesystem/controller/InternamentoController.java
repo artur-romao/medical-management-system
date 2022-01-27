@@ -56,9 +56,13 @@ public class InternamentoController {
     String profissionalid = (String.valueOf(session.getAttribute("id_profissional")));
     Profissional profissional = profissionalService.getProfissionalByID(Integer.parseInt(profissionalid));
 
-    model.addAttribute("nome", profissional.getPessoa().getName());
+    model.addAttribute("name", profissional.getPessoa().getName());
     
     List<Internamento> listaInternamentos = internamentoService.getInternamentosByProfissionalId(Integer.parseInt(profissionalid));
+
+    boolean admin = false;
+    if (profissional.getPro().equals("Admin")) { admin = true; }
+    model.addAttribute("admin", admin);
 
     modelAndView.addObject("listaInternamentos", listaInternamentos);
     modelAndView.setViewName("tables/internados");
@@ -85,20 +89,6 @@ public class InternamentoController {
       
     } 
 
-    // @GetMapping("/internados/{id}") 
-    // public ModelAndView getInternamentosId(@PathVariable(value="id") int internamento_id, Model model) throws ResourceNotFoundException {
-      
-    //   ModelAndView modelAndView = new ModelAndView();
-      
-    //   // por aqui as variáveis do internado que são mostradas
-      
-    //   Paciente paciente = internamentoService.getInternamentoById(internamento_id).getPaciente();
-    //   //model.addAttribute("internadoid", id);
-      
-    //   modelAndView.setViewName("internado");
-    //   return modelAndView;
-      
-    // } 
 
     // add --------------------------
 
@@ -152,7 +142,6 @@ public class InternamentoController {
     model.addAttribute("internamento", internamento);
     model.addAttribute("id", internamento.getId());
 
-    System.out.println("-----internamento to edit---" + internamento);
     modelEdit.setViewName("editinternamento");
 
     return modelEdit;
@@ -160,11 +149,8 @@ public class InternamentoController {
 
   @PostMapping(value = "/editinternado")
   public RedirectView saveInternamento(@ModelAttribute("internamento") Internamento internamento, HttpServletRequest request) throws NumberFormatException, ResourceNotFoundException {
-
-    //System.out.println("-----internamento----" + internamento); // ta a dar null fodas e
     
     int id = internamento.getId();
-    System.out.println("-----id----" + id);
     
     String button = request.getParameter("button");
     if ("Guardar".equals(button)) {

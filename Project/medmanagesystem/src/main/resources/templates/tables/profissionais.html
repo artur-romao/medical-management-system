@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Pacientes </title>
+<title>Lista de Profissionais </title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -137,54 +137,70 @@ $(document).ready(function(){
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="perfil" class="nav-link">
-              <i class="nav-icon fas fa-user-md"></i>
-              <p>
-                Perfil
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pacientes" class="nav-link">
-              <i class="nav-icon fas fa-hospital-user"></i>
-              <p>
-                Pacientes
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="internados" class="nav-link">
-              <i class="nav-icon fas fa-procedures"></i>
-              <p>
-                Internados
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="consultas" class="nav-link">
-              <i class="nav-icon fas fa-stethoscope"></i>
-              <p>
-                Consultas e Horário
-              </p>
-            </a>
-          </li>
-          <li class="nav-item" style="margin-bottom: 290px;">
-            <a href="chat" class="nav-link">
-              <i class="nav-icon fas fa-comment-medical"></i>
-              <p>
-                Chat clínico
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="login" class="nav-link">
-              <i class="fas fa-sign-out-alt"></i>
-              <p>
-              Terminar sessão
-              </p>
-            </a>
-          </li>
+               <li class="nav-item">
+                <a href="profissionais" class="nav-link">
+                  <i class="fas fa-users-cog"></i>
+                  <p>
+                    Profissionais
+                  </p>
+                </a>
+              </li>
+              <td th:if="${admin == false}">
+              <li class="nav-item">
+                <a href="perfil" class="nav-link">
+                  <i class="nav-icon fas fa-user-md"></i>
+                  <p>
+                    Perfil
+                  </p>
+                </a>
+              </li>
+            </td>
+              <li class="nav-item">
+                <a href="pacientes" class="nav-link">
+                  <i class="nav-icon fas fa-hospital-user"></i>
+                  <p>
+                    Pacientes
+                  </p>
+                </a>
+              </li>
+              <td th:if="${admin == false}">
+                <li class="nav-item">
+                  <a href="internados" class="nav-link">
+                    <i class="nav-icon fas fa-procedures"></i>
+                    <p>
+                      Internados
+                    </p>
+                  </a>
+              </td>
+              </li>
+              <td th:if="${admin == false}">
+              <li class="nav-item">
+                <a href="consultas" class="nav-link">
+                  <i class="nav-icon fas fa-stethoscope"></i>
+                  <p>
+                    Consultas e Horário
+                  </p>
+                </a>
+              </li>
+            </td>
+            <td th:if="${admin == false}">
+              <li class="nav-item" style="margin-bottom: 290px;">
+                <a href="chat" class="nav-link">
+                  <i class="nav-icon fas fa-comment-medical"></i>
+                  <p>
+                    Chat clínico
+                  </p>
+                </a>
+              </li>
+              </td>
+              <li class="nav-item">
+                <a href="login" class="nav-link">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <p>
+                  Terminar sessão
+                  </p>
+                </a>
+                </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -203,10 +219,9 @@ $(document).ready(function(){
                       <h3>Lista de Profissionais</h3>
                     </div>
                     <div class="col-sm-6 text-right pr-5">
-                  <!-- FUTURAMENTE PARA NO HTML DOS MEDICOS APARECER EDITAR SÓ PARA O ADMIN, MAS A PAGINA PODE SER VISTA POR QUALQUER MEDICO
-                      <td th:if="${admin == true}">-->
+                      <td th:if="${admin == true}">
                         <a th:href="@{profissionais/add}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo profissional</span></a>
-                  <!--</td-->
+                      </td>
                     </div>
 
                   </div>
@@ -234,10 +249,11 @@ $(document).ready(function(){
               <th>Morada</th>
               <th>Data de Nascimento</th>
               <th>Área</th>
+              <th>Tipo</th>
 					  </tr>
 			  	</thead>
 				  <tbody>
-            <th:block th:each="prof : ${listaProfissionais}"> 
+            <th:block th:each="prof : ${listaProfissionais}">
               <tr>
                 <td> [[${prof.pessoa.name}]]</td>
                 <td> [[${prof.pessoa.pessoacc}]]</td>
@@ -246,11 +262,12 @@ $(document).ready(function(){
                 <td> [[${prof.pessoa.morada}]]</td>
                 <td> [[${prof.pessoa.datanascimento}]]</td>
                 <td> [[${prof.area.name}]]</td>
+                <td> [[${prof.pro}]]</td>
 
-                <!-- FUTURAMENTE PARA NO HTML DOS MEDICOS APARECER EDITAR SÓ PARA O ADMIN, MAS A PAGINA PODE SER VISTA POR QUALQUER MEDICO
+
                   <td th:if="${admin == true}">
-                  <a th:href="@{profissionais/edit/__${prof.pessoa.pessoacc}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                </td>-->
+                  <a th:href="@{profissionais/edit/__${prof.id}__}"  class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                </td>
               </tr>
 				  </tbody>
 			  </table>
