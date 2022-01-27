@@ -23,8 +23,8 @@ VM Link :
 ...
 
 ```
-./run.sh (outside the folder of the project)
-./mvnw spring-boot:run
+./run.sh (localhost:6767)
+[OPTIONAL] ./mvnw spring-boot:run (localhost:8080, used for faster testing purposes)
 
 ```
 
