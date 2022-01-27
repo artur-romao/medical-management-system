@@ -28,8 +28,8 @@ public class PessoaController {
     }
 
    
-    @GetMapping("/pessoas/{id}")
-    public Pessoa getPessoaBycc(@PathVariable(value="id") int pessoacc) throws ResourceNotFoundException {
+    @GetMapping("/pessoas/{pessoacc}")
+    public Pessoa getPessoaBycc(@PathVariable(value="pessoacc") int pessoacc) throws ResourceNotFoundException {
         return service.getPessoaBycc(pessoacc);
     }
         

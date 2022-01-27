@@ -21,11 +21,9 @@ public class newConsumer {
 
     @RabbitListener(queues = {Config.hbq, Config.tempq, Config.pressq, Config.oxiq})
     public void listen(String input) {
-        // System.out.println("   Receive input: " + input);
 
-    
         JSONObject msg =new JSONObject(input);
-        // System.out.println(message);
+
         int id=Integer.parseInt(msg.get("id").toString());
         
         template.convertAndSend("/topic/messages", input);
@@ -37,10 +35,7 @@ public class newConsumer {
                 Internamento inter= service.getInternamentoById(id);
                 inter.setPulso(sendhb);
                 service.updateInternamento(id, inter);
-                    //not sure how to update this one
-                    //maybe localizar o intervalo q mostra um e apenas um maximo de forma garantida 
-                    // trabalhar com o maximo detro desse intervalo, saber um maximo normal e usalo como benchmark?
-                    //we can do this because sendhb is an array composed by two arrays of the same lenght so its always an even number
+                    
                     int halfway = sendhb.length/2;
                     //convert into a half sized array
                     Double[] checker= new Double[halfway];
@@ -53,7 +48,7 @@ public class newConsumer {
                         d[i]=checker[i];
 
                     }
-                    //updateStates(int idinternamento, String sensorname, int value )
+                    
                     //get max of the hearbeat values
                     double maximum= -100;
                     for (int i = 0; i < d.length; i++) {
@@ -80,10 +75,11 @@ public class newConsumer {
             case "temp":
                 Float sendtemp=eattemp(msg.get("values"));
                 try {
-                    Internamento inter= service.getInternamentoById(id);    //ERRO AQUI NULL POINTER
+                    Internamento inter= service.getInternamentoById(id);    
                     inter.setTemperatura(sendtemp);
                     service.updateInternamento(id, inter);
-                    //update paciente statues due to critical conditions:D
+
+                    //update paciente statues due to critical conditions
                     if(sendtemp<38 || sendtemp>= 36.5){ //stable
                         service.updateStates(id,"temp", 0);
                     }else if(sendtemp<=38.5 || sendtemp>= 35.5){ //grave
@@ -95,7 +91,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
                 
 
@@ -108,8 +104,8 @@ public class newConsumer {
                     Internamento inter= service.getInternamentoById(id);
                     inter.setPressaoarterial(sendp);
                     service.updateInternamento(id, inter);
-                    //update paciente statues due to critical conditions:D
-                    // distolica is pos 1 sistolica pos 0
+
+                    //update paciente statues due to critical conditions
                     if(sendp[1]>105 || sendp[0]>160   ){ //coma
 
                         service.updateStates(id,"press", 2);
@@ -122,7 +118,7 @@ public class newConsumer {
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
                 break;
             case "oxi":
@@ -131,8 +127,8 @@ public class newConsumer {
                     Internamento inter= service.getInternamentoById(id);
                     inter.setOxigenio(sendoxi);
                     service.updateInternamento(id, inter);
-                    //update paciente statues due to critical conditions:D
 
+                    //update paciente statues due to critical conditions
                     if (sendoxi>95){ //stable
                         service.updateStates(id,"oxi", 0);
                     }else if(sendoxi<90 ){ //coma
@@ -142,7 +138,7 @@ public class newConsumer {
                         service.updateStates(id,"oxi", 1);
                     }
             } catch (ResourceNotFoundException e) {
-                //System.err.println("erro");
+                System.err.println("erro");
             }
             break;
             default:
@@ -155,7 +151,6 @@ public class newConsumer {
 
     //todos estes metodos vao dar return aos valores a ser colocados na db/mandados pro frontend
     public static Double[] eatHB(Object object){
-        //this one is special so we need to create a pair
         
         double[] hv = new double[540000]; //heart values array
         double[] td = new double[540000]; //time data array
@@ -187,22 +182,13 @@ public class newConsumer {
     } 
 
     public static Float[] eatpress(Object object){
-        //o obejto vem like [sis,dia]
+       
         String[] actualvals =object.toString().replaceAll("[\\[\\]]","").split(",");
-        // System.out.println(Float.parseFloat(actualvals[0].trim()) +"as"+ actualvals[1]);
         return new Float[] {Float.parseFloat(actualvals[0].trim()),Float.parseFloat(actualvals[1].trim())};    
     }
         
-    public static Float eattemp(Object object){
-            
-            return Float.parseFloat(object.toString());
-            
-        }
-    public static Float eatoxi(Object object){
-            
-            return Float.parseFloat(object.toString());
-            
-        }
-        
+    public static Float eattemp(Object object){ return Float.parseFloat(object.toString()); }
+
+    public static Float eatoxi(Object object){ return Float.parseFloat(object.toString()); }
         
     }

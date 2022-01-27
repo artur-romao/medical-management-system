@@ -106,6 +106,11 @@ public class ProfissionalController {
         return profissionalService.deleteProfissional(id);
     }
 
+    @GetMapping("/profissional/{id}")
+    public Profissional getProfissionalByID(@PathVariable int id) throws ResourceNotFoundException {
+        return profissionalService.getProfissionalByID(id);
+    }
+
     // add ---------------------
 
     @GetMapping("profissionais/add")
