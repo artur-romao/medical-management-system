@@ -76,6 +76,7 @@
         allDay         : false,
         backgroundColor: '#3E899A',
         borderColor    : '#3E899A',
+        id             : consulta.id
       }
     })
     var calendar = new Calendar(calendarEl, {
@@ -102,42 +103,13 @@
 
     calendar.render();
     // $('#calendar').fullCalendar()
-
-    /* ADDING EVENTS */
-    var currColor = '#3c8dbc' //Red by default
-    // Color chooser button
-    $('#color-chooser > li > a').click(function (e) {
-      e.preventDefault()
-      // Save color
-      currColor = $(this).css('color')
-      // Add color effect to button
-      $('#add-new-event').css({
-        'background-color': currColor,
-        'border-color'    : currColor
+    
+    var consulta = document.querySelectorAll("a.fc-daygrid-event")
+    for (let i = 0; i < consulta.length; i++) {
+      consulta[i].addEventListener("click", event => {
+        var paciente = event.target.closest("a.fc-daygrid-event").querySelector(".fc-event-title").innerText
+        let foundEvent = events.find(e => e.title === paciente)
+        window.location.href="/consulta/" + foundEvent.id
       })
-    })
-    $('#add-new-event').click(function (e) {
-      e.preventDefault()
-      // Get value and make sure it is not null
-      var val = $('#new-event').val()
-      if (val.length == 0) {
-        return
-      }
-
-      // Create events
-      var event = $('<div />')
-      event.css({
-        'background-color': currColor,
-        'border-color'    : currColor,
-        'color'           : '#fff'
-      }).addClass('external-event')
-      event.text(val)
-      $('#external-events').prepend(event)
-
-      // Add draggable funtionality
-      ini_events(event)
-
-      // Remove event from text input
-      $('#new-event').val('')
-    })
+    }
   })
