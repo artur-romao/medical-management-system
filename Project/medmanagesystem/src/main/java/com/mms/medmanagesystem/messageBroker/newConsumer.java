@@ -10,9 +10,13 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 public class newConsumer {
 
+    @Autowired
+    private SimpMessagingTemplate template;
     @Autowired
     private InternamentoService service;
 
@@ -24,16 +28,20 @@ public class newConsumer {
         JSONObject msg =new JSONObject(input);
         // System.out.println(message);
         int id=Integer.parseInt(msg.get("id").toString());
+        
+        template.convertAndSend("/topic/messages", input);
         switch (msg.get("name").toString()) {
             case "hb":
             //first half of the array is the hb values  peaks usually around 2
             Double[] sendhb= eatHB(msg.get("values"));
             try {
+                System.out.println("attempt1");
                 Internamento inter= service.getInternamentoById(id);
-                
+                System.out.println("attempt2");
                 inter.setPulso(sendhb);
+                System.out.println("attempt3");
                 service.updateInternamento(id, inter);
-                
+                System.out.println("attempt4");
                     //not sure how to update this one
                     //maybe localizar o intervalo q mostra um e apenas um maximo de forma garantida 
                     // trabalhar com o maximo detro desse intervalo, saber um maximo normal e usalo como benchmark?
@@ -58,6 +66,7 @@ public class newConsumer {
                             maximum=d[i];
                         }
                     }
+                    System.out.println("attempt5");
                     //create conditions
                     if(maximum >1.7){ //stable
                         service.updateStates(id,"hb", 0);
@@ -67,10 +76,11 @@ public class newConsumer {
                         service.updateStates(id,"hb", 2);
                     
                     }
+                    System.out.println("attempt6");
 
 
                 } catch (ResourceNotFoundException e) {
-                    //System.err.println("erro");
+                    System.err.println("erro");
                 }
             break;
             
@@ -110,7 +120,7 @@ public class newConsumer {
                     if(sendp[1]>105 || sendp[0]>160   ){ //coma
 
                         service.updateStates(id,"press", 2);
-                    }else if((sendp[0]<=140 && sendp[0]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
+                    }else if((sendp[0]<=140 && sendp[1]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
                         service.updateStates(id,"press", 0);
 
                     }else{ //grave
