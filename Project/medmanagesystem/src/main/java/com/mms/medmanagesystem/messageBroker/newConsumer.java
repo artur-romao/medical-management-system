@@ -122,7 +122,7 @@ public class newConsumer {
                     if(sendp[1]>105 || sendp[0]>160   ){ //coma
 
                         service.updateStates(id,"press", 2);
-                    }else if((sendp[0]<=140 && sendp[0]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
+                    }else if((sendp[0]<=140 && sendp[1]>=105) || (sendp[0]<=100 && sendp[1]>60)){ //stable
                         service.updateStates(id,"press", 0);
 
                     }else{ //grave
