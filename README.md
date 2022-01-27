@@ -17,11 +17,9 @@ Medical Management System (MMS) - Integrated system for Medical Professionals to
 
 API Documentation: https://documenter.getpostman.com/view/18915431/UVeAu8XZ
 
-VM Link :
+VM Link :http://192.168.160.209:6767/index
 
 # Run the website locally
-...
-
 ```
 ./run.sh (localhost:6767)
 [OPTIONAL] ./mvnw spring-boot:run (localhost:8080, used for faster testing purposes)
