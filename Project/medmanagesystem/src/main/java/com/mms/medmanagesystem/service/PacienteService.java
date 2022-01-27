@@ -1,29 +1,37 @@
 package com.mms.medmanagesystem.service;
 
 import com.mms.medmanagesystem.exception.ResourceNotFoundException;
-import com.mms.medmanagesystem.model.Consulta;
-import com.mms.medmanagesystem.model.Internamento;
 import com.mms.medmanagesystem.model.Paciente;
+import com.mms.medmanagesystem.model.Pessoa;
 import com.mms.medmanagesystem.repository.ConsultaRepository;
 import com.mms.medmanagesystem.repository.InternamentoRepository;
 import com.mms.medmanagesystem.repository.PacienteRepository;
+import com.mms.medmanagesystem.repository.PessoaRepository;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 public class PacienteService {
+  
     @Autowired
     private PacienteRepository repository;
+    @Autowired
     private ConsultaRepository crep;
+    @Autowired
     private InternamentoRepository irep;
+    @Autowired
+    private PessoaRepository pessoarep;
+
 
 
     public Paciente savePaciente(Paciente paciente) {
+
         return repository.save(paciente);
     }
 
@@ -35,11 +43,19 @@ public class PacienteService {
         return repository.findAll();
     }
 
+    // public List<Consulta> getConsultas() {
+    //     return consultarepo.findAll();
+    // }
+
+    // public List<Internamento> getInternamentos() {
+    //     return internamentorepo.findAll();
+    // }
+
     public Paciente getPacienteById(int id) throws ResourceNotFoundException {
         return repository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
     }
-
+    
     public List<Paciente> findKeyword(String keyword)  {
 
         return repository.findKeyword(keyword);
@@ -55,22 +71,17 @@ public class PacienteService {
 
     }
 
-    public Paciente updatePaciente(int id, Paciente paciente) throws ResourceNotFoundException {
+    public Paciente updatePaciente(Paciente paciente) throws ResourceNotFoundException {
+
         Paciente existingPaciente = repository.findById(paciente.getId())
-        .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + id));
+        .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:" + paciente.getId()));
         
-        // existingPaciente.setAssProfissional(paciente.getAssProfissional());
-        //existingPaciente.setInternamentos(paciente.getInternamentos());
-        return repository.save(existingPaciente);
+        existingPaciente.setPessoa(paciente.getPessoa());
+
+        return repository.save(existingPaciente);   
     }
 
-    // public void updatePacienteCI(Paciente paciente, Set<Consulta> consultas, Set<Internamento> internamentos) throws ResourceNotFoundException {
-    //     Paciente existingPaciente = repository.findById(paciente.getId())
-    //     .orElseThrow(() -> new ResourceNotFoundException("Paciente not found for this id:"));
 
-    //     repository.save(existingPaciente);
-
-    // }
 
 }
  

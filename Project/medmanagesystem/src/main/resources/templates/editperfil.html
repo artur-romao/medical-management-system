@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Editar Perfil </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style_crud.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/css/adminlte.min.css">
+    
+    <!-- jQuery -->
+    <!-- <script src="../../plugins/jquery/jquery.min.js"></script>
+ -->
+    <!-- Bootstrap 4 -->
+    <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="../../js/adminlte.min.js"></script>
+ -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- <script src="../../js/demo.js"></script>
+ -->
+
+
+</head>
+
+
+<body class="hold-transition sidebar-mini" style="background-color: #F4F6F9;">
+    <div class="wrapper" style="max-width: 75%; margin: 0 auto;">
+        <div>
+            <form action="#" th:action="@{/editperfil}" th:object="${profissional}"  method="post"> 
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Perfil</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" th:field="*{pessoacc}" >
+                    <input type="hidden" class="form-control" th:field="*{datanascimento}" >
+                    <input type="hidden" class="form-control" th:field="*{name}" >
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" th:field="*{email}" >                        
+                    </div>
+                    <div class="form-group">
+                        <label>Morada </label>
+                        <input type="text" class="form-control" th:field="*{morada}"  style="width: 20%;" ></input>
+                    </div>
+                    <div class="form-group">
+                        <label>Telemóvel</label>
+                        <input type="text" class="form-control" th:field="*{telemovel}" >                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="../perfil" > 
+                        <input type="submit" name="button" class="btn btn-info" value="Guardar">
+                    </a>
+                    <a href="../../perfil" > 
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

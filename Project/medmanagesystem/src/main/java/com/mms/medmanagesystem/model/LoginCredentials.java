@@ -2,15 +2,15 @@ package com.mms.medmanagesystem.model;
 
 public class LoginCredentials {
 
-    private String profissionalid;
+    private String profissionalcc;
     private String password;
   
-    public String getProfissionalid() {
-      return profissionalid;
+    public String getProfissionalcc() {
+      return profissionalcc;
     }
   
-    public void setProfissionalid(String profissionalid) {
-      this.profissionalid = profissionalid;
+    public void setProfissionalcc(String profissionalcc) {
+      this.profissionalcc = profissionalcc;
     }
   
     public String getPassword() {

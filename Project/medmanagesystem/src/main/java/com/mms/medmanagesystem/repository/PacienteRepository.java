@@ -11,7 +11,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface PacienteRepository extends JpaRepository<Paciente,Integer> {
     
-    @Query(value="SELECT * FROM paciente pa INNER JOIN pessoa pe ON pe.pessoacc = pa.paciente_cc WHERE pe.name like :keyword%" , nativeQuery = true)
+    @Query(value="SELECT * FROM paciente pa INNER JOIN pessoa pe ON pe.pessoacc = pa.paciente_cc WHERE pe.name like %:keyword%" , nativeQuery = true)
     List <Paciente> findKeyword(@Param("keyword") String keyword);
+
 
 }

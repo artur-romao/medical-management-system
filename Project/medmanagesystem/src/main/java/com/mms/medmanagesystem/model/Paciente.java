@@ -2,23 +2,19 @@ package com.mms.medmanagesystem.model;
 
 //import lombok.Data;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -33,18 +29,19 @@ public class Paciente {
     @Column(name = "id_paciente")
     private int id;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc") //referenccedColumName é o que vem de pessoa
+    @JoinColumn(name = "paciente_cc", referencedColumnName = "pessoacc")
+    @JsonIgnore
     private Pessoa paciente;
 
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
-    @JsonManagedReference
-
+    @JsonIgnore
     private Set<Consulta> consulta;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "paciente")
-    @JsonManagedReference
+    @JsonIgnore
     private Set<Internamento> internamento;
 
 
@@ -86,6 +83,7 @@ public class Paciente {
     }
 
     @Column(name = "id_paciente")
+    @JsonIgnore
     public int getId() {
         return this.id;
     }
@@ -94,11 +92,11 @@ public class Paciente {
         this.id = id;
     }
 
-    public Pessoa getPaciente() {
+    public Pessoa getPessoa() {
         return this.paciente;
     }
 
-    public void setPaciente(Pessoa paciente) {
+    public void setPessoa(Pessoa paciente) {
         this.paciente = paciente;
     }
     
@@ -116,7 +114,12 @@ public class Paciente {
 
     public void setConsulta(Set<Consulta> consulta) {
         this.consulta = consulta;
-    } 
+    }
+
+
+   
+
+   
 
     /*
     public Set<Vacina> getVacinas() {
@@ -135,5 +138,15 @@ public class Paciente {
         this.doencas = doencas;
     }
     */
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", paciente='" + getPessoa() + "'" +
+            ", consulta='" + getConsulta() + "'" +
+            ", internamento='" + getInternamento() + "'" +
+            "}";
+    }
     
 }

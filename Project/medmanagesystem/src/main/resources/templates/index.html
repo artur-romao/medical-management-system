@@ -70,19 +70,7 @@
           <img src="img/user.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="perfil" class="d-block" th:text="${nome}"></a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Pesquisar" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
+          <a href="perfil" class="d-block" th:text="${name}"></a>
         </div>
       </div>
 
@@ -91,6 +79,15 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+            <li class="nav-item">
+            <a href="profissionais" class="nav-link">
+              <i class="fas fa-users-cog"></i>
+              <p>
+                Profissionais
+              </p>
+            </a>
+          </li>
+          <td th:if="${admin == false}">
           <li class="nav-item">
             <a href="perfil" class="nav-link">
               <i class="nav-icon fas fa-user-md"></i>
@@ -99,6 +96,7 @@
               </p>
             </a>
           </li>
+        </td>
           <li class="nav-item">
             <a href="pacientes" class="nav-link">
               <i class="nav-icon fas fa-hospital-user"></i>
@@ -107,14 +105,17 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="internados" class="nav-link">
-              <i class="nav-icon fas fa-procedures"></i>
-              <p>
-                Internados
-              </p>
-            </a>
+          <td th:if="${medic == true}">
+            <li class="nav-item">
+              <a href="internados" class="nav-link">
+                <i class="nav-icon fas fa-procedures"></i>
+                <p>
+                  Internados
+                </p>
+              </a>
+          </td>
           </li>
+          <td th:if="${medic == true}">
           <li class="nav-item">
             <a href="consultas" class="nav-link">
               <i class="nav-icon fas fa-stethoscope"></i>
@@ -123,6 +124,18 @@
               </p>
             </a>
           </li>
+          </td>
+          <td th:if="${admin == true}">
+            <li class="nav-item">
+              <a href="listaconsultas" class="nav-link">
+                <i class="nav-icon fas fa-stethoscope"></i>
+                <p>
+                  Consultas
+                </p>
+              </a>
+            </li>
+          </td>
+        <td th:if="${admin == false}">
           <li class="nav-item" style="margin-bottom: 290px;">
             <a href="chat" class="nav-link">
               <i class="nav-icon fas fa-comment-medical"></i>
@@ -131,6 +144,7 @@
               </p>
             </a>
           </li>
+          </td>
           <li class="nav-item">
             <a href="login" class="nav-link">
               <i class="fas fa-sign-out-alt"></i>

@@ -57,15 +57,10 @@ public class ConsultaService {
         return response;    
     }
 
-    public Consulta updateConsulta(int id, Consulta consulta) throws ResourceNotFoundException {
-        Consulta existingConsulta = repository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + id));
+    public Consulta updateConsulta(Consulta consulta) throws ResourceNotFoundException {
+        Consulta existingConsulta = repository.findById(consulta.getId())
+        .orElseThrow(() -> new ResourceNotFoundException("Consulta not found for this id:" + consulta.getId()));
         
-        existingConsulta.setProfissional(consulta.getProfissional());
-        existingConsulta.setId(consulta.getId());
-        existingConsulta.setPaciente(consulta.getPaciente());
-        existingConsulta.setMotivo(consulta.getMotivo());
-        existingConsulta.setData(consulta.getData());
         existingConsulta.setAnotacoes(consulta.getAnotacoes());
 
         return repository.save(existingConsulta);

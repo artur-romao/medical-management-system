@@ -4,7 +4,7 @@ public enum EstadoEnum {
 
     ESTAVEL("Estavel"),
     GRAVE("Grave"),
-    COMA("Coma");
+    CRITICO("Critico");
 
     private final String estado;  
 

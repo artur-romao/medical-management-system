@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS Pessoa(
    pessoacc      INTEGER  NOT NULL PRIMARY KEY 
-  ,nome           VARCHAR(19) NOT NULL
+  ,name           VARCHAR(19) NOT NULL
   ,email          VARCHAR(33) NOT NULL
   ,telemovel      INTEGER  NOT NULL
   ,morada         VARCHAR(32) NOT NULL
