@@ -1,6 +1,7 @@
 # Medical Management System
 Medical Management System (MMS) - Integrated system for Medical Professionals to monitorize and check patients' health situations, mostly focused on patients who are in the intensive care unit.
 
+Final grade: 17
 
 
 # Project team:
